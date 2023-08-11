@@ -6,3 +6,5 @@ node_modules
 dist
 
 logs.txt
+logs.jsonl
+logs.json
