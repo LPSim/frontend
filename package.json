@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "name": "GITCG-frontend",
+  "productName": "GITCG-frontend",
+  "description": "Simple frontend for zyr17/GITCG",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider poi",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider poi build",
+    "report": "NODE_OPTIONS=--openssl-legacy-provider poi build --bundle-report",
+    "serve": "NODE_OPTIONS=--openssl-legacy-provider serve dist --single",
+    "test": "NODE_OPTIONS=--openssl-legacy-provider tyu"
+  },
+  "author": {
+    "name": "zyr17",
+    "email": "jzjqz17@gmail.com"
+  },
+  "dependencies": {
+    "normalize.css": "^7.0.0",
+    "object-assign": "^4.1.1",
+    "offline-plugin": "^4.8.0",
+    "promise-polyfill": "^6.0.2"
+  },
+  "devDependencies": {
+    "poi": "^9.0.0",
+    "poi-preset-bundle-report": "^2.0.0",
+    "poi-preset-offline": "^9.0.0",
+    "serve": "^6.1.0",
+    "tyu": "^1.0.4"
+  }
+}
