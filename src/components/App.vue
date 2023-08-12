@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <div>
-      <label for="charactorDataInput">Enter character data:</label>
-      <textarea id="charactorDataInput" v-model="matchDataInput"></textarea>
-      <button @click="parseCharactorData">Parse</button>
+      <label for="DataInput">Enter data:</label>
+      <textarea id="DataInput" v-model="matchDataInput"></textarea>
+      <div class="parse-button-container">
+        <button @click="parseCharactorData">Parse</button>
+      </div>
     </div>
-    <div>
+    <div class="player-table-order">
       <label>
         <input type="radio" v-model="playerTableOrder" value="0"> Player Table 0 First
       </label>
@@ -13,16 +15,18 @@
         <input type="radio" v-model="playerTableOrder" value="1"> Player Table 1 First
       </label>
     </div>
-    <!-- <div class="player-tables" v-if="match != null">
-      <h3>Player Tables</h3>
-      <div v-for="(playerTable, pid) in sortedPlayerTables" :key="pid">
-        <PlayerTable :playerTable="playerTable" :is_reverse="pid == 0"/>
+    <div class="data-navigation">
+      <button @click="showPrevData" :disabled="currentDataIndex === 0">Prev</button>
+      <button @click="showNextData" :disabled="currentDataIndex === matchData.length - 1">Next</button>
+    </div>
+    <div v-if="match != null">
+      <div class="base-info-div">
+        Round number: {{ match.round_number }}. Current status: {{ match.match_state }}
       </div>
-    </div> -->
+    </div>
     <div class="player-tables-container" v-if="match != null">
-      <!-- <h3>Player Tables</h3> -->
       <div class="player-tables" v-for="(playerTable, pid) in sortedPlayerTables" :key="pid" :style="'top: ' + (pid == 1 ? '50%' : '0')">
-        <PlayerTable :playerTable="playerTable" :is_reverse="pid == 0"/>
+        <PlayerTable :class="{'table-current-player': match.current_player == pid}" :playerTable="playerTable" :is_reverse="pid == 0"/>
       </div>
     </div>
   </div>
@@ -40,6 +44,8 @@ export default {
     return {
       dataVersion: null,
       matchDataInput: '',
+      matchData: [],
+      currentDataIndex: 0,
       match: null,
       playerTableOrder: '0'
     }
@@ -47,12 +53,24 @@ export default {
   methods: {
     parseCharactorData() {
       // Parse the character data and update the match object
-      let data = JSON.parse(this.matchDataInput)
-      this.dataVersion = data.version
-      this.match = data.match
-      console.log('version', this.dataVersion)
-      console.log('match', this.match)
+      let data = this.matchDataInput.trim().split('\n').map(line => JSON.parse(line))
+      this.dataVersion = data[0].version
+      this.matchData = data.map(d => d.match)
+      this.match = this.matchData[0]
+      this.currentDataIndex = 0
     },
+    showPrevData() {
+      if (this.currentDataIndex > 0) {
+        this.currentDataIndex--
+        this.match = this.matchData[this.currentDataIndex]
+      }
+    },
+    showNextData() {
+      if (this.currentDataIndex < this.matchData.length - 1) {
+        this.currentDataIndex++
+        this.match = this.matchData[this.currentDataIndex]
+      }
+    }
   },
   computed: {
     sortedPlayerTables() {
@@ -74,7 +92,7 @@ export default {
 
 div {
   box-sizing: border-box;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 label {
@@ -92,6 +110,11 @@ textarea {
   border-radius: 3px;
   font-family: monospace;
   font-size: 0.9em;
+}
+
+.parse-button-container {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 button {
@@ -129,8 +152,60 @@ button:hover {
   height: 100%;
 }
 
-.blablabla, .player-tables, .player-tables-container{
+.player-tables-container{
   border: 1px solid #3e8e41;
+}
+
+/* styles for the data navigation buttons */
+.data-navigation {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.data-navigation button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  font-size: 1em;
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+
+.data-navigation button:hover {
+  background-color: #3e8e41;
+}
+
+.base-info-div {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* styles for the player table order input */
+.player-table-order {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.player-table-order label {
+  display: flex;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.player-table-order input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+.player-tables > * {
+  border: 3px solid white;
+}
+
+.table-current-player {
+  border-color: orange;
 }
 
 </style>

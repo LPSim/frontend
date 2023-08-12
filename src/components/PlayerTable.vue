@@ -1,8 +1,5 @@
 <template>
   <div :class="tableClass">
-    <div class="dice">
-      <div v-for="die in playerTable.dice" :key="die">{{ die.color }}</div>
-    </div>
     <div class="supports-charactors-summons">
       <div class="supports">
         <!-- <h3>Supports</h3> -->
@@ -13,7 +10,8 @@
 
       <div class="charactors">
         <!-- <h3>Characters</h3> -->
-        <div class="charactor-div" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id">
+        <div :class="{'charactor-div': true, 'charactor-div-active': cid == playerTable.active_charactor_id}" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id">
+          <div class="active-div" v-if="(playerTable.active_charactor_id != cid) != is_reverse"></div>
           <Charactor class="charactor-inner" :charactor="charactor" />
           <div class="team-status" v-if="playerTable.active_charactor_id == cid">
             <!-- <h3>Team Status</h3> -->
@@ -26,6 +24,12 @@
         <!-- <h3>Summons</h3> -->
         <div v-for="summon in playerTable.summons" :key="summon.id">
           <Summon :summon="summon" />
+        </div>
+      </div>
+      <div class="dice">
+        <div v-for="(die, did) in playerTable.dice" :key="did">
+          <img class="cost-img" :src="'collector/icon/COST_' + die.color + '.png'" :alt="die" />
+          <img class="element-img" v-if="die.color != 'OMNI'" :src="'collector/icon/ELEMENT_' + die.color + '.png'" :alt="die" />
         </div>
       </div>
     </div>
@@ -92,6 +96,16 @@ export default {
 </script>
 
 <style scoped>
+
+.player-table-normal, .player-table-reverse {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-table-reverse {
+  flex-direction: column-reverse;
+}
+
 .player-info {
   display: flex;
   flex-direction: row;
@@ -117,7 +131,12 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 65%;
+  width: 70%;
+  height: 100%;
+}
+
+.hands > * {
+  width: 7.7%;
   height: 100%;
 }
 
@@ -155,8 +174,17 @@ export default {
   height: 8.64%;
 }
 
+.charactors > * > .active-div {
+  height: 8.64%;
+}
+
 .charactors > * > .charactor-inner {
   height: 82.72%;
+}
+
+.charactor-div-active > .charactor-inner {
+  border: 0px solid goldenrod;
+  /* background-color: goldenrod; */
 }
 
 .summons {
@@ -172,10 +200,33 @@ export default {
 }
 
 .dice {
-  position: absolute;
-  left: 95%;
+  /* position: absolute; */
+  /* left: 95.7%; */
   display: flex;
   flex-direction: column;
-  width: 5%;
+  width: 4.35%;
+  margin-left: 0.65%;
+  height: 100%;
+  flex-wrap: wrap;
 }
+
+.dice > * {
+  width: 50%;
+  height: 12.5%;
+  position: relative;
+}
+
+.dice > * > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.dice > * > .element-img {
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+}
+
 </style>

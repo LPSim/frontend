@@ -1,0 +1,78 @@
+[
+    {
+        "name": "ELEMENT_GEO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b2/Icon_TCG_Geo.png"
+    },
+    {
+        "name": "ELEMENT_ANEMO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d3/Icon_TCG_Anemo.png"
+    },
+    {
+        "name": "ELEMENT_DENDRO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/dc/Icon_TCG_Dendro.png"
+    },
+    {
+        "name": "ELEMENT_ELECTRO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7f/Icon_TCG_Electro.png"
+    },
+    {
+        "name": "ELEMENT_PYRO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/13/Icon_TCG_Pyro.png"
+    },
+    {
+        "name": "ELEMENT_HYDRO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/98/Icon_TCG_Hydro.png"
+    },
+    {
+        "name": "ELEMENT_CRYO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a6/Icon_TCG_Cryo.png"
+    },
+    {
+        "name": "ELEMENT_PHYSICAL",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/90/Icon_TCG_Physical.png"
+    },
+    {
+        "name": "ELEMENT_OMNI",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/56/Icon_TCG_Omni_Element.png"
+    },
+    {
+        "name": "COST_GEO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/25/Genius_Invokation_TCG_Geo_Cost.png"
+    },
+    {
+        "name": "COST_ANEMO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e4/Genius_Invokation_TCG_Anemo_Cost.png"
+    },
+    {
+        "name": "COST_DENDRO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f5/Genius_Invokation_TCG_Dendro_Cost.png"
+    },
+    {
+        "name": "COST_ELECTRO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/36/Genius_Invokation_TCG_Electro_Cost.png"
+    },
+    {
+        "name": "COST_PYRO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/36/Genius_Invokation_TCG_Pyro_Cost.png"
+    },
+    {
+        "name": "COST_HYDRO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c9/Genius_Invokation_TCG_Hydro_Cost.png"
+    },
+    {
+        "name": "COST_CRYO",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Genius_Invokation_TCG_Cryo_Cost.png"
+    },
+    {
+        "name": "COST_OMNI",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/56/Icon_TCG_Omni_Element.png"
+    },
+    {
+        "name": "COST_UNALIGNED",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/21/Genius_Invokation_TCG_Unaligned_Cost.png"
+    },
+    {
+        "name": "COST_MATCHING",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b1/Genius_Invokation_TCG_Matching_Cost.png"
+    }
+]

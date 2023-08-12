@@ -2,11 +2,13 @@
   <div>
     <div class="elements">
       <div class="element" v-for="element in charactor.element_application">
-        {{ element }}
+        <img :src="'collector/icon/ELEMENT_' + element + '.png'" width="100%" height="100%">
       </div>
     </div>
     <div :class="charactor.is_alive ? 'charactor' : 'charactor-died'">
-      <div class="charactor-name">{{ charactor.name }}</div>
+         <!-- :style="{ backgroundImage: 'url(' + 'collector/custom/Dendro Mob.png' + ')' }"> -->
+      <img class="charactor-image" :src="image_path">
+      <!-- <div class="charactor-name">{{ charactor.name }}</div> -->
       <div class="charactor-hp">{{ charactor.hp }}</div>
       <div class="charactor-charge">
         <span v-for="i in charactor.max_charge" :key="i"
@@ -15,7 +17,9 @@
       <div v-if="charactor.weapon" class="charactor-weapon">Weapon: {{ charactor.weapon }}</div>
       <div v-if="charactor.artifact" class="charactor-artifact">Artifact: {{ charactor.artifact }}</div>
       <div v-if="charactor.talent" class="charactor-talent">Talent: {{ charactor.talent }}</div>
-      <div class="charactor-status">Status: {{ charactor.status }}</div>
+      <div class="charactor-status">
+        <div v-for="(status, sid) in charactor.status" :key="sid">{{ status }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,6 +32,12 @@ export default {
       type: Object,
       required: true
     }
+  },
+  computed: {
+    image_path() {
+      let name = this.charactor.name.replace('Mob', ' Mob');
+      return 'collector/custom/' + name + '.png';
+    }
   }
 }
 </script>
@@ -36,24 +46,50 @@ export default {
 .elements {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 10.44%;
 }
+
+.element {
+  height: 100%;
+}
+
 .charactor, .charactor-died {
   position: relative;
   width: 100%;
   height: 89.56%;
   /* top: 10.44%; */
+  /* text-shadow: 2px 2px 0px  #fff, -2px -2px 0px  #fff, 2px -2px 0px  #fff, -2px 2px 0px  #fff; */
+  color: black;
+  font-weight: bolder;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+  font-size: 2vw;
 }
 
 .charactor-died {
   border: 1px solid red;
+  background-color: red;
+}
+
+.charactor-died > * {
+  opacity: 0.8;
 }
 
 .charactor > div, .charactor-died > div {
   /* Add styles for all the div elements inside the charactor container */
   position: absolute;
+}
+
+.charactor-image {
+  /* Add styles for the charactor image */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .charactor-name {
