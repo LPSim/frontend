@@ -1,0 +1,775 @@
+[
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b0/Absorbing_Prism_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Absorbing_Prism",
+        "name": "Absorbing Prism",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Electro",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Electro Hypostasis, heal that character for 3 HP and attach the Electro Crystal Core to them."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/8b/Abyssal_Summons_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Abyssal_Summons",
+        "name": "Abyssal Summons",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "Summon 1 Random Hilichurl Summon!\n(You must have at least 2 Monster characters in your deck to add this card to your deck.)\n\nCryo Hilichurl Shooter\nEnd Phase: Deal 1 Cryo DMG.\nUsage(s): 2\nElectro Hilichurl Shooter\nEnd Phase: Deal 1 Electro DMG.\nUsage(s): 2\nHilichurl Berserker\nEnd Phase: Deal 1 Pyro DMG.\nUsage(s): 2\nHydro Samachurl\nEnd Phase: Deal 1 Hydro DMG.\nUsage(s): 2"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/65/Adeptus%27_Temptation_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Adeptus%27_Temptation_(Event_Card)",
+        "name": "Adeptus' Temptation",
+        "group": [
+            "Food"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "effect": "During this Round, the target character's next Elemental Burst deals +3 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/ef/Ancient_Courtyard_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ancient_Courtyard",
+        "name": "Ancient Courtyard",
+        "group": [
+            "Arcane Legend"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "You must have a character who has already equipped a Weapon or Artifact: The next time you play a Weapon or Artifact card in this Round: Spend 2 less Elemental Dice."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/18/Blessing_of_the_Divine_Relic%27s_Installation_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Blessing_of_the_Divine_Relic%27s_Installation",
+        "name": "Blessing of the Divine Relic's Installation",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Shift 1 Artifact Equipment Card that has been equipped to one of your characters to another one of your characters."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/01/Butter_Crab_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Butter_Crab_(Event_Card)",
+        "name": "Butter Crab",
+        "group": [
+            "Food"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "effect": "During this Round, all your characters take -2 DMG the next time."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a2/Calx%27s_Arts_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Calx%27s_Arts",
+        "name": "Calx's Arts",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "Shift 1  Energy from at most 2 of your characters on standby to your active character."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/93/Changing_Shifts_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Changing_Shifts",
+        "name": "Changing Shifts",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "The next time you perform \"Switch Character\": Spend 1 less Elemental Die."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/43/Covenant_of_Rock_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Covenant_of_Rock",
+        "name": "Covenant of Rock",
+        "group": [
+            "Arcane Legend"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Can only be played when you have 0 Elemental Dice left: Generate 2 different Elemental Dice."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d1/Elemental_Resonance_Enduring_Rock_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Enduring_Rock",
+        "name": "Elemental Resonance: Enduring Rock",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Geo",
+                "number": "1"
+            }
+        ],
+        "effect": "During this round, after your character deals Geo DMG next time: Should there be any Combat Status on your side that provides  Shield, grant one such Status with 3  Shield points."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c8/Elemental_Resonance_Fervent_Flames_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Fervent_Flames",
+        "name": "Elemental Resonance: Fervent Flames",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Pyro",
+                "number": "1"
+            }
+        ],
+        "effect": "During this round, the next instance of Pyro-Related Reactions your current active character triggers deals +3 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/bb/Elemental_Resonance_High_Voltage_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_High_Voltage",
+        "name": "Elemental Resonance: High Voltage",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Electro",
+                "number": "1"
+            }
+        ],
+        "effect": "One of your characters without maximum Energy gains 1  Energy. (Active Character prioritized)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b3/Elemental_Resonance_Impetuous_Winds_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Impetuous_Winds",
+        "name": "Elemental Resonance: Impetuous Winds",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Anemo",
+                "number": "1"
+            }
+        ],
+        "effect": "Switch to the target character and create  Omni Element ×1."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Elemental_Resonance_Shattering_Ice_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Shattering_Ice",
+        "name": "Elemental Resonance: Shattering Ice",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Cryo",
+                "number": "1"
+            }
+        ],
+        "effect": "During this Round, your current active character will deal +2 DMG for the next instance."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/95/Elemental_Resonance_Soothing_Water_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Soothing_Water",
+        "name": "Elemental Resonance: Soothing Water",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Hydro",
+                "number": "1"
+            }
+        ],
+        "effect": "Heal your active character for 2 HP and all your characters on standby for 1 HP."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0d/Elemental_Resonance_Sprawling_Greenery_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Sprawling_Greenery",
+        "name": "Elemental Resonance: Sprawling Greenery",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Dendro",
+                "number": "1"
+            }
+        ],
+        "effect": "During this round, the next Elemental Reaction you trigger deals +2 DMG.\nYour Burning Flame, Dendro Core, and Catalyzing Field gain +1 Usage(s)."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e8/Elemental_Resonance_Woven_Flames_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Woven_Flames",
+        "name": "Elemental Resonance: Woven Flames",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Create 1  Pyro Die."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/95/Elemental_Resonance_Woven_Ice_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Woven_Ice",
+        "name": "Elemental Resonance: Woven Ice",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Create 1  Cryo Die."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/98/Elemental_Resonance_Woven_Stone_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Woven_Stone",
+        "name": "Elemental Resonance: Woven Stone",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Create 1  Geo Die."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/28/Elemental_Resonance_Woven_Thunder_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Woven_Thunder",
+        "name": "Elemental Resonance: Woven Thunder",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Create 1  Electro Die."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/42/Elemental_Resonance_Woven_Waters_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Woven_Waters",
+        "name": "Elemental Resonance: Woven Waters",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Create 1  Hydro Die."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/78/Elemental_Resonance_Woven_Weeds_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Woven_Weeds",
+        "name": "Elemental Resonance: Woven Weeds",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Create 1  Dendro Die."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/15/Elemental_Resonance_Woven_Winds_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Resonance:_Woven_Winds",
+        "name": "Elemental Resonance: Woven Winds",
+        "group": [
+            "Elemental Resonance"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Create 1  Anemo Die."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c7/Fatui_Conspiracy_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Fatui_Conspiracy",
+        "name": "Fatui Conspiracy",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "Create 1 Fatui Ambusher of a random type on the opponent's field.\n(You must have at least 2 Fatui characters in your deck to add this card to your deck.)\n\nFatui Ambusher\nFatui Ambushers will trigger their effects after characters on the side of the field they are at use Skills, and will deal DMG to the active character on that side of the field. (Once per Round)\n\n\nThere are 4 kinds of Fatui Ambushers in total:\nCryo Cicin Mage: Deals 1 Cryo DMG when triggered, 2 Usages.\nMirror Maiden: Deals 1 Hydro DMG when triggered, 2 Usages.\nPyroslinger Bracer: Deals 1 Pyro DMG when triggered, 2 Usages.\nElectrohammer Vanguard: Deals 1 Electro DMG when triggered, 2 Usages."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c8/Friendship_Eternal_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Friendship_Eternal",
+        "name": "Friendship Eternal",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "Players with less than 4 cards in their hand draw cards until their hand has 4 cards in it."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/13/Guardian%27s_Oath_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Guardian%27s_Oath",
+        "name": "Guardian's Oath",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "4"
+            }
+        ],
+        "effect": "Destroy all Summons. (Affects both you and your opponent.)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Heavy_Strike_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Heavy_Strike",
+        "name": "Heavy Strike",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "During this round, your current active character's next Normal Attack deals +1 DMG.\nWhen this Normal Attack is a Charged Attack: Deal +1 additional DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/12/I_Haven%27t_Lost_Yet%21_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/I_Haven%27t_Lost_Yet!",
+        "name": "I Haven't Lost Yet!",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Only playable if one of your characters is defeated this Round:\nCreate  Omni Element ×1 and your current active character gains 1  Energy."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/1b/Jueyun_Guoba_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Jueyun_Guoba_(Event_Card)",
+        "name": "Jueyun Guoba",
+        "group": [
+            "Food"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "During this Round, the target character's next Normal Attack deals +1 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c8/Leave_It_to_Me%21_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Leave_It_to_Me!",
+        "name": "Leave It to Me!",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "The next time you perform \"Switch Character\": The switch will be considered a Fast Action instead of a Combat Action."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2f/Lightning_Stiletto_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Lightning_Stiletto",
+        "name": "Lightning Stiletto",
+        "group": [],
+        "costs": [
+            {
+                "color": "Electro",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: Switch your Keqing in to be your active character and immediately use Stellar Restoration once. This instance of Stellar Restoration will grant Keqing Electro Infusion without creating another Lightning Stiletto.\n(When Keqing uses Stellar Restoration with this card in Hand: Instead of creating another Lightning Stiletto, discard this card and Keqing gains Electro Infusion)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/66/Lotus_Flower_Crisp_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Lotus_Flower_Crisp_(Event_Card)",
+        "name": "Lotus Flower Crisp",
+        "group": [
+            "Food"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "During this Round, the target character takes -3 DMG the next time."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/60/Master_of_Weaponry_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Master_of_Weaponry_(Event_Card)",
+        "name": "Master of Weaponry",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Shift 1 Weapon Equipment Card that has been equipped to one of your characters to another one of your characters of the same Weapon Type."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0c/Minty_Meat_Rolls_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Minty_Meat_Rolls_(Event_Card)",
+        "name": "Minty Meat Rolls",
+        "group": [
+            "Food"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "Before this Round ends, the target character's next 3 Normal Attacks cost 1 less  Unaligned Element."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/16/Mondstadt_Hash_Brown_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mondstadt_Hash_Brown_(Event_Card)",
+        "name": "Mondstadt Hash Brown",
+        "group": [
+            "Food"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "Heal target character for 2 HP."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e3/Mushroom_Pizza_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mushroom_Pizza_(Event_Card)",
+        "name": "Mushroom Pizza",
+        "group": [
+            "Food"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "Heal target character for 1 HP. For the next two Rounds, heal this character for 1 HP again at the End Phase."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/28/Nature_and_Wisdom_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Nature_and_Wisdom",
+        "name": "Nature and Wisdom",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "Draw 1 card. After that, switch any cards in your hand.\n(You must have at least 2 Sumeru characters in your deck to add this card to your deck.)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/47/Northern_Smoked_Chicken_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Northern_Smoked_Chicken_(Event_Card)",
+        "name": "Northern Smoked Chicken",
+        "group": [
+            "Food"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "During this Round, the target character's next Normal Attack cost less 1  Unaligned Element."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f1/Plunging_Strike_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Plunging_Strike",
+        "name": "Plunging Strike",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: Switch to the target character. That character then uses a Normal Attack."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/1d/Quick_Knit_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Quick_Knit",
+        "name": "Quick Knit",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "Choose one Summon on your side and grant it +1 Usage(s)."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/dc/Rhythm_of_the_Great_Dream_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Rhythm_of_the_Great_Dream_(Event_Card)",
+        "name": "Rhythm of the Great Dream",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "The next time you play a Weapon or Artifact from your hand: Spend 1 less Elemental Die."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/ba/Sashimi_Platter_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sashimi_Platter_(Event_Card)",
+        "name": "Sashimi Platter",
+        "group": [
+            "Food"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "Before this Round ends, the target character's Normal Attacks deal +1 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/4f/Send_Off_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Send_Off",
+        "name": "Send Off",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "Choose one Summon on the opposing side and cause it to lose 2 Usage(s)."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7a/Starsigns_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Starsigns",
+        "name": "Starsigns",
+        "group": [],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "effect": "Your current Active Character gains 1  Energy."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/80/Stone_and_Contracts_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Stone_and_Contracts",
+        "name": "Stone and Contracts",
+        "group": [],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "3"
+            }
+        ],
+        "effect": "When the Action Phase of the next Round begins: Create 3  Omni Element.\n(You must have at least 2 Liyue characters in your deck to add this card to your deck.)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d8/Strategize_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Strategize",
+        "name": "Strategize",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "Draw 2 cards."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d8/Sweet_Madame_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sweet_Madame_(Event_Card)",
+        "name": "Sweet Madame",
+        "group": [
+            "Food"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Heal target character for 1 HP."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/30/Tandoori_Roast_Chicken_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Tandoori_Roast_Chicken_(Event_Card)",
+        "name": "Tandoori Roast Chicken",
+        "group": [
+            "Food"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "effect": "During this Round, all your characters' next Elemental Skills deal +2 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/8a/Teyvat_Fried_Egg_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Teyvat_Fried_Egg_(Event_Card)",
+        "name": "Teyvat Fried Egg",
+        "group": [
+            "Food"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "Revives the target character and heals that character for 1 HP.\n(You can only revive 1 character via Food per Round, and a character can consume at most 1 Food per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e0/The_Bestest_Travel_Companion%21_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/The_Bestest_Travel_Companion!",
+        "name": "The Bestest Travel Companion!",
+        "group": [],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "effect": "Convert the Elemental Dice spent to Omni Element ×2."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/95/The_Legend_of_Vennessa_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/The_Legend_of_Vennessa_(Event_Card)",
+        "name": "The Legend of Vennessa",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "Create 4 basic Elemental Dice of different types."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/66/Thunder_and_Eternity_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Thunder_and_Eternity",
+        "name": "Thunder and Eternity",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Convert all your Elemental Dice to the Type of the active character.\n(You must have at least 2 Inazuman characters in your deck to add this card to your deck.)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/35/Toss-Up_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Toss-Up",
+        "name": "Toss-Up",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "effect": "Select any Elemental Dice to reroll. Can reroll 2 times."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a0/When_the_Crane_Returned_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/When_the_Crane_Returned",
+        "name": "When the Crane Returned",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "The next time you use a Skill: Switch your next character in to be the active character."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e5/Wind_and_Freedom_Event_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Wind_and_Freedom",
+        "name": "Wind and Freedom",
+        "group": [],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "In this Round, when an opposing character is defeated during your Action, you can continue to act again when that Action ends.\nUsage(s)：1\n(You must have at least 2 Mondstadt characters in your deck to add this card to your deck.)"
+    }
+]

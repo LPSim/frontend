@@ -1,0 +1,261 @@
+[
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/57/Autumn_Whirlwind_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Autumn_Whirlwind",
+        "name": "Autumn Whirlwind",
+        "usage": "3",
+        "effect": "End Phase: Deal 1 Anemo DMG.\n\nAfter your character or Summon triggers a Swirl reaction: Convert the Elemental Type of this card and change its DMG dealt to the element Swirled. (Can only be converted once before leaving the field)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/6d/Bake-Kurage_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Bake-Kurage",
+        "name": "Bake-Kurage",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Hydro DMG, heal your active character for 1 HP."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/61/Baron_Bunny_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Baron_Bunny_(Summon)",
+        "name": "Baron Bunny",
+        "usage": "1",
+        "effect": "When your active character takes DMG: Decrease DMG by 2.\nWhen the Usages are depleted, this card will not be discarded.\nAt the End Phase, if Usage(s) have been depleted: Discard this card, deal 2 Pyro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a4/Burning_Flame_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Burning_Flame",
+        "name": "Burning Flame",
+        "usage": "1",
+        "effect": "End Phase: Deal 1 Pyro DMG.\n(Can stack. Max 2 stacks.)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/cf/Chains_of_Warding_Thunder_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Chains_of_Warding_Thunder",
+        "name": "Chains of Warding Thunder",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Electro DMG.\nWhen this Summon is on the field: Your opponent will have to spend 1 additional Elemental Die when performing \"Switch Character.\" (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2f/Clusterbloom_Arrow_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Clusterbloom_Arrow",
+        "name": "Clusterbloom Arrow",
+        "usage": "1",
+        "effect": "End Phase: Deal 1 Dendro DMG.\n(Can stack. Max 2 stacks.)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/14/Cryo_Cicins_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Cryo_Cicins_(Summon)",
+        "name": "Cryo Cicins",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Cryo DMG.\n(Can stack. Max 3 stacks.)\n\nAfter Fatui Cryo Cicin Mage performs a Normal Attack: This card gains 1 Usage(s).\nAfter your character takes Elemental Reaction DMG: This card loses 1 Usage(s)."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/54/Cryo_Hilichurl_Shooter_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Cryo_Hilichurl_Shooter_(Summon)",
+        "name": "Cryo Hilichurl Shooter",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Cryo DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/04/Cuilein-Anbar_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Cuilein-Anbar",
+        "name": "Cuilein-Anbar",
+        "usage": "2",
+        "effect": "End Phase: Deal 2 Dendro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/4b/Dandelion_Field_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Dandelion_Field",
+        "name": "Dandelion Field",
+        "usage": "2",
+        "effect": "End Phase: Deal 2 Anemo DMG, heal your active character for 1 HP."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c4/Darkfire_Furnace_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Darkfire_Furnace",
+        "name": "Darkfire Furnace",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Pyro DMG, deal 1 Piercing DMG to all opposing characters on standby."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/5a/Drunken_Mist_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Drunken_Mist",
+        "name": "Drunken Mist",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Cryo DMG, heal your active character for 2 HP."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2b/Electro_Hilichurl_Shooter_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Electro_Hilichurl_Shooter_(Summon)",
+        "name": "Electro Hilichurl Shooter",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Electro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c5/Eye_of_Stormy_Judgment_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Eye_of_Stormy_Judgment",
+        "name": "Eye of Stormy Judgment",
+        "usage": "3",
+        "effect": "End Phase: Deal 1 Electro DMG.\n\nWhen this Summon is on the field: Your characters' Elemental Bursts deal +1 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/5f/Frostflake_Seki_no_To_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Frostflake_Seki_no_To",
+        "name": "Frostflake Seki no To",
+        "usage": "2",
+        "effect": "End Phase: Deal 2 Cryo DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d5/Garden_of_Purity_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Garden_of_Purity",
+        "name": "Garden of Purity",
+        "usage": "2",
+        "effect": "End Phase: Deal 2 Hydro DMG.\n\nWhen this summon is on the field: Your characters' Normal Attacks deal +1 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b5/Guoba_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Guoba_(Summon)",
+        "name": "Guoba",
+        "usage": "2",
+        "effect": "End Phase: Deal 2 Pyro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f1/Hilichurl_Berserker_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Hilichurl_Berserker_(Summon)",
+        "name": "Hilichurl Berserker",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Pyro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/db/Hydro_Samachurl_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Hydro_Samachurl_(Summon)",
+        "name": "Hydro Samachurl",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Hydro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/17/Large_Wind_Spirit_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Large_Wind_Spirit",
+        "name": "Large Wind Spirit",
+        "usage": "3",
+        "effect": "End Phase: Deal 2 Anemo DMG.\n\nAfter your character or Summon triggers a Swirl reaction: Convert the Elemental Type of this card and change its DMG dealt to the element Swirled. (Can only be converted once before leaving the field)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b7/Lightfall_Sword_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Lightfall_Sword_(Summon)",
+        "name": "Lightfall Sword",
+        "usage": "",
+        "effect": "When Eula uses a Normal Attack or Elemental Skill, this card will accumulate 2 Zeal stacks, but Eula will not gain Energy.\nEnd Phase: Discard this card and deal 3 Physical DMG.\nEach Zeal stack adds 1 DMG to this damage instance.\n(Effects on this card's Usage will apply to Zeal.)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/ba/Melody_Loop_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Melody_Loop",
+        "name": "Melody Loop",
+        "usage": "2",
+        "effect": "End Phase: Heal all your characters for 1 HP and your active character gains Hydro Application."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/72/Oceanic_Mimic_Frog_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Oceanic_Mimic:_Frog",
+        "name": "Oceanic Mimic: Frog",
+        "usage": "2",
+        "effect": "When your active character takes DMG: Decrease DMG taken by 1.\nWhen the Usages are depleted, this card will not be discarded.\nAt the End Phase, if Usage(s) have been depleted: Discard this card, deal 2 Hydro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/98/Oceanic_Mimic_Raptor_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Oceanic_Mimic:_Raptor",
+        "name": "Oceanic Mimic: Raptor",
+        "usage": "3",
+        "effect": "End Phase: Deal 1 Hydro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/4f/Oceanic_Mimic_Squirrel_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Oceanic_Mimic:_Squirrel",
+        "name": "Oceanic Mimic: Squirrel",
+        "usage": "2",
+        "effect": "End Phase: Deal 2 Hydro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/13/Oz_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Oz_(Summon)",
+        "name": "Oz",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Electro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7d/Reflection_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Reflection",
+        "name": "Reflection",
+        "usage": "1",
+        "effect": "When your active character receives DMG: Decrease DMG by 1.\nWhen the Usage is depleted, this card will not be discarded.\nEnd Phase: Discard this card, deal 1 Hydro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/4d/Sacred_Cryo_Pearl_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sacred_Cryo_Pearl",
+        "name": "Sacred Cryo Pearl",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Cryo DMG, deal 1 Piercing DMG to all opposing characters on standby."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/76/Sesshou_Sakura_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sesshou_Sakura_(Summon)",
+        "name": "Sesshou Sakura",
+        "usage": "3",
+        "effect": "End Phase: Deal 1 Electro DMG.\n(Can stack. Max 6 stacks.)\nWhen you declare the end of your Round: If this summon has at least 4 Usage(s) remaining, deal 1 Electro DMG. (Consumes Usage(s))"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/dc/Shadowsword_Galloping_Frost_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Shadowsword:_Galloping_Frost",
+        "name": "Shadowsword: Galloping Frost",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Cryo DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c7/Shadowsword_Lone_Gale_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Shadowsword:_Lone_Gale",
+        "name": "Shadowsword: Lone Gale",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Anemo DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3a/Stone_Stele_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Stone_Stele_(Summon)",
+        "name": "Stone Stele",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Geo DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/cf/Stormeye_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Stormeye_(Summon)",
+        "name": "Stormeye",
+        "usage": "2",
+        "effect": "End Phase: Deal 2 Anemo DMG. Your opponent switches to: Character Closest to Your Current Active Character.\n\nAfter your character or Summon triggers a Swirl reaction: Convert the Elemental Type of this card and change its DMG dealt to the element Swirled. (Can only be converted once before leaving the field)\n\nCharacter Closest to Your Current Active Character\nThe opposing \"character closest to your current active character\" is the opposing character whose position is closest to that of your active character.\nIf multiple such characters exist, the one with the foremost position will be viewed as being \"closest.\""
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e4/Talisman_Spirit_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Talisman_Spirit",
+        "name": "Talisman Spirit",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Cryo DMG.\nWhen this Summon is on the field: Opposing character(s) take +1 Cryo DMG and Physical DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a5/Tengu_Juurai_Ambush_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Tengu_Juurai:_Ambush_(Summon)",
+        "name": "Tengu Juurai: Ambush",
+        "usage": "1",
+        "effect": "End Phase: Deal 1 Electro DMG, applies Crowfeather Cover to friendly active character.\n\nCrowfeather Cover\nThe character with this attached deals +1 Elemental Skill and Elemental Burst DMG. Usage(s): 2"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/85/Tengu_Juurai_Stormcluster_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Tengu_Juurai:_Stormcluster_(Summon)",
+        "name": "Tengu Juurai: Stormcluster",
+        "usage": "2",
+        "effect": "End Phase: Deal 2 Electro DMG, applies Crowfeather Cover to friendly active character.\n\nCrowfeather Cover\nThe character with this attached deals +1 Elemental Skill and Elemental Burst DMG. Usage(s): 2"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/86/Ushi_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ushi_(Summon)",
+        "name": "Ushi",
+        "usage": "1",
+        "effect": "When your active character takes DMG: Decrease DMG taken by 1.\nWhen the Usage is depleted, this card will not be discarded.\nCan be triggered once while this summon is present: When your character recieves DMG, Arataki Itto gains Superlative Superstrength.\nEnd Phase: Discard this card, deal 1 Geo DMG."
+    }
+]

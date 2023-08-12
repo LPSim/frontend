@@ -1,0 +1,546 @@
+[
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/bd/Chang_the_Ninth_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Chang_the_Ninth_(Support_Card)",
+        "name": "Chang the Ninth",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When either side uses a Skill: If Physical DMG or Piercing DMG was dealt, or an Elemental Reaction was triggered, this card gains 1 Inspiration.\nWhen this card gains 3 Inspiration, discard this card, then draw 2 cards."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e9/Chef_Mao_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Chef_Mao_(Support_Card)",
+        "name": "Chef Mao",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "usage": "",
+        "effect": "After playing a Food Event Card: Create 1 random Elemental Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2f/Chinju_Forest_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Chinju_Forest_(Support_Card)",
+        "name": "Chinju Forest",
+        "group": [
+            "Location"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "usage": "3",
+        "effect": "When Action Phase begins: If you do not start first, create 1 Elemental Die that matches the Type of your active character."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0a/Dawn_Winery_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Dawn_Winery_(Support_Card)",
+        "name": "Dawn Winery",
+        "group": [
+            "Location"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "",
+        "effect": "When you perform \"Switch Character\": Spend 1 less Elemental Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/1f/Dunyarzad_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Dunyarzad_(Support_Card)",
+        "name": "Dunyarzad",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "usage": "",
+        "effect": "When playing a Companion Support Card: Spend 1 less Elemental Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/39/Ellin_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ellin_(Support_Card)",
+        "name": "Ellin",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "",
+        "effect": "When you use a Skill that has already been used in this Round: Spend 1 less Elemental Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a3/Favonius_Cathedral_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Favonius_Cathedral_(Support_Card)",
+        "name": "Favonius Cathedral",
+        "group": [
+            "Location"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "2",
+        "effect": "End Phase: Heal your active character for 2 HP."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/45/Grand_Narukami_Shrine_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Grand_Narukami_Shrine_(Support_Card)",
+        "name": "Grand Narukami Shrine",
+        "group": [
+            "Location"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "3",
+        "effect": "Triggers automatically once per Round: Create 1 random Elemental Die."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/82/Hanachirusato_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Hanachirusato_(Support_Card)",
+        "name": "Hanachirusato",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When a Summon disappears: This card gains 1 Cleansing Ritual Progress. (Max 3)\nWhen you play a Weapon or Artifact Card: If you already have 3 Cleansing Ritual Progress, discard this card and cause the card you play to cost 2 less Elemental Dice."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/ad/Iron_Tongue_Tian_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Iron_Tongue_Tian_(Support_Card)",
+        "name": "Iron Tongue Tian",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "usage": "2",
+        "effect": "End Phase: One of your characters without maximum Energy gains 1  Energy. (Active Character prioritized)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/16/Jade_Chamber_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Jade_Chamber_(Support_Card)",
+        "name": "Jade Chamber",
+        "group": [
+            "Location"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "usage": "",
+        "effect": "Roll Phase: 2 of the starting Elemental Dice you roll are always guaranteed to match the Elemental Type of your active character."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2c/Katheryne_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Katheryne_(Support_Card)",
+        "name": "Katheryne",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "usage": "",
+        "effect": "When you perform \"Switch Character\": The switch is considered a Fast Action instead of a Combat Action. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f2/Kid_Kujirai_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Kid_Kujirai_(Support_Card)",
+        "name": "Kid Kujirai",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When the Action Phase begins: Create 1  Omni Element. Then if your opponent's Support Zone is not full, transfer this card to your opponent's Support Zone."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/fe/Knights_of_Favonius_Library_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Knights_of_Favonius_Library",
+        "name": "Knights of Favonius Library",
+        "group": [
+            "Location"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "usage": "",
+        "effect": "When played: Select any Elemental Dice to reroll.\nRoll Phase: Gain another chance to reroll."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/ef/Liben_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Liben_(Support_Card)",
+        "name": "Liben",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "End Phase: Collect your unused Elemental Dice (Max 1 of each Elemental Type).\nWhen Action Phase begins: If this card has collected 3 Elemental Dice, draw 2 cards and create  Omni Element ×2, then discard this card."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/cc/Liu_Su_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Liu_Su",
+        "name": "Liu Su",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "usage": "2",
+        "effect": "After you switch characters: If the character you switched to does not have  Energy, they will gain 1  Energy. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/87/Liyue_Harbor_Wharf_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Liyue_Harbor_Wharf",
+        "name": "Liyue Harbor Wharf",
+        "group": [
+            "Location"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "2",
+        "effect": "End Phase: Draw 2 cards."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3c/Master_Zhang_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Master_Zhang_(Support_Card)",
+        "name": "Master Zhang",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "usage": "",
+        "effect": "When you play a Weapon from your hand: Spend 1 less Elemental Die. For every character already equipped with a Weapon on the field, you spend 1 less Elemental Die. (Once per Round.)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/fa/NRE_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/NRE",
+        "name": "NRE",
+        "group": [
+            "Item"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "usage": "",
+        "effect": "When played: Draw 1 Food Event Card from your deck.\nWhen you play a Food Event Card: Draw 1 Food Event Card from your deck. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/ba/Paimon_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Paimon_(Support_Card)",
+        "name": "Paimon",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "usage": "2",
+        "effect": "When Action Phase begins: Create Omni Element ×2."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/8e/Parametric_Transformer_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Parametric_Transformer_(Support_Card)",
+        "name": "Parametric Transformer",
+        "group": [
+            "Item"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "usage": "",
+        "effect": "When either side uses a Skill: If Elemental DMG was dealt this card gains 1 Qualitative Progress.\nWhen this card gains 3 Qualitative Progress, discard this card, then create 3 different Basic Elemental Dice."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e5/Rana_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Rana_(Support_Card)",
+        "name": "Rana",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "",
+        "effect": "After your character uses an Elemental Skill: Create 1 Elemental Die of the same Type as your next off-field character. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c5/Red_Feather_Fan_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Red_Feather_Fan_(Support_Card)",
+        "name": "Red Feather Fan",
+        "group": [
+            "Item"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "",
+        "effect": "After you switch characters: The next Switch Character action you perform this Round will be considered a Fast Action instead of a Combat Action. It will also cost 1 less Elemental Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/77/Sangonomiya_Shrine_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sangonomiya_Shrine_(Support_Card)",
+        "name": "Sangonomiya Shrine",
+        "group": [
+            "Location"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "2",
+        "effect": "End Phase: Heal all your characters for 1 HP."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/6d/Sumeru_City_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sumeru_City_(Support_Card)",
+        "name": "Sumeru City",
+        "group": [
+            "Location"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "",
+        "effect": "When your character uses a Skill or equips a Talent: If you do not have more Elemental Dice than cards in your hand, spend 1 less Elemental Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2f/Tenshukaku_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Tenshukaku_(Support_Card)",
+        "name": "Tenshukaku",
+        "group": [
+            "Location"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "",
+        "effect": "When the Action Phase begins: If you have 5 different kinds of Elemental Die, create 1  Omni Element."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/71/Timaeus_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Timaeus_(Support_Card)",
+        "name": "Timaeus",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "",
+        "effect": "Comes with 2 Transmutation Materials when played.\nEnd Phase: Gain 1 Transmutation Material.\nWhen playing an Artifact Card: If possible, spend Transmutation Materials equal to the total cost of the Artifact and equip this Artifact for free. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2b/Timmie_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Timmie_(Support_Card)",
+        "name": "Timmie",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "Triggers automatically once per Round: This card gains 1 Pigeon.\nWhen this card gains 3 Pigeons, discard this card, then draw 1 card and create  Omni Element ×1."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/8e/Treasure-Seeking_Seelie_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Treasure-Seeking_Seelie_(Support_Card)",
+        "name": "Treasure-Seeking Seelie",
+        "group": [
+            "Item"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "usage": "",
+        "effect": "After your character uses a skill: This card will accumulate 1 Treasure Clue.\nWhen this card has stored 3 Treasure Clues, discard this card and draw 3 cards."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b8/Tubby_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Tubby_(Support_Card)",
+        "name": "Tubby",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "",
+        "effect": "When playing a Location Support Card: Spend 2 less Elemental Dice. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/56/Vanarana_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Vanarana_(Support_Card)",
+        "name": "Vanarana",
+        "group": [
+            "Location"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "End Phase: Collect up to 2 unused Elemental Dice.\nWhen the Action Phase begins: Reclaim the dice you collected using this card."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f4/Wagner_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Wagner_(Support_Card)",
+        "name": "Wagner",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "",
+        "effect": "Comes with 2 Forging Billets when played.\nEnd Phase: Gain 1 Forging Billet.\nWhen playing a Weapon Card: If possible, spend Forging Billets equal to the total cost of the Weapon and equip this Weapon for free. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/12/Wangshu_Inn_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Wangshu_Inn_(Support_Card)",
+        "name": "Wangshu Inn",
+        "group": [
+            "Location"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "usage": "2",
+        "effect": "End Phase: Heal the most injured character on standby for 2 HP."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/eb/Xudong_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Xudong_(Support_Card)",
+        "name": "Xudong",
+        "group": [
+            "Companion"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "usage": "",
+        "effect": "When playing a Food Support Card: Spend 2 less Elemental Dice. (Once per Round)"
+    }
+]

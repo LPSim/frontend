@@ -1,0 +1,412 @@
+[
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/26/Anemo_Samachurl_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Anemo_Samachurl_(Character_Card)",
+        "name": "Anemo Samachurl",
+        "hp": "4",
+        "element": "Anemo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/ef/Blazing_Axe_Mitachurl_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Blazing_Axe_Mitachurl_(Character_Card)",
+        "name": "Blazing Axe Mitachurl",
+        "hp": "8",
+        "element": "Pyro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/20/Crackling_Axe_Mitachurl_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Crackling_Axe_Mitachurl_(Character_Card)",
+        "name": "Crackling Axe Mitachurl",
+        "hp": "8",
+        "element": "Electro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/22/Cryo_Abyss_Mage_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Cryo_Abyss_Mage_(Character_Card)",
+        "name": "Cryo Abyss Mage",
+        "hp": "4",
+        "element": "Cryo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/28/Cryo_Hilichurl_Shooter_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Cryo_Hilichurl_Shooter_(Character_Card)",
+        "name": "Cryo Hilichurl Shooter",
+        "hp": "3",
+        "element": "Cryo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9a/Dendro_Samachurl_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Dendro_Samachurl_(Character_Card)",
+        "name": "Dendro Samachurl",
+        "hp": "4",
+        "element": "Dendro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/25/Electro_Abyss_Mage_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Electro_Abyss_Mage_(Character_Card)",
+        "name": "Electro Abyss Mage",
+        "hp": "4",
+        "element": "Electro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0b/Electro_Hilichurl_Shooter_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Electro_Hilichurl_Shooter_(Character_Card)",
+        "name": "Electro Hilichurl Shooter",
+        "hp": "3",
+        "element": "Electro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/27/Electro_Slime_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Electro_Slime_(Character_Card)",
+        "name": "Electro Slime",
+        "hp": "4",
+        "element": "Electro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/62/Fatui_Skirmisher_-_Anemoboxer_Vanguard_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Fatui_Skirmisher_-_Anemoboxer_Vanguard_(Character_Card)",
+        "name": "Fatui Skirmisher - Anemoboxer Vanguard",
+        "hp": "10",
+        "element": "Anemo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Fatui"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/6e/Fatui_Skirmisher_-_Cryogunner_Legionnaire_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Fatui_Skirmisher_-_Cryogunner_Legionnaire_(Character_Card)",
+        "name": "Fatui Skirmisher - Cryogunner Legionnaire",
+        "hp": "10",
+        "element": "Cryo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Fatui"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/bb/Fatui_Skirmisher_-_Electrohammer_Vanguard_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Fatui_Skirmisher_-_Electrohammer_Vanguard_(Character_Card)",
+        "name": "Fatui Skirmisher - Electrohammer Vanguard",
+        "hp": "10",
+        "element": "Electro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Fatui"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e3/Fatui_Skirmisher_-_Geochanter_Bracer_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Fatui_Skirmisher_-_Geochanter_Bracer_(Character_Card)",
+        "name": "Fatui Skirmisher - Geochanter Bracer",
+        "hp": "10",
+        "element": "Geo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Fatui"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Fatui_Skirmisher_-_Hydrogunner_Legionnaire_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Fatui_Skirmisher_-_Hydrogunner_Legionnaire_(Character_Card)",
+        "name": "Fatui Skirmisher - Hydrogunner Legionnaire",
+        "hp": "10",
+        "element": "Hydro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Fatui"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e6/Fatui_Skirmisher_-_Pyroslinger_Bracer_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Fatui_Skirmisher_-_Pyroslinger_Bracer_(Character_Card)",
+        "name": "Fatui Skirmisher - Pyroslinger Bracer",
+        "hp": "10",
+        "element": "Pyro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Fatui"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/31/Geo_Samachurl_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Geo_Samachurl_(Character_Card)",
+        "name": "Geo Samachurl",
+        "hp": "4",
+        "element": "Geo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e5/Grounded_Geoshroom_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Grounded_Geoshroom_(Character_Card)",
+        "name": "Grounded Geoshroom",
+        "hp": "7",
+        "element": "Geo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/44/Grounded_Hydroshroom_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Grounded_Hydroshroom_(Character_Card)",
+        "name": "Grounded Hydroshroom",
+        "hp": "7",
+        "element": "Hydro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/ee/Hilichurl_Berserker_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Hilichurl_Berserker_(Character_Card)",
+        "name": "Hilichurl Berserker",
+        "hp": "4",
+        "element": "Pyro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e9/Hilichurl_Fighter_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Hilichurl_Fighter_(Character_Card)",
+        "name": "Hilichurl Fighter",
+        "hp": "4",
+        "element": "No Elemental Type",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/68/Hilichurl_Shooter_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Hilichurl_Shooter_(Character_Card)",
+        "name": "Hilichurl Shooter",
+        "hp": "3",
+        "element": "No Elemental Type",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9f/Hydro_Abyss_Mage_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Hydro_Abyss_Mage_(Character_Card)",
+        "name": "Hydro Abyss Mage",
+        "hp": "4",
+        "element": "Hydro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b9/Hydro_Samachurl_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Hydro_Samachurl_(Character_Card)",
+        "name": "Hydro Samachurl",
+        "hp": "4",
+        "element": "Hydro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/ca/Hydro_Slime_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Hydro_Slime_(Character_Card)",
+        "name": "Hydro Slime",
+        "hp": "4",
+        "element": "Hydro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f2/Ice_Shieldwall_Mitachurl_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ice_Shieldwall_Mitachurl_(Character_Card)",
+        "name": "Ice Shieldwall Mitachurl",
+        "hp": "8",
+        "element": "Cryo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c1/Kairagi_Dancing_Thunder_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Kairagi:_Dancing_Thunder_(Character_Card)",
+        "name": "Kairagi: Dancing Thunder",
+        "hp": "10",
+        "element": "Electro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Kairagi"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7f/Kairagi_Fiery_Might_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Kairagi:_Fiery_Might_(Character_Card)",
+        "name": "Kairagi: Fiery Might",
+        "hp": "10",
+        "element": "Pyro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Kairagi"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2c/Nobushi_Hitsukeban_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Nobushi:_Hitsukeban_(Character_Card)",
+        "name": "Nobushi: Hitsukeban",
+        "hp": "6",
+        "element": "Pyro",
+        "weapon": "Other Weapons",
+        "faction": [
+            ""
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2d/Nobushi_Jintouban_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Nobushi:_Jintouban_(Character_Card)",
+        "name": "Nobushi: Jintouban",
+        "hp": "6",
+        "element": "No Elemental Type",
+        "weapon": "Other Weapons",
+        "faction": [
+            ""
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/ef/Nobushi_Kikouban_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Nobushi:_Kikouban_(Character_Card)",
+        "name": "Nobushi: Kikouban",
+        "hp": "6",
+        "element": "Electro",
+        "weapon": "Other Weapons",
+        "faction": [
+            ""
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d3/Pyro_Abyss_Mage_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Pyro_Abyss_Mage_(Character_Card)",
+        "name": "Pyro Abyss Mage",
+        "hp": "4",
+        "element": "Pyro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/de/Rock_Shieldwall_Mitachurl_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Rock_Shieldwall_Mitachurl_(Character_Card)",
+        "name": "Rock Shieldwall Mitachurl",
+        "hp": "8",
+        "element": "Geo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/23/Rockfond_Rifthound_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Rockfond_Rifthound_(Character_Card)",
+        "name": "Rockfond Rifthound",
+        "hp": "10",
+        "element": "Geo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/fb/Winged_Cryoshroom_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Winged_Cryoshroom_(Character_Card)",
+        "name": "Winged Cryoshroom",
+        "hp": "6",
+        "element": "Cryo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/24/Winged_Dendroshroom_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Winged_Dendroshroom_(Character_Card)",
+        "name": "Winged Dendroshroom",
+        "hp": "6",
+        "element": "Dendro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b8/Wooden_Shieldwall_Mitachurl_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Wooden_Shieldwall_Mitachurl_(Character_Card)",
+        "name": "Wooden Shieldwall Mitachurl",
+        "hp": "8",
+        "element": "Dendro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    }
+]

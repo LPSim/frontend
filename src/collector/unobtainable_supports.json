@@ -1,0 +1,587 @@
+[
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Orb:_Dissipated",
+        "name": "Elemental Orb: Dissipated",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "1",
+        "effect": "When Action Phase begins: All characters on both sides gain 1 Energy."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Orb:_Enduring",
+        "name": "Elemental Orb: Enduring",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When Action Phase begins: All your characters gain 1 Energy."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elemental_Orb:_Plentiful",
+        "name": "Elemental Orb: Plentiful",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "1",
+        "effect": "When Action Phase begins: All your characters gain 2 Energy."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Aegis_of_the_Abyss",
+        "name": "Ley Line Disorder: Aegis of the Abyss",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "After your Abyss Mage uses a Skill when their Elemental Shield has been broken: Restore the Elemental Shield."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Belligerence_Unfettered",
+        "name": "Ley Line Disorder: Belligerence Unfettered",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When the battle starts, all of your characters will have Belligerence Unfettered attached. When characters would be defeated, they will not be defeated, and heal them to 1 HP. 2 Usages."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Blazing_Will",
+        "name": "Ley Line Disorder: Blazing Will",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When the battle starts, all of your characters will have Belligerence Unfettered attached. When characters would be defeated, they will not be defeated, and heal them to 1 HP. 3 Usages."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Dire_Echoes",
+        "name": "Ley Line Disorder: Dire Echoes",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "End Phase: For each one of your characters downed during this Round, all your remaining character(s) will gain 2 Shield points (Can stack, max 4 points) and permanently deal +1 DMG (Can stack, max +2 DMG)."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d6/Ley_Line_Disorder_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Driving_Rain",
+        "name": "Ley Line Disorder: Driving Rain",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When Action Phase begins: Both sides' active characters gain Hydro Application."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Fight_or_Flight",
+        "name": "Ley Line Disorder: Fight or Flight",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "After your character triggers an Elemental Reaction: Heal all your characters for 2 HP."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d6/Ley_Line_Disorder_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_High_Temperature",
+        "name": "Ley Line Disorder: High Temperature",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When Action Phase begins: Both sides' active characters gain Pyro Application."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Honed_Factor",
+        "name": "Ley Line Disorder: Honed Factor",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "You will deal +1 DMG to opposing characters not defended by Shield(s)."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Ignited_Morale",
+        "name": "Ley Line Disorder: Ignited Morale",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When the battle starts, all of your characters will have Ignited Morale attached. When characters would be defeated, they will not be defeated, and heal them to 1 HP. 1 Usage."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Lightweight_Defense",
+        "name": "Ley Line Disorder: Lightweight Defense",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When Action Phase begins: Grant 6 points of Shield to defend your active character, though this Shield cannot block Elemental Burst DMG.\nAfter the opposing character uses an Elemental Burst: Remove this Shield."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Mechanics_of_Penetration",
+        "name": "Ley Line Disorder: Mechanics of Penetration",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "You will deal +2 DMG to opposing characters not defended by Shield(s)."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d6/Ley_Line_Disorder_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Overgrowth",
+        "name": "Ley Line Disorder: Overgrowth",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When Action Phase begins: Both sides' active characters gain Dendro Application."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Shamanic_Curse",
+        "name": "Ley Line Disorder: Shamanic Curse",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "Your Geo Samachurl starts with Mutation Stone: Shamans Treasure\n\nMutation Stone: Shamans Treasure\nYour active character deals +2 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Slim_Shielding",
+        "name": "Ley Line Disorder: Slim Shielding",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When Action Phase begins: Grant 3 points of Shield to defend your active character, though this Shield cannot block Elemental Burst DMG.\nAfter the opposing character uses an Elemental Burst: Remove this Shield."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Strong_Feedback",
+        "name": "Ley Line Disorder: Strong Feedback",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "After your character triggers an Elemental Reaction: Heal all your characters for 3 HP."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d6/Ley_Line_Disorder_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Swift_Wind",
+        "name": "Ley Line Disorder: Swift Wind",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "After you character use a Skill: Switch to the next character. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d6/Ley_Line_Disorder_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Thunderstorm",
+        "name": "Ley Line Disorder: Thunderstorm",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When Action Phase begins: Both sides' active characters gain Electro Application."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d6/Ley_Line_Disorder_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Disorder:_Wet",
+        "name": "Ley Line Disorder: Wet",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When Action Phase begins: Your active character gains Hydro Application."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ley_Line_Monolith:_Frontline_Fulcrum",
+        "name": "Ley Line Monolith: Frontline Fulcrum",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "Starts with 20 Endurance.\nWhen Endurance is depleted, discard this card.\nWhen your characters take damage: Consumes this card's Endurance to block DMG.\nWhen this card is discarded: You lose the match."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Arms_and_Armor_Honed",
+        "name": "Mastery Talisman: Arms and Armor Honed",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When your character uses a Charged Attack: DMG dealt +1. Draw 1 card after finalization."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Battle-Ready",
+        "name": "Mastery Talisman: Battle-Ready",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When your character equipped with both a Weapon and an Artifact uses a Skill: Spend 3 less Elemental Dice. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Cascading_Defeat",
+        "name": "Mastery Talisman: Cascading Defeat",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When an opposing character is defeated: Deal 1 Piercing DMG to all opposing characters."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Chaotic_Banners",
+        "name": "Mastery Talisman: Chaotic Banners",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "After an opposing character takes Elemental Reaction damage: Create Omni Element ×1. (Can be triggered up to 3 times per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Cold_War",
+        "name": "Mastery Talisman: Cold War",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "The first Skill used or Talent equipped by each of your characters per Round will cost 1 less Elemental Die.\nYour Cryo-related reactions deal +2 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Cycle_Charge",
+        "name": "Mastery Talisman: Cycle Charge",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When you perform \"Switch Character\": Spend 1 less Elemental Die. (Twice per round)\nWhen you perform a Plunging Attack: Deal +2 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Decisive_Battle",
+        "name": "Mastery Talisman: Decisive Battle",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "Your characters with 6 HP or less deal +2 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Dense_Vegetation",
+        "name": "Mastery Talisman: Dense Vegetation",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "After an opposing character takes Dendro-related Reaction DMG: Create 2 Omni Element."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Dual-Pronged_Approach",
+        "name": "Mastery Talisman: Dual-Pronged Approach",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "After you use a Skill: If your active character is being protected by a Shield, create 2 Omni Element and 1 Shield point. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Extended_Explosion",
+        "name": "Mastery Talisman: Extended Explosion",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When an opposing character takes Elemental Reaction DMG: Accumulate 1 Extension. If you have at least 3, consume 3 Extension and deal 4 Piercing DMG to all opposing characters."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Immovable",
+        "name": "Mastery Talisman: Immovable",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When Action Phase begins: If your character is protected by a Shield, create 2 Omni Element and draw 2 cards.\nWhen you play any card: Spend 2 less Elemental Dice. (Once per round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Intelligence_Update",
+        "name": "Mastery Talisman: Intelligence Update",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "After you switch characters: Create 1 Elemental Die of the same Type as your active character. (Twice per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Planning_Long-Term",
+        "name": "Mastery Talisman: Planning Long-Term",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When a Weapon or Artifact Equipment card with a cost of at least 3 is played: Spend 3 less Elemental Dice. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Practice_Makes_Perfect",
+        "name": "Mastery Talisman: Practice Makes Perfect",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "The first Skill used or first Talent equipped by each of your characters per Round will cost 1 less Elemental Die."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Press_the_Attack",
+        "name": "Mastery Talisman: Press the Attack",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "After an opposing character is defeated: Create 1 Omni Element and draw 1 card."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Sudden_Ambush",
+        "name": "Mastery Talisman: Sudden Ambush",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "After your character uses a Skill: Create an Ambuscade Mine of your character's Element on the opposing side of the field. The Ambuscade Mine will deal 1 DMG of that corresponding element to opposing reinforcements after they enter play."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Surging_Vigor",
+        "name": "Mastery Talisman: Surging Vigor",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "1",
+        "effect": "When Action Phase begins: Your active character gains 3 Energy."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_The_Elements_Entwined",
+        "name": "Mastery Talisman: The Elements Entwined",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "After either side takes Elemental Reaction DMG: Obtain 1 Entwinement.\nWhen Entwinement reaches 6: You win the match."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mastery_Talisman:_Victorious_Repute",
+        "name": "Mastery Talisman: Victorious Repute",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "When an opposing character is defeated: Draw 1 card. +1 to the DMG of the current active character in this match. (Can stack. Max 3 Stacks.)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mutation_Stone_(Support_Card)",
+        "name": "Mutation Stone",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "Your active character deals +2 DMG.\nStarts with 2 Endurance when played. (Discard this card when Endurance is depleted)\nAfter your active character goes down: This card loses 1 Endurance."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Withering_Corrosion",
+        "name": "Withering Corrosion",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "Start with 4 Candle of Life points.\nWhen your character uses a Skill: Remove 1 Candle of Life point.\nOnce all Candle of Life points are depleted, the opposing duelist loses the match."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Mutation_Stone_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Withering_Corrosion_(Waning_Senses)",
+        "name": "Withering Corrosion",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "",
+        "effect": "Start with 5 Candle of Life points.\nWhen your character uses a Skill: Remove 1 Candle of Life point.\nOnce all Candle of Life points are depleted, the opposing duelist loses the match."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Elemental_Orb_Support_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Zero_Hour_Invokation:_All-Out_Aggression",
+        "name": "Zero Hour Invokation: All-Out Aggression",
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "0"
+            }
+        ],
+        "usage": "1",
+        "effect": "When Action Phase begins: All your characters gain 2 Energy."
+    }
+]

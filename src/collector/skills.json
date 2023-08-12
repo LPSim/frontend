@@ -1,0 +1,4379 @@
+{
+    "Abyss Lector: Fathomless Flames": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Flame of Salvation",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Searing Precept",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Ominous Star",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG. Summons 1 Darkfire Furnace.Darkfire FurnaceEnd Phase: Deal 1 Pyro DMG, deal 1 Piercing DMG to all opposing characters on standby.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Fiery Rebirth",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Fiery Rebirth.Fiery RebirthWhen the character to which this is attached would be defeated: Remove this effect, ensure the character will not be defeated, and heal them to 3 HP."
+        }
+    ],
+    "Amber": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Sharpshooter",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Explosive Puppet",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Summons 1 Baron Bunny.Baron BunnyWhen your active character takes DMG: Decrease DMG by 2.When the Usages are depleted, this card will not be discarded.At the End Phase, if Usage(s) have been depleted: Discard this card, deal 2 Pyro DMG.Usage(s): 1"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Fiery Rain",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Pyro DMG, deals 2 Piercing DMG to all opposing characters on standby."
+        }
+    ],
+    "Arataki Itto": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Fight Club Legend",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Masatsu Zetsugi: Akaushi Burst!",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Geo DMG. Summons Ushi. This Character gains Superlative Superstrength.UshiWhen your active character takes DMG: Decrease DMG taken by 1.When the Usage is depleted, this card will not be discarded.Can be triggered once while this summon is present: When your character recieves DMG, Arataki Itto gains Superlative Superstrength.End Phase: Discard this card, deal 1 Geo DMG.Usage(s): 1Superlative SuperstrengthWhen the character to which this is attached to uses a Charged Attack: Deal +1 DMG. If the Usage(s) are no less than 2, expend 1 less Unaligned ElementUsage(s): 1 (Can stack. Max 3 stacks)"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Royal Descent: Behold, Itto the Evil!",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 5 Geo DMG. This character gains Raging Oni King.Raging Oni KingThe character to which this is attached to has their Normal Attacks deal +2 DMG, and their Physical DMG is converted to Geo DMGDuration (Rounds): 2After the character to which this is attached uses a Normal Attack: Gains Superlative Superstrength (Once per Round)"
+        }
+    ],
+    "Barbara": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Whisper of Water",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Let the Show Begin♪",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG, summons 1 Melody Loop.Melody LoopEnd Phase: Heal all your characters for 1 HP and your active character gains Hydro Application.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Shining Miracle♪",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Heals all of your characters for 4 HP."
+        }
+    ],
+    "Beidou": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Oceanborne",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Tidecaller",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "This character gains a Tidecaller: Surf Embrace.Prepare Skill: Wavestrider.Tidecaller: Surf EmbraceThe next time this character acts, they will immediately use the Skill: Wavestrider. While preparing this Skill: Grant 2 Shield, points to the character to which this is attached."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Stormbreaker",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Electro DMG, creates 1 Thunderbeast's Targe. Thunderbeast's TargeAfter your character uses a Normal Attack: Deal 1 Electro DMG.When your character receives at least 3 DMG: Decrease DMG taken by 1.Duration (Rounds): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Wavestrider",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "0"
+                }
+            ],
+            "effect": "(Prepare for 1 turn)Deals 3 Electro DMG."
+        }
+    ],
+    "Bennett": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Strike of Fortune",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Passion Overload",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Fantastic Voyage",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Pyro DMG, creates 1 Inspiration Field. Inspiration FieldWhen your character uses a Skill: If this character has at least 7 HP, deal +2 additional DMG for this instance. After the Skill DMG is finalized, if this character's HP is not greater than 6, heal this character for 2 HP.Duration (Rounds): 2"
+        }
+    ],
+    "Candace": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Gleaming Spear - Guardian Stance",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Sacred Rite: Heron's Sanctum",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Attaches a Heron Shield to this character and prepares Heron StrikeHeron ShieldThe next time this character acts, they will immediately use the Skill Heron Strike.While preparing this Skill: Grant 2 Shield points to the character to which this is attached."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Sacred Rite: Wagtail's Tide",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Hydro DMG and create Prayer of the Crimson Crown.Prayer of the Crimson CrownYour characters' Normal Attacks deal +1 DMG.Your Sword, Claymore, and Polearm-wielding characters' Physical DMG is converted to Hydro DMG.After you switch characters, you deal 1 Hydro DMG. (Once per Round)Duration (Rounds): 2."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Heron Strike",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "0"
+                }
+            ],
+            "effect": "(Prepare for 1 turn)Deals 3 Hydro DMG."
+        }
+    ],
+    "Chongyun": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Demonbane",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Chonghua's Layered Frost",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Cryo DMG, creates 1 Chonghua Frost Field.Chonghua's Frost FieldYour Sword, Claymore, and Polearm-wielding characters' Physical DMG is converted to Cryo DMG.Duration (Rounds): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Cloud-Parting Star",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 7 Cryo DMG."
+        }
+    ],
+    "Collei": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Supplicant's Bowmanship",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Floral Brush",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Dendro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Trump-Card Kitty",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Dendro DMG, summons 1 Cuilein-Anbar.Cuilein-AnbarEnd Phase: Deal 2 Dendro DMG.Usage(s): 2"
+        }
+    ],
+    "Cyno": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Invoker's Spear",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Secret Rite: Chasmic Soulfarer",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Electro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Sacred Rite: Wolf's Swiftness",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Electro DMG. Pactsworn Pathclearer's Indwelling Level +2."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Lawful Enforcer",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Pactsworn Pathclearer. Pactsworn PathclearerEnd Phase: Gain 1 level of Indwelling.Create the following effects based on the Indwelling Level:If equal to or greater than 2: Physical DMG dealt is converted to Electro DMG;If equal or greater than 4: DMG dealt +2;If equal to or greater than 6: Indwelling Level -4"
+        }
+    ],
+    "Diluc": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Tempered Sword",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Searing Onslaught",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG. For the third use of this Skill each Round, deals +2 DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Dawn",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 8 Pyro DMG. This character gains Pyro Infusion.Pyro InfusionThe character to which this is attached has their Physical DMG dealt converted to Pyro DMG.Duration (Rounds): 2"
+        }
+    ],
+    "Diona": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kätzlein Style",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Icy Paws",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Cryo DMG, creates 1 Cat-Claw Shield.Cat-Claw Shield.Grants 1 Shield point for your active character."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Signature Mix",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Cryo DMG, heals this character for 2 HP, summons 1 Drunken Mist.Drunken MistEnd Phase: Deal 1 Cryo DMG, heal your active character for 2 HP.Usage(s): 2"
+        }
+    ],
+    "Electro Hypostasis": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Electro Crystal Projection",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Electro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rock-Paper-Scissors Combo",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "5"
+                }
+            ],
+            "effect": "Deals 2 Electro DMG and then separately performs \"Prepare Skill\" for Rock-Paper-Scissors Combo: Scissors and Rock-Paper-Scissors Combo: Paper."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rock-Paper-Scissors Combo: Scissors",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "0"
+                }
+            ],
+            "effect": "Deals 2 Electro DMG, then performs \"Prepare Skill\" for Rock-Paper-Scissors Combo: Paper."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rock-Paper-Scissors Combo: Paper",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "0"
+                }
+            ],
+            "effect": "Deals 3 Electro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Lightning Lockdown",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Electro DMG, summons Chains of Warding Thunder.Chains of Warding ThunderEnd Phase: Deal 1 Electro DMG.When this Summon is on the field: Your opponent will have to spend 1 additional Elemental Die when performing \"Switch Character.\" (Once per Round)Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Electro Crystal Core",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Electro Crystal Core.Electro Crystal CoreWhen the character to which this is attached would be defeated: Remove this effect, ensure the character will not be defeated, and heal them to 1 HP."
+        }
+    ],
+    "Eula": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Favonius Bladework - Edel",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Icetide Vortex",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Cryo DMG. If this character has not yet gained Grimheart, they will gain Grimheart.GrimheartAfter the character to which this is attached uses Icetide Vortex: Remove this status, DMG +3 for this instance."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Glacial Illumination",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Cryo DMG, summons 1 Lightfall Sword.Lightfall SwordWhen Eula uses a Normal Attack or Elemental Skill, this card will accumulate 2 Zeal stacks, but Eula will not gain Energy.End Phase: Discard this card and deal 3 Physical DMG.Each Zeal stack adds 1 DMG to this damage instance.(Effects on this card's Usage will apply to Zeal.)"
+        }
+    ],
+    "Fatui Cryo Cicin Mage": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Cicin Icicle",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Cryo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Misty Summons",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Cryo DMG, summons Cryo Cicins.Cryo CicinsEnd Phase: Deal 1 Cryo DMG.(Can stack. Max 3 stacks.)After Fatui Cryo Cicin Mage performs a Normal Attack: This card gains 1 Usage(s).After your character takes Elemental Reaction DMG: This card loses 1 Usage(s).Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Blizzard, Branch, Blossom",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 5 Cryo DMG, grants this character Cryo Application, creates 1 Flowing Cicin Shield.Flowing Cicin ShieldProvides 1 Shield point for your active character.When created: If you have Cryo Cicins on the field, additionally increase Shield by the amount of Usage(s) it has. (Adds a maximum of 3 additional Shield)"
+        }
+    ],
+    "Fatui Pyro Agent": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Thrust",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Prowl",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Pyro DMG. This character gains Stealth."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Blade Ablaze",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Stealth Master",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Stealth.Stealth:The character to which this is attached takes -1 DMG and deals +1 DMGUsage(s): 2"
+        }
+    ],
+    "Fischl": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Bolts of Downfall",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Nightrider",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Electro DMG, summons 1 Oz.OzEnd Phase: Deal 1 Electro DMG.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Midnight Phantasmagoria",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 4 Electro DMG, deals 2 Piercing DMG to all opposing characters on standby."
+        }
+    ],
+    "Ganyu": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Liutian Archery",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Trail of the Qilin",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Cryo DMG, creates 1 Ice Lotus.Ice LotusWhen your active character receives DMG: Decreases DMG taken by 1.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Frostflake Arrow",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "5"
+                }
+            ],
+            "effect": "Deals 2 Cryo DMG, deals 2 Piercing DMG to all opposing characters on standby."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Celestial Shower",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Cryo DMG, deals 1 Piercing DMG to all opposing characters on standby, summons 1 Sacred Cryo Pearl.Sacred Cryo PearlEnd Phase: Deal 1 Cryo DMG, deal 1 Piercing DMG to all opposing characters on standby.Usage(s): 2"
+        }
+    ],
+    "Hu Tao": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Secret Spear of Wangsheng",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Guide to Afterlife",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "2"
+                }
+            ],
+            "effect": "This character gains Paramita Papilio.Paramita PapilioThe character to which this is attached has their Physical DMG dealt converted to Pyro DMG, and they will deal +1 Pyro DMG.When the character to which this is attached uses a Charged Attack: Apply Blood Blossom to target character. Duration (Rounds): 2Blood BlossomEnd Phase: Deal 1 Pyro DMG to the character to which this is attached. Usage(s): 1"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Spirit Soother",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 4 Pyro DMG, heals herself for 2 HP. If this character's HP is no more than 6, DMG dealt and Healing are increased by 1."
+        }
+    ],
+    "Jadeplume Terrorshroom": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Majestic Dance",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Volatile Spore Cloud",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Dendro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Feather Spreading",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Dendro DMG, then consumes all Radical Vitality stacks. For each stack consumed, this instance deals +1 DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Radical Vitality",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Radical Vitality. Radical VitalityWhen this character deals or takes Elemental DMG: Gain 1 stack of Radical Vitality. (Max 3 stacks)End Phase: If Radical Vitality stacks reach maximum, they will be cleared and the character will lose all Energy."
+        }
+    ],
+    "Jean": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Favonius Bladework",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Gale Blade",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Anemo DMG, the target is forcibly switched to the next character."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Dandelion Breeze",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Heals all your characters for 2 HP, summons 1 Dandelion Field.Dandelion FieldEnd Phase: Deal 2 Anemo DMG, heal your active character for 1 HP.Usage(s): 2"
+        }
+    ],
+    "Kaedehara Kazuha": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Garyuu Bladework",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Chihayaburu",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Anemo DMG, attaches Midare Ranzan to this character. If this skill triggers Swirl, Midare Ranzan is converted to the Swirled Element.After the Skill DMG is finalized: Your team switches to the next character.Midare RanzanWhen the attached character uses a Plunging Attack: Physical DMG dealt becomes Anemo DMG, and deals +1 DMG.After the character uses a skill: This effect is removed."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kazuha Slash",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 3 Anemo DMG, summons 1 Autumn Whirlwind.Autumn WhirlwindEnd Phase: Deal 1 Anemo DMG.After your character or Summon triggers a Swirl reaction: Convert the Elemental Type of this card and change its DMG dealt to the element Swirled. (Can only be converted once before leaving the field)Usage(s): 3"
+        }
+    ],
+    "Kaeya": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Ceremonial Bladework",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Frostgnaw",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Cryo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Glacial Waltz",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Cryo DMG, creates 1 Icicle. IcicleAfter you switch characters:Deal 2 Cryo DMG.Usage(s): 3"
+        }
+    ],
+    "Kamisato Ayaka": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kamisato Art: Kabuki",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kamisato Art: Hyouka",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Cryo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kamisato Art: Soumetsu",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 4 Cryo DMG, summons 1 Frostflake Seki no To.Frostflake Seki no ToEnd Phase: Deal 2 Cryo DMG.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kamisato Art: Senho",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When switched to be the active character, this character gains Cryo Elemental Infusion.Cryo Elemental InfusionThe character to which this is attached has their Physical DMG dealt converted to Cryo DMG.(Lasts until the Round ends)"
+        }
+    ],
+    "Kamisato Ayato": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kamisato Art: Marobashi",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kamisato Art: Kyouka",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Hydro DMG. This Character gains Takimeguri Kanka.Takimeguri KankaThe character to which this is attached has their Normal Attacks deal +1 DMG, and their Physical DMG is converted to Hydro DMG.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kamisato Art: Suiyuu",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Hydro DMG, summons 1 Garden of Purity.Garden of PurityEnd Phase: Deal 2 Hydro DMG.When this summon is on the field: Your characters' Normal Attacks deal +1 DMG.Usage(s): 2"
+        }
+    ],
+    "Keqing": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Yunlai Swordsmanship",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Stellar Restoration",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Electro DMG, creates 1 Lightning Stiletto.Lightning StilettoCombat Action: Switch your Keqing in to be the active character and immediately use Stellar Restoration once. This instance of Stellar Restoration will grant Keqing Electro Infusion without creating another Lightning Stiletto.(When Keqing uses Stellar Restoration with this card in Hand: Instead of creating another Lightning Stiletto, discard this card and Keqing gains Electro Infusion)Electro InfusionWhen the character to which it is attached to deals Physical Damage, it will be turned into Electro DMG.Duration (Rounds): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Starward Sword",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 4 Electro DMG, deals 3 Piercing DMG to all opposing characters on standby."
+        }
+    ],
+    "Klee": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kaboom!",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Jumpy Dumpty",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG. This character gains Explosive Spark.Explosive SparkWhen the character to which this is attached to uses a Charged Attack: Spend 1 less Pyro Die and deal +1 DMG.Usage(s): 1"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Sparks 'n' Splash",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG, creates 1 Sparks 'n' Splash at the opponent's play area. Sparks 'n' SplashAfter a character to which Sparks 'n' Splash is attached uses a Skill: Deals 2 Pyro DMG to their team's active character.Usage(s): 2"
+        }
+    ],
+    "Kujou Sara": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Tengu Bowmanship",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Tengu Stormcall",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Electro DMG, summons 1 Tengu Juurai: Ambush.Tengu Juurai: AmbushEnd Phase: Deal 1 Electro DMG, applies Crowfeather Cover to friendly active character.Crowfeather CoverThe character with this attached deals +1 Elemental Skill and Elemental Burst DMG. Usage(s): 2Usage(s): 1"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Subjugation: Koukou Sendou",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Electro DMG, summons 1 Tengu Juurai: Stormcluster.Tengu Juurai: StormclusterEnd Phase: Deal 2 Electro DMG, applies Crowfeather Cover to friendly active character.Crowfeather CoverThe character with this attached deals +1 Elemental Skill and Elemental Burst DMG. Usage(s): 2Usage(s): 2"
+        }
+    ],
+    "Maguu Kenki": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Ichimonji",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Blustering Blade",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Summons 1 Shadowsword: Lone Gale.Shadowsword: Lone GaleEnd Phase: Deal 1 Anemo DMG.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Frosty Assault",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Summons 1 Shadowsword: Galloping Frost.Shadowsword: Galloping FrostEnd Phase: Deal 1 Cryo DMG.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Pseudo Tengu Sweeper",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 4 Anemo DMG, triggers the effect(s) of all your Shadowsword Summon(s). (Does not consume their Usages)"
+        }
+    ],
+    "Mirror Maiden": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Water Ball",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Influx Blast",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Hydro DMG. The target character receives Refraction.Refraction:The character to which this is attached takes +1 Hydro DMG.Duration (Rounds): 2(Only one such status can be applied on the same side at a time)"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rippled Reflection",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Hydro DMG."
+        }
+    ],
+    "Mona": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Ripple of Fate",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Mirror Reflection of Doom",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG, summons 1 Reflection.ReflectionWhen your active character receives DMG: Decrease DMG taken by 1.Usage(s): 1. When the Usage is depleted, this card will not be discarded.End Phase: Discard this card, deal 1 Hydro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Stellaris Phantasm",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 4 Hydro DMG, creates 1 Illusory Bubble. Illusory BubbleWhen dealing Skill DMG: Remove this status and double the DMG dealt for this instance.\n\nThe double DMG effect is applied after all additive DMG bonuses have been taken into account."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Illusory Torrent",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When you perform \"Switch Character\" while Mona is your active character: This switch is considered a Fast Action instead of a Combat Action. (Once per Round)"
+        }
+    ],
+    "Nahida": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Akara",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Dendro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "All Schemes to Know",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Dendro DMG, applies the Seed of Skandha to target character. If the target character already has Seed of Skandha applied to them, then apply Seed of Skandha to all opposing characters instead.Seed of SkandhaAfter a character who has a Seed of Skandha takes Elemental Reaction DMG: Deals 1 Piercing DMG to the character(s) to which the Seed of Skandha is attached to on the same side of the field."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "All Schemes to Know: Tathata",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "5"
+                }
+            ],
+            "effect": "Deals 3 Dendro DMG, applies the Seed of Skandha to all opposing characters.Seed of SkandhaAfter a character who has a Seed of Skandha takes Elemental Reaction DMG: Deals 1 Piercing DMG to the character(s) to which the Seed of Skandha is attached to on the same side of the field.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Illusory Heart",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Dendro DMG, creates 1 Shrine of Maya.Shine of MayaWhen your character triggers an Elemental Reaction: +1 Additional DMG.Duration (Rounds): 2"
+        }
+    ],
+    "Ningguang": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Sparkling Scatter",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Geo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Jade Screen",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Geo DMG, creates 1 Jade Screen.Jade ScreenWhen your active character receives at least 2 DMG: Decrease DMG taken by 1.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Starshatter",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 6 Geo DMG. If Jade Screen is on the field, deals +2 DMG."
+        }
+    ],
+    "Noelle": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Favonius Bladework - Maid",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Breastplate",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Geo DMG, creates 1 Full Plate.Full PlateGrants 2 Shield points to your active character. Before this Shield is fully consumed, the Physical DMG you take is halved. (The figure will be rounded up)"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Sweeping Time",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Geo DMG. This character gains Sweeping Time. Sweeping TimeWhen your character uses a Normal Attack: Consume 1 less Geo Die. (Once per Round)Character's Normal Attacks deal +2 DMG, and their Physical DMG is converted to Geo DMG.Duration (Rounds): 2"
+        }
+    ],
+    "Raiden Shogun": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Origin",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Transcendence: Baleful Omen",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Summons 1 Eye of Stormy JudgmentEye of Stormy JudgmentEnd Phase: Deal 1 Electro DMG.When this Summon is on the field: Your characters' Elemental Bursts deal +1 DMG.Usage(s): 3."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Secret Art: Musou Shinsetsu",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 3 Electro DMG. All of your other characters gain 2 Energy."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Chakra Desiderata",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle beings, this character gains Chakra Desiderata.Chakra DesiderataAfter your other characters use Elemental Bursts: Gain 1 Resolve. (Max 3)When the character to which this is attached uses Secret Art: Musou Shinsetsu: Consume all Resolve and deal +1 DMG per Resolve."
+        }
+    ],
+    "Razor": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Steel Fang",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Claw and Thunder",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Electro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Lightning Fang",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 3 Electro DMG. This character gains The Wolf Within. The Wolf WithinAfter the character to which this is attached uses a Normal Attack or an Elemental Skill: Deal 2 Electro DMG.Duration (Rounds): 2"
+        }
+    ],
+    "Rhodeia of Loch": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Surge",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Oceanid Mimic Summoning",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Randomly summons 1 Oceanid Mimic (Prioritizes summoning a different type from preexisting ones).Oceanic Mimic: SquirrelEnd Phase: Deal 2 Hydro DMG.Usage(s): 2Oceanic Mimic: FrogWhen your active character takes DMG: Decrease DMG taken by 1.When the Usages are depleted, this card will not be discarded.At the End Phase, if Usage(s) have been depleted: Discard this card, deal 2 Hydro DMG.Usage(s): 2Oceanic Mimic: RaptorEnd Phase: Deal 1 Hydro DMG.Usage(s): 3"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "The Myriad Wilds",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "5"
+                }
+            ],
+            "effect": "Randomly summons 2 Oceanid Mimic (Prioritizes summoning different types).Oceanic Mimic: SquirrelEnd Phase: Deal 2 Hydro DMG.Usage(s): 2Oceanic Mimic: FrogWhen your active character takes DMG: Decrease DMG taken by 1.When the Usages are depleted, this card will not be discarded.At the End Phase, if Usage(s) have been depleted: Discard this card, deal 2 Hydro DMG.Usage(s): 2Oceanic Mimic: RaptorEnd Phase: Deal 1 Hydro DMG.Usage(s): 3"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Tide and Torrent",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Hydro DMG. For each friendly Summon on the field, deals +2 additional DMG."
+        }
+    ],
+    "Sangonomiya Kokomi": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "The Shape of Water",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kurage's Oath",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "This character gains Hydro Application and summons 1 Bake-Kurage.Bake-KurageEnd Phase: Deal 1 Hydro DMG, heal your active character for 1 HP.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Nereid's Ascension",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Hydro DMG. Heals all allied characters for 1 point. This character gains Ceremonial Garment. Ceremonial GarmentThe character to which this is attached has their Normal Attacks deal +1 DMG.After the character to which this attached uses a Normal Attack: Heal 1 HP for all your characters.Duration (Rounds): 2"
+        }
+    ],
+    "Shenhe": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Dawnstar Piercer",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Spring Spirit Summoning",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Cryo DMG, creates 1 Icy Quill.Icy QuillYour character deals 1 increased Cryo DMG (Includes the DMG triggered by Cryo-infused Swirl reactions)Usage(s): 3"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Divine Maiden's Deliverance",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Cryo DMG, summons 1 Talisman SpiritTalisman SpiritEnd Phase: Deal 1 Cryo DMG.When this Summon is on the field: Opposing character(s) take +1 Cryo DMG and Physical DMG.Usage(s): 2."
+        }
+    ],
+    "Stonehide Lawachurl": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Plama Lawa",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Movo Lawa",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Upa Shato",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Infused Stonehide",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Stonehide and Stone Force.StonehideWhen the character to which this is attached receives DMG: Decrease DMG taken by 1. When Geo DMG is decreased, consume 1 additional Usage(s).Usage(s): 3Stone ForceThe character to which this is attached has their Physical DMG converted to Geo DMG.Once per Round: The character deals +1 DMG. Once the Stonehide attached to the character is removed, this status will be removed alongside it."
+        }
+    ],
+    "Sucrose": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Wind Spirit Creation",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Anemo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Astable Anemohypostasis Creation - 6308",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Anemo DMG, the target is forcibly switched to the previous character."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Forbidden Creation - Isomer 75 / Type II",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Anemo DMG, summons 1 Large Wind Spirit.Large Wind SpiritEnd Phase: Deal 2 Anemo DMG.Usage(s): 3After your character or Summon triggers a Swirl reaction: Convert the Elemental Type of this card and change its DMG dealt to the element Swirled. (Can only be converted once before leaving the field)"
+        }
+    ],
+    "Tartaglia": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Cutting Torrent",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Foul Legacy: Raging Tide",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Switches to Melee Stance and deals 2 Hydro DMG.Melee StancePhysical DMG dealt by character is converted to Hydro DMG.After the character uses Charged Attack: Apply Riptide to target character. Character deals +1 DMG to target characters with Riptide attached.After Skills are used against characters affected by Riptide: Deal 1 Piercing DMG to the next opposing off-field character. (Twice per Round)Duration (Rounds): 2RiptideWhen the character to which this is attached is defeated: Apply Riptide to active character.When Tartaglia is in Melee Stance, he will deal additional DMG when attacking the character to which this is attached. Duration (Rounds): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Havoc: Obliteration",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Performs different attacks based on the current stance that Tartaglia is in.Ranged Stance - Flash of Havoc: Deal 4 Hydro DMG, reclaim 2 Energy, and apply Riptide to the target character.Melee Stance - Light of Obliteration: Deal 7 Hydro DMG.RiptideWhen the character to which this is attached is defeated: Apply Riptide to active character.When Tartaglia is in Melee Stance, he will deal additional DMG when attacking the character to which this is attached. Duration (Rounds): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Tide Withholder",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Ranged Stance. Once the Melee Stance attached to the character ends, reapplies Ranged Stance.Ranged StanceAfter the character to which this is attached uses Charged Attack: Apply Riptide to target character.Melee StancePhysical DMG dealt by character is converted to Hydro DMG.After the character uses Charged Attack: Apply Riptide to target character. Character deals +1 DMG to target characters with Riptide attached.After Skills are used against characters affected by Riptide: Deal 1 Piercing DMG to the next opposing off-field character. (Twice per Round)Duration (Rounds): 2RiptideWhen the character to which this is attached is defeated: Apply Riptide to active character.When Tartaglia is in Melee Stance, he will deal additional DMG when attacking the character to which this is attached. Duration (Rounds): 2"
+        }
+    ],
+    "Tighnari": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Khanda Barrier-Buster",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Vijnana-Phala Mine",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Dendro DMG. This character gains Vijnana Suffusion.Vijnana SuffusionWhen the character to which this is attached to uses a Charged Attack: Their Physical DMG dealt will be converted to Dendro DMG and after skill DMG is finalized, summon 1 Clusterbloom ArrowClusterbloom ArrowEnd Phase: Deal 1 Dendro DMG.(Can stack. Max 2 stacks.)Usage(s): 1"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Fashioner's Tanglevine Shaft",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Dendro DMG, deals 1 Piercing DMG to all opposing characters on standby."
+        }
+    ],
+    "Venti": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Divine Marksmanship",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Skyward Sonnet",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Anemo DMG, creates 1 Stormzone.StormzoneWhen you perform \"Switch Character\": Spend 1 less Elemental Die.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Wind's Grand Ode",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Anemo DMG, summons 1 Stormeye.StormeyeEnd Phase: Deal 2 Anemo DMG. Your opponent switches to: Character Closest to Your Current Active Character.After your character or Summon triggers a Swirl reaction: Convert the Elemental Type of this card and change its DMG dealt to the element Swirled. (Can only be converted once before leaving the field)Character Closest to Your Current Active CharacterThe opposing \"character closest to your current active character\" is the opposing character whose position is closest to that of your active character.If multiple such characters exist, the one with the foremost position will be viewed as being \"closest.\"Usage(s): 2"
+        }
+    ],
+    "Xiangling": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Dough-Fu",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Guoba Attack",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Summons 1 Guoba.GuobaEnd Phase: Deal 2 Pyro DMG.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Pyronado",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG, creates 1 Pyronado. PyronadoAfter your character uses a Skill: Deal 2 Pyro DMG.Usage(s): 2"
+        }
+    ],
+    "Xiao": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Whirlwind Thrust",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Lemniscatic Wind Cycling",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Anemo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Bane of All Evil",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Anemo DMG. This character gains Yaksha's Mask.\nYaksha's Mask The character to which this is attached has their Physical DMG dealt converted to Anemo DMG and they will deal +1 Anemo DMG.When the character to which this is attached uses a Plunging Attack: +2 additional DMG.If the character this card is attached to is the active character, when you perform \"Switch Character\": Spend 1 less Elemental Die. (Once per Round) Duration (Rounds): 2"
+        }
+    ],
+    "Xingqiu": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Guhua Style",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Fatal Rainscreen",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Hydro DMG, grants this character Hydro Application, creates 1 Rain Sword.Rain SwordWhen your active character receives at least 3 DMG: Decrease DMG taken by 1.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Raincutter",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG, grants this character Hydro Application, creates 1 Rainbow Bladework. Rainbow BladeworkAfter your character uses a Normal Attack: Deal 1 Hydro DMG.Usage(s): 3"
+        }
+    ],
+    "Yae Miko": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Spiritfox Sin-Eater",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Electro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Yakan Evocation: Sesshou Sakura",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Summons 1 Sesshou SakuraSesshou SakuraEnd Phase: Deal 1 Electro DMG.(Can stack. Max 6 stacks.)When you declare the end of your Round: If this summon has at least 4 Usage(s) remaining, deal 1 Electro DMG. (Consumes Usage(s))Usage(s): 3."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Great Secret Art: Tenko Kenshin",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Electro DMG. If your side of the field has a Sesshou Sakura, destroy it and create Tenko Thunderbolts.Tenko ThunderboltsBefore you choose your action: Deal 3 Electro DMG.Usage(s): 1"
+        }
+    ],
+    "Yanfei": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Seal of Approval",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Signed Edict",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG and attaches Scarlet Seal to this character.Scarlet SealWhen the character uses a Charged Attack: Damage dealt +2.Usage(s): 1"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Done Deal",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG, attaches Scarlet Seal and Brilliance to this character.BrillianceWhen the character uses a Charged Attack: Spend 1 less  Pyro. (Once every Round)End Phase: Attach Scarlet Seal to this character.Duration (Rounds): 2"
+        }
+    ],
+    "Yoimiya": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Firework Flare-Up",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Niwabi Fire-Dance",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                }
+            ],
+            "effect": "This character gains Niwabi Enshou. (This Skill does not grant Energy)Niwabi EnshouThe character to which this is attached has their Normal Attacks deal +1 DMG, and their Physical DMG dealt converted to Pyro DMG.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Ryuukin Saxifrage",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG, creates 1 Aurous Blaze. Aurous BlazeAfter your character other than Yoimiya uses a Skill: Deal 1 Pyro DMG.Duration (Rounds): 2"
+        }
+    ],
+    "Zhongli": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rain of Stone",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Dominus Lapidis",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Geo DMG, summons 1 Stone SteleStone SteleEnd Phase: Deal 1 Geo DMG.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Dominus Lapidis: Striking Stone",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "5"
+                }
+            ],
+            "effect": "Deals 3 Geo DMG, summons 1 Stone Stele, creates 1 Jade Shield.Stone SteleEnd Phase: Deal 1 Geo DMG.Usage(s): 2Jade ShieldGrants 2 Shield points to your active character."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Planet Befall",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 4 Geo DMG. The target character receives Petrification.PetrificationCharacter cannot use Skills.(Lasts until the end of this Round)"
+        }
+    ],
+    "Anemo Samachurl": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Staff Strike",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Prayer to the Winds",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Anemo DMG, summons 1 Whirlwind.WhirlwindEnd Phase: Deal 1 Anemo DMG.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Galeforce Shock",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Anemo DMG."
+        }
+    ],
+    "Blazing Axe Mitachurl": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Du Plama",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Upa",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Oto Tiga",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Flowfire Edge",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Flowfire Edge.Flowfire EdgeThe Physical DMG this character deals is converted to Pyro DMG.Usage(s): 3"
+        }
+    ],
+    "Crackling Axe Mitachurl": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Du Plama",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Upa",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Oto Tiga",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Ripple Electro Edge",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Ripple Electro Edge.Ripple Electro EdgeThe Physical DMG this character deals is converted to Electro DMG.Usage(s): 3"
+        }
+    ],
+    "Cryo Abyss Mage": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Cryo Thorns",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Cryo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Frostdrift Offering",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Cryo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rimestorm Rite",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Cryo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Cryo Shield",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Cryo Shield.Cryo ShieldThe character to which this is attached takes no DMG and cannot be Frozen.This status will provide 2 instances of Cryo Application (Can be depleted using Elemental Reactions): Once the instances are depleted, this status will be removed, and will Stun the character to which this is attached."
+        }
+    ],
+    "Cryo Hilichurl Shooter": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Ice Arrow",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Cryo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Multishot",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Cryo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Hide",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) Switches to the next character after this character attacks."
+        }
+    ],
+    "Dendro Samachurl": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Staff Strike",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Venomous Vines",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Dendro DMG, creates 1 Vines at the opponent's play area.VinesAfter you switch characters: Deal 1 Dendro DMG to the activated character.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Dendro Field",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Dendro DMG."
+        }
+    ],
+    "Electro Abyss Mage": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Thunderbolt",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Electro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Lingering Light",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Summons 1 Tanglebolt Ring.Tanglebolt RingEnd Phase: Deal 2 Electro DMG.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rite of Rolling Thunder",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 4 Electro DMG, summons 1 Tanglebolt Ring.Tanglebolt RingEnd Phase: Deal 2 Electro DMG.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Electro Shield",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Electro Shield.Electro ShieldThe character to which this is attached takes no DMG.This status will provide 2 instances of Electro Infusion (Can be depleted using Elemental Reactions): Once the instances are depleted, this status will be removed, and the character to which this is attached will be unable to use Skills until the end of this Round."
+        }
+    ],
+    "Electro Hilichurl Shooter": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Thunder Arrow",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Electro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Multishot",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Electro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Hide",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) Switches to the next character after this character attacks."
+        }
+    ],
+    "Electro Slime": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Bounce",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Electro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Slam",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Electro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Elemental Sedimentation: Electro",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Elemental Lifeform: Electro.Elemental Lifeform: ElectroThis character always has Electro applied, and it is immune to Electro DMG."
+        }
+    ],
+    "Fatui Skirmisher - Anemoboxer Vanguard": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Hurricane Jab",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Gathering the Winds",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                }
+            ],
+            "effect": "This character gains a Stormwind Barrier and prepares the Skill Avenging Squall.Stormwind BarrierThe next time this character acts, they will immediately use the Skill Avenging Squall.While preparing this Skill: Grant the character to which this is attached 2 Shield points. Meanwhile, if the character takes Hydro/Pyro/Cryo/Electro DMG, Avenging Squall will deal +1 DMG and its DMG type will be converted to the corresponding Element as well.Avenging Squall(Prepare for 1 turn)Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Galeforce Agitation",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Anemo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 3 Anemo DMG. All of your Fatui characters gain 1 Energy point."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Avenging Squall",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "0"
+                }
+            ],
+            "effect": "(Prepare for 1 turn)Deals 2 Physical DMG."
+        }
+    ],
+    "Fatui Skirmisher - Cryogunner Legionnaire": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Close-Range Charge",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Freezing Spray",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Cryo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Frost Cannon",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Cryo DMG. This character gains Cryo Elemental Equipment.Cryo Elemental EquipmentThe character to which this is attached takes -1 DMG and deals +1 DMG.This status will provide 2 instances of Cryo Application (Can be depleted using Elemental Reactions): Once the instances are depleted, this status will be removed, and the character to which this is attached will be unable to use Skills until the end of this Round."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Combat Resupply",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains 2 Energy."
+        }
+    ],
+    "Fatui Skirmisher - Electrohammer Vanguard": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rapid Hammer Strike",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Raging Charge",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Electro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Thunderblast Hammer",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Electro DMG. This character gains Electro Elemental Equipment.Electro Elemental EquipmentThe character to which this is attached takes -1 DMG and deals +1 DMG.This status will provide 2 instances of Electro Application (Can be depleted using Elemental Reactions): Once the instances are depleted, this status will be removed, and the character to which this is attached will be unable to use Skills until the end of this Round."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Combat Resupply",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains 2 Energy."
+        }
+    ],
+    "Fatui Skirmisher - Geochanter Bracer": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rock Projectile",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Geo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Geocrystal Beam",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Geo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Staff of Geo",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Geo DMG. This character gains Geo Elemental Equipment, creating 1 Crystal Shield.Geo Elemental EquipmentWhen the character to which this is attached takes DMG: Decrease 1 DMG. When Geo DMG is decreased, consume 1 additional Usage(s).Usage(s): 3Crystal ShieldWhen your active character takes DMG: Decrease DMG taken by 1.Usage(s): 3When Geo Elemental Equipment leaves play: Remove this effect."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Combat Resupply",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains 2 Energy."
+        }
+    ],
+    "Fatui Skirmisher - Hydrogunner Legionnaire": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Skilled Charge",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Curative Bullet",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Hydro DMG, heals 2 of friendly characters on standby for 1 HP."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Elemental Buff: Hydro",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Hydro DMG. This character gains Hydro Elemental Equipment.Hydro Elemental EquipmentThe character to which this is attached takes -1 DMG and does +1 healing.This status will provide 2 instances of Hydro Application (Can be depleted using Elemental Reactions): Once the instances are depleted, this status will be removed, and will Stun the character to which this is attached."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Combat Resupply",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains 2 Energy."
+        }
+    ],
+    "Fatui Skirmisher - Pyroslinger Bracer": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Single-Shot Bullet",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Burning Barrage",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Flaming Cannon",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG. This character gains Pyro Elemental Equipment.Pyro Elemental EquipmentThe character to which this is attached takes -1 DMG and deals +1 DMG.This status will provide 2 instances of Pyro Application (Can be depleted using Elemental Reactions): Once the instances are depleted, this status will be removed, and the character to which this is attached will be unable to use Skills until the end of this Round."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Combat Resupply",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains 2 Energy."
+        }
+    ],
+    "Geo Samachurl": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Staff Strike",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Summoning of Stones",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Geo DMG, creates 1 Rocky Pedestal.Rocky PedestalWhen your active Hilichurl takes DMG: Decreases DMG taken by 1.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Shockwave Smash",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Geo DMG."
+        }
+    ],
+    "Grounded Geoshroom": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Spore Bullet",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Geo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Raging Breath",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Geo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Charging Blast",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Geo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "State Change",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins this character will be in the Terrain Advantage State.After this character takes Pyro DMG, it will become Scorched.After this character takes Electro DMG, it will become Activated.Terrain AdvantageThe character deals +1 DMG.(This character will permanently change its State if it takes Pyro DMG or Electro DMG.)ScorchedAfter this character becomes Scorched, it will lose its original buff.ActivatedEnd Phase: The character gains 1 Energy.After the character goes down: The opposing active character gains 1 energy."
+        }
+    ],
+    "Grounded Hydroshroom": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Spore Bullet",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Raging Breath",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Hydro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Charging Blast",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Hydro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "State Change",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins this character will be in the Terrain Advantage State.After this character takes Pyro DMG, it will become Scorched.After this character takes Electro DMG, it will become Activated.Terrain AdvantageThe character deals +1 DMG.(This character will permanently change its State if it takes Pyro DMG or Electro DMG.)ScorchedAfter this character becomes Scorched, it will lose its original buff.ActivatedEnd Phase: The character gains 1 Energy.After the character goes down: The opposing active character gains 1 energy."
+        }
+    ],
+    "Hilichurl Berserker": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Torch Strike",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Hit and Run",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Scorching Combo",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Pyro DMG."
+        }
+    ],
+    "Hilichurl Fighter": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Hit",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Jump and Hit",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Unaligned",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Swing That Club",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Unaligned",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Physical DMG."
+        }
+    ],
+    "Hilichurl Shooter": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Shooting",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Multishot",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Hide",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) Switches to the next character after this character uses a Skill."
+        }
+    ],
+    "Hydro Abyss Mage": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Water Ball",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Bubbling Offering",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG. The target character receives Mist Bubble.Mist BubbleThe character cannot use Skills.End Phase: Remove this status, deal 1 Hydro DMG to the character to which it is attached."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rite of Mortal Water",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 4 Hydro DMG. The target character receives Mist Bubble.Mist BubbleThe character cannot use Skills.End Phase: Remove this status, deal 1 Hydro DMG to the character to which it is attached."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Hydro Shield",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Hydro Shield.Hydro ShieldThe character to which this is attached takes no DMG.This status will provide 2 instances of Hydro Application (Can be depleted using Elemental Reactions): Once the instances are depleted, this status will be removed, and the character to which this is attached will be unable to use Skills until the end of this Round."
+        }
+    ],
+    "Hydro Samachurl": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Staff Strike",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Prayer for Rain",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG, summons 1 Healing Rain.Healing RainEnd Phase: Heal your active character for 1 HP and grant both sides' active characters Hydro Application.Usage(s): 2"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Tidal Impact",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Hydro DMG."
+        }
+    ],
+    "Hydro Slime": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Bounce",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Hydro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Slam",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Hydro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 4 Hydro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Elemental Sedimentation: Hydro",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Elemental Lifeform: Hydro.Elemental Lifeform: HydroThis character always has Hydro applied, and it is immune to Hydro DMG."
+        }
+    ],
+    "Ice Shieldwall Mitachurl": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Plata Plama",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Da Plama",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Aba Movo",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Hoarfrost Greatshield",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Hoarfrost Greatshield.Hoarfrost GreatshieldThe character to which this is attached takes -2 DMG.This status will provide 2 instances of Cryo Application (Can be depleted using Elemental Reactions): Once the instances are depleted, this status will be removed."
+        }
+    ],
+    "Kairagi: Dancing Thunder": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Three Point Slash",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Leaping Strike",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Iai: Sheathed",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "This character prepares this Skill: Iai: StormbreathIai: Stormbreath(Prepares for 2 turns)Deals 6 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kamuna Talisman: Electro",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Kamuna Talisman: ElectroKamuna Talisman: ElectroThe Physical DMG this character deals is converted to Electro DMG.Usage(s): 3"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Final Frenzy",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "When another of your Kairagi characters gets defeated, this character gains Final Frenzy.Final FrenzyWhen the Action Phase starts: If the character to which this is attached is the active character, remove this status, heal this character for 3 HP, and re-attach Kamuna Talisman: Electro."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Iai: Stormbreath",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "0"
+                }
+            ],
+            "effect": "(Prepare for 2 turns)Deals 6 Physical DMG."
+        }
+    ],
+    "Kairagi: Fiery Might": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Three Point Slash",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Leaping Strike",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Iai: Sheathed",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "This character prepares the Skill: Iai: Fiery Wind.Iai: Fiery Wind(Prepare for 2 turns)Deals 6 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Kamuna Talisman: Pyro",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Kamuna Talisman: PyroKamuna Talisman: PyroThe Physical DMG this character deals is converted to Pyro DMG.Usage(s): 3"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Final Frenzy",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "When another of your Kairagi characters gets defeated, this character gains Final Frenzy.Final FrenzyWhen the Action Phase starts: If the character to which this is attached is the active character, remove this status, heal this character for 3 HP, and re-attach Kamuna Talisman: Pyro."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Iai: Fiery Wind",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "0"
+                }
+            ],
+            "effect": "(Prepare for 2 turns)Deals 6 Physical DMG."
+        }
+    ],
+    "Nobushi: Hitsukeban": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Combo Slash",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Blaze Bloom",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG, switches your character to the next character."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Iai: Sheathed",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "This character prepares this Skill: Iai: ThrustIai: Thrust(Prepare for 2 turns)Deal 6 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Zanshin",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) End Phase: If this character is the active character, they gain 1 Energy."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Iai: Thrust",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "0"
+                }
+            ],
+            "effect": "(Prepare for 2 turns)Deals 6 Physical DMG."
+        }
+    ],
+    "Nobushi: Jintouban": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Combo Slash",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Unaligned",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Leap Attack",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Iai: Sheathed",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "This character prepares this Skill: Iai: ThrustIai: Thrust(Prepare for 2 turns)Deal 6 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Zanshin",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) End Phase: If this character is the active character, they gain 1 Energy."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Iai: Thrust",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "0"
+                }
+            ],
+            "effect": "(Prepare for 2 turns)Deals 6 Physical DMG."
+        }
+    ],
+    "Nobushi: Kikouban": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Combo Slash",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Mechanical Thunderbow",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Electro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Electro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Iai: Sheathed",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "This character prepares this Skill: Iai: ThrustIai: Thrust(Prepare for 2 turns)Deal 6 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Zanshin",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) End Phase: If this character is the active character, they gain 1 Energy."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Iai: Thrust",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Matching",
+                    "number": "0"
+                }
+            ],
+            "effect": "(Prepare for 2 turns)Deals 6 Physical DMG."
+        }
+    ],
+    "Pyro Abyss Mage": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Flamewave",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Blazing Visage",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rite of the Molten Eruption",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Pyro",
+                    "number": "4"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 7 Pyro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Pyro Shield",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Pyro Shield.Pyro ShieldThe character to which this is attached takes no DMG.This status will provide 2 instances of Pyro Application (Can be depleted using Elemental Reactions): Once the instances are depleted, this status will be removed, and the character to which this is attached will be unable to use Skills until the end of this Round."
+        }
+    ],
+    "Rock Shieldwall Mitachurl": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Plata Plama",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Da Plama",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Aba Movo",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Physical DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Craggy Greatshield",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Craggy Greatshield.Craggy GreatshieldDecrease a maximum of 2 DMG. When Geo DMG is decreased, consume 1 additional Usage(s).Usage(s): 3"
+        }
+    ],
+    "Rockfond Rifthound": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Corrosive Claws",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Geo DMG, creates 1 Corrosion at the opponent's play area.CorrosionEnd Phase: Apart from non-active characters who have no more than 3 HP, all of characters in this play area take 1 Piercing DMG.Usage(s): 1 (Can stack. Max 3 stacks.)"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Crystal Cracker",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 2 Geo DMG, creates 1 Corrosion at the opponent's play area.CorrosionEnd Phase: Apart from non-active characters who have no more than 3 HP, all of characters in this play area take 1 Piercing DMG.Usage(s): 1 (Can stack. Max 3 stacks.)"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Pursuer's Mark",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Geo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 6 Geo DMG, creates 1 Corrosion at the opponent's play area.CorrosionEnd Phase: Apart from non-active characters who have no more than 3 HP, all of characters in this play area take 1 Piercing DMG.Usage(s): 1 (Can stack. Max 3 stacks.)"
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Elemental Devourer",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Elemental Devourer.Elemental DevourerAfter taking Geo DMG, stack 1 level of Elemental Devourer. (Max 2 levels)When 2 levels of Elemental Devourer have been gained, character deals +1 Geo DMG and takes +2 Geo DMG."
+        }
+    ],
+    "Winged Cryoshroom": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Spore Bullet",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Cryo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rolling Spray",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Cryo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Divebomb",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Cryo",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Cryo DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "State Change",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins this character will be in the Aerial Superiority State.After this character takes Pyro DMG, it will become Scorched.After this character takes Electro DMG, it will become Activated.Aerial SuperiorityThe character takes -1 DMG.(This character will permanently change its State if it takes Pyro DMG or Electro DMG.)ScorchedAfter this character becomes Scorched, it will lose its original buff.ActivatedEnd Phase: The character gains 1 Energy.After the character goes down: The opposing active character gains 1 energy."
+        }
+    ],
+    "Winged Dendroshroom": [
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Spore Bullet",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 1 Dendro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Rolling Spray",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Dendro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "Divebomb",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Dendro DMG."
+        },
+        {
+            "image": "data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D",
+            "name": "State Change",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins this character will be in the Aerial Superiority State.After this character takes Pyro DMG, it will become Scorched.After this character takes Electro DMG, it will become Activated.Aerial SuperiorityThe character takes -1 DMG.(This character will permanently change its State if it takes Pyro DMG or Electro DMG.)ScorchedAfter this character becomes Scorched, it will lose its original buff.ActivatedEnd Phase: The character gains 1 Energy.After the character goes down: The opposing active character gains 1 energy."
+        }
+    ],
+    "Wooden Shieldwall Mitachurl": [
+        {
+            "name": "Plata Plama",
+            "type": "Normal Attack",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "1"
+                },
+                {
+                    "color": "Unaligned",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 2 Physical DMG."
+        },
+        {
+            "name": "Da Plama",
+            "type": "Elemental Skill",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                }
+            ],
+            "effect": "Deals 3 Physical DMG."
+        },
+        {
+            "name": "Aba Movo",
+            "type": "Elemental Burst",
+            "cost": [
+                {
+                    "color": "Dendro",
+                    "number": "3"
+                },
+                {
+                    "color": "Energy",
+                    "number": "2"
+                }
+            ],
+            "effect": "Deals 5 Physical DMG."
+        },
+        {
+            "name": "Crudewood Greatshield",
+            "type": "Passive Skill",
+            "cost": [],
+            "effect": "(Passive) When the battle begins, this character gains Crudewood Greatshield.\n\nCrudewood Greatshield\nThe character to which this is attached takes -2 DMG.\nThis status will provide 2 instances of Dendro Application (Can be depleted using Elemental Reactions): Once the instances are depleted, this status will be removed."
+        }
+    ]
+}

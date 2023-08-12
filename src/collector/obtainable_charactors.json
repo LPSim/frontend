@@ -1,0 +1,597 @@
+[
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/72/Abyss_Lector_Fathomless_Flames_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Abyss_Lector:_Fathomless_Flames_(Character_Card)",
+        "name": "Abyss Lector: Fathomless Flames",
+        "hp": "6",
+        "element": "Pyro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e4/Albedo_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Albedo_(Character_Card)",
+        "name": "Albedo",
+        "hp": "10",
+        "element": "Geo",
+        "weapon": "Sword",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/89/Amber_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Amber_(Character_Card)",
+        "name": "Amber",
+        "hp": "10",
+        "element": "Pyro",
+        "weapon": "Bow",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7d/Arataki_Itto_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Arataki_Itto_(Character_Card)",
+        "name": "Arataki Itto",
+        "hp": "10",
+        "element": "Geo",
+        "weapon": "Claymore",
+        "faction": [
+            "Inazuma"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/24/Barbara_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Barbara_(Character_Card)",
+        "name": "Barbara",
+        "hp": "10",
+        "element": "Hydro",
+        "weapon": "Catalyst",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2a/Beidou_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Beidou_(Character_Card)",
+        "name": "Beidou",
+        "hp": "10",
+        "element": "Electro",
+        "weapon": "Claymore",
+        "faction": [
+            "Liyue"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Bennett_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Bennett_(Character_Card)",
+        "name": "Bennett",
+        "hp": "10",
+        "element": "Pyro",
+        "weapon": "Sword",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9e/Candace_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Candace_(Character_Card)",
+        "name": "Candace",
+        "hp": "10",
+        "element": "Hydro",
+        "weapon": "Polearm",
+        "faction": [
+            "Sumeru"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/64/Chongyun_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Chongyun_(Character_Card)",
+        "name": "Chongyun",
+        "hp": "10",
+        "element": "Cryo",
+        "weapon": "Claymore",
+        "faction": [
+            "Liyue"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e2/Collei_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Collei_(Character_Card)",
+        "name": "Collei",
+        "hp": "10",
+        "element": "Dendro",
+        "weapon": "Bow",
+        "faction": [
+            "Sumeru"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/1f/Cyno_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Cyno_(Character_Card)",
+        "name": "Cyno",
+        "hp": "10",
+        "element": "Electro",
+        "weapon": "Polearm",
+        "faction": [
+            "Sumeru"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a7/Diluc_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Diluc_(Character_Card)",
+        "name": "Diluc",
+        "hp": "10",
+        "element": "Pyro",
+        "weapon": "Claymore",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/31/Diona_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Diona_(Character_Card)",
+        "name": "Diona",
+        "hp": "10",
+        "element": "Cryo",
+        "weapon": "Bow",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/dc/Electro_Hypostasis_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Electro_Hypostasis_(Character_Card)",
+        "name": "Electro Hypostasis",
+        "hp": "8",
+        "element": "Electro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3a/Eula_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Eula_(Character_Card)",
+        "name": "Eula",
+        "hp": "10",
+        "element": "Cryo",
+        "weapon": "Claymore",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/87/Fatui_Cryo_Cicin_Mage_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Fatui_Cryo_Cicin_Mage_(Character_Card)",
+        "name": "Fatui Cryo Cicin Mage",
+        "hp": "10",
+        "element": "Cryo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Fatui"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/ef/Fatui_Pyro_Agent_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Fatui_Pyro_Agent_(Character_Card)",
+        "name": "Fatui Pyro Agent",
+        "hp": "10",
+        "element": "Pyro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Fatui"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7d/Fischl_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Fischl_(Character_Card)",
+        "name": "Fischl",
+        "hp": "10",
+        "element": "Electro",
+        "weapon": "Bow",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/87/Ganyu_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ganyu_(Character_Card)",
+        "name": "Ganyu",
+        "hp": "10",
+        "element": "Cryo",
+        "weapon": "Bow",
+        "faction": [
+            "Liyue"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/90/Hu_Tao_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Hu_Tao_(Character_Card)",
+        "name": "Hu Tao",
+        "hp": "10",
+        "element": "Pyro",
+        "weapon": "Polearm",
+        "faction": [
+            "Liyue"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/5f/Jadeplume_Terrorshroom_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Jadeplume_Terrorshroom_(Character_Card)",
+        "name": "Jadeplume Terrorshroom",
+        "hp": "10",
+        "element": "Dendro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b0/Jean_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Jean_(Character_Card)",
+        "name": "Jean",
+        "hp": "10",
+        "element": "Anemo",
+        "weapon": "Sword",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/67/Kaedehara_Kazuha_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Kaedehara_Kazuha_(Character_Card)",
+        "name": "Kaedehara Kazuha",
+        "hp": "10",
+        "element": "Anemo",
+        "weapon": "Sword",
+        "faction": [
+            "Inazuma"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/cd/Kaeya_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Kaeya_(Character_Card)",
+        "name": "Kaeya",
+        "hp": "10",
+        "element": "Cryo",
+        "weapon": "Sword",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/72/Kamisato_Ayaka_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Kamisato_Ayaka_(Character_Card)",
+        "name": "Kamisato Ayaka",
+        "hp": "10",
+        "element": "Cryo",
+        "weapon": "Sword",
+        "faction": [
+            "Inazuma"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9e/Kamisato_Ayato_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Kamisato_Ayato_(Character_Card)",
+        "name": "Kamisato Ayato",
+        "hp": "10",
+        "element": "Hydro",
+        "weapon": "Sword",
+        "faction": [
+            "Inazuma"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/dd/Keqing_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Keqing_(Character_Card)",
+        "name": "Keqing",
+        "hp": "10",
+        "element": "Electro",
+        "weapon": "Sword",
+        "faction": [
+            "Liyue"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d4/Klee_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Klee_(Character_Card)",
+        "name": "Klee",
+        "hp": "10",
+        "element": "Pyro",
+        "weapon": "Catalyst",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/84/Kujou_Sara_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Kujou_Sara_(Character_Card)",
+        "name": "Kujou Sara",
+        "hp": "10",
+        "element": "Electro",
+        "weapon": "Bow",
+        "faction": [
+            "Inazuma"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c3/Lisa_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Lisa_(Character_Card)",
+        "name": "Lisa",
+        "hp": "10",
+        "element": "Electro",
+        "weapon": "Catalyst",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/68/Maguu_Kenki_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Maguu_Kenki_(Character_Card)",
+        "name": "Maguu Kenki",
+        "hp": "10",
+        "element": "Anemo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Mirror_Maiden_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mirror_Maiden_(Character_Card)",
+        "name": "Mirror Maiden",
+        "hp": "10",
+        "element": "Hydro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Fatui"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/cb/Mona_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mona_(Character_Card)",
+        "name": "Mona",
+        "hp": "10",
+        "element": "Hydro",
+        "weapon": "Catalyst",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c1/Nahida_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Nahida_(Character_Card)",
+        "name": "Nahida",
+        "hp": "10",
+        "element": "Dendro",
+        "weapon": "Catalyst",
+        "faction": [
+            "Sumeru"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/93/Ningguang_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ningguang_(Character_Card)",
+        "name": "Ningguang",
+        "hp": "10",
+        "element": "Geo",
+        "weapon": "Catalyst",
+        "faction": [
+            "Liyue"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d6/Noelle_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Noelle_(Character_Card)",
+        "name": "Noelle",
+        "hp": "10",
+        "element": "Geo",
+        "weapon": "Claymore",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/1e/Qiqi_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Qiqi_(Character_Card)",
+        "name": "Qiqi",
+        "hp": "10",
+        "element": "Cryo",
+        "weapon": "Sword",
+        "faction": [
+            "Liyue"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c9/Raiden_Shogun_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Raiden_Shogun_(Character_Card)",
+        "name": "Raiden Shogun",
+        "hp": "10",
+        "element": "Electro",
+        "weapon": "Polearm",
+        "faction": [
+            "Inazuma"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/27/Razor_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Razor_(Character_Card)",
+        "name": "Razor",
+        "hp": "10",
+        "element": "Electro",
+        "weapon": "Claymore",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/db/Rhodeia_of_Loch_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Rhodeia_of_Loch_(Character_Card)",
+        "name": "Rhodeia of Loch",
+        "hp": "10",
+        "element": "Hydro",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d3/Sangonomiya_Kokomi_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sangonomiya_Kokomi_(Character_Card)",
+        "name": "Sangonomiya Kokomi",
+        "hp": "10",
+        "element": "Hydro",
+        "weapon": "Catalyst",
+        "faction": [
+            "Inazuma"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/ca/Shenhe_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Shenhe_(Character_Card)",
+        "name": "Shenhe",
+        "hp": "10",
+        "element": "Cryo",
+        "weapon": "Polearm",
+        "faction": [
+            "Liyue"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/24/Stonehide_Lawachurl_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Stonehide_Lawachurl_(Character_Card)",
+        "name": "Stonehide Lawachurl",
+        "hp": "8",
+        "element": "Geo",
+        "weapon": "Other Weapons",
+        "faction": [
+            "Monster",
+            "Hilichurl"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/42/Sucrose_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sucrose_(Character_Card)",
+        "name": "Sucrose",
+        "hp": "10",
+        "element": "Anemo",
+        "weapon": "Catalyst",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d7/Tartaglia_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Tartaglia_(Character_Card)",
+        "name": "Tartaglia",
+        "hp": "10",
+        "element": "Hydro",
+        "weapon": "Bow",
+        "faction": [
+            "Fatui"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/24/Tighnari_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Tighnari_(Character_Card)",
+        "name": "Tighnari",
+        "hp": "10",
+        "element": "Dendro",
+        "weapon": "Bow",
+        "faction": [
+            "Sumeru"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/4a/Venti_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Venti_(Character_Card)",
+        "name": "Venti",
+        "hp": "10",
+        "element": "Anemo",
+        "weapon": "Bow",
+        "faction": [
+            "Mondstadt"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2a/Xiangling_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Xiangling_(Character_Card)",
+        "name": "Xiangling",
+        "hp": "10",
+        "element": "Pyro",
+        "weapon": "Polearm",
+        "faction": [
+            "Liyue"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c1/Xiao_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Xiao_(Character_Card)",
+        "name": "Xiao",
+        "hp": "10",
+        "element": "Anemo",
+        "weapon": "Polearm",
+        "faction": [
+            "Liyue"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f9/Xingqiu_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Xingqiu_(Character_Card)",
+        "name": "Xingqiu",
+        "hp": "10",
+        "element": "Hydro",
+        "weapon": "Sword",
+        "faction": [
+            "Liyue"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2c/Yae_Miko_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Yae_Miko_(Character_Card)",
+        "name": "Yae Miko",
+        "hp": "10",
+        "element": "Electro",
+        "weapon": "Catalyst",
+        "faction": [
+            "Inazuma"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/76/Yanfei_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Yanfei_(Character_Card)",
+        "name": "Yanfei",
+        "hp": "10",
+        "element": "Pyro",
+        "weapon": "Catalyst",
+        "faction": [
+            "Liyue"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/98/Yoimiya_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Yoimiya_(Character_Card)",
+        "name": "Yoimiya",
+        "hp": "10",
+        "element": "Pyro",
+        "weapon": "Bow",
+        "faction": [
+            "Inazuma"
+        ]
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/02/Zhongli_Character_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Zhongli_(Character_Card)",
+        "name": "Zhongli",
+        "hp": "10",
+        "element": "Geo",
+        "weapon": "Polearm",
+        "faction": [
+            "Liyue"
+        ]
+    }
+]

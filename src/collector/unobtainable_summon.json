@@ -1,0 +1,23 @@
+[
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/83/Healing_Rain_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Healing_Rain",
+        "name": "Healing Rain",
+        "usage": "2",
+        "effect": "End Phase: Heal your active character for 1 HP and grant both sides' active characters Hydro Application."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/48/Tanglebolt_Ring_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Tanglebolt_Ring",
+        "name": "Tanglebolt Ring",
+        "usage": "2",
+        "effect": "End Phase: Deal 2 Electro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/18/Whirlwind_Summon.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Whirlwind",
+        "name": "Whirlwind",
+        "usage": "2",
+        "effect": "End Phase: Deal 1 Anemo DMG."
+    }
+]

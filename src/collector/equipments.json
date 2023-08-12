@@ -1,0 +1,1636 @@
+[
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/64/A_Thousand_Floating_Dreams_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/A_Thousand_Floating_Dreams_(Equipment_Card)",
+        "name": "A Thousand Floating Dreams",
+        "group": [
+            "Weapon",
+            "Catalyst"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nWhen your character triggers an Elemental Reaction: Deal +1 DMG. (Twice per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e7/Abyssal_Mayhem_Hydrospout_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Abyssal_Mayhem:_Hydrospout_(Equipment_Card)",
+        "name": "Abyssal Mayhem: Hydrospout",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Hydro",
+                "number": "4"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Tartaglia, equip this card.\nAfter Tartaglia equips this card, immediately use Foul Legacy: Raging Tide once.\nEnd Phase: Deals 1 Piercing DMG to all opposing characters affected by Riptide."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c1/Adventurer%27s_Bandana_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Adventurer%27s_Bandana_(Equipment_Card)",
+        "name": "Adventurer's Bandana",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "After a character uses a Normal Attack: Heal self for 1 HP. (Max 3 times per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/28/Amos%27_Bow_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Amos%27_Bow_(Equipment_Card)",
+        "name": "Amos' Bow",
+        "group": [
+            "Weapon",
+            "Bow"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nWhen the character uses a Skill that costs at least a total of 5 Elemental Dice and Energy, +2 additional DMG. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a4/Aquila_Favonia_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Aquila_Favonia_(Equipment_Card)",
+        "name": "Aquila Favonia",
+        "group": [
+            "Weapon",
+            "Sword"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nAfter the opposing character uses a Skill: If the character with this attached is the active character, heal this character for 1 HP. (Max twice per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/1c/Arataki_Ichiban_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Arataki_Ichiban_(Equipment_Card)",
+        "name": "Arataki Ichiban",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Geo",
+                "number": "1"
+            },
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Arataki Itto, equip this card.\nAfter Arataki Itto equips this card, immediately use Fight Club Legend once.\nAfter your Arataki Itto, who has this card equipped, uses Fight Club Legend for the second time or more this Round: If Superlative Superstrength is triggered, deal +1 additional DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/ea/Archaic_Petra_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Archaic_Petra_(Equipment_Card)",
+        "name": "Archaic Petra",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "3"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Geo Die. (Once per Round)\nRoll Phase: 2 of the starting Elemental Dice you roll are always guaranteed to be  Geo Dice."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/96/Awakening_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Awakening_(Equipment_Card)",
+        "name": "Awakening",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Electro",
+                "number": "4"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Razor, equip this card.\nAfter Razor equips this card, immediately use Claw and Thunder once.\nAfter your Razor, who has this card equipped, uses Claw and Thunder: 1 of your Electro characters gains 1 Energy. (Active Character prioritized)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/88/Blizzard_Strayer_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Blizzard_Strayer_(Equipment_Card)",
+        "name": "Blizzard Strayer",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "3"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Cryo Die. (Once per Round)\nRoll Phase: 2 of the starting Elemental Dice you roll are always guaranteed to be  Cryo Dice."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b9/Broken_Rime%27s_Echo_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Broken_Rime%27s_Echo_(Equipment_Card)",
+        "name": "Broken Rime's Echo",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Cryo Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/03/Bunny_Triggered_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Bunny_Triggered_(Equipment_Card)",
+        "name": "Bunny Triggered",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Pyro",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Amber, equip this card.\nAfter Amber equips this card, immediately use Explosive Puppet once.\nAfter you use a Normal Attack: If this card and Baron Bunny are still on the field, then Baron Bunny explodes and deals 3 Pyro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a4/Capricious_Visage_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Capricious_Visage_(Equipment_Card)",
+        "name": "Capricious Visage",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "When the character uses an Elemental Skill or equips a Talent: Spend 1 less Elemental Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/08/Chaotic_Entropy_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Chaotic_Entropy_(Equipment_Card)",
+        "name": "Chaotic Entropy",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Anemo",
+                "number": "3"
+            },
+            {
+                "color": "Energy",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Sucrose, equip this card.\nAfter Sucrose equips this card, immediately use Forbidden Creation - Isomer 75 / Type II once.\nAfter the Large Wind Spirit created by your Sucrose, who had this card equipped, has converted to another Elemental Type: Deal +1 DMG of this Elemental Type."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c8/Cicin%27s_Cold_Glare_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Cicin%27s_Cold_Glare",
+        "name": "Cicin's Cold Glare",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Cryo",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Fatui Cryo Cicin Mage, equip this card.\nAfter Fatui Cryo Cicin Mage equips this card, immediately use Misty Summons once.\nAfter your Fatui Cryo Cicin Mage, who has this card equipped, uses a Skill: If Cryo Cicins' Usage(s) have exceeded their upper limit, deal 2 Cryo DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f2/Cold-Blooded_Strike_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Cold-Blooded_Strike_(Equipment_Card)",
+        "name": "Cold-Blooded Strike",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Cryo",
+                "number": "4"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Kaeya, equip this card.\nAfter Kaeya equips this card, immediately use Frostgnaw once.\nAfter your Kaeya, who has this card equipped, uses Frostgnaw, he heals himself for 2 HP. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/10/Conqueror_of_Evil_Guardian_Yaksha_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Conqueror_of_Evil:_Guardian_Yaksha_(Equipment_Card)",
+        "name": "Conqueror of Evil: Guardian Yaksha",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Anemo",
+                "number": "3"
+            },
+            {
+                "color": "Energy",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Xiao, equip this card.\nAfter Xiao equips this card, immediately use Bane of All Evil once.\nWhile your Xiao has Yaksha's Mask attached, your use of Lemniscatic Wind Cycling will cost 1 less  Anemo Die. (Every attachment of Yaksha's Mask allows the effect to be triggered twice)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f2/Crimson_Witch_of_Flames_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Crimson_Witch_of_Flames_(Equipment_Card)",
+        "name": "Crimson Witch of Flames",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "3"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Pyro Die. (Once per Round)\nRoll Phase: 2 of the starting Elemental Dice you roll are always guaranteed to be  Pyro Dice."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/27/Crossfire_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Crossfire_(Equipment_Card)",
+        "name": "Crossfire",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Pyro",
+                "number": "4"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Xiangling, equip this card.\nAfter Xiangling equips this card, immediately use Guoba Attack once.\nWhen your Xiangling, who has this card equipped, uses Guoba Attack, she will also deal 1 Pyro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/59/Deepwood_Memories_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Deepwood_Memories_(Equipment_Card)",
+        "name": "Deepwood Memories",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "3"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Dendro Die. (Once per Round)\nRoll Phase: 2 of the starting Elemental Dice you roll are always guaranteed to be  Dendro Dice."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/10/Dominance_of_Earth_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Dominance_of_Earth_(Equipment_Card)",
+        "name": "Dominance of Earth",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Geo",
+                "number": "5"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Zhongli, equip this card.\nAfter Zhongli equips this card, immediately use Dominus Lapidis: Striking Stone once.\nWhen your active character is protected by a Shield Character Status or a Shield Combat Status, your Summons deal +1 Geo DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b5/Elegy_for_the_End_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Elegy_for_the_End_(Equipment_Card)",
+        "name": "Elegy for the End",
+        "group": [
+            "Weapon",
+            "Bow"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nAfter the character uses an Elemental Burst: Create Millennial Movement: Farewell Song. (Your character deals +1 DMG, Duration (Rounds): 2)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0a/Embers_Rekindled_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Embers_Rekindled",
+        "name": "Embers Rekindled",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Pyro",
+                "number": "2"
+            }
+        ],
+        "effect": "When played: If Abyss Lector: Fathomless Flames, who equips this card, has already triggered Fiery Rebirth, immediately discard this card and apply Aegis of Abyssal Flame to the character.\nWhen Abyss Lector: Fathomless Flames, who has this card equipped, triggers Fiery Rebirth: discard this card and apply Aegis of Abyssal Flame to the character.\n\nAegis of Abyssal Flame\nGrant the character to which this is attached 3 Shield points.\nBefore this Shield is depleted, the character to which this is attached will deal +1 Pyro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/5e/Emblem_of_Severed_Fate_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Emblem_of_Severed_Fate_(Equipment_Card)",
+        "name": "Emblem of Severed Fate",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "3"
+            }
+        ],
+        "effect": "After another character of yours uses an Elemental Burst: The character to which this is attached gains 1  Energy.\nThe DMG dealt by the character's Elemental Bursts is increased by 2."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/6f/Embrace_of_Winds_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Embrace_of_Winds_(Equipment_Card)",
+        "name": "Embrace of Winds",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Anemo",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Venti, equip this card.\nAfter Venti equips this card, immediately use Skyward Sonnet once.\nAfter a Stormzone created by your Venti, who has this card equipped, is triggered, the next Normal Attack performed by your character in this Round will cost 1 less Unaligned Element."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c5/Engulfing_Lightning_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Engulfing_Lightning_(Equipment_Card)",
+        "name": "Engulfing Lightning",
+        "group": [
+            "Weapon",
+            "Polearm"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nTriggers automatically once per Round: If the character to which this is attached does not have Energy, they will gain 1 Energy."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/86/Exile%27s_Circlet_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Exile%27s_Circlet_(Equipment_Card)",
+        "name": "Exile's Circlet",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "effect": "After a character uses an Elemental Burst: All your characters on standby gain 1  Energy. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a1/Favonius_Sword_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Favonius_Sword_(Equipment_Card)",
+        "name": "Favonius Sword",
+        "group": [
+            "Weapon",
+            "Sword"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nAfter the character uses an Elemental Skill: The character gains one additional Energy. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/66/Featherfall_Judgment_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Featherfall_Judgment_(Equipment_Card)",
+        "name": "Featherfall Judgment",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Electro",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Cyno, equip this card.\nAfter Cyno equips this card, immediately use Secret Rite: Chasmic Soulfarer once.\nWhen your Cyno, who has this card equipped, uses Secret Rite: Chasmic Soulfarer with 3 or 5 levels of Pactsworn Pathclearer's Indwelling effect, deal +1 additional DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/19/Floral_Sidewinder_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Floral_Sidewinder_(Equipment_Card)",
+        "name": "Floral Sidewinder",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Dendro",
+                "number": "4"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Collei, equip this card.\nAfter Collei equips this card, immediately use Floral Brush once.\nAfter your Collei, who has this card equipped, uses Floral Brush, during this Round, when your characters' Skills trigger Dendro-Related Reactions: Deal 1 Dendro DMG. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0a/Flowing_Flame_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Flowing_Flame_(Equipment_Card)",
+        "name": "Flowing Flame",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Pyro",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Diluc, equip this card.\nAfter Diluc equips this card, immediately use Searing Onslaught once.\nWhen your Diluc, who has this card equipped, uses Searing Onslaught for the second time in one Round, spend 1 less  Pyro Die."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/ec/Fruit_of_Fulfillment_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Fruit_of_Fulfillment_(Equipment_Card)",
+        "name": "Fruit of Fulfillment",
+        "group": [
+            "Weapon",
+            "Catalyst"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nWhen played: Draw 2 cards."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/4d/Gambler%27s_Earrings_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Gambler%27s_Earrings_(Equipment_Card)",
+        "name": "Gambler's Earrings",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "After an opposing character is defeated: If the character this card is attached to is the active character, create  Omni Element ×2. (Can happen 3 times per match)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/82/General%27s_Ancient_Helm_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/General%27s_Ancient_Helm_(Equipment_Card)",
+        "name": "General's Ancient Helm",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "When Action Phase begins: The character to which this is attached gains Unmovable Mountain that provides 2  Shield points."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Glorious_Season_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Glorious_Season_(Equipment_Card)",
+        "name": "Glorious Season",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Hydro",
+                "number": "4"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Barbara, equip this card.\nAfter Barbara equips this card, immediately use Let the Show Begin♪ once.\nWhen your Barbara, who has this card equipped, is on the field, Melody Loop will allow you to spend 1 less Elemental Die the next time you use \"Switch Character.\" (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f4/Grand_Expectation_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Grand_Expectation_(Equipment_Card)",
+        "name": "Grand Expectation",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Pyro",
+                "number": "4"
+            },
+            {
+                "color": "Energy",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Bennett, equip this card.\nAfter Bennett equips this card, immediately use Fantastic Voyage once.\nWhen your Bennett, who has this card equipped, creates an Inspiration Field, its DMG Bonus is now always active and will no longer have an HP restriction."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/36/Heart_of_Depth_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Heart_of_Depth_(Equipment_Card)",
+        "name": "Heart of Depth",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "3"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Hydro Die. (Once per Round)\nRoll Phase: 2 of the starting Elemental Dice you roll are always guaranteed to be  Hydro Dice."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c8/I_Got_Your_Back_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/I_Got_Your_Back_(Equipment_Card)",
+        "name": "I Got Your Back",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Geo",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Noelle, equip this card.\nAfter Noelle equips this card, immediately use Breastplate once.\nWhen your Noelle, who has this card equipped, creates a Full Plate, it will heal all your characters for 1 HP after Noelle uses a Normal Attack. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/40/Instructor%27s_Cap_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Instructor%27s_Cap_(Equipment_Card)",
+        "name": "Instructor's Cap",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "effect": "After a character triggers an Elemental Reaction: Create 1 Elemental Die that matches this Character's Elemental Type. (Max 3 times per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c4/Kanten_Senmyou_Blessing_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Kanten_Senmyou_Blessing_(Equipment_Card)",
+        "name": "Kanten Senmyou Blessing",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Cryo",
+                "number": "2"
+            }
+        ],
+        "effect": "The Cryo Elemental Infusion created by your Kamisato Ayaka, who has this card equipped, allows the character to which it is attached to deal +1 Cryo DMG.\nWhen you switch to Kamisato Ayaka, who has this card equipped: Spend 1 less Elemental Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d0/Keen_Sight_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Keen_Sight_(Equipment_Card)",
+        "name": "Keen Sight",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Dendro",
+                "number": "4"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Tighnari, equip this card.\nAfter Tighnari equips this card, immediately use Vijnana-Phala Mine once.\nWhen your Tighnari, who has this card equipped, is affected by Vijnana Suffusion, the character's Charged Attack costs 1 less Unaligned Element."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/09/Kyouka_Fuushi_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Kyouka_Fuushi_(Equipment_Card)",
+        "name": "Kyouka Fuushi",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Hydro",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Kamisato Ayato, equip this card.\nAfter Kamisato Ayato equips this card, immediately use Kamisato Art: Kyouka once.\nWhen your Kamisato Ayato, who has this card equipped, triggers the effects of Takimeguri Kanka, deal +1 additional DMG if the target's remaining HP is equal to or less than 6."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3c/Lands_of_Dandelion_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Lands_of_Dandelion_(Equipment_Card)",
+        "name": "Lands of Dandelion",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Anemo",
+                "number": "4"
+            },
+            {
+                "color": "Energy",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Jean, equip this card.\nAfter Jean equips this card, immediately use Dandelion Breeze once.\nWhen your Jean, who has this card equipped, is on the field, Dandelion Field will cause you to deal +1 Anemo DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/fc/Laurel_Coronet_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Laurel_Coronet_(Equipment_Card)",
+        "name": "Laurel Coronet",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Dendro Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7e/Lightning_Storm_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Lightning_Storm_(Equipment_Card)",
+        "name": "Lightning Storm",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Electro",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Beidou, equip this card.\nAfter Beidou equips this card, immediately use Tidecaller once.\nWhen Beidou, who has this card equipped, uses Wavestrider: If DMG is taken while Prepare Skill is active, Beidou's Normal Attacks this Round will cost 1 less Unaligned Element. (Can be triggered 2 times)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/99/Lithic_Spear_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Lithic_Spear_(Equipment_Card)",
+        "name": "Lithic Spear",
+        "group": [
+            "Weapon",
+            "Polearm"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nWhen played: For each party member from Liyue, grant 1 Shield point to the character to which this is attached. (Max 3 points)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/af/Lucky_Dog%27s_Silver_Circlet_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Lucky_Dog%27s_Silver_Circlet_(Equipment_Card)",
+        "name": "Lucky Dog's Silver Circlet",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "effect": "After a character uses an Elemental Skill: Heal self for 2 HP. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/96/Magic_Guide_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Magic_Guide_(Equipment_Card)",
+        "name": "Magic Guide",
+        "group": [
+            "Weapon",
+            "Catalyst"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "The character deals +1 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/5d/Mask_of_Solitude_Basalt_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mask_of_Solitude_Basalt_(Equipment_Card)",
+        "name": "Mask of Solitude Basalt",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Geo Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/6c/Mirror_Cage_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mirror_Cage",
+        "name": "Mirror Cage",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Hydro",
+                "number": "4"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Mirror Maiden, equip this card.\nAfter Mirror Maiden equips this card, immediately use Influx Blast once.\nWhen your Mirror Maiden, who has this card equipped, creates a Refraction, it will have the following effects: Starting Duration (Rounds) +1, will increase the Elemental Dice Cost of switching from a character to which this is attached to another character by 1."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b7/Mystical_Abandon_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Mystical_Abandon_(Equipment_Card)",
+        "name": "Mystical Abandon",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Cryo",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Shenhe, equip this card.\nAfter Shenhe equips this card, immediately use Spring Spirit Summoning once.\nWhen the Icy Quill created by your Shenhe, who has this card equipped, is triggered by your characters' Normal Attacks, its Usages will not decrease. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c4/Naganohara_Meteor_Swarm_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Naganohara_Meteor_Swarm_(Equipment_Card)",
+        "name": "Naganohara Meteor Swarm",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Pyro",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Yoimiya, equip this card.\nAfter Yoimiya equips this card, immediately use Niwabi Fire-Dance once.\nAfter your Yoimiya, who has this card equipped, triggers Niwabi Enshou: Deal 1 additional Pyro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/85/Ornate_Kabuto_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Ornate_Kabuto_(Equipment_Card)",
+        "name": "Ornate Kabuto",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "effect": "After another character of yours uses an Elemental Burst: The character to which this is attached gains 1  Energy."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/50/Paid_in_Full_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Paid_in_Full",
+        "name": "Paid in Full",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Pyro",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Fatui Pyro Agent, equip this card.\nAfter Fatui Pyro Agent equips this card, immediately use Prowl once.\nWhen your Fatui Pyro Agent, who has this card equipped, creates a Stealth, it will have the following effect:\nStarting Usage(s) +1, the Physical DMG the character deals will be converted to Pyro DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/8d/Poetics_of_Fuubutsu_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Poetics_of_Fuubutsu_(Equipment_Card)",
+        "name": "Poetics of Fuubutsu",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Anemo",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Kaedehara Kazuha, equip this card.\nAfter Kaedehara Kazuha equips this card, immediately use Chihayaburu once.\nAfter Kaedehara Kazuha triggers Swirl with this card equipped: For the next 2 instances, your Characters and Summons will deal +1 DMG for the Elemental Type Swirled. (Each Elemental Type is counted independently)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/68/Pounding_Surprise_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Pounding_Surprise_(Equipment_Card)",
+        "name": "Pounding Surprise",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Pyro",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Klee, equip this card.\nAfter Klee equips this card, immediately use Jumpy Dumpty once.\nWhen your Klee, who has this card equipped, creates an Explosive Spark, its Usage(s) +1."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c9/Proliferating_Spores_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Proliferating_Spores",
+        "name": "Proliferating Spores",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Dendro",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Jadeplume Terrorshroom, equip this card.\nAfter Jadeplume Terrorshroom equips this card, immediately use Volatile Spore Cloud once.\nYour Jadeplume Terrorshroom, who has this card equipped, can accumulate 1 more stack of Radical Vitality."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/18/Prophecy_of_Submersion_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Prophecy_of_Submersion_(Equipment_Card)",
+        "name": "Prophecy of Submersion",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Hydro",
+                "number": "3"
+            },
+            {
+                "color": "Energy",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Mona, equip this card.\nWhen Mona equips this card, immediately use Stellaris Phantasm once.\nWhen your Mona, who has this card equipped, is the active character, the Hydro-Related Reactions you trigger deal +2 additional DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/5d/Raven_Bow_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Raven_Bow_(Equipment_Card)",
+        "name": "Raven Bow",
+        "group": [
+            "Weapon",
+            "Bow"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "The character deals +1 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/39/Right_of_Final_Interpretation_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Right_of_Final_Interpretation_(Equipment_Card)",
+        "name": "Right of Final Interpretation",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Pyro",
+                "number": "1"
+            },
+            {
+                "color": "Unaligned",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Yanfei, equip this card.\nAfter Yanfei equips this card, immediately use Seal of Approval once.\nWhen Yanfei uses a Charged Attack with this card equipped: Deal +1 DMG to enemies with 6 or less HP."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a2/Sacrificial_Bow_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sacrificial_Bow_(Equipment_Card)",
+        "name": "Sacrificial Bow",
+        "group": [
+            "Weapon",
+            "Bow"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nAfter the character uses an Elemental Skill: Create 1 Elemental Die of the same Elemental Type as this character. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2a/Sacrificial_Fragments_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sacrificial_Fragments_(Equipment_Card)",
+        "name": "Sacrificial Fragments",
+        "group": [
+            "Weapon",
+            "Catalyst"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nAfter the character uses an Elemental Skill: Create 1 Elemental Die of the same Elemental Type as this character. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7c/Sacrificial_Greatsword_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sacrificial_Greatsword_(Equipment_Card)",
+        "name": "Sacrificial Greatsword",
+        "group": [
+            "Weapon",
+            "Claymore"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nAfter the character uses an Elemental Skill: Create 1 Elemental Die of the same Elemental Type as this character. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/67/Sacrificial_Sword_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sacrificial_Sword_(Equipment_Card)",
+        "name": "Sacrificial Sword",
+        "group": [
+            "Weapon",
+            "Sword"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nAfter the character uses an Elemental Skill: Create 1 Elemental Die of the same Elemental Type as this character. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/17/Sanguine_Rouge_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sanguine_Rouge_(Equipment_Card)",
+        "name": "Sanguine Rouge",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Pyro",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Hu Tao, equip this card.\nAfter Hu Tao equips this card, immediately use Guide to Afterlife once.\nWhen your Hu Tao, who has this card equipped, has no more than 6 HP, Pyro DMG dealt +1."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c1/Shaken%2C_Not_Purred_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Shaken,_Not_Purred_(Equipment_Card)",
+        "name": "Shaken, Not Purred",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Cryo",
+                "number": "4"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Diona, equip this card.\nAfter Diona equips this card, immediately use Icy Paws once.\nWhen your Diona, who has this card equipped, creates a Cat-Claw Shield, its Shield points +1."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/80/Shimenawa%27s_Reminiscence_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Shimenawa%27s_Reminiscence_(Equipment_Card)",
+        "name": "Shimenawa's Reminiscence",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "When the character uses an Elemental Skill or equips a Talent: Spend 1 less Elemental Die. (Once per Round)\nIf the character has at least 2  Energy, this character's Normal Attacks and Elemental Skills will deal +1 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0c/Sin_of_Pride_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Sin_of_Pride_(Equipment_Card)",
+        "name": "Sin of Pride",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Electro",
+                "number": "4"
+            },
+            {
+                "color": "Energy",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Kujou Sara, equip this card.\nAfter Kujou Sara equips this card, immediately use Subjugation: Koukou Sendou once.\nWhen Kujou Sara is active and has this card equipped, all allied Electro characters with Crowfeather Cover will deal +1 additional Elemental Skill and Elemental Burst DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c6/Skyward_Atlas_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Skyward_Atlas_(Equipment_Card)",
+        "name": "Skyward Atlas",
+        "group": [
+            "Weapon",
+            "Catalyst"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nOnce per Round: This character's Normal Attack deal +1 additional DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/61/Skyward_Blade_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Skyward_Blade_(Equipment_Card)",
+        "name": "Skyward Blade",
+        "group": [
+            "Weapon",
+            "Sword"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nOnce per Round: This character's Normal Attack deal +1 additional DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b6/Skyward_Harp_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Skyward_Harp_(Equipment_Card)",
+        "name": "Skyward Harp",
+        "group": [
+            "Weapon",
+            "Bow"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nOnce per Round: This character's Normal Attack deal +1 additional DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/de/Skyward_Pride_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Skyward_Pride_(Equipment_Card)",
+        "name": "Skyward Pride",
+        "group": [
+            "Weapon",
+            "Claymore"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nOnce per Round: This character's Normal Attack deal +1 additional DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/27/Skyward_Spine_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Skyward_Spine_(Equipment_Card)",
+        "name": "Skyward Spine",
+        "group": [
+            "Weapon",
+            "Polearm"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nOnce per Round: This character's Normal Attack deal +1 additional DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/67/Steady_Breathing_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Steady_Breathing_(Equipment_Card)",
+        "name": "Steady Breathing",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Cryo",
+                "number": "4"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Chongyun, equip this card.\nAfter Chongyun equips this card, immediately use Chonghua's Layered Frost once.\nWhen your Chongyun, who has this card equipped, creates a Chonghua Frost Field, it will have the following effects: Starting Duration (Rounds) +1, will cause your Sword, Claymore, and Polearm-wielding characters' Normal Attacks to deal +1 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/66/Stellar_Predator_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Stellar_Predator_(Equipment_Card)",
+        "name": "Stellar Predator",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Electro",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Fischl, equip this card.\nAfter Fischl equips this card, immediately use Nightrider once.\nWhen your Fischl, who has this card equipped, creates an Oz, and after Fischl uses a Normal Attack: Deal 2 Electro DMG. (Consumes Usage(s))"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a1/Stonehide_Reforged_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Stonehide_Reforged",
+        "name": "Stonehide Reforged",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Geo",
+                "number": "4"
+            },
+            {
+                "color": "Energy",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Stonehide Lawachurl, equip this card.\nAfter Stonehide Lawachurl equips this card, immediately use Upa Shato once.\nWhen your Stonehide Lawachurl, who has this card equipped, defeats an opposing character: Stonehide Lawachurl will re-attach Stonehide and Stone Force."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f4/Strategic_Reserve_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Strategic_Reserve_(Equipment_Card)",
+        "name": "Strategic Reserve",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Geo",
+                "number": "4"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Ningguang, equip this card.\nAfter Ningguang equips this card, immediately use Jade Screen once.\nWhen your Ningguang, who has this card equipped, is on the field, Jade Screen will cause you to deal +1 Geo DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/61/Streaming_Surge_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Streaming_Surge",
+        "name": "Streaming Surge",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Hydro",
+                "number": "4"
+            },
+            {
+                "color": "Energy",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Rhodeia of Loch, equip this card.\nAfter Rhodeia of Loch equips this card, immediately use Tide and Torrent once.\nWhen your Rhodeia of Loch, who has this card equipped, uses Tide and Torrent, all of your Summon(s) gain +1 Usage(s)."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/82/Tamakushi_Casket_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Tamakushi_Casket_(Equipment_Card)",
+        "name": "Tamakushi Casket",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Hydro",
+                "number": "3"
+            },
+            {
+                "color": "Energy",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Sangonomiya Kokomi, equip this card.\nAfter Sangonomiya Kokomi equips this card, immediately use Nereid's Ascension once.\nWhen your Sangonomiya Kokomi, who has this card equipped, uses Nereid's Ascension: If Bake-Kurage is on the field, its Usage(s) will be refreshed.\nWhile Ceremonial Garment exists, Bake-Kurage deals +1 DMG"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/cc/Tenacity_of_the_Millelith_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Tenacity_of_the_Millelith_(Equipment_Card)",
+        "name": "Tenacity of the Millelith",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "When Action Phase begins: The character to which this is attached gains Unmovable Mountain that provides 2  Shield points.\nAfter this character takes DMG: If the character this card is attached to is the active character, create 1 Elemental Die matching this character's Elemental Type. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/ae/The_Bell_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/The_Bell_(Equipment_Card)",
+        "name": "The Bell",
+        "group": [
+            "Weapon",
+            "Claymore"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nAfter the character uses a skill: Gives 1 Shield point to your active character. (Once per Round, stacks up to 2 points)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f8/The_Overflow_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/The_Overflow_(Equipment_Card)",
+        "name": "The Overflow",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Hydro",
+                "number": "4"
+            },
+            {
+                "color": "Energy",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Candace, equip this card.\nAfter Candace equips this card, immediately use Sacred Rite: Wagtail's Tide once.\nWhen this card is equipped by Candace, her Prayer of the Crimson Crown has the following extra effect: After your character uses a Normal Attack: Deals 1 Hydro DMG. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/06/The_Scent_Remained_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/The_Scent_Remained_(Equipment_Card)",
+        "name": "The Scent Remained",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Hydro",
+                "number": "4"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Xingqiu, equip this card.\nAfter Xingqiu equips this card, immediately use Fatal Rainscreen once.\nWhen your Xingqiu, who has this card equipped, creates a Rain Sword, its starting Usage(s)+1."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/04/The_Seed_of_Stored_Knowledge_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/The_Seed_of_Stored_Knowledge_(Equipment_Card)",
+        "name": "The Seed of Stored Knowledge",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Dendro",
+                "number": "3"
+            },
+            {
+                "color": "Energy",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Nahida, equip this card.\nAfter Nahida equips this card, immediately use Illusory Heart once.\nWhen your Nahida, who has this card equipped, is on the field, the following effects will take place based on your party's Elemental Types:\nPyro: When the Shrine of Maya is on the field, opposing characters who trigger the Seed of Skandha due to Elemental Reactions they are affected by will have the Piercing DMG they take from the Seed of Skandha converted to Dendro DMG.\nElectro: When the Shrine of Maya enters the field, the Seed of Skandha currently present of the opposition will gain 1 Usage(s).\nHydro: After your Nahida, who has this card equipped unleashes Shrine of Maya, Duration (Rounds) +1."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/84/The_Shrine%27s_Sacred_Shade_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/The_Shrine%27s_Sacred_Shade_(Equipment_Card)",
+        "name": "The Shrine's Sacred Shade",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Electro",
+                "number": "3"
+            },
+            {
+                "color": "Energy",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Yae Miko, equip this card.\nAfter Yae Miko equips this card, immediately use Great Secret Art: Tenko Kenshin once.\nAfter your Yae Miko, who has this card equipped, destroys a Sesshou Sakura through Great Secret Art: Tenko Kenshin, the next use of Yakan Evocation: Sesshou Sakura this Round will cost 2 less Elemental Dice."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/18/Thunder_Summoner%27s_Crown_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Thunder_Summoner%27s_Crown_(Equipment_Card)",
+        "name": "Thunder Summoner's Crown",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Electro Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/5b/Thundering_Fury_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Thundering_Fury_(Equipment_Card)",
+        "name": "Thundering Fury",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "3"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Electro Die. (Once per Round)\nRoll Phase: 2 of the starting Elemental Dice you roll are always guaranteed to be  Electro Dice."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/24/Thundering_Penance_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Thundering_Penance_(Equipment_Card)",
+        "name": "Thundering Penance",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Electro",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Keqing, equip this card.\nAfter Keqing equips this card, immediately use Stellar Restoration once.\nWhen your Keqing, who has this card equipped, creates an Electro Elemental Infusion, it will have the following effects: Starting Duration (Rounds) +1, Electro DMG dealt by the attached character +1."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c1/Thundering_Poise_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Thundering_Poise_(Equipment_Card)",
+        "name": "Thundering Poise",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "When the character uses a Normal Attack or equips a Talent: Spend 1 less Elemental Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/fa/Transcendent_Automaton_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Transcendent_Automaton",
+        "name": "Transcendent Automaton",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Anemo",
+                "number": "3"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Maguu Kenki, equip this card.\nAfter Maguu Kenki equips this card, immediately use Blustering Blade once.\nAfter your Maguu Kenki, who has this card equipped, uses Blustering Blade, you will switch to your next character. You will switch to your previous character when your Maguu Kenki, who has this card equipped, uses Frosty Assault."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c0/Traveler%27s_Handy_Sword_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Traveler%27s_Handy_Sword_(Equipment_Card)",
+        "name": "Traveler's Handy Sword",
+        "group": [
+            "Weapon",
+            "Sword"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "The character deals +1 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e0/Traveling_Doctor%27s_Handkerchief_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Traveling_Doctor%27s_Handkerchief_(Equipment_Card)",
+        "name": "Traveling Doctor's Handkerchief",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "1"
+            }
+        ],
+        "effect": "After a character uses an Elemental Burst: Heal all your characters for 1 HP. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0c/Undivided_Heart_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Undivided_Heart_(Equipment_Card)",
+        "name": "Undivided Heart",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Cryo",
+                "number": "5"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Ganyu, equip this card.\nAfter Ganyu equips this card, immediately use Frostflake Arrow once.\nWhen your Ganyu, who has this card equipped, uses Frostflake Arrow: If this Skill has been used before during this match, the Piercing DMG dealt to all opposing characters on standby is changed to 3."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/92/Vermillion_Hereafter_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Vermillion_Hereafter_(Equipment_Card)",
+        "name": "Vermillion Hereafter",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "When the character uses a Normal Attack or equips a Talent: Spend 1 less Elemental Die. (Once per Round)\nAfter a character is switched to the active character: During this Round, character deals +1 Normal Attack DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/29/Viridescent_Venerer_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Viridescent_Venerer_(Equipment_Card)",
+        "name": "Viridescent Venerer",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Unaligned",
+                "number": "3"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Anemo Die. (Once per Round)\nRoll Phase: 2 of the starting Elemental Dice you roll are always guaranteed to be  Anemo Dice."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/4f/Viridescent_Venerer%27s_Diadem_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Viridescent_Venerer%27s_Diadem_(Equipment_Card)",
+        "name": "Viridescent Venerer's Diadem",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Anemo Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Vortex_Vanquisher_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Vortex_Vanquisher_(Equipment_Card)",
+        "name": "Vortex Vanquisher",
+        "group": [
+            "Weapon",
+            "Polearm"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nWhen your active character is protected by a Shield Character Status or a Shield Combat Status, you deal +1 DMG.\nAfter the character uses an Elemental Skill: If you have a Combat Status that grants a Shield on your side, add 1 Shield point to that Combat Status. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2b/Wellspring_of_War-Lust_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Wellspring_of_War-Lust_(Equipment_Card)",
+        "name": "Wellspring of War-Lust",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Cryo",
+                "number": "3"
+            },
+            {
+                "color": "Energy",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Eula, equip this card.\nAfter Eula equips this card, immediately use Glacial Illumination once.\nAfter your Eula, who has this card equipped, uses Icetide Vortex, this will generate 1 more Zeal for Lightfall Sword."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/fe/White_Iron_Greatsword_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/White_Iron_Greatsword_(Equipment_Card)",
+        "name": "White Iron Greatsword",
+        "group": [
+            "Weapon",
+            "Claymore"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "The character deals +1 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0e/White_Tassel_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/White_Tassel_(Equipment_Card)",
+        "name": "White Tassel",
+        "group": [
+            "Weapon",
+            "Polearm"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "The character deals +1 DMG."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/92/Wine-Stained_Tricorne_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Wine-Stained_Tricorne_(Equipment_Card)",
+        "name": "Wine-Stained Tricorne",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Hydro Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b0/Wishes_Unnumbered_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Wishes_Unnumbered_(Equipment_Card)",
+        "name": "Wishes Unnumbered",
+        "group": [
+            "Talent"
+        ],
+        "costs": [
+            {
+                "color": "Electro",
+                "number": "4"
+            },
+            {
+                "color": "Energy",
+                "number": "2"
+            }
+        ],
+        "effect": "Combat Action: When your active character is Raiden Shogun, equip this card.\nAfter Raiden Shogun equips this card, immediately use Secret Art: Musou Shinsetsu once.\nWhen your Raiden Shogun, who has this card equipped, uses Secret Art: Musou Shinsetsu, it will deal +1 additional DMG for every point of Resolve consumed."
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/bf/Witch%27s_Scorching_Hat_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Witch%27s_Scorching_Hat_(Equipment_Card)",
+        "name": "Witch's Scorching Hat",
+        "group": [
+            "Artifact"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "2"
+            }
+        ],
+        "effect": "When the character uses a Skill or equips a Talent: Spend 1 less  Pyro Die. (Once per Round)"
+    },
+    {
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e3/Wolf%27s_Gravestone_Equipment_Card.png",
+        "url": "https://genshin-impact.fandom.com/wiki/Wolf%27s_Gravestone_(Equipment_Card)",
+        "name": "Wolf's Gravestone",
+        "group": [
+            "Weapon",
+            "Claymore"
+        ],
+        "costs": [
+            {
+                "color": "Matching",
+                "number": "3"
+            }
+        ],
+        "effect": "The character deals +1 DMG.\nDeal +2 additional DMG if the target's remaining HP is equal or less than 6."
+    }
+]
