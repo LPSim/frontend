@@ -8,3 +8,5 @@ dist
 logs.txt
 logs.jsonl
 logs.json
+
+collector/*/*.png
