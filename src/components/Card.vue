@@ -1,11 +1,11 @@
 <template>
   <div :class="{ 'card': true, 'active-card': card.is_active }">
-    <img :src="'collector/events/' + card.name + '.png'" alt="card.name" width="100%" height="100%" />
+    <img :src="'static/images/' + card.name + '.png'" alt="card.name" width="100%" height="100%" />
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="cost-div">
       <div v-for="(c, cid) in cost" :key="cid">
-        <img :src="'collector/icon/COST_' + c.type + '.png'" alt="c.type" width="100%" height="100%" />
+        <img :src="'static/images/COST_' + c.type + '.png'" alt="c.type" width="100%" height="100%" />
         <div class="cost-span-div">
           <span :class="{'cost-higher': c.is_higher, 'cost-lower': c.is_lower}">{{ c.value }}</span>
         </div>
@@ -32,6 +32,7 @@ export default {
         { type: 'GEO', value: 2, is_higher: true, is_lower: false},
         { type: 'UNALIGNED', value: 1, is_higher: false, is_lower: true},
         { type: 'MATCHING', value: 3, is_higher: false, is_lower: false},
+        { type: 'CHARGE', value: 2, is_higher: false, is_lower: false},
       ]
     }
   }
@@ -91,9 +92,12 @@ img {
   height: 100%;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
-  line-height: 150%;
-  color: white
+  /* line-height: 130%; */
+  color: white;
   /* z-index: 999; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 </style>

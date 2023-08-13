@@ -2,11 +2,10 @@
   <div>
     <div class="elements">
       <div class="element" v-for="element in charactor.element_application">
-        <img :src="'collector/icon/ELEMENT_' + element + '.png'" width="100%" height="100%">
+        <img :src="'static/images/ELEMENT_' + element + '.png'" width="100%" height="100%">
       </div>
     </div>
     <div :class="charactor.is_alive ? 'charactor' : 'charactor-died'">
-         <!-- :style="{ backgroundImage: 'url(' + 'collector/custom/Dendro Mob.png' + ')' }"> -->
       <img class="charactor-image" :src="image_path">
       <!-- <div class="charactor-name">{{ charactor.name }}</div> -->
       <div class="charactor-hp">{{ charactor.hp }}</div>
@@ -36,7 +35,7 @@ export default {
   computed: {
     image_path() {
       let name = this.charactor.name.replace('Mob', ' Mob');
-      return 'collector/custom/' + name + '.png';
+      return 'static/images/' + name + '.png';
     }
   }
 }

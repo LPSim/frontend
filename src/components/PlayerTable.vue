@@ -28,8 +28,8 @@
       </div>
       <div class="dice">
         <div v-for="(die, did) in playerTable.dice" :key="did">
-          <img class="cost-img" :src="'collector/icon/COST_' + die.color + '.png'" :alt="die" />
-          <img class="element-img" v-if="die.color != 'OMNI'" :src="'collector/icon/ELEMENT_' + die.color + '.png'" :alt="die" />
+          <img class="cost-img" :src="'static/images/COST_' + die.color + '.png'" :alt="die" />
+          <img class="element-img" v-if="die.color != 'OMNI'" :src="'static/images/ELEMENT_' + die.color + '.png'" :alt="die" />
         </div>
       </div>
     </div>

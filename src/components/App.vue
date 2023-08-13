@@ -1,27 +1,32 @@
 <template>
   <div id="app">
-    <div>
-      <label for="DataInput">Enter data:</label>
-      <textarea id="DataInput" v-model="matchDataInput"></textarea>
-      <div class="parse-button-container">
-        <button @click="parseCharactorData">Parse</button>
-      </div>
-    </div>
-    <div class="player-table-order">
-      <label>
-        <input type="radio" v-model="playerTableOrder" value="0"> Player Table 0 First
-      </label>
-      <label>
-        <input type="radio" v-model="playerTableOrder" value="1"> Player Table 1 First
-      </label>
-    </div>
-    <div class="data-navigation">
-      <button @click="showPrevData" :disabled="currentDataIndex === 0">Prev</button>
-      <button @click="showNextData" :disabled="currentDataIndex === matchData.length - 1">Next</button>
-    </div>
-    <div v-if="match != null">
-      <div class="base-info-div">
-        Round number: {{ match.round_number }}. Current status: {{ match.match_state }}
+    <div class="header-div-container">
+      <div class="header-div">
+        <div class="text-div">
+          <textarea id="DataInput" v-model="matchDataInput"></textarea>
+        </div>
+        <div class="buttons-div">
+          <div class="parse-button-container">
+            <button @click="parseCharactorData">Parse</button>
+          </div>
+          <div class="player-table-order">
+            <label>
+              <input type="radio" v-model="playerTableOrder" value="0"> Player Table 0 First
+            </label>
+            <label>
+              <input type="radio" v-model="playerTableOrder" value="1"> Player Table 1 First
+            </label>
+          </div>
+          <div class="data-navigation">
+            <button @click="showPrevData" :disabled="currentDataIndex === 0">Prev</button>
+            <button @click="showNextData" :disabled="currentDataIndex === matchData.length - 1">Next</button>
+          </div>
+          <div v-if="match != null">
+            <div class="base-info-div">
+              Round number: {{ match.round_number }}. Current status: {{ match.match_state }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="player-tables-container" v-if="match != null">
@@ -95,26 +100,58 @@ div {
   /* border: 1px solid black; */
 }
 
+</style>
+
+<style scoped>
+
+.header-div-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 8rem;
+}
+
+.header-div {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 label {
   display: block;
   margin-bottom: 0.5rem;
 }
 
-textarea {
+.text-div {
   display: block;
-  width: 100%;
-  height: 6rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  width: 60%;
+  height: 100%;
+  padding: 1rem;
+  /* margin-bottom: 1rem; */
+  /* margin-left: 20%; */
+}
+
+textarea {
   font-family: monospace;
   font-size: 0.9em;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  width: 95%;
+  height: 100%;
+}
+
+.buttons-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .parse-button-container {
   text-align: center;
-  margin-bottom: 1rem;
 }
 
 button {
@@ -133,9 +170,10 @@ button:hover {
 
 .player-tables-container {
   position: relative;
-  width: 100%;
+  width: 80%;
   height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 45%; /* 16:9 aspect ratio */
+  margin-left: 10%;
   /* display: flex;
   flex-direction: column; */
 }
@@ -160,7 +198,6 @@ button:hover {
 .data-navigation {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
 }
 
 .data-navigation button {
@@ -180,14 +217,12 @@ button:hover {
 
 .base-info-div {
   text-align: center;
-  margin-bottom: 1rem;
 }
 
 /* styles for the player table order input */
 .player-table-order {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
 }
 
 .player-table-order label {

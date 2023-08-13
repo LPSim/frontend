@@ -74,5 +74,9 @@
     {
         "name": "COST_MATCHING",
         "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b1/Genius_Invokation_TCG_Matching_Cost.png"
+    },
+    {
+        "name": "COST_CHARGE",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c0/Genius_Invokation_TCG_Energy_Cost.png"
     }
 ]

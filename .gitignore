@@ -10,3 +10,4 @@ logs.jsonl
 logs.json
 
 collector/*/*.png
+static/images
