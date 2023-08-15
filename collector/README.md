@@ -22,8 +22,12 @@ use `generate_mob.ipynb` to generate mob images, and they will be saved in
 # Collect all images
 use the following bash script to collect all images into 
 `../static/images` folder.
-```bash
+<!-- ```bash
 mkdir ../static/images; find . -name '*.png' -exec bash -c 'for file do j=`basename "$file"`; cp "$file" ../static/images/"$j"; done;' bash {} +
+``` -->
+```bash
+mkdir ../static/images
+cp ./*/*.png ../static/images
 ```
 Currently all images are put together. Only four images are duplicated 
 (abyssal summons and unobtanalbe charactors), and their images are the same.
