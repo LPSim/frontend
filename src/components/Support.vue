@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click.stop="log_data">
     <h2>{{ support.name }}</h2>
     <p>Counter Type: {{ support.counterType }}</p>
     <p>Counter: {{ support.counter }}</p>
@@ -20,5 +20,10 @@ export default {
       }
     }
   },
+  methods: {
+    log_data() {
+      console.log(JSON.parse(JSON.stringify(this.support)))
+    }
+  }
 }
 </script>

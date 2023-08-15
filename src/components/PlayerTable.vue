@@ -1,5 +1,5 @@
 <template>
-  <div :class="tableClass">
+  <div :class="tableClass" @click.stop="log_data">
     <div class="supports-charactors-summons">
       <div class="supports">
         <!-- <h3>Supports</h3> -->
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="dice">
-        <div v-for="(die, did) in playerTable.dice" :key="did">
+        <div v-for="(die, did) in playerTable.dice" :key="did" @click.stop="log_die(did)">
           <img class="cost-img" :src="'static/images/COST_' + die.color + '.png'" :alt="die" />
           <img class="element-img" v-if="die.color != 'OMNI'" :src="'static/images/ELEMENT_' + die.color + '.png'" :alt="die" />
         </div>
@@ -86,6 +86,14 @@ export default {
     Summon,
     Card,
     Support
+  },
+  methods: {
+    log_data() {
+      console.log(JSON.parse(JSON.stringify(this.playerTable)));
+    },
+    log_die(did) {
+      console.log(JSON.parse(JSON.stringify(this.playerTable.dice[did])));
+    }
   },
   computed: {
     tableClass() {

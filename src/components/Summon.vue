@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click.stop="log_data">
     <h2>{{ summon.name }}</h2>
     <p>Elemental Type: {{ summon.elementalType }}</p>
     <p>Counter Type: {{ summon.counterType }}</p>
@@ -19,5 +19,10 @@ export default {
       }
     }
   },
+  methods: {
+    log_data() {
+      console.log(JSON.parse(JSON.stringify(this.summon)))
+    }
+  }
 }
 </script>

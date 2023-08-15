@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'card': true, 'active-card': card.is_active }">
+  <div :class="{ 'card': true, 'active-card': card.is_active }" @click.stop="log_data">
     <img :src="'static/images/' + card.name + '.png'" alt="card.name" width="100%" height="100%" />
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
@@ -24,6 +24,11 @@ export default {
       validator: (value) => {
         return 'name' in value && 'cost' in value && 'is_active' in value
       }
+    }
+  },
+  methods: {
+    log_data() {
+      console.log(JSON.parse(JSON.stringify(this.card)))
     }
   },
   computed: {

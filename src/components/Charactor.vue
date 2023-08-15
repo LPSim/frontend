@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click.stop="log_data">
     <div class="elements">
       <div class="element" v-for="element in charactor.element_application">
         <img :src="'static/images/ELEMENT_' + element + '.png'" width="100%" height="100%">
@@ -32,9 +32,15 @@ export default {
       required: true
     }
   },
+  methods: {
+    log_data() {
+      console.log(JSON.parse(JSON.stringify(this.charactor)));
+    }
+  },
   computed: {
     image_path() {
-      let name = this.charactor.name.replace('Mob', ' Mob');
+      let name = this.charactor.name.replace('MobMage', 'Mob Mage');
+      name = name.replace('Mob', ' Mob');
       return 'static/images/' + name + '.png';
     }
   }
