@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_OPTIONS=--openssl-legacy-provider poi",
+    "windev": "poi",
     "build": "NODE_OPTIONS=--openssl-legacy-provider poi build",
+    "winbuild": "poi build",
     "report": "NODE_OPTIONS=--openssl-legacy-provider poi build --bundle-report",
     "serve": "NODE_OPTIONS=--openssl-legacy-provider serve dist --single",
     "test": "NODE_OPTIONS=--openssl-legacy-provider tyu"
