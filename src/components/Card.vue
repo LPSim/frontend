@@ -1,11 +1,11 @@
 <template>
   <div :class="{ 'card': true, 'active-card': card.is_active }" @click.stop="log_data">
-    <img :src="'static/images/' + card.name + '.png'" alt="card.name" width="100%" height="100%" />
+    <img :src="'static/images/' + card.name + '.png'" :alt="card.name" width="100%" height="100%" />
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="cost-div">
       <div v-for="(c, cid) in cost" :key="cid">
-        <img :src="'static/images/COST_' + c.type + '.png'" alt="c.type" width="100%" height="100%" />
+        <img :src="'static/images/COST_' + c.type + '.png'" :alt="c.type" width="100%" height="100%" />
         <div class="cost-span-div">
           <span :class="{'cost-higher': c.is_higher, 'cost-lower': c.is_lower}">{{ c.value }}</span>
         </div>
@@ -22,7 +22,9 @@ export default {
       type: Object,
       required: true,
       validator: (value) => {
-        return 'name' in value && 'cost' in value && 'is_active' in value
+        // return 'name' in value && 'cost' in value && 'is_active' in value
+        // TODO
+        return true
       }
     }
   },

@@ -13,9 +13,14 @@
         <div :class="{'charactor-div': true, 'charactor-div-active': cid == playerTable.active_charactor_id}" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id">
           <div class="active-div" v-if="(playerTable.active_charactor_id != cid) != is_reverse"></div>
           <Charactor class="charactor-inner" :charactor="charactor" />
-          <div class="team-status" v-if="playerTable.active_charactor_id == cid">
+          <div class="team-status-div" v-if="playerTable.active_charactor_id == cid">
             <!-- <h3>Team Status</h3> -->
-            <div v-for="status in playerTable.team_status" :key="status">{{ status }}</div>
+            <div v-for="(status, sid) in playerTable.team_status" :key="sid" @click.stop="log_status(sid)">
+              <img :src="'static/images/TeamStatus' + status.name + '.png'" width="100%" height="100%" />
+              <div class="usage-span-div">
+                <span v-if="status.usage && status.usage > 0">{{ status.usage }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -93,6 +98,9 @@ export default {
     },
     log_die(did) {
       console.log(JSON.parse(JSON.stringify(this.playerTable.dice[did])));
+    },
+    log_status(sid) {
+      console.log(JSON.parse(JSON.stringify(this.playerTable.team_status[sid])));
     }
   },
   computed: {
@@ -202,9 +210,41 @@ export default {
   height: 100%;
 }
 
-.team-status {
+.team-status-div {
   display: flex;
   flex-direction: row;
+  height: 8.64%;
+}
+
+.team-status-div > div {
+  position: relative;
+  /* width: 10%;
+  height: 10%; */
+  width: 20%;
+  height: 100%;
+}
+
+.team-status-div img {
+  position: absolute;
+}
+
+.usage-span-div {
+  position: absolute;
+  font-size: 0.5vw;
+  font-weight: bolder;
+  text-align: center;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  /* line-height: 130%; */
+  color: white;
+  /* z-index: 999; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dice {

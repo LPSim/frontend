@@ -18,8 +18,17 @@
             </label>
           </div>
           <div class="data-navigation">
+            <div class="step-count">
+              <label for="step-count-input">Step count:</label>
+              <input id="step-count-input" type="number" v-model="stepCount" min="1" max="1000">
+            </div>
             <button @click="showPrevData" :disabled="currentDataIndex === 0">Prev</button>
             <button @click="showNextData" :disabled="currentDataIndex === matchData.length - 1">Next</button>
+            <div class="current-step">
+              <label for="current-step-input">Current step:</label>
+              <input id="current-step-input" type="number" v-model="currentDataIndex" @keyup.enter="jumpToData" min="0" :max="matchData.length - 1">
+            </div>
+            <button @click="jumpToData">Jump</button>
           </div>
           <div v-if="match != null">
             <div class="base-info-div">
@@ -52,7 +61,8 @@ export default {
       matchData: [],
       currentDataIndex: 0,
       match: null,
-      playerTableOrder: '0'
+      playerTableOrder: '0',
+      stepCount: 1
     }
   },
   methods: {
@@ -65,16 +75,18 @@ export default {
       this.currentDataIndex = 0
     },
     showPrevData() {
-      if (this.currentDataIndex > 0) {
-        this.currentDataIndex--
-        this.match = this.matchData[this.currentDataIndex]
-      }
+      let stepCount = parseInt(this.stepCount)
+      this.currentDataIndex = Math.max(0, this.currentDataIndex - stepCount);
+      this.jumpToData()
     },
     showNextData() {
-      if (this.currentDataIndex < this.matchData.length - 1) {
-        this.currentDataIndex++
-        this.match = this.matchData[this.currentDataIndex]
-      }
+      let stepCount = parseInt(this.stepCount)
+      this.currentDataIndex = Math.min(this.matchData.length - 1, this.currentDataIndex + stepCount);
+      this.jumpToData()
+    },
+    jumpToData() {
+      this.currentDataIndex = Math.min(this.matchData.length - 1, Math.max(0, this.currentDataIndex))
+      this.match = this.matchData[this.currentDataIndex]
     }
   },
   computed: {
