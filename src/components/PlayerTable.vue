@@ -206,8 +206,14 @@ export default {
 .summons {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   width: 17.5%;
   height: 100%;
+}
+
+.summons > div {
+  width: 50%;
+  height: 50%;
 }
 
 .team-status-div {

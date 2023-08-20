@@ -3,7 +3,7 @@
     <div class="header-div-container">
       <div class="header-div">
         <div class="text-div">
-          <textarea id="DataInput" v-model="matchDataInput"></textarea>
+          <textarea id="DataInput" v-model="matchDataInput" :disabled="processing"></textarea>
         </div>
         <div class="buttons-div">
           <div class="parse-button-container">
@@ -57,13 +57,33 @@ export default {
   data() {
     return {
       dataVersion: null,
-      matchDataInput: '',
+      matchDataInput: 'Loading...',
       matchData: [],
       currentDataIndex: 0,
       match: null,
       playerTableOrder: '0',
-      stepCount: 1
+      stepCount: 1,
+      processing: false
     }
+  },
+  created() {
+    const logFilePath = 'logs.txt';
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        this.processing = false;
+        this.matchDataInput = '';
+        if (xhr.status === 200) {
+          this.matchDataInput = xhr.responseText;
+          this.parseCharactorData();
+        }
+      }
+    };
+
+    xhr.open('GET', logFilePath, true);
+    xhr.send();
+    this.processing = true;
   },
   methods: {
     parseCharactorData() {

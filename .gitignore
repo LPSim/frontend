@@ -5,9 +5,7 @@ node_modules
 # poi dist
 dist
 
-logs.txt
-logs.jsonl
-logs.json
+logs*
 
 collector/*/*.png
 static/images

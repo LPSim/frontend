@@ -1,9 +1,21 @@
 <template>
-  <div @click.stop="log_data">
-    <h2>{{ summon.name }}</h2>
-    <p>Elemental Type: {{ summon.elementalType }}</p>
-    <p>Counter Type: {{ summon.counterType }}</p>
-    <p>Counter: {{ summon.counter }}</p>
+  <div :class="{ 'summon': true, 'active-summon': summon.is_active }" @click.stop="log_data">
+    <img :src="'static/images/' + summon.name + '.png'" :alt="summon.name"/>
+    <!-- <p>{{ card.name }}</p> -->
+    <!-- <p>Cost: {{ card.cost }}</p> -->
+    <div class="summon-usage-div">
+      <div>
+        <span>{{ summon.usage }}</span>
+      </div>
+    </div>
+    <div class="damage-div">
+      <div>
+        <img :src="'static/images/ELEMENT_' + summon.damage_elemental_type + '.png'" :alt="summon.damage_elemental_type" width="100%" height="100%" />
+        <div class="damage-span-div">
+          <span>{{ summon.damage }}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,7 +27,8 @@ export default {
       type: Object,
       required: true,
       validator: (value) => {
-        return 'name' in value && 'elementalType' in value && 'counter' in value && 'counterType' in value
+        return true
+        // return 'name' in value && 'elementalType' in value && 'counter' in value && 'counterType' in value
       }
     }
   },
@@ -26,3 +39,71 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.summon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+  /* top: 10.44%; */
+  /* text-shadow: 2px 2px 0px  #fff, -2px -2px 0px  #fff, 2px -2px 0px  #fff, -2px 2px 0px  #fff; */
+  color: black;
+  font-weight: bolder;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+  font-size: 2vw;
+}
+
+.summon > img {
+  /* position: absolute; */
+  width: 100%;
+  /* height: 160%; */
+  height: 100%;
+  top: -30%;
+}
+
+.summon-usage-div {
+  position: absolute;
+  top: 0;
+  left: 70%;
+  width: 30%;
+  height: 30%;
+}
+
+.damage-div {
+  position: absolute;
+  top: 70%;
+  left: 0;
+  width: 30%;
+  height: 30%;
+}
+
+.damage-div > * {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.damage-div > * > * {
+  position: absolute;
+}
+
+.damage-span-div, .summon-usage-div > div {
+  position: absolute;
+  font-size: 1.5vw;
+  font-weight: bolder;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  /* line-height: 130%; */
+  color: white;
+  /* z-index: 999; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+</style>

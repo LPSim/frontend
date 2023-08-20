@@ -1,7 +1,7 @@
 <template>
   <div @click.stop="log_data">
     <div class="elements">
-      <div class="element" v-for="element in charactor.element_application">
+      <div class="element" v-for="(element, eid) in charactor.element_application" :key="eid">
         <img :src="'static/images/ELEMENT_' + element + '.png'" width="100%" height="100%">
       </div>
     </div>
