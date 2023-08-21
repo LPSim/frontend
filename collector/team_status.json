@@ -6,5 +6,9 @@
     {
         "name": "TeamStatus_DendroCore",
         "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d1/Dendro_Core_Buff_Icon.png"
+    },
+    {
+        "name": "TeamStatus_Crystallize",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c4/Icon_TCG_Shield.png"
     }
 ]

@@ -16,7 +16,7 @@
           <div class="team-status-div" v-if="playerTable.active_charactor_id == cid">
             <!-- <h3>Team Status</h3> -->
             <div v-for="(status, sid) in playerTable.team_status" :key="sid" @click.stop="log_status(sid)">
-              <img :src="'static/images/TeamStatus' + status.name + '.png'" width="100%" height="100%" />
+              <img :src="'static/images/TeamStatus_' + status.name + '.png'" width="100%" height="100%" />
               <div class="usage-span-div">
                 <span v-if="status.usage && status.usage > 0">{{ status.usage }}</span>
               </div>

@@ -29,7 +29,8 @@ def download_one_json(filepath):
         return
     for i in data:
         url = i['image']
-        path = os.path.join(dirpath, i['name'] + '.png')
+        name = i['name'].replace('/', '_').replace('\\', '_').replace(':', '_')
+        path = os.path.join(dirpath, name + '.png')
         download_one_png(url, path)
 
 
