@@ -90,9 +90,12 @@ export default {
       // Parse the character data and update the match object
       let data = this.matchDataInput.trim().split('\n').map(line => JSON.parse(line))
       this.dataVersion = data[0].version
-      this.matchData = data.map(d => d.match)
+      if (data[0].name == 'Main')
+        this.matchData = data.map(d => d.match)
+      else this.matchData = data
       this.match = this.matchData[0]
       this.currentDataIndex = 0
+      this.matchDataInput = ''
     },
     showPrevData() {
       let stepCount = parseInt(this.stepCount)
