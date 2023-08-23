@@ -16,8 +16,13 @@
       <div v-if="charactor.weapon" class="charactor-weapon">Weapon: {{ charactor.weapon }}</div>
       <div v-if="charactor.artifact" class="charactor-artifact">Artifact: {{ charactor.artifact }}</div>
       <div v-if="charactor.talent" class="charactor-talent">Talent: {{ charactor.talent }}</div>
-      <div class="charactor-status">
-        <div v-for="(status, sid) in charactor.status" :key="sid">{{ status }}</div>
+      <div class="charactor-status-div">
+        <div v-for="(status, sid) in charactor.status" :key="sid" @click.stop="log_status(sid)">
+          <img :src="'static/images/CharactorStatus_' + status.name + '.png'" width="100%" height="100%" />
+          <div class="usage-span-div">
+            <span v-if="status.usage && status.usage > 0">{{ status.usage }}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -140,10 +145,44 @@ export default {
   height: 20%;
 }
 
-.charactor-status {
+.charactor-status-div {
   /* Add styles for the charactor status div */
+  display: flex;
+  flex-direction: row;
   top: 88.34%;
   height: 11.66%;
   width: 100%;
 }
+
+.charactor-status-div > div {
+  position: relative;
+  /* width: 10%;
+  height: 10%; */
+  width: 20%;
+  height: 100%;
+}
+
+.charactor-status-div img {
+  position: absolute;
+}
+
+.usage-span-div {
+  position: absolute;
+  font-size: 0.5vw;
+  font-weight: bolder;
+  text-align: center;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  /* line-height: 130%; */
+  color: white;
+  /* z-index: 999; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 </style>
