@@ -36,6 +36,28 @@
             </div>
           </div>
         </div>
+        <div class="interaction-div">
+          <div style="height: 60%; padding: 5%;">
+            <textarea v-model="interactionInput" @keyup.enter="sendInteraction" :disabled="processing"></textarea>
+          </div>
+          <div class="interaction-button-group">
+            <button @click="sendInteraction" :disabled="processing">Send</button>
+            <button @click="refreshData" :disabled="processing">Refresh</button>
+          </div>
+        </div>
+        <div class="requests-div">
+          <ul v-if="match != null">
+            <li v-for="(request, rid) in match.requests.filter(request => request.player_id === 1)" :key="rid" @mouseover="showRequestDetails(request)" @mouseout="hideRequestDetails()">
+              {{ request.name }}
+            </li>
+          </ul>
+        </div>
+        <div class="request-details">
+          <div v-if="selectedRequest != null">
+            <span>{{ selectedRequest.name }}</span>
+          </div>
+          <p>{{ selectedRequest }}</p>
+        </div>
       </div>
     </div>
     <div class="player-tables-container" v-if="match != null">
@@ -63,7 +85,10 @@ export default {
       match: null,
       playerTableOrder: '0',
       stepCount: 1,
-      processing: false
+      processing: false,
+      selectedRequest: null,
+      interactionInput: '',
+      commandHistory: [],
     }
   },
   created() {
@@ -110,6 +135,65 @@ export default {
     jumpToData() {
       this.currentDataIndex = Math.min(this.matchData.length - 1, Math.max(0, this.currentDataIndex))
       this.match = this.matchData[this.currentDataIndex]
+    },
+    sendInteraction() {
+      const data = { player_id: 1, command: this.interactionInput };
+      fetch('http://localhost:8000/respond', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+      })
+      .then(response => {
+        if (!response.ok) {
+          response.json().then(json => console.log(json));
+          throw new Error('HTTP error ' + response.status);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        this.commandHistory.push(this.interactionInput);
+        this.interactionInput = '';
+        console.log(this.commandHistory);
+        let last_data = this.matchData[this.matchData.length - 1];
+        if (JSON.stringify(last_data) !== JSON.stringify(data))
+          this.matchData.push(data);
+        this.match = data;
+        if (this.match.requests.length > 0)
+          this.selectedRequest = this.match.requests[0];
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    },
+    refreshData() {
+      fetch('http://localhost:8000/state/1')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          let last_data = this.matchData[this.matchData.length - 1];
+          if (JSON.stringify(last_data) !== JSON.stringify(data))
+            this.matchData.push(data);
+          this.match = data;
+          if (this.match.requests.length > 0)
+            this.selectedRequest = this.match.requests[0];
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    showRequestDetails(request) {
+      this.selectedRequest = request;
+    },
+    hideRequestDetails() {
+      // this.selectedRequest = null;
     }
   },
   computed: {
@@ -163,7 +247,7 @@ label {
 
 .text-div {
   display: block;
-  width: 60%;
+  width: 10%;
   height: 100%;
   padding: 1rem;
   /* margin-bottom: 1rem; */
@@ -179,7 +263,7 @@ textarea {
   height: 100%;
 }
 
-.buttons-div {
+.buttons-div, .interaction-div {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -230,12 +314,12 @@ button:hover {
 }
 
 /* styles for the data navigation buttons */
-.data-navigation {
+.data-navigation, .interaction-button-group {
   display: flex;
   justify-content: center;
 }
 
-.data-navigation button {
+.data-navigation button, .interaction-button-group button {
   background-color: #4caf50;
   color: #fff;
   border: none;
@@ -252,6 +336,47 @@ button:hover {
 
 .base-info-div {
   text-align: center;
+}
+
+.requests-div {
+  position: relative;
+}
+
+.requests-div ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.requests-div li {
+  margin-top: 5px;
+  border: 3px solid #ccc;
+  border-radius: 5px;
+  background: #eee;
+}
+
+.request-details {
+  /* position: absolute;
+  top: 0;
+  left: -300%;
+  width: 300%; */
+  width: 40%;
+  /* padding: 10px; */
+  margin: 3px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+.request-details > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* styles for the player table order input */
