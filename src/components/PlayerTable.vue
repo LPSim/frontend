@@ -203,7 +203,7 @@ export default {
   /* background-color: goldenrod; */
 }
 
-.summons {
+.summons, .supports {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -211,7 +211,7 @@ export default {
   height: 100%;
 }
 
-.summons > div {
+.summons > div, .supports > div {
   width: 50%;
   height: 50%;
 }

@@ -26,7 +26,7 @@
             <button @click="showNextData" :disabled="currentDataIndex === matchData.length - 1">Next</button>
             <div class="current-step">
               <label for="current-step-input">Current step:</label>
-              <input id="current-step-input" type="number" v-model="currentDataIndex" @keyup.enter="jumpToData" min="0" :max="matchData.length - 1">
+              <input id="current-step-input" type="number" v-model="currentDataIndex" @keydown.enter="jumpToData" min="0" :max="matchData.length - 1">
             </div>
             <button @click="jumpToData">Jump</button>
           </div>
@@ -38,7 +38,7 @@
         </div>
         <div class="interaction-div">
           <div style="height: 60%; padding: 5%;">
-            <textarea v-model="interactionInput" @keyup.enter="sendInteraction" :disabled="processing"></textarea>
+            <textarea v-model="interactionInput" @keydown.enter.prevent="sendInteraction" :disabled="processing"></textarea>
           </div>
           <div class="interaction-button-group">
             <button @click="sendInteraction" :disabled="processing">Send</button>
@@ -48,13 +48,13 @@
         <div class="requests-div">
           <ul v-if="match != null">
             <li v-for="(request, rid) in match.requests.filter(request => request.player_id === 1)" :key="rid" @mouseover="showRequestDetails(request)" @mouseout="hideRequestDetails()">
-              {{ request.name }}
+              {{ request.name.replace('Request', '') }}
             </li>
           </ul>
         </div>
         <div class="request-details">
           <div v-if="selectedRequest != null">
-            <span>{{ selectedRequest.name }}</span>
+            <span>{{ selectedRequest.name.replace('Request', '') }}</span>
           </div>
           <p>{{ selectedRequest }}</p>
         </div>
@@ -88,6 +88,7 @@ export default {
       processing: false,
       selectedRequest: null,
       interactionInput: '',
+      interactionCommands: [],
       commandHistory: [],
     }
   },
@@ -137,7 +138,19 @@ export default {
       this.match = this.matchData[this.currentDataIndex]
     },
     sendInteraction() {
-      const data = { player_id: 1, command: this.interactionInput };
+      let input = this.interactionInput.trim();
+      if (input.length == 0) return;
+      this.interactionCommands = input.split('\n');
+      this.processing = true;
+      this.realSendInteraction();
+    },
+    realSendInteraction() {
+      if (this.interactionCommands.length == 0) {
+        this.processing = false;
+        return;
+      }
+      const data = { player_id: 1, command: this.interactionCommands[0] };
+      this.interactionCommands = this.interactionCommands.slice(1);
       fetch('http://localhost:8000/respond', {
         method: 'POST',
         headers: {
@@ -154,7 +167,7 @@ export default {
       })
       .then(data => {
         console.log(data);
-        this.commandHistory.push(this.interactionInput);
+        this.commandHistory.push(this.interactionInput.trim());
         this.interactionInput = '';
         console.log(this.commandHistory);
         let last_data = this.matchData[this.matchData.length - 1];
@@ -163,6 +176,7 @@ export default {
         this.match = data;
         if (this.match.requests.length > 0)
           this.selectedRequest = this.match.requests[0];
+        setTimeout(() => this.realSendInteraction(), 1000);
       })
       .catch(error => {
         console.error(error);
@@ -340,6 +354,7 @@ button:hover {
 
 .requests-div {
   position: relative;
+  width: 150px;
 }
 
 .requests-div ul {
