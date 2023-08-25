@@ -3,20 +3,19 @@
     <img :src="'static/images/' + card.name + '.png'" :alt="card.name" width="100%" height="100%" />
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
-    <div class="cost-div">
-      <div v-for="(c, cid) in cost" :key="cid">
-        <img :src="'static/images/COST_' + c.type + '.png'" :alt="c.type" width="100%" height="100%" />
-        <div class="cost-span-div">
-          <span :class="{'cost-higher': c.is_higher, 'cost-lower': c.is_lower}">{{ c.value }}</span>
-        </div>
-      </div>
+    <div class="cost-outer-div">
+      <Cost :cost="cost" :max_number="4.5" :offset_left="10" :offset_top="10" direction="column"/>
     </div>
   </div>
 </template>
 
 <script>
+import Cost from './Cost.vue';
 export default {
   name: 'Card',
+  components: {
+    Cost
+  },
   props: {
     card: {
       type: Object,
@@ -37,6 +36,7 @@ export default {
     cost() {
       let now_cost = this.card.cost
       let ori_cost = this.card.cost.original_value
+      if (!ori_cost) ori_cost = now_cost  //cannot use this card, and no original cost
       let res = []
       if (ori_cost.elemental_dice_number > 0)
         res.push({ 
@@ -95,49 +95,13 @@ img {
   position: absolute;
 }
 
-.cost-div {
+.cost-outer-div {
   /* position: absolute; */
-  display: flex;
+  position: relative;
   flex-direction: column;
   width: 38%;
   height: 100%;
 }
 
-.cost-div > div {
-  position: relative;
-  /* width: 10%;
-  height: 10%; */
-  width: 100%;
-  height: 22.2%;
-  margin-left: -10%;
-  margin-top: -10%;
-  margin-bottom: 10%;
-  margin-right: 10%;
-}
-
-.cost-higher {
-  color: red;
-}
-
-.cost-lower {
-  color: green;
-}
-
-.cost-span-div {
-  position: absolute;
-  font-size: 1.25vw;
-  font-weight: bolder;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
-  /* line-height: 130%; */
-  color: white;
-  /* z-index: 999; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 </style>

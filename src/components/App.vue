@@ -112,6 +112,31 @@ export default {
     this.processing = true;
   },
   methods: {
+    updateMatch(data) {
+      data = JSON.parse(JSON.stringify(data))
+      let requests = data.requests
+      for (let i = 0; i < requests.length; i++) {
+        let request = requests[i]
+        if (request.name == 'UseCardRequest') {
+          let player_id = request.player_id
+          let card_id = request.card_id
+          let hands = data.player_tables[player_id].hands
+          let card = hands[card_id]
+          card.cost = request.cost
+          // console.log(request.name, request, request.cost)
+        }
+        else if (request.name == 'UseSkillRequest') {
+          console.log(request.name, request.cost)
+        }
+        else if (request.name == 'SwitchCharactorRequest') {
+          console.log(request.name, request.cost)
+        }
+        else {
+          // console.log(request.name)
+        }
+      }
+      this.match = data
+    },
     parseCharactorData() {
       // Parse the character data and update the match object
       let data = this.matchDataInput.trim().split('\n').map(line => JSON.parse(line))
@@ -119,7 +144,7 @@ export default {
       if (data[0].name == 'Main')
         this.matchData = data.map(d => d.match)
       else this.matchData = data
-      this.match = this.matchData[0]
+      this.updateMatch(this.matchData[0])
       this.currentDataIndex = 0
       this.matchDataInput = ''
     },
@@ -135,7 +160,7 @@ export default {
     },
     jumpToData() {
       this.currentDataIndex = Math.min(this.matchData.length - 1, Math.max(0, this.currentDataIndex))
-      this.match = this.matchData[this.currentDataIndex]
+      this.updateMatch(this.matchData[this.currentDataIndex])
     },
     sendInteraction() {
       let input = this.interactionInput.trim();
@@ -173,7 +198,7 @@ export default {
         let last_data = this.matchData[this.matchData.length - 1];
         if (JSON.stringify(last_data) !== JSON.stringify(data))
           this.matchData.push(data);
-        this.match = data;
+        this.updateMatch(data);
         if (this.match.requests.length > 0)
           this.selectedRequest = this.match.requests[0];
         setTimeout(() => this.realSendInteraction(), 1000);
@@ -195,7 +220,7 @@ export default {
           let last_data = this.matchData[this.matchData.length - 1];
           if (JSON.stringify(last_data) !== JSON.stringify(data))
             this.matchData.push(data);
-          this.match = data;
+          this.updateMatch(data);
           if (this.match.requests.length > 0)
             this.selectedRequest = this.match.requests[0];
         })
@@ -217,7 +242,19 @@ export default {
       } else {
         return [this.match.player_tables[1], this.match.player_tables[0]]
       }
-    }
+    },
+    // match: {
+    //   get() {
+    //     console.log('get', this._match);
+    //     return this._match;
+    //   },
+    //   set(value) {
+    //     value.modified = true;
+    //     console.log('set', value);
+    //     this._match = value;
+    //     this.$forceUpdate();
+    //   }
+    // }
   }
 }
 </script>
