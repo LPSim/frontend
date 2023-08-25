@@ -78,5 +78,9 @@
     {
         "name": "COST_CHARGE",
         "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c0/Genius_Invokation_TCG_Energy_Cost.png"
+    },
+    {
+        "name": "EQUIP_ARTIFACT",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/fe/Genius_Invokation_TCG_Artifact.png"
     }
 ]

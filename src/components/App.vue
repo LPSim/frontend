@@ -53,10 +53,7 @@
           </ul>
         </div>
         <div class="request-details">
-          <div v-if="selectedRequest != null">
-            <span>{{ selectedRequest.name.replace('Request', '') }}</span>
-          </div>
-          <p>{{ selectedRequest }}</p>
+          <RequestDetails :selectedRequest="selectedRequest" />
         </div>
       </div>
     </div>
@@ -70,12 +67,14 @@
 
 <script>
 import PlayerTable from './PlayerTable.vue'
+import RequestDetails from './RequestDetails.vue';
 
 export default {
   name: 'App',
   components: {
-    PlayerTable
-  },
+    PlayerTable,
+    RequestDetails
+},
   data() {
     return {
       dataVersion: null,
@@ -411,24 +410,14 @@ button:hover {
 }
 
 .request-details {
+  position: relative;
   /* position: absolute;
   top: 0;
   left: -300%;
   width: 300%; */
   width: 40%;
   /* padding: 10px; */
-  margin: 3px;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   z-index: 9999;
-}
-
-.request-details > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* styles for the player table order input */

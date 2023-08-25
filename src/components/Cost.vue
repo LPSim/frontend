@@ -1,6 +1,6 @@
 <template>
-  <div class="cost-div" :style="'flex-direction: ' + direction">
-    <div v-for="(c, cid) in cost" :key="cid" :style="costDivStyle()">
+  <div class="cost-div" :style="'flex-direction: ' + direction" v-if="cost">
+    <div v-for="(c, cid) in cost_computed" :key="cid" :style="costDivStyle()">
       <img
         :src="'static/images/COST_' + c.type + '.png'"
         :alt="c.type"
@@ -16,15 +16,14 @@
     </div>
   </div>
 </template>
-  
+
   <script>
 export default {
   name: "Cost",
   props: {
     cost: {
-      type: Array,
       required: true,
-      default: () => [],
+      default: null
     },
     max_number: {
       type: Number,
@@ -55,8 +54,51 @@ export default {
       }
       if (this.direction == 'column') style.width = '100%'
       else style.height = '100%'
-      console.log(style)
       return style
+    }
+  },
+  computed: {
+    cost_computed() {
+      let now_cost = this.cost
+      let ori_cost = this.cost.original_value
+      if (!ori_cost) ori_cost = now_cost  //cannot use this card, and no original cost
+      let res = []
+      if (ori_cost.elemental_dice_number > 0)
+        res.push({
+          type: ori_cost.elemental_dice_color,
+          value: ori_cost.elemental_dice_number,
+          is_higher: now_cost.elemental_dice_number > ori_cost.elemental_dice_number,
+          is_lower: now_cost.elemental_dice_number < ori_cost.elemental_dice_number
+        })
+      if (ori_cost.same_dice_number > 0)
+        res.push({
+          type: 'MATCHING',
+          value: ori_cost.same_dice_number,
+          is_higher: now_cost.same_dice_number > ori_cost.same_dice_number,
+          is_lower: now_cost.same_dice_number < ori_cost.same_dice_number
+        })
+      if (ori_cost.any_dice_number > 0)
+        res.push({
+          type: 'UNALIGNED',
+          value: ori_cost.any_dice_number,
+          is_higher: now_cost.any_dice_number > ori_cost.any_dice_number,
+          is_lower: now_cost.any_dice_number < ori_cost.any_dice_number
+        })
+      if (res.length == 0)
+        res.push({
+          type: 'MATCHING',
+          value: 0,
+          is_higher: false,
+          is_lower: false
+        })
+      return res
+      // let res = [
+      //   { type: 'GEO', value: 2, is_higher: true, is_lower: false},
+      //   { type: 'UNALIGNED', value: 1, is_higher: false, is_lower: true},
+      //   { type: 'MATCHING', value: 3, is_higher: false, is_lower: false},
+      //   { type: 'CHARGE', value: 2, is_higher: false, is_lower: false},
+      // ]
+
     }
   }
 };

@@ -13,11 +13,19 @@
         <span v-for="i in charactor.max_charge" :key="i"
           :style="{ color: i <= charactor.charge ? 'yellow' : 'grey' }">&#x25CF;</span>
       </div>
-      <div v-if="charactor.weapon" class="charactor-weapon">Weapon: {{ charactor.weapon }}</div>
-      <div v-if="charactor.artifact" class="charactor-artifact">Artifact: {{ charactor.artifact }}</div>
-      <div v-if="charactor.talent" class="charactor-talent">Talent: {{ charactor.talent }}</div>
+      <div v-if="charactor.weapon" @click.stop="log_object(charactor.weapon)" @mouseover="showDetails(charactor.weapon)" @mouseout="hideDetails()" class="charactor-weapon">Weapon: {{ charactor.weapon }}</div>
+      <div v-if="charactor.artifact" @click.stop="log_object(charactor.artifact)" @mouseover="showDetails(charactor.artifact)" @mouseout="hideDetails()" class="charactor-artifact">
+        <img src="static/images/EQUIP_Artifact.png" width="100%" height="100%" />
+      </div>
+      <div v-if="charactor.talent" @click.stop="log_object(charactor.talent)" @mouseover="showDetails(charactor.talent)" @mouseout="hideDetails()" class="charactor-talent">Talent: {{ charactor.talent }}</div>
+      <div v-if="showDetailsFlag" class="charactor-details">
+        <p>{{  detailData }}</p>
+        <div class="detail-img-div">
+          <img :src="'static/images/' + detailData.name + '.png'" width="100%" height="100%" />
+        </div>
+      </div>
       <div class="charactor-status-div">
-        <div v-for="(status, sid) in charactor.status" :key="sid" @click.stop="log_status(sid)">
+        <div v-for="(status, sid) in charactor.status" :key="sid" @click.stop="log_object(status)">
           <img :src="'static/images/CharactorStatus_' + status.name + '.png'" width="100%" height="100%" />
           <div class="usage-span-div">
             <span v-if="status.usage && status.usage > 0">{{ status.usage }}</span>
@@ -27,7 +35,7 @@
     </div>
   </div>
 </template>
-  
+
 <script>
 export default {
   name: 'Charactor',
@@ -37,9 +45,25 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      showDetailsFlag: false,
+      detailData: null,
+    }
+  },
   methods: {
     log_data() {
       console.log(JSON.parse(JSON.stringify(this.charactor)));
+    },
+    log_object(obj) {
+      console.log(JSON.parse(JSON.stringify(obj)));
+    },
+    showDetails(data) {
+      this.showDetailsFlag = true;
+      this.detailData = data;
+    },
+    hideDetails() {
+      this.showDetailsFlag = false;
     }
   },
   computed: {
@@ -119,7 +143,7 @@ export default {
 
 .charactor-charge {
   /* Add styles for the charactor charge div */
-  display: flex; 
+  display: flex;
   flex-direction: column;
   width: 20%;
   height: 100%;
@@ -131,18 +155,21 @@ export default {
   /* Add styles for the charactor weapon div */
   top: 20%;
   height: 20%;
+  width: 34%;
 }
 
 .charactor-artifact {
   /* Add styles for the charactor artifact div */
   top: 40%;
   height: 20%;
+  width: 34%;
 }
 
 .charactor-talent {
   /* Add styles for the charactor talent div */
   top: 60%;
   height: 20%;
+  width: 34%;
 }
 
 .charactor-status-div {
@@ -164,6 +191,38 @@ export default {
 
 .charactor-status-div img {
   position: absolute;
+}
+
+.charactor-details {
+  position: absolute;
+  top: 0;
+  left: -200%;
+  width: 200%;
+  height: 100%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: black;
+  z-index: 999;
+  font-size: 0.75vw;
+  font-weight: normal;
+  -webkit-text-stroke-width: 0;
+  -webkit-text-stroke-color: black;
+}
+
+.charactor-details > .detail-img-div {
+  width: 50%;
+}
+
+.charactor-details > p {
+  width: 150%;
+  color: black;
 }
 
 .usage-span-div {
