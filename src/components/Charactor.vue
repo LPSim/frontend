@@ -13,11 +13,15 @@
         <span v-for="i in charactor.max_charge" :key="i"
           :style="{ color: i <= charactor.charge ? 'yellow' : 'grey' }">&#x25CF;</span>
       </div>
-      <div v-if="charactor.weapon" @click.stop="log_object(charactor.weapon)" @mouseover="showDetails(charactor.weapon)" @mouseout="hideDetails()" class="charactor-weapon">Weapon: {{ charactor.weapon }}</div>
-      <div v-if="charactor.artifact" @click.stop="log_object(charactor.artifact)" @mouseover="showDetails(charactor.artifact)" @mouseout="hideDetails()" class="charactor-artifact">
-        <img src="static/images/EQUIP_Artifact.png" width="100%" height="100%" />
+      <div v-if="charactor.weapon" @click.stop="log_object(charactor.weapon)" @mouseover="showDetails(charactor.weapon)" @mouseout="hideDetails()" class="charactor-weapon">
+        <img src="static/images/EQUIP_WEAPON.png" width="100%" height="100%" />
       </div>
-      <div v-if="charactor.talent" @click.stop="log_object(charactor.talent)" @mouseover="showDetails(charactor.talent)" @mouseout="hideDetails()" class="charactor-talent">Talent: {{ charactor.talent }}</div>
+      <div v-if="charactor.artifact" @click.stop="log_object(charactor.artifact)" @mouseover="showDetails(charactor.artifact)" @mouseout="hideDetails()" class="charactor-artifact">
+        <img src="static/images/EQUIP_ARTIFACT.png" width="100%" height="100%" />
+      </div>
+      <div v-if="charactor.talent" @click.stop="log_object(charactor.talent)" @mouseover="showDetails(charactor.talent)" @mouseout="hideDetails()" class="charactor-talent">
+        <img src="static/images/EQUIP_TALENT.png" width="100%" height="100%" />
+      </div>
       <div v-if="showDetailsFlag" class="charactor-details">
         <p>{{  detailData }}</p>
         <div class="detail-img-div">
@@ -223,6 +227,7 @@ export default {
 .charactor-details > p {
   width: 150%;
   color: black;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .usage-span-div {

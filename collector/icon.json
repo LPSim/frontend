@@ -82,5 +82,13 @@
     {
         "name": "EQUIP_ARTIFACT",
         "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/fe/Genius_Invokation_TCG_Artifact.png"
+    },
+    {
+        "name": "EQUIP_TALENT",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/40/Genius_Invokation_TCG_Talent.png"
+    },
+    {
+        "name": "EQUIP_WEAPON",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/ac/Genius_Invokation_TCG_Weapon.png"
     }
 ]
