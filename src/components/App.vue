@@ -86,6 +86,7 @@ export default {
       stepCount: 1,
       processing: false,
       selectedRequest: null,
+      commandPOSTData: null,
       interactionInput: '',
       interactionCommands: [],
       commandHistory: [],
@@ -125,10 +126,10 @@ export default {
           // console.log(request.name, request, request.cost)
         }
         else if (request.name == 'UseSkillRequest') {
-          console.log(request.name, request.cost)
+          // console.log(request.name, request.cost)
         }
         else if (request.name == 'SwitchCharactorRequest') {
-          console.log(request.name, request.cost)
+          // console.log(request.name, request.cost)
         }
         else {
           // console.log(request.name)
@@ -165,7 +166,8 @@ export default {
       let input = this.interactionInput.trim();
       if (input.length == 0) return;
       this.interactionCommands = input.split('\n');
-      this.processing = true;
+      if (this.interactionCommands.length > 1)
+        this.processing = true;
       this.realSendInteraction();
     },
     realSendInteraction() {
@@ -174,6 +176,7 @@ export default {
         return;
       }
       const data = { player_id: 1, command: this.interactionCommands[0] };
+      this.commandPOSTData = data;
       this.interactionCommands = this.interactionCommands.slice(1);
       fetch('http://localhost:8000/respond', {
         method: 'POST',
@@ -191,7 +194,7 @@ export default {
       })
       .then(data => {
         console.log(data);
-        this.commandHistory.push(this.interactionInput.trim());
+        this.commandHistory.push(this.commandPOSTData.command);
         this.interactionInput = '';
         console.log(this.commandHistory);
         let last_data = this.matchData[this.matchData.length - 1];

@@ -65,22 +65,22 @@ export default {
       let res = []
       if (ori_cost.elemental_dice_number > 0)
         res.push({
-          type: ori_cost.elemental_dice_color,
-          value: ori_cost.elemental_dice_number,
+          type: now_cost.elemental_dice_color,
+          value: now_cost.elemental_dice_number,
           is_higher: now_cost.elemental_dice_number > ori_cost.elemental_dice_number,
           is_lower: now_cost.elemental_dice_number < ori_cost.elemental_dice_number
         })
       if (ori_cost.same_dice_number > 0)
         res.push({
           type: 'MATCHING',
-          value: ori_cost.same_dice_number,
+          value: now_cost.same_dice_number,
           is_higher: now_cost.same_dice_number > ori_cost.same_dice_number,
           is_lower: now_cost.same_dice_number < ori_cost.same_dice_number
         })
       if (ori_cost.any_dice_number > 0)
         res.push({
           type: 'UNALIGNED',
-          value: ori_cost.any_dice_number,
+          value: now_cost.any_dice_number,
           is_higher: now_cost.any_dice_number > ori_cost.any_dice_number,
           is_lower: now_cost.any_dice_number < ori_cost.any_dice_number
         })
@@ -120,7 +120,7 @@ export default {
 }
 
 .cost-lower {
-  color: green;
+  color: rgb(58, 243, 58);
 }
 
 .cost-span-div {
