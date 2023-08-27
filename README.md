@@ -2,6 +2,11 @@
 
 > Simple frontend for zyr17/GITCG
 
+## resorces downloading
+
+We do not provide any images here, you should collect them by your self before
+using this project.  in `collector`, we give a way to collect images.
+
 ## usage
 
 run in development mode as Commands section.
