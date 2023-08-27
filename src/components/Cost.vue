@@ -84,6 +84,13 @@ export default {
           is_higher: now_cost.any_dice_number > ori_cost.any_dice_number,
           is_lower: now_cost.any_dice_number < ori_cost.any_dice_number
         })
+      if (ori_cost.charge > 0)
+        res.push({
+          type: 'CHARGE',
+          value: now_cost.charge,
+          is_higher: now_cost.charge > ori_cost.charge,
+          is_lower: now_cost.charge < ori_cost.charge
+        })
       if (res.length == 0)
         res.push({
           type: 'MATCHING',

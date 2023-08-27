@@ -47,7 +47,7 @@
         </div>
         <div class="requests-div">
           <ul v-if="match != null">
-            <li v-for="(request, rid) in match.requests.filter(request => request.player_id === 1)" :key="rid" @mouseover="showRequestDetails(request)" @mouseout="hideRequestDetails()">
+            <li v-for="(request, rid) in match.requests.filter(request => request.player_id === currentRequestPlayerId)" :key="rid" @mouseover="showRequestDetails(request)" @mouseout="hideRequestDetails()">
               {{ request.name.replace('Request', '') }}
             </li>
           </ul>
@@ -59,7 +59,7 @@
     </div>
     <div class="player-tables-container" v-if="match != null">
       <div class="player-tables" v-for="(playerTable, pid) in sortedPlayerTables" :key="pid" :style="'top: ' + (pid == 1 ? '50%' : '0')">
-        <PlayerTable :class="{'table-current-player': match.current_player == pid}" :playerTable="playerTable" :is_reverse="pid == 0"/>
+        <PlayerTable :class="{'table-current-player': match.current_player == pid, 'table-current-request': currentRequestPlayerId == pid}" :playerTable="playerTable" :is_reverse="pid == 0"/>
       </div>
     </div>
   </div>
@@ -88,8 +88,9 @@ export default {
       selectedRequest: null,
       commandPOSTData: null,
       interactionInput: '',
-      interactionCommands: [],
-      commandHistory: [],
+      interactionCommands: [[], []],
+      commandHistory: [[], []],
+      multiCommandTimeout: 500,
     }
   },
   created() {
@@ -165,19 +166,36 @@ export default {
     sendInteraction() {
       let input = this.interactionInput.trim();
       if (input.length == 0) return;
-      this.interactionCommands = input.split('\n');
-      if (this.interactionCommands.length > 1)
+      try {
+        input = JSON.parse(input);
+        if (Array.isArray(input) && input.length == 2) {
+          this.interactionCommands = input;
+          if (this.interactionCommands[this.currentRequestPlayerId].length > 1)
+            this.processing = true;
+          this.realSendInteraction();
+          return;
+        }
+      }
+      catch (e) { }
+      this.interactionCommands[this.currentRequestPlayerId] = input.split('\n');
+      if (this.interactionCommands[this.currentRequestPlayerId].length > 1)
         this.processing = true;
       this.realSendInteraction();
     },
     realSendInteraction() {
-      if (this.interactionCommands.length == 0) {
+      let cid = this.currentRequestPlayerId;
+      while (this.interactionCommands[cid].length > 0 && this.interactionCommands[cid][0].slice(0, 4) == 'TEST') {
+        // skip TEST commands, only save them in history.
+        this.commandHistory[cid].push(this.interactionCommands[cid][0]);
+        this.interactionCommands[cid] = this.interactionCommands[cid].slice(1);
+      }
+      if (this.interactionCommands[cid].length == 0) {
         this.processing = false;
         return;
       }
-      const data = { player_id: 1, command: this.interactionCommands[0] };
+      const data = { player_id: this.currentRequestPlayerId, command: this.interactionCommands[cid][0] };
       this.commandPOSTData = data;
-      this.interactionCommands = this.interactionCommands.slice(1);
+      this.interactionCommands[cid] = this.interactionCommands[cid].slice(1);
       fetch('http://localhost:8000/respond', {
         method: 'POST',
         headers: {
@@ -194,16 +212,17 @@ export default {
       })
       .then(data => {
         console.log(data);
-        this.commandHistory.push(this.commandPOSTData.command);
+        this.commandHistory[this.commandPOSTData.player_id].push(this.commandPOSTData.command);
         this.interactionInput = '';
         console.log(this.commandHistory);
         let last_data = this.matchData[this.matchData.length - 1];
         if (JSON.stringify(last_data) !== JSON.stringify(data))
           this.matchData.push(data);
+        this.currentDataIndex = this.matchData.length - 1;
         this.updateMatch(data);
         if (this.match.requests.length > 0)
           this.selectedRequest = this.match.requests[0];
-        setTimeout(() => this.realSendInteraction(), 1000);
+        setTimeout(() => this.realSendInteraction(), this.multiCommandTimeout);
       })
       .catch(error => {
         console.error(error);
@@ -222,6 +241,7 @@ export default {
           let last_data = this.matchData[this.matchData.length - 1];
           if (JSON.stringify(last_data) !== JSON.stringify(data))
             this.matchData.push(data);
+          this.currentDataIndex = this.matchData.length - 1;
           this.updateMatch(data);
           if (this.match.requests.length > 0)
             this.selectedRequest = this.match.requests[0];
@@ -245,6 +265,11 @@ export default {
         return [this.match.player_tables[1], this.match.player_tables[0]]
       }
     },
+    currentRequestPlayerId() {
+      let match = this.match;
+      if (!match || !match.requests || match.requests.length === 0) return null;
+      return match.requests[0].player_id;
+    }
     // match: {
     //   get() {
     //     console.log('get', this._match);
@@ -445,6 +470,10 @@ button:hover {
 
 .table-current-player {
   border-color: orange;
+}
+
+.table-current-request {
+  background-color: aliceblue;
 }
 
 </style>
