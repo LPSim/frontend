@@ -80,6 +80,10 @@
         "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c0/Genius_Invokation_TCG_Energy_Cost.png"
     },
     {
+        "name": "COST_ARCANE_EMPTY",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d7/Icon_TCG_Arcane_Legend.png"
+    },
+    {
         "name": "EQUIP_ARTIFACT",
         "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/fe/Genius_Invokation_TCG_Artifact.png"
     },

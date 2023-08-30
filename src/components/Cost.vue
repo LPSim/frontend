@@ -98,6 +98,10 @@ export default {
           is_higher: false,
           is_lower: false
         })
+      if (ori_cost.arcane_legend)
+        res.push({
+          type: 'ARCANE_FULL',
+        })
       return res
       // let res = [
       //   { type: 'GEO', value: 2, is_higher: true, is_lower: false},

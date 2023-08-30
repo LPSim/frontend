@@ -32,17 +32,23 @@
         </div>
       </div>
       <div class="dice">
-        <div v-for="(die, did) in playerTable.dice" :key="did" @click.stop="log_die(did)">
-          <img class="cost-img" :src="'static/images/COST_' + die.color + '.png'" :alt="die" />
-          <img class="element-img" v-if="die.color != 'OMNI'" :src="'static/images/ELEMENT_' + die.color + '.png'" :alt="die" />
+        <div v-for="(color, did) in playerTable.dice.colors" :key="did" @click.stop="log_die(did)">
+          <img class="cost-img" :src="'static/images/COST_' + color + '.png'" :alt="color" />
+          <img class="element-img" v-if="color != 'OMNI'" :src="'static/images/ELEMENT_' + color + '.png'" :alt="color" />
         </div>
       </div>
     </div>
     <div class="player-info">
       <div class="player-name">{{ playerTable.player_name }}</div>
 
-      <div class="round-ended" v-if="playerTable.has_round_ended">Round has ended</div>
-      <div class="round-ended" v-else>Round has not ended</div>
+      <div class="round-ended-and-arcane">
+        <div class="round-ended">
+          <p>Round has {{ playerTable.has_round_ended ? '' : 'not ' }}ended</p>
+        </div>
+        <div class="arcane-legend">
+          <img :src="'static/images/COST_ARCANE_' + (playerTable.arcane_legend ? 'FULL' : 'EMPTY') + '.png'" height="100%" />
+        </div>
+      </div>
       <div class="table-deck" v-if="show_table_deck">
         <!-- <h3>Table Deck</h3> -->
         <div v-for="card in playerTable.table_deck" :key="card.id">
@@ -60,7 +66,7 @@
     </div>
   </div>
 </template>
-  
+
 <script>
 import Charactor from './Charactor.vue'
 import Summon from './Summon.vue'
@@ -130,9 +136,26 @@ export default {
   height: 33%;
 }
 
-.player-name, .round-ended, .table-deck {
+.player-name, .round-ended-and-arcane, .table-deck {
   width: 10%;
   /* height: 100%; */
+}
+
+.round-ended-and-arcane {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.round-ended {
+  height: 50%;
+}
+
+.arcane-legend {
+  position: relative;
+  height: 50%;
+  display: flex;
+  justify-content: center;
 }
 
 .table-deck {

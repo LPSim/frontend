@@ -184,13 +184,16 @@ export default {
     },
     realSendInteraction() {
       let cid = this.currentRequestPlayerId;
+      let test_appear = false;
       while (this.interactionCommands[cid].length > 0 && this.interactionCommands[cid][0].slice(0, 4) == 'TEST') {
         // skip TEST commands, only save them in history.
         this.commandHistory[cid].push(this.interactionCommands[cid][0]);
         this.interactionCommands[cid] = this.interactionCommands[cid].slice(1);
+        test_appear = true;
       }
       if (this.interactionCommands[cid].length == 0) {
         this.processing = false;
+        if (test_appear) this.interactionInput = '';
         return;
       }
       const data = { player_id: this.currentRequestPlayerId, command: this.interactionCommands[cid][0] };
