@@ -47,7 +47,7 @@
         </div>
         <div class="requests-div">
           <ul v-if="match != null">
-            <li v-for="(request, rid) in match.requests.filter(request => request.player_id === currentRequestPlayerId)" :key="rid" @mouseover="showRequestDetails(request)" @mouseout="hideRequestDetails()">
+            <li v-for="(request, rid) in match.requests.filter(request => request.player_idx === currentRequestPlayerId)" :key="rid" @mouseover="showRequestDetails(request)" @mouseout="hideRequestDetails()">
               {{ request.name.replace('Request', '') }}
             </li>
           </ul>
@@ -119,10 +119,10 @@ export default {
       for (let i = 0; i < requests.length; i++) {
         let request = requests[i]
         if (request.name == 'UseCardRequest') {
-          let player_id = request.player_id
-          let card_id = request.card_id
-          let hands = data.player_tables[player_id].hands
-          let card = hands[card_id]
+          let player_idx = request.player_idx
+          let card_idx = request.card_idx
+          let hands = data.player_tables[player_idx].hands
+          let card = hands[card_idx]
           card.cost = request.cost
           // console.log(request.name, request, request.cost)
         }
@@ -196,7 +196,7 @@ export default {
         if (test_appear) this.interactionInput = '';
         return;
       }
-      const data = { player_id: this.currentRequestPlayerId, command: this.interactionCommands[cid][0] };
+      const data = { player_idx: this.currentRequestPlayerId, command: this.interactionCommands[cid][0] };
       this.commandPOSTData = data;
       this.interactionCommands[cid] = this.interactionCommands[cid].slice(1);
       fetch('http://localhost:8000/respond', {
@@ -215,7 +215,7 @@ export default {
       })
       .then(data => {
         console.log(data);
-        this.commandHistory[this.commandPOSTData.player_id].push(this.commandPOSTData.command);
+        this.commandHistory[this.commandPOSTData.player_idx].push(this.commandPOSTData.command);
         this.interactionInput = '';
         console.log(this.commandHistory);
         let last_data = this.matchData[this.matchData.length - 1];
@@ -271,7 +271,7 @@ export default {
     currentRequestPlayerId() {
       let match = this.match;
       if (!match || !match.requests || match.requests.length === 0) return null;
-      return match.requests[0].player_id;
+      return match.requests[0].player_idx;
     }
     // match: {
     //   get() {

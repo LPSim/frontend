@@ -1,7 +1,7 @@
 <template>
   <div class="request-details-root">
     <div v-if="selectedRequest != null">
-      <span>Player {{ selectedRequest.player_id }}: </span>
+      <span>Player {{ selectedRequest.player_idx }}: </span>
       <span>{{ selectedRequest.name.replace("Request", "") }}</span>
       <div class="cost-div">
         <Cost :cost="selectedRequest.cost" :max_number="4" direction="row" />

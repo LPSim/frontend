@@ -10,10 +10,10 @@
 
       <div class="charactors">
         <!-- <h3>Characters</h3> -->
-        <div :class="{'charactor-div': true, 'charactor-div-active': cid == playerTable.active_charactor_id}" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id">
-          <div class="active-div" v-if="(playerTable.active_charactor_id != cid) != is_reverse"></div>
+        <div :class="{'charactor-div': true, 'charactor-div-active': cid == playerTable.active_charactor_idx}" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id">
+          <div class="active-div" v-if="(playerTable.active_charactor_idx != cid) != is_reverse"></div>
           <Charactor class="charactor-inner" :charactor="charactor" />
-          <div class="team-status-div" v-if="playerTable.active_charactor_id == cid">
+          <div class="team-status-div" v-if="playerTable.active_charactor_idx == cid">
             <!-- <h3>Team Status</h3> -->
             <div v-for="(status, sid) in playerTable.team_status" :key="sid" @click.stop="log_status(sid)">
               <img :src="'static/images/TeamStatus_' + status.name + '.png'" width="100%" height="100%" />
@@ -31,8 +31,8 @@
           <Summon :summon="summon" />
         </div>
       </div>
-      <div class="dice">
-        <div v-for="(color, did) in playerTable.dice.colors" :key="did" @click.stop="log_die(did)">
+      <div class="dice" @click.stop="log_dice()">
+        <div v-for="(color, did) in playerTable.dice.colors" :key="did">
           <img class="cost-img" :src="'static/images/COST_' + color + '.png'" :alt="color" />
           <img class="element-img" v-if="color != 'OMNI'" :src="'static/images/ELEMENT_' + color + '.png'" :alt="color" />
         </div>
@@ -80,7 +80,11 @@ export default {
       type: Object,
       required: true,
       validator: (value) => {
-        return 'name' in value && 'player_name' in value && 'player_icon' in value && 'active_charactor_id' in value && 'has_round_ended' in value && 'dice' in value && 'team_status' in value && 'charactors' in value && 'summons' in value && 'supports' in value && 'hands' in value && 'table_deck' in value
+        return ('name' in value && 'player_name' in value
+        && 'player_icon' in value && 'active_charactor_idx' in value
+        && 'has_round_ended' in value && 'dice' in value && 'team_status' in value
+        && 'charactors' in value && 'summons' in value && 'supports' in value
+        && 'hands' in value && 'table_deck' in value)
       }
     },
     show_table_deck: {
@@ -102,8 +106,8 @@ export default {
     log_data() {
       console.log(JSON.parse(JSON.stringify(this.playerTable)));
     },
-    log_die(did) {
-      console.log(JSON.parse(JSON.stringify(this.playerTable.dice[did])));
+    log_dice() {
+      console.log(JSON.parse(JSON.stringify(this.playerTable.dice)));
     },
     log_status(sid) {
       console.log(JSON.parse(JSON.stringify(this.playerTable.team_status[sid])));
