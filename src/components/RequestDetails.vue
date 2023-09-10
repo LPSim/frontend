@@ -7,7 +7,7 @@
         <Cost :cost="selectedRequest.cost" :max_number="4" direction="row" />
       </div>
     </div>
-    <p>{{ selectedRequest }}</p>
+    <!-- <p>{{ selectedRequest }}</p> -->
   </div>
 </template>
 

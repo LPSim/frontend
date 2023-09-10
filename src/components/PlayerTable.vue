@@ -1,25 +1,32 @@
 <template>
-  <div :class="tableClass" @click.stop="log_data">
+  <div :class="tableClass" @click="log_data">
     <div class="supports-charactors-summons">
       <div class="supports">
         <!-- <h3>Supports</h3> -->
-        <div v-for="support in playerTable.supports" :key="support.id">
-          <Support :support="support" />
+        <div v-for="support in playerTable.supports" :key="support.id" @click="selectObject(support.position)">
+          <Support :support="support" :select-class="selectObjectClass(support.position)" />
         </div>
       </div>
 
       <div class="charactors">
         <!-- <h3>Characters</h3> -->
-        <div :class="{'charactor-div': true, 'charactor-div-active': cid == playerTable.active_charactor_idx}" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id">
-          <div class="active-div" v-if="(playerTable.active_charactor_idx != cid) != is_reverse"></div>
-          <Charactor class="charactor-inner" :charactor="charactor" />
+        <div :class="{'charactor-div': true, 'charactor-div-active': cid == playerTable.active_charactor_idx}" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id" @click="selectObject(charactor.position)">
+          <div class="active-div" v-if="(playerTable.active_charactor_idx != cid) != is_reverse" @click.stop=""></div>
+          <Charactor class="charactor-inner" :charactor="charactor" :select-class="selectObjectClass(charactor.position)" />
           <div class="team-status-div" v-if="playerTable.active_charactor_idx == cid">
             <!-- <h3>Team Status</h3> -->
-            <div v-for="(status, sid) in playerTable.team_status" :key="sid" @click.stop="log_status(sid)">
+            <div v-for="(status, sid) in playerTable.team_status" :key="sid" @mouseover="showDetails(status)" @mouseout="hideDetails(status)" @click="log_status(sid)">
               <img :src="'static/images/TeamStatus_' + status.name + '.png'" width="100%" height="100%" />
               <div class="usage-span-div">
                 <span v-if="status.usage && status.usage > 0">{{ status.usage }}</span>
               </div>
+            </div>
+          </div>
+          <div v-if="showDetailsFlag && (playerTable.active_charactor_idx == cid)" class="status-details">
+            <div class="p-div">
+              <h4>{{ detailData.name }}</h4>
+              <p>{{ detailData.desc }}</p>
+              <!-- <p>Usage: {{ detailData.usage }}</p> -->
             </div>
           </div>
         </div>
@@ -27,14 +34,15 @@
 
       <div class="summons">
         <!-- <h3>Summons</h3> -->
-        <div v-for="summon in playerTable.summons" :key="summon.id">
-          <Summon :summon="summon" />
+        <div v-for="summon in playerTable.summons" :key="summon.id" @click="selectObject(summon.position)">
+          <Summon :summon="summon" :select-class="selectObjectClass(summon.position)" />
         </div>
       </div>
-      <div class="dice" @click.stop="log_dice()">
-        <div v-for="(color, did) in playerTable.dice.colors" :key="did">
-          <img class="cost-img" :src="'static/images/COST_' + color + '.png'" :alt="color" />
-          <img class="element-img" v-if="color != 'OMNI'" :src="'static/images/ELEMENT_' + color + '.png'" :alt="color" />
+      <div class="dice" @click="log_dice()">
+        <div v-for="data in sortedColors" :class="disableDice()" :key="data.idx" @click="selectDice(data.idx)">
+          <div :class="'dice-select-border ' + selectDiceClass(data.idx)"></div>
+          <img class="cost-img" :src="'static/images/COST_' + data.color + '.png'" :alt="data.color" />
+          <img class="element-img" v-if="data.color != 'OMNI'" :src="'static/images/ELEMENT_' + data.color + '.png'" :alt="data.color" />
         </div>
       </div>
     </div>
@@ -59,8 +67,8 @@
 
       <div class="hands">
         <!-- <h3>Hands</h3> -->
-        <div v-for="card in playerTable.hands" :key="card.id">
-          <Card :card="card" />
+        <div v-for="card, cnum in playerTable.hands" :key="card.id" :class="selectCardClass(cnum)" @click="selectCard(cnum)">
+          <Card class="active" :card="card" />
         </div>
       </div>
     </div>
@@ -94,6 +102,11 @@ export default {
     is_reverse: {
       type: Boolean,
       default: false
+    },
+  },
+  data () {
+    return {
+      showDetailsFlag: false,
     }
   },
   components: {
@@ -104,18 +117,295 @@ export default {
   },
   methods: {
     log_data() {
-      console.log(JSON.parse(JSON.stringify(this.playerTable)));
+      console.log('TABLE', JSON.parse(JSON.stringify(this.playerTable)));
     },
     log_dice() {
-      console.log(JSON.parse(JSON.stringify(this.playerTable.dice)));
+      console.log('DICE', JSON.parse(JSON.stringify(this.playerTable.dice)));
     },
     log_status(sid) {
-      console.log(JSON.parse(JSON.stringify(this.playerTable.team_status[sid])));
+      console.log('TEAM_STATUS', JSON.parse(JSON.stringify(this.playerTable.team_status[sid])));
+    },
+    showDetails(data) {
+      this.showDetailsFlag = true;
+      this.detailData = data;
+    },
+    hideDetails() {
+      this.showDetailsFlag = false;
+    },
+    selectCardClass(cidx) {
+      if (this.$store.state.selectedRequest == null) {
+        // request not selected, if have this card in request, show it
+        let requests = this.$store.state.requests;
+        for (let rid = 0; rid < requests.length; rid++) {
+          let request = requests[rid];
+          if (request.name != 'UseCardRequest') continue;
+          if (request.card_idx == cidx && request.player_idx == this.playerTable.player_idx)
+            return 'select-highlight';
+        }
+        return '';
+      }
+      // request is selected, if card is corresponding request, select it.
+      // otherwise, disable.
+      let request = this.$store.state.requests[this.$store.state.selectedRequest];
+      if (request.name == 'UseCardRequest') {
+        if (request.card_idx == cidx && request.player_idx == this.playerTable.player_idx)
+          return 'select-selected';
+        else
+          return 'select-disabled';
+      }
+      // request is selected, if card position in store position, show it
+      let positions = this.$store.state.positions;
+      let card = this.playerTable.hands[cidx];
+      for (let pid = 0; pid < this.$store.state.selectedPositions.length; pid ++ ) {
+        let position_idx = this.$store.state.selectedPositions[pid];
+        let position = positions[position_idx];
+        if (position.id == card.id)
+          return 'select-selected';
+      }
+      for (let pid = 0; pid < positions.length; pid++) {
+        let position = positions[pid];
+        if (position.id == card.id)
+          return 'select-highlight';
+      }
+      return 'select-disabled';
+    },
+    selectCard(cidx) {
+      let card = this.playerTable.hands[cidx];
+      if (this.$store.state.selectedRequest == null) {
+        // request not selected, if have this card in request, select request
+        let requests = this.$store.state.requests;
+        for (let rid = 0; rid < requests.length; rid++) {
+          let request = requests[rid];
+          if (request.name != 'UseCardRequest') continue;
+          if (request.card_idx == cidx && request.player_idx == this.playerTable.player_idx) {
+            this.$store.commit('selectRequest', rid);
+            return;
+          }
+        }
+        return;
+      }
+      // otherwise, if it is in store positions, select it
+      let positions = this.$store.state.positions;
+      for (let pid = 0; pid < positions.length; pid ++ ) {
+        let position = positions[pid];
+        if (position.id == card.id) {
+          this.$store.commit('positionClick', pid);
+          return;
+        }
+      }
+    },
+    selectObjectClass(object_position) {
+      if (this.$store.state.selectedRequest == null) {
+        // request not selected, none
+        return 'select-none';
+      }
+      let positions = this.$store.state.positions;
+      let selected_positions = this.$store.state.selectedPositions;
+      for (let pid = 0; pid < selected_positions.length; pid ++ ) {
+        let p = positions[selected_positions[pid]];
+        if (p.id == object_position.id)
+          return 'select-selected';
+      }
+      for (let pid = 0; pid < positions.length; pid ++ ) {
+        let p = positions[pid];
+        if (p.id == object_position.id) {
+          return 'select-highlight';
+        }
+      }
+      return 'select-disabled';
+    },
+    selectObject(object_position) {
+      if (this.$store.state.selectedRequest == null) {
+        // request not selected, if have this card in request, select request
+        return;
+      }
+      // otherwise, if it is in store positions, select it
+      let positions = this.$store.state.positions;
+      for (let pid = 0; pid < positions.length; pid ++ ) {
+        let position = positions[pid];
+        if (position.id == object_position.id) {
+          this.$store.commit('positionClick', pid);
+          return;
+        }
+      }
+    },
+    selectDiceClass(dice_idx) {
+      if (this.$store.state.selectedRequest == null) {
+        // request not selected, none
+        return 'select-dice-none';
+      }
+      if (this.$store.state.requests[this.$store.state.selectedRequest].player_idx != this.playerTable.player_idx) {
+        // request not selected, none
+        return 'select-dice-none';
+      }
+      let selected = this.$store.state.selectedDice;
+      for (let pid = 0; pid < selected.length; pid ++ ) {
+        if (dice_idx == selected[pid])
+          return 'select-dice-selected';
+      }
+      return 'select-dice-none';
+    },
+    selectDice(dice_idx) {
+      if (this.$store.state.selectedRequest == null) {
+        // request not selected, none
+        return 'select-dice-none';
+      }
+      if (this.$store.state.requests[this.$store.state.selectedRequest].player_idx != this.playerTable.player_idx) {
+        // request not selected, none
+        return 'select-dice-none';
+      }
+      this.$store.commit('diceClick', dice_idx)
+    },
+    costDefaultSelector() {
+      let dice_rule = this.$store.state.diceSelectionRule;
+      if (dice_rule.player != this.playerTable.player_idx)
+        return;
+      if (dice_rule == null || dice_rule.mode == 'any' || dice_rule.mode == 'none')
+        return;
+      let sorted = this.sortedColors;
+      if (dice_rule.mode == 'tune') {
+        console.log(sorted)
+        this.$store.commit('diceClick', sorted[sorted.length - 1].idx);
+        return;
+      }
+      let cost = dice_rule.cost;
+      let selected = [];
+      if (cost.same_dice_number > 0) {
+        // select same
+        let omni_count = 99999, same_count = 99999;
+        let is_main = true;
+        let done = new Set();
+        let main_color = new Set();
+        for (let i = 0; i < this.playerTable.charactors.length; i ++ ) {
+          let charactor = this.playerTable.charactors[i];
+          main_color.add(charactor.element);
+        }
+        for (let cid = sorted.length - 1; cid >= 0; cid--) {
+          let color = sorted[cid].color;
+          if (done.has(color)) continue;
+          done.add(color);
+          let now_selected = [];
+          let now_omni_count = 0;
+          for (let did = cid; did >= 0; did--) {
+            // if (cost.same_dice_number == now_selected.length) break;
+            if (sorted[did].color == 'OMNI') {
+              now_omni_count += 1;
+              now_selected.push(sorted[did].idx);
+            }
+            else if (sorted[did].color == color) {
+              now_selected.push(sorted[did].idx);
+            }
+          }
+          console.log(color, now_selected, now_omni_count)
+          if (now_selected.length < cost.same_dice_number) continue;
+          let now_same_count = now_selected.length - now_omni_count;
+          // remove overnumber omnis
+          if (color != 'OMNI')
+            now_omni_count = Math.max(0, cost.same_dice_number - now_same_count);
+          console.log(color, now_selected, now_omni_count,now_same_count, omni_count, same_count)
+          // if use more omni, worse, discard
+          if (now_omni_count > omni_count) continue;
+          let now_is_main = main_color.has(color);
+          // if use less omni, better, replace
+          if (now_omni_count < omni_count) {
+            selected = now_selected.slice(0, cost.same_dice_number);
+            omni_count = now_omni_count;
+            same_count = now_same_count;
+            is_main = now_is_main;
+            continue;
+          }
+          // if omni same, then if current main color and pre not, worse, discard
+          if (now_is_main && !is_main) continue;
+          // if current not main and pre is, better, replace
+          if (!now_is_main && is_main) {
+            selected = now_selected.slice(0, cost.same_dice_number);
+            omni_count = now_omni_count;
+            same_count = now_same_count;
+            is_main = now_is_main;
+            continue;
+          }
+          // if omni same, then if use less same, better, replace
+          if (now_same_count < same_count) {
+            selected = now_selected.slice(0, cost.same_dice_number);
+            omni_count = now_omni_count;
+            same_count = now_same_count;
+            is_main = now_is_main;
+            continue;
+          }
+        }
+        for (let cid = 0; cid < selected.length; cid++) {
+          this.$store.commit('diceClick', selected[cid]);
+        }
+        return
+      }
+      // select element
+      for (let cid = sorted.length - 1; cid >= 0; cid--) {
+        if (cost.elemental_dice_number == selected.length) break;
+        let color = sorted[cid].color;
+        if (color == cost.elemental_dice_color || color == 'OMNI') {
+          selected.push(sorted[cid].idx);
+        }
+      }
+      // select any
+      for (let cid = sorted.length - 1; cid >= 0; cid--) {
+        if (cost.any_dice_number + cost.elemental_dice_number == selected.length) break;
+        if (selected.indexOf(sorted[cid].idx) == -1)
+          selected.push(sorted[cid].idx);
+      }
+      // commit
+      for (let cid = 0; cid < selected.length; cid++) {
+        this.$store.commit('diceClick', selected[cid]);
+      }
+      return;
+    },
+    disableDice() {
+      if (this.$store.state.selectedRequest == null) {
+        // request not selected
+        return 'select-none';
+      }
+      if (this.$store.state.requests[this.$store.state.selectedRequest].player_idx != this.playerTable.player_idx) {
+        // not this player
+        return 'select-dice-disabled';
+      }
     }
   },
   computed: {
     tableClass() {
       return this.is_reverse ? 'player-table-reverse' : 'player-table-normal';
+    },
+    sortedColors() {
+      let order = ['OMNI'];
+      for (let cid = 0; cid < this.playerTable.charactors.length; cid++) {
+        let charactor = this.playerTable.charactors[cid];
+        order.push(charactor.element);
+        if (charactor.name == 'Maguu Kenki')
+          order.push('CRYO')
+      }
+      let result = [];
+      let table_colors = this.playerTable.dice.colors;
+      for (let cid = 0; cid < order.length; cid++) {
+        let color = order[cid];
+        if (order.indexOf(color) != cid) continue;
+        for (let did = 0; did < table_colors.length; did++) {
+          if (table_colors[did] == color)
+            result.push({ idx: did, color: color });
+        }
+      }
+      for (let did = 0; did < table_colors.length; did++) {
+        let color = this.playerTable.dice.colors[did];
+        if (!order.includes(color))
+          result.push({ idx: did, color: color });
+      }
+      return result
+    },
+    watchSelectedRequest() {
+      return this.$store.state.selectedRequest;
+    }
+  },
+  watch: {
+    watchSelectedRequest(newVal, oldVal) {
+      if (JSON.parse(JSON.stringify(newVal)) == JSON.parse(JSON.stringify(oldVal))) return;
+      this.costDefaultSelector();
     }
   }
 }
@@ -211,6 +501,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
 }
 
 .charactors > * > .team-status {
@@ -223,11 +514,6 @@ export default {
 
 .charactors > * > .charactor-inner {
   height: 82.72%;
-}
-
-.charactor-div-active > .charactor-inner {
-  border: 0px solid goldenrod;
-  /* background-color: goldenrod; */
 }
 
 .summons, .supports {
@@ -310,4 +596,77 @@ export default {
   left: 10%;
 }
 
+.select-none {
+  border-radius: 5%;
+}
+
+.select-disabled {
+  border-radius: 5%;
+  box-shadow: 0 0 3px 3px rgb(192, 192, 192);
+  opacity: 20%;
+}
+
+.select-highlight {
+  border-radius: 5%;
+  box-shadow: 0 0 3px 3px rgb(255, 174, 0);
+}
+
+.select-selected {
+  box-shadow: 0 0 3px 3px rgb(255, 81, 0);
+  border-radius: 5%;
+}
+
+.select-dice-none {
+  border-radius: 50%;
+}
+
+.select-dice-selected {
+  border-radius: 50%;
+  box-shadow: 0 0 5px 5px rgb(255, 81, 0);
+}
+
+.select-dice-disabled {
+  border-radius: 5%;
+  /* box-shadow: 0 0 3px 3px rgb(192, 192, 192); */
+  opacity: 20%;
+}
+
+.dice-select-border {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  left: 10%;
+  top: 10%;
+  border-radius: 50%;
+}
+
+.status-details {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  top: 17.28%;
+  width: 100%;
+  height: 82.72%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: black;
+  z-index: 999;
+  font-size: 0.75vw;
+  font-weight: normal;
+  -webkit-text-stroke-width: 0;
+  -webkit-text-stroke-color: black;
+}
+
+.status-details > .p-div {
+  width: 150%;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
+}
 </style>

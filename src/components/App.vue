@@ -57,9 +57,35 @@
         </div>
       </div>
     </div>
-    <div class="player-tables-container" v-if="match != null">
-      <div class="player-tables" v-for="(playerTable, pid) in sortedPlayerTables" :key="pid" :style="'top: ' + (pid == 1 ? '50%' : '0')">
-        <PlayerTable :class="{'table-current-player': match.current_player == pid, 'table-current-request': currentRequestPlayerId == pid}" :playerTable="playerTable" :is_reverse="pid == 0"/>
+    <div class="match-container" v-if="match != null">
+      <div class="desc-container">
+        <div v-for="desc in descData">
+          <h4>{{ desc.name }}</h4>
+          <p>{{ desc.desc }}</p>
+        </div>
+      </div>
+      <div class="player-tables-container">
+        <div class="player-tables" v-for="(playerTable, pid) in sortedPlayerTables" :key="pid" :style="'top: ' + (pid == 1 ? '50%' : '0')">
+          <PlayerTable :class="{'table-current-player': match.current_player == pid, 'table-current-request': currentRequestPlayerId == pid}" :playerTable="playerTable" :is_reverse="pid == 0"/>
+        </div>
+      </div>
+      <div class="requests-button-container">
+        <div class="prev-buttons">
+          <div v-if="key != 'DeclareRoundEnd'" v-for="data, key in buttonRequests" :key="key" @click="selectRequest(data.idx)" >
+            <RequestButton :title="data.title" :cost="data.cost" :select_class="selectClass(data.title, data.idx)" />
+          </div>
+        </div>
+        <div class="last-buttons">
+          <div v-if="buttonRequests.DeclareRoundEnd" @click="selectRequest(buttonRequests.DeclareRoundEnd.idx)">
+            <RequestButton title="Declare Round End" :select_class="selectClass('Declare Round End', buttonRequests.DeclareRoundEnd.idx)" />
+          </div>
+          <div @click="confirmSelection">
+            <RequestButton title="Confirm" :select_class="selectClass('Confirm')" />
+          </div>
+          <div @click="cancelSelection">
+            <RequestButton title="Cancel" :select_class="selectClass('Cancel')" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -68,12 +94,14 @@
 <script>
 import PlayerTable from './PlayerTable.vue'
 import RequestDetails from './RequestDetails.vue';
+import RequestButton from './RequestButton.vue';
 
 export default {
   name: 'App',
   components: {
     PlayerTable,
-    RequestDetails
+    RequestDetails,
+    RequestButton
 },
   data() {
     return {
@@ -90,10 +118,12 @@ export default {
       interactionInput: '',
       interactionCommands: [[], []],
       commandHistory: [[], []],
-      multiCommandTimeout: 500,
+      multiCommandTimeout: 200,
     }
   },
   created() {
+    console.log(this);
+    console.log(this.$store.state);
     const logFilePath = 'logs.txt';
     const xhr = new XMLHttpRequest();
 
@@ -115,9 +145,12 @@ export default {
   methods: {
     updateMatch(data) {
       data = JSON.parse(JSON.stringify(data))
+      data.player_tables[0].player_idx = 0
+      data.player_tables[1].player_idx = 1
       let requests = data.requests
       for (let i = 0; i < requests.length; i++) {
         let request = requests[i]
+        request.idx = i
         if (request.name == 'UseCardRequest') {
           let player_idx = request.player_idx
           let card_idx = request.card_idx
@@ -137,6 +170,7 @@ export default {
         }
       }
       this.match = data
+      this.$store.commit('setMatch', data)
     },
     parseCharactorData() {
       // Parse the character data and update the match object
@@ -258,6 +292,46 @@ export default {
     },
     hideRequestDetails() {
       // this.selectedRequest = null;
+    },
+    selectRequest(request_idx) {
+      this.$store.commit('selectRequest', request_idx);
+    },
+    selectClass(title, idx) {
+      if (title == 'Confirm') {
+        // can use when command string is generated
+        if (this.$store.state.commandString != '') {
+          return 'select-highlight'
+        }
+        else {
+          return 'select-disabled'
+        }
+      }
+      else if (title == 'Cancel') {
+        // can use when request selected
+        if (this.$store.state.selectedRequest != null) {
+          return 'select-highlight'
+        }
+        else {
+          return 'select-disabled'
+        }
+      }
+      else {
+        // for others, whether idx matches selectedRequest
+        if (this.$store.state.selectedRequest == idx) {
+          return 'select-highlight'
+        }
+        else {
+          return 'select-none'
+        }
+      }
+    },
+    cancelSelection() {
+      this.$store.commit('selectRequest', null);
+    },
+    confirmSelection() {
+      console.log(this.$store.state.commandString)
+      this.interactionInput = this.$store.state.commandString;
+      this.sendInteraction();
     }
   },
   computed: {
@@ -272,6 +346,48 @@ export default {
       let match = this.match;
       if (!match || !match.requests || match.requests.length === 0) return null;
       return match.requests[0].player_idx;
+    },
+    buttonRequests() {
+      // requests that show in right button. current id same, and not card.
+      let res = this.match.requests.filter(request => request.player_idx === this.currentRequestPlayerId);
+      res = res.filter(request => request.name !== 'UseCardRequest');
+      let finalres = {};
+      for (let i = 0; i < res.length; i++) {
+        let request = res[i];
+        let name = request.name.replace('Request', '');
+        if (request.name == 'UseSkillRequest') {
+          let skill_idx = request.skill_idx;
+          finalres[name + skill_idx] = request;
+          finalres[name + skill_idx].title = this.match.player_tables[request.player_idx].charactors[request.charactor_idx].skills[skill_idx].name;
+        }
+        else {
+          finalres[name] = request;
+          request.title = {
+            SwitchCard: 'Switch Card',
+            RerollDice: 'Reroll Dice',
+            SwitchCharactor: 'Switch Charactor',
+            ChooseCharactor: 'Choose Charactor',
+            ElementalTuning: 'Elemental Tuning',
+            DeclareRoundEnd: 'Declare Round End',
+          }[name];
+        }
+      }
+      return finalres;
+    },
+    descData() {
+      let data = this.$store.state.selectedObject;
+      if (data === null)
+        return [{ name: '', desc: ''}]
+      if (data.name.indexOf('\n') != -1) {
+        let res = []
+        let names = data.name.split('\n')
+        let descs = data.desc.split('\n')
+        for (let i = 0; i < names.length; i++) {
+          res.push({ name: names[i], desc: descs[i] })
+        }
+        return res
+      }
+      return [data]
     }
     // match: {
     //   get() {
@@ -285,7 +401,18 @@ export default {
     //     this.$forceUpdate();
     //   }
     // }
-  }
+  },
+  // watch: {
+  //   buttonRequests(newVal, oldVal) {
+  //     let finalres = newVal;
+  //     console.log(123)
+  //     console.log(finalres, Object.keys(finalres).length);
+  //     if (Object.keys(finalres).length == 1) {
+  //       let finalres_name = Object.keys(finalres)[0];
+  //       this.$store.commit('selectRequest', finalres[finalres_name].idx)
+  //     }
+  //   }
+  // }
 }
 </script>
 
@@ -368,14 +495,28 @@ button:hover {
   background-color: #3e8e41;
 }
 
-.player-tables-container {
+.match-container {
   position: relative;
-  width: 80%;
+  width: 90%;
   height: 0;
   padding-bottom: 45%; /* 16:9 aspect ratio */
-  margin-left: 10%;
+  /* margin-left: 10%; */
   /* display: flex;
   flex-direction: column; */
+}
+
+.desc-container {
+  position: absolute;
+  width: 11.11111111111%;
+  padding: 1%;
+  height: 100%;
+}
+
+.player-tables-container {
+  position: absolute;
+  width: 88.888888888888%;
+  left: 11.111111111111%;
+  height: 100%;
 }
 
 .player-tables {
@@ -392,6 +533,45 @@ button:hover {
 
 .player-tables-container{
   border: 1px solid #3e8e41;
+}
+
+.requests-button-container {
+  position: absolute;
+  /* left: 88.888888888889%; */
+  left: 100%;
+  width: 5.555555555555%;
+  margin-left: 1%;
+  height: 100%;
+}
+
+.prev-buttons {
+  width: 100%;
+  height: 66.6666666667%;
+}
+
+.prev-buttons > * {
+  width: 100%;
+  height: 16.6666666667%;
+  padding: 5%;
+}
+
+.prev-buttons > * > *, .last-buttons > * > * {
+  width: 100%;
+  height: 100%;
+}
+
+.last-buttons {
+  width: 100%;
+  height: 33.3333333333%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.last-buttons > * {
+  width: 100%;
+  height: 33.3333333333%;
+  padding: 5%;
 }
 
 /* styles for the data navigation buttons */

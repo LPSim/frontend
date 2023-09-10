@@ -1,5 +1,5 @@
 <template>
-  <div class="cost-div" :style="'flex-direction: ' + direction" v-if="cost">
+  <div class="cost-div" :style="'flex-direction: ' + direction + '; justify-content: ' + justify + ';'" v-if="cost">
     <div v-for="(c, cid) in cost_computed" :key="cid" :style="costDivStyle()">
       <img
         :src="'static/images/COST_' + c.type + '.png'"
@@ -40,6 +40,10 @@ export default {
     direction: {
       type: String,
       default: 'column'
+    },
+    justify: {
+      type: String,
+      default: 'flex-start'
     }
   },
   methods: {

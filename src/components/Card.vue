@@ -1,6 +1,6 @@
 <template>
-  <div :class="{ 'card': true, 'active-card': card.is_active }" @click.stop="log_data">
-    <img :src="'static/images/' + card.name + '.png'" :alt="card.name" width="100%" height="100%" />
+  <div :class="{ 'card': true, 'active-card': card.is_active }" @click="log_data">
+    <img :src="'static/images/' + card.name.replace(':', '_') + '.png'" :alt="card.name" width="100%" height="100%" />
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="cost-outer-div">
@@ -29,7 +29,8 @@ export default {
   },
   methods: {
     log_data() {
-      console.log(JSON.parse(JSON.stringify(this.card)))
+      console.log('CARD', JSON.parse(JSON.stringify(this.card)))
+      this.$store.commit('setSelectedObject', this.card);
     }
   },
 }
@@ -44,7 +45,8 @@ export default {
 }
 
 .active-card {
-  border: 2px solid red;
+  box-shadow: 0 0 3px 3px rgb(255, 174, 0);
+  border-radius: 5%;
 }
 
 img {

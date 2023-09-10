@@ -1,6 +1,6 @@
 <template>
-  <div :class="{ 'summon': true, 'active-summon': summon.is_active }" @click.stop="log_data">
-    <img :src="'static/images/' + summon.name + '.png'" :alt="summon.name"/>
+  <div :class="'summon ' + selectClass" @click="log_data">
+    <img :src="'static/images/' + summon.name.replace(':', '_') + '.png'" :alt="summon.name"/>
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="summon-usage-div">
@@ -30,11 +30,16 @@ export default {
         return true
         // return 'name' in value && 'elementalType' in value && 'counter' in value && 'counterType' in value
       }
+    },
+    selectClass: {
+      type: String,
+      default: 'select-none'
     }
   },
   methods: {
     log_data() {
-      console.log(JSON.parse(JSON.stringify(this.summon)))
+      console.log('SUMMON', JSON.parse(JSON.stringify(this.summon)))
+      this.$store.commit('setSelectedObject', this.summon);
     }
   }
 }
@@ -43,9 +48,10 @@ export default {
 <style scoped>
 .summon {
   position: relative;
-  width: 100%;
-  height: 100%;
-  padding: 5%;
+  width: 90%;
+  height: 90%;
+  left: 5%;
+  top: 5%;
   /* top: 10.44%; */
   /* text-shadow: 2px 2px 0px  #fff, -2px -2px 0px  #fff, 2px -2px 0px  #fff, -2px 2px 0px  #fff; */
   color: black;
@@ -106,4 +112,23 @@ export default {
   align-items: center;
 }
 
+.select-none {
+  border-radius: 5%;
+}
+
+.select-disabled {
+  border-radius: 5%;
+  box-shadow: 0 0 3px 3px rgb(192, 192, 192);
+  opacity: 20%;
+}
+
+.select-highlight {
+  border-radius: 5%;
+  box-shadow: 0 0 3px 3px rgb(255, 174, 0);
+}
+
+.select-selected {
+  box-shadow: 0 0 3px 3px rgb(255, 81, 0);
+  border-radius: 5%;
+}
 </style>

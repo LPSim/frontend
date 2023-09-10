@@ -1,11 +1,11 @@
 <template>
-  <div @click.stop="log_data">
+  <div @click="log_data">
     <div class="elements">
       <div class="element" v-for="(element, eid) in charactor.element_application" :key="eid">
         <img :src="'static/images/ELEMENT_' + element + '.png'" width="100%" height="100%">
       </div>
     </div>
-    <div :class="charactor.is_alive ? 'charactor' : 'charactor-died'">
+    <div :class="(charactor.is_alive ? 'charactor ' : 'charactor-died ') + selectClass">
       <img class="charactor-image" :src="image_path">
       <!-- <div class="charactor-name">{{ charactor.name }}</div> -->
       <div class="charactor-hp">{{ charactor.hp }}</div>
@@ -13,23 +13,27 @@
         <span v-for="i in charactor.max_charge" :key="i"
           :style="{ color: i <= charactor.charge ? 'yellow' : 'grey' }">&#x25CF;</span>
       </div>
-      <div v-if="charactor.weapon" @click.stop="log_object(charactor.weapon)" @mouseover="showDetails(charactor.weapon)" @mouseout="hideDetails()" class="charactor-weapon">
+      <div v-if="charactor.weapon" @click="log_object(charactor.weapon)" @mouseover="showDetails(charactor.weapon)" @mouseout="hideDetails()" class="charactor-weapon">
         <img src="static/images/EQUIP_WEAPON.png" width="100%" height="100%" />
       </div>
-      <div v-if="charactor.artifact" @click.stop="log_object(charactor.artifact)" @mouseover="showDetails(charactor.artifact)" @mouseout="hideDetails()" class="charactor-artifact">
+      <div v-if="charactor.artifact" @click="log_object(charactor.artifact)" @mouseover="showDetails(charactor.artifact)" @mouseout="hideDetails()" class="charactor-artifact">
         <img src="static/images/EQUIP_ARTIFACT.png" width="100%" height="100%" />
       </div>
-      <div v-if="charactor.talent" @click.stop="log_object(charactor.talent)" @mouseover="showDetails(charactor.talent)" @mouseout="hideDetails()" class="charactor-talent">
+      <div v-if="charactor.talent" @click="log_object(charactor.talent)" @mouseover="showDetails(charactor.talent)" @mouseout="hideDetails()" class="charactor-talent">
         <img src="static/images/EQUIP_TALENT.png" width="100%" height="100%" />
       </div>
-      <div v-if="showDetailsFlag" class="charactor-details">
-        <p>{{  detailData }}</p>
-        <div class="detail-img-div">
-          <img :src="'static/images/' + detailData.name + '.png'" width="100%" height="100%" />
+      <div v-if="showDetailsFlag" class="charactor-details" :style="'width: ' + (detailData.img_name ? '2' : '1') + '00%;' + 'left: -' + (detailData.img_name ? '2' : '1') + '00%;'">
+        <div class="p-div">
+          <h4>{{ detailData.name }}</h4>
+          <p>{{ detailData.desc }}</p>
+          <!-- <p>Usage: {{ detailData.usage }}</p> -->
+        </div>
+        <div class="detail-img-div" v-if="detailData.img_name">
+          <img :src="'static/images/' + detailData.img_name + '.png'" width="100%" height="100%" />
         </div>
       </div>
       <div class="charactor-status-div">
-        <div v-for="(status, sid) in charactor.status" :key="sid" @click.stop="log_object(status)">
+        <div v-for="(status, sid) in charactor.status" :key="sid" @click="log_object(status)" @mouseover="showDetails(status, false)" @mouseout="hideDetails()" >
           <img :src="'static/images/CharactorStatus_' + status.name + '.png'" width="100%" height="100%" />
           <div class="usage-span-div">
             <span v-if="status.usage && status.usage > 0">{{ status.usage }}</span>
@@ -47,6 +51,10 @@ export default {
     charactor: {
       type: Object,
       required: true
+    },
+    selectClass: {
+      type: String,
+      default: 'select-none'
     }
   },
   data() {
@@ -57,13 +65,24 @@ export default {
   },
   methods: {
     log_data() {
-      console.log(JSON.parse(JSON.stringify(this.charactor)));
+      console.log('CHARACTOR', JSON.parse(JSON.stringify(this.charactor)));
+      let name = this.charactor.name;
+      let desc = this.charactor.desc;
+      for (let i = 0; i < this.charactor.skills.length; i++) {
+        name += '\n' + this.charactor.skills[i].name;
+        desc += '\n' + this.charactor.skills[i].desc;
+      }
+      this.$store.commit('setSelectedObject', {
+        name: name,
+        desc: desc
+      })
     },
     log_object(obj) {
-      console.log(JSON.parse(JSON.stringify(obj)));
+      console.log(obj.type, JSON.parse(JSON.stringify(obj)));
     },
-    showDetails(data) {
+    showDetails(data, img = true) {
       this.showDetailsFlag = true;
+      if (img) data.img_name = data.name;
       this.detailData = data;
     },
     hideDetails() {
@@ -224,7 +243,7 @@ export default {
   width: 50%;
 }
 
-.charactor-details > p {
+.charactor-details > .p-div {
   width: 150%;
   color: black;
   background-color: rgba(255, 255, 255, 0.5);
@@ -247,6 +266,26 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.select-none {
+  border-radius: 5%;
+}
+
+.select-disabled {
+  border-radius: 5%;
+  box-shadow: 0 0 3px 3px rgb(192, 192, 192);
+  opacity: 20%;
+}
+
+.select-highlight {
+  border-radius: 5%;
+  box-shadow: 0 0 3px 3px rgb(255, 174, 0);
+}
+
+.select-selected {
+  box-shadow: 0 0 3px 3px rgb(255, 81, 0);
+  border-radius: 5%;
 }
 
 </style>
