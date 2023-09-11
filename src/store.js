@@ -35,7 +35,6 @@ export default new Vuex.Store({
     },
     selectRequest(state, request_idx) {
       // when a request selected, update positions
-      console.log(request_idx)
       state.selectedRequest = request_idx;
       state.positions = [];
       state.selectedPositions = [];
@@ -189,7 +188,7 @@ export default new Vuex.Store({
       if (state.selectedRequest == null) return;
       if (position_idx == null || position_idx == -1) return;
       let select_idx = state.selectedPositions.indexOf(position_idx);
-      if (state.selectedRequest.name == 'SwitchCardRequest') {
+      if (state.requests[state.selectedRequest].name == 'SwitchCardRequest') {
         // only this request can select multiple positions
         if (select_idx == -1) {
           state.selectedPositions.push(position_idx)
