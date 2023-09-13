@@ -10,9 +10,9 @@
 
       <div class="charactors">
         <!-- <h3>Characters</h3> -->
-        <div :class="{'charactor-div': true, 'charactor-div-active': cid == playerTable.active_charactor_idx}" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id" @click="selectObject(charactor.position)">
+        <div :class="{'charactor-div': true, 'charactor-div-active': cid == playerTable.active_charactor_idx}" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id" @click="selectCharactor(charactor.position)">
           <div class="active-div" v-if="(playerTable.active_charactor_idx != cid) != is_reverse" @click.stop=""></div>
-          <Charactor class="charactor-inner" :charactor="charactor" :select-class="selectObjectClass(charactor.position)" />
+          <Charactor class="charactor-inner" :charactor="charactor" :select-class="selectCharactorClass(charactor.position)" />
           <div class="team-status-div" v-if="playerTable.active_charactor_idx == cid">
             <!-- <h3>Team Status</h3> -->
             <div v-for="(status, sid) in playerTable.team_status" :key="sid" @mouseover="showDetails(status)" @mouseout="hideDetails(status)" @click="log_status(sid)">
@@ -184,15 +184,7 @@ export default {
         }
         return;
       }
-      // otherwise, if it is in store positions, select it
-      let positions = this.$store.state.positions;
-      for (let pid = 0; pid < positions.length; pid ++ ) {
-        let position = positions[pid];
-        if (position.id == card.id) {
-          this.$store.commit('positionClick', pid);
-          return;
-        }
-      }
+      return this.selectObject(card.position)
     },
     selectObjectClass(object_position) {
       if (this.$store.state.selectedRequest == null) {
@@ -228,6 +220,46 @@ export default {
           return;
         }
       }
+    },
+    selectCharactorClass(object_position) {
+      let cidx = object_position.charactor_idx;
+      if (this.$store.state.selectedRequest == null) {
+        // not selected, if contain switch charactor, can select
+        let requests = this.$store.state.requests;
+        for (let rid = 0; rid < requests.length; rid++) {
+          let request = requests[rid];
+          if (request.name != 'SwitchCharactorRequest') continue;
+          if (request.target_charactor_idx == cidx && request.player_idx == this.playerTable.player_idx)
+            return 'select-highlight';
+        }
+        return 'select-none';
+      }
+      let request = this.$store.state.requests[this.$store.state.selectedRequest];
+      if (request.name == 'SwitchCharactorRequest') {
+        if (request.target_charactor_idx == cidx && request.player_idx == this.playerTable.player_idx)
+          return 'select-selected';
+        else
+          return 'select-disabled';
+      }
+      return this.selectObjectClass(object_position);
+    },
+    selectCharactor(object_position) {
+      let cidx = object_position.charactor_idx;
+      if (this.$store.state.selectedRequest == null) {
+        // not selected, if contains switch charactor, select
+        let requests = this.$store.state.requests;
+        for (let rid = 0; rid < requests.length; rid++) {
+          let request = requests[rid];
+          if (request.name != 'SwitchCharactorRequest') continue;
+          if (!(request.target_charactor_idx == cidx && request.player_idx == this.playerTable.player_idx))
+            continue;
+          this.$store.commit('selectRequest', rid);
+          return
+        }
+        // not found, return
+        return
+      }
+      return this.selectObject(object_position)
     },
     selectDiceClass(dice_idx) {
       if (this.$store.state.selectedRequest == null) {

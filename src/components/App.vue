@@ -71,12 +71,15 @@
       </div>
       <div class="requests-button-container">
         <div class="prev-buttons">
-          <div v-if="key != 'DeclareRoundEnd'" v-for="data, key in buttonRequests" :key="key" @click="selectRequest(data.idx)" >
+          <div v-if="key != 'DeclareRoundEnd' && key != 'SwitchCharactor'" v-for="data, key in buttonRequests" :key="key" @click="selectRequest(data.idx)" >
             <RequestButton :title="data.title" :cost="data.cost" :select_class="selectClass(data.title, data.idx)" />
           </div>
         </div>
         <div class="last-buttons">
-          <div v-if="buttonRequests.DeclareRoundEnd" @click="selectRequest(buttonRequests.DeclareRoundEnd.idx)">
+          <div v-if="buttonRequests.SwitchCharactor" @click="selectRequest(buttonRequests.SwitchCharactor.idx)">
+            <RequestButton :title="buttonRequests.SwitchCharactor.title" :cost="buttonRequests.SwitchCharactor.cost" :select_class="selectClass('Switch Charactor', buttonRequests.SwitchCharactor.idx)" />
+          </div>
+          <div v-if="!buttonRequests.SwitchCharactor && buttonRequests.DeclareRoundEnd" @click="selectRequest(buttonRequests.DeclareRoundEnd.idx)">
             <RequestButton title="Declare Round End" :select_class="selectClass('Declare Round End', buttonRequests.DeclareRoundEnd.idx)" />
           </div>
           <div @click="confirmSelection">
@@ -141,8 +144,25 @@ export default {
     xhr.open('GET', logFilePath, true);
     xhr.send();
     this.processing = true;
+
+    // listen to ESC and ENTER key
+    window.removeEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keydown', this.handleKeyDown);
   },
   methods: {
+    handleKeyDown(event) {
+      if (event.keyCode === 27) { // ESC key
+        if (event.target.tagName !== 'INPUT' && event.target.tagName !== 'TEXTAREA') {
+          // Perform the desired action for the ESC key
+          this.cancelSelection();
+        }
+      } else if (event.keyCode === 13 || event.keyCode == 32) { // ENTER or SPACE key
+        if (event.target.tagName !== 'INPUT' && event.target.tagName !== 'TEXTAREA') {
+          // Perform the desired action for the ENTER key
+          this.confirmSelection();
+        }
+      }
+    },
     updateMatch(data) {
       data = JSON.parse(JSON.stringify(data))
       data.player_tables[0].player_idx = 0
@@ -360,12 +380,25 @@ export default {
           finalres[name + skill_idx] = request;
           finalres[name + skill_idx].title = this.match.player_tables[request.player_idx].charactors[request.charactor_idx].skills[skill_idx].name;
         }
+        else if (request.name == 'SwitchCharactorRequest') {
+          let charactor_idx = request.target_charactor_idx;
+          let charactors = this.match.player_tables[request.player_idx].charactors;
+          let target = charactors[charactor_idx];
+          let name = 'SwitchCharactor';
+          request.title = 'Switch To ' + target.name;
+          if (this.$store.state.selectedRequest !== null) {
+            let selectedRequest = this.$store.state.requests[this.$store.state.selectedRequest];
+            console.log(selectedRequest, request)
+            if (selectedRequest.idx == request.idx) {
+              finalres[name] = request;
+            }
+          }
+        }
         else {
           finalres[name] = request;
           request.title = {
             SwitchCard: 'Switch Card',
             RerollDice: 'Reroll Dice',
-            SwitchCharactor: 'Switch Charactor',
             ChooseCharactor: 'Choose Charactor',
             ElementalTuning: 'Elemental Tuning',
             DeclareRoundEnd: 'Declare Round End',

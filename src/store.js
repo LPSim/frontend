@@ -68,9 +68,8 @@ export default new Vuex.Store({
       else if (request.name == 'SwitchCharactorRequest') {
         // charactors listed in candidate_charactor_idxs are valid positions
         let charactors = table.charactors
-        for (let i = 0; i < request.candidate_charactor_idxs.length; i++) {
-          state.positions.push(charactors[request.candidate_charactor_idxs[i]].position)
-        }
+        state.positions.push(charactors[request.target_charactor_idx].position)
+        state.selectedPositions.push(0);
       }
       else if (request.name == 'ElementalTuningRequest') {
         // all hand cards are valid positions
