@@ -268,7 +268,7 @@ export default {
         return response.json();
       })
       .then(data => {
-        console.log(data);
+        console.log('Received Data', data);
         this.commandHistory[this.commandPOSTData.player_idx].push(this.commandPOSTData.command);
         this.interactionInput = '';
         console.log(this.commandHistory);
@@ -349,7 +349,8 @@ export default {
       this.$store.commit('selectRequest', null);
     },
     confirmSelection() {
-      console.log(this.$store.state.commandString)
+      if (this.$store.state.commandString == '') return
+      console.log('Command: ' + this.$store.state.commandString)
       this.interactionInput = this.$store.state.commandString;
       this.sendInteraction();
     }
@@ -388,7 +389,6 @@ export default {
           request.title = 'Switch To ' + target.name;
           if (this.$store.state.selectedRequest !== null) {
             let selectedRequest = this.$store.state.requests[this.$store.state.selectedRequest];
-            console.log(selectedRequest, request)
             if (selectedRequest.idx == request.idx) {
               finalres[name] = request;
             }
@@ -543,6 +543,7 @@ button:hover {
   width: 11.11111111111%;
   padding: 1%;
   height: 100%;
+  font-size: 1vw;
 }
 
 .player-tables-container {

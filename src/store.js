@@ -284,7 +284,6 @@ export default new Vuex.Store({
         res += state.selectedDice.join(' ') + ' ';
       }
       else if (res == 'card ') {
-        console.log(res, request)
         res += request.card_idx + ' ';
         if (state.selectedPositions.length > 1) return;
         if (state.selectedPositions.length == 0 && state.positions.length > 0) return;
@@ -301,7 +300,7 @@ export default new Vuex.Store({
         res += state.selectedDice.join(' ') + ' ';
       }
       state.commandString = res;
-      console.log(res)
+      // console.log(res)
     }
   },
 });
