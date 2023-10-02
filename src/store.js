@@ -328,7 +328,10 @@ export default new Vuex.Store({
         for (let i = 0; i < name_arr.length; i++) {
           res_name.push(name_arr[i].charAt(0).toUpperCase() + name_arr[i].slice(1).toLowerCase());
         }
-        return 'static/images/status/' + res_name.join('_') + '.png';
+        res_name = res_name.join('_');
+        if (res_name.slice(0, 7) != 'Element')
+          res_name = 'Common_' + res_name;
+        return 'static/images/status/' + res_name + '.png';
       }
 
       if (type == 'support') res = nameMap['card/' + name]
