@@ -322,6 +322,13 @@ export default {
       // this.selectedRequest = null;
     },
     selectRequest(request_idx) {
+      let req = this.$store.state.requests[request_idx];
+      if (req.name == 'UseSkillRequest') {
+        let table = this.match.player_tables[req.player_idx];
+        let char = table.charactors[table.active_charactor_idx];
+        let skill = char.skills[req.skill_idx];
+        this.$store.commit('setSelectedObject', skill);
+      }
       this.$store.commit('selectRequest', request_idx);
     },
     selectClass(title, idx) {

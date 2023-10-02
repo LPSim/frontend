@@ -31,7 +31,7 @@
           <div class="team-status-div" v-if="playerTable.active_charactor_idx == cid">
             <!-- <h3>Team Status</h3> -->
             <div v-for="(status, sid) in playerTable.team_status" :key="sid" @mouseover="showDetails(status)" @mouseout="hideDetails(status)" @click="log_status(sid)">
-              <img :src="'static/images/TeamStatus_' + status.name + '.png'" width="100%" height="100%" />
+              <img :src="status_path(status)" width="100%" height="100%" />
               <div class="usage-span-div">
                 <span v-if="status.usage && status.usage > 0">{{ status.usage }}</span>
               </div>
@@ -56,20 +56,23 @@
       <div class="dice" @click="log_dice()">
         <div v-for="data in sortedColors" :class="disableDice()" :key="data.idx" @click="selectDice(data.idx)">
           <div :class="'dice-select-border ' + selectDiceClass(data.idx)"></div>
-          <img class="cost-img" :src="'static/images/COST_' + data.color + '.png'" :alt="data.color" />
-          <img class="element-img" v-if="data.color != 'OMNI'" :src="'static/images/ELEMENT_' + data.color + '.png'" :alt="data.color" />
+          <img class="cost-img" :src="image_path('dice', data.color)" :alt="data.color" />
+          <img class="element-img" v-if="data.color != 'OMNI'" :src="image_path('element', data.color)" :alt="data.color" />
         </div>
       </div>
     </div>
     <div class="player-info">
-      <div class="player-name">{{ playerTable.player_name }}</div>
+      <div class="player-name">
+        <img class="player-icon" :src="image_path('avatar', playerTable.player_name)">
+      </div>
 
       <div class="round-ended-and-arcane">
         <div class="round-ended">
-          <p>Round has {{ playerTable.has_round_ended ? '' : 'not ' }}ended</p>
+          <p v-if="playerTable.has_round_ended" style="font-weight: bolder; color:rgb(238, 105, 22)">Round has ended</p>
+          <p v-else>Round has not ended</p>
         </div>
         <div class="arcane-legend">
-          <img :src="'static/images/COST_ARCANE_' + (playerTable.arcane_legend ? 'FULL' : 'EMPTY') + '.png'" height="100%" />
+          <img :src="image_path('dice', 'ARCANE_' + (playerTable.arcane_legend ? 'FULL' : 'EMPTY'))" height="100%" />
         </div>
       </div>
       <div class="table-deck" v-if="show_table_deck">
@@ -421,6 +424,22 @@ export default {
         // not this player
         return 'select-dice-disabled';
       }
+    },
+    status_path(status) {
+      let name = status.name;
+      if (status.icon_type != 'OTHERS') {
+        name = status.icon_type;
+      }
+      return this.$store.getters.getImagePath({
+        type: 'team_status',
+        name: name
+      })
+    },
+    image_path(type, name) {
+      return this.$store.getters.getImagePath({
+        type: type,
+        name: name
+      })
     }
   },
   computed: {
@@ -510,8 +529,21 @@ export default {
 }
 
 .player-name, .round-ended-and-arcane, .table-deck {
-  width: 10%;
+  width: 9%;
   /* height: 100%; */
+}
+
+.player-name {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.player-name > img {
+  height: 60%;
 }
 
 .round-ended-and-arcane {
@@ -543,7 +575,7 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 70%;
+  width: 73%;
   height: 100%;
 }
 
@@ -689,7 +721,8 @@ export default {
 
 .dice > * > img {
   position: absolute;
-  width: 100%;
+  width: 93.75%;
+  left: 3.3%;
   height: 100%;
 }
 
@@ -700,24 +733,21 @@ export default {
   left: 10%;
 }
 
-.select-none {
-  border-radius: 5%;
+.select-none, .select-disabled, .select-highlight, .select-selected {
+  border-radius: 0.45vw;
 }
 
 .select-disabled {
-  border-radius: 5%;
   box-shadow: 0 0 3px 3px rgb(192, 192, 192);
   opacity: 20%;
 }
 
 .select-highlight {
-  border-radius: 5%;
   box-shadow: 0 0 3px 3px rgb(255, 174, 0);
 }
 
 .select-selected {
   box-shadow: 0 0 3px 3px rgb(255, 81, 0);
-  border-radius: 5%;
 }
 
 .select-dice-none {

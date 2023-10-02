@@ -1,17 +1,20 @@
 <template>
   <div :class="'summon ' + selectClass" @click="log_data">
-    <img :src="'static/images/' + summon.name.replace(':', '_') + '.png'" :alt="summon.name"/>
+    <img :src="image_path('summon', summon.name)" :alt="summon.name"/>
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="summon-usage-div">
       <div>
-        <span>{{ summon.usage }}</span>
+        <img :src="image_path('icon', summon.icon_type)" :alt="summon.damage_elemental_type" width="100%" height="100%" />
+        <div class="span-div">
+          <span>{{ summon.usage }}</span>
+        </div>
       </div>
     </div>
     <div class="damage-div">
       <div>
-        <img :src="'static/images/ELEMENT_' + summon.damage_elemental_type + '.png'" :alt="summon.damage_elemental_type" width="100%" height="100%" />
-        <div class="damage-span-div">
+        <img :src="image_path('element', summon.damage_elemental_type)" :alt="summon.damage_elemental_type" width="100%" height="100%" />
+        <div class="span-div">
           <span>{{ summon.damage }}</span>
         </div>
       </div>
@@ -40,6 +43,12 @@ export default {
     log_data() {
       console.log('SUMMON', JSON.parse(JSON.stringify(this.summon)))
       this.$store.commit('setSelectedObject', this.summon);
+    },
+    image_path(type, name) {
+      return this.$store.getters.getImagePath({
+        type: type,
+        name: name
+      })
     }
   }
 }
@@ -95,7 +104,7 @@ export default {
   position: absolute;
 }
 
-.damage-span-div, .summon-usage-div > div {
+.span-div, .summon-usage-div > div {
   position: absolute;
   font-size: 1.5vw;
   font-weight: bolder;

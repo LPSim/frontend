@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import nameMap from './consts';
 
 Vue.use(Vuex);
 
@@ -104,7 +105,6 @@ export default new Vuex.Store({
     updateCost(state, rule) {
       state.diceSelectionRule = rule;
       state.selectedDice = [];
-      // TODO update default selected
     },
     diceClick(state, data) {
       data = { idx: data };
@@ -308,6 +308,35 @@ export default new Vuex.Store({
       }
       state.commandString = res;
       // console.log(res)
+    },
+  },
+  getters: {
+    getImagePath: (state) => (payload) => {
+      let type = payload.type;
+      let name = payload.name;
+      let res = nameMap[type + '/' + name];
+
+      if (type == 'avatar') {
+        res = nameMap['charactor/' + name];
+        if (res == undefined) return;
+        return 'static/images/' + res.replace(/cardface\/Char_(Avatar|Enemy|Monster)_/, 'avatar/')
+      }
+
+      if ((type == 'charactor_status' || type == 'team_status') && res == undefined) {
+        let name_arr = name.toLowerCase().split('_');
+        let res_name = [];
+        for (let i = 0; i < name_arr.length; i++) {
+          res_name.push(name_arr[i].charAt(0).toUpperCase() + name_arr[i].slice(1).toLowerCase());
+        }
+        return 'static/images/status/' + res_name.join('_') + '.png';
+      }
+
+      if (type == 'support') res = nameMap['card/' + name]
+      if (type == 'summon' || type == 'support') {
+        res = res.replace('cardface', 'small_card')
+      }
+      if (res == undefined) return;
+      return 'static/images/' + res;
     }
   },
 });

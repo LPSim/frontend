@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'card': true, 'active-card': card.is_active }" @click="log_data">
-    <img :src="'static/images/' + card.name.replace(':', '_') + '.png'" :alt="card.name" width="100%" height="100%" />
+    <img :src="image_link" :alt="card.name" width="100%" height="100%" />
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="cost-outer-div">
@@ -15,6 +15,14 @@ export default {
   name: 'Card',
   components: {
     Cost
+  },
+  computed: {
+    image_link() {
+      return this.$store.getters.getImagePath({
+        type: 'card',
+        name: this.card.name
+      })
+    }
   },
   props: {
     card: {
@@ -57,7 +65,7 @@ img {
   /* position: absolute; */
   position: relative;
   flex-direction: column;
-  width: 38%;
+  width: 35.625%;
   height: 100%;
 }
 

@@ -2,11 +2,11 @@
   <div @click="log_data">
     <div class="elements">
       <div class="element" v-for="(element, eid) in charactor.element_application" :key="eid">
-        <img :src="'static/images/ELEMENT_' + element + '.png'" width="100%" height="100%">
+        <img :src="image_path('element', element)" width="100%" height="100%">
       </div>
     </div>
     <div :class="(charactor.is_alive ? 'charactor ' : 'charactor-died ') + selectClass">
-      <img class="charactor-image" :src="image_path">
+      <img class="charactor-image" :src="image_path('charactor', charactor.name)">
       <!-- <div class="charactor-name">{{ charactor.name }}</div> -->
       <div class="charactor-hp">{{ charactor.hp }}</div>
       <div class="charactor-charge">
@@ -14,13 +14,13 @@
           :style="{ color: i <= charactor.charge ? 'yellow' : 'grey' }">&#x25CF;</span>
       </div>
       <div v-if="charactor.weapon" @click="log_object(charactor.weapon)" @mouseover="showDetails(charactor.weapon)" @mouseout="hideDetails()" class="charactor-weapon">
-        <img src="static/images/EQUIP_WEAPON.png" width="100%" height="100%" />
+        <img src="static/images/status/Equip_Weapon.png" width="100%" height="100%" />
       </div>
       <div v-if="charactor.artifact" @click="log_object(charactor.artifact)" @mouseover="showDetails(charactor.artifact)" @mouseout="hideDetails()" class="charactor-artifact">
-        <img src="static/images/EQUIP_ARTIFACT.png" width="100%" height="100%" />
+        <img src="static/images/status/Equip_Relic.png" width="100%" height="100%" />
       </div>
       <div v-if="charactor.talent" @click="log_object(charactor.talent)" @mouseover="showDetails(charactor.talent)" @mouseout="hideDetails()" class="charactor-talent">
-        <img src="static/images/EQUIP_TALENT.png" width="100%" height="100%" />
+        <img src="static/images/status/Equip_Talent.png" width="100%" height="100%" />
       </div>
       <div v-if="showDetailsFlag" class="charactor-details" :style="'width: ' + (detailData.img_name ? '2' : '1') + '00%;' + 'left: -' + (detailData.img_name ? '2' : '1') + '00%;'">
         <div class="p-div">
@@ -29,12 +29,12 @@
           <!-- <p>Usage: {{ detailData.usage }}</p> -->
         </div>
         <div class="detail-img-div" v-if="detailData.img_name">
-          <img :src="'static/images/' + detailData.img_name + '.png'" width="100%" height="100%" />
+          <img :src="image_path('card', detailData.img_name)" width="100%" height="100%" />
         </div>
       </div>
       <div class="charactor-status-div">
         <div v-for="(status, sid) in charactor.status" :key="sid" @click="log_object(status)" @mouseover="showDetails(status, false)" @mouseout="hideDetails()" >
-          <img :src="'static/images/CharactorStatus_' + status.name + '.png'" width="100%" height="100%" />
+          <img :src="status_path(status)" width="100%" height="100%" />
           <div class="usage-span-div">
             <span v-if="status.usage && status.usage > 0">{{ status.usage }}</span>
           </div>
@@ -89,16 +89,24 @@ export default {
     },
     hideDetails() {
       this.showDetailsFlag = false;
+    },
+    status_path(status) {
+      let name = status.name;
+      if (status.icon_type != 'OTHERS') {
+        name = status.icon_type;
+      }
+      return this.$store.getters.getImagePath({
+        type: 'charactor_status',
+        name: name
+      })
+    },
+    image_path(type, name) {
+      return this.$store.getters.getImagePath({
+        type: type,
+        name: name
+      })
     }
   },
-  computed: {
-    image_path() {
-      let name = this.charactor.name.replace('MobMage', 'Mob Mage');
-      name = name.replace('Mob', ' Mob');
-      name = name.replace(':', '_');
-      return 'static/images/' + name + '.png';
-    }
-  }
 }
 </script>
 
@@ -181,21 +189,21 @@ export default {
   /* Add styles for the charactor weapon div */
   top: 20%;
   height: 20%;
-  width: 34%;
+  width: 36.2%;
 }
 
 .charactor-artifact {
   /* Add styles for the charactor artifact div */
   top: 40%;
   height: 20%;
-  width: 34%;
+  width: 36.2%;
 }
 
 .charactor-talent {
   /* Add styles for the charactor talent div */
   top: 60%;
   height: 20%;
-  width: 34%;
+  width: 36.2%;
 }
 
 .charactor-status-div {
@@ -271,24 +279,21 @@ export default {
   align-items: center;
 }
 
-.select-none {
-  border-radius: 5%;
+.select-none, .select-disabled, .select-highlight, .select-selected {
+  border-radius: 0.65vw;
 }
 
 .select-disabled {
-  border-radius: 5%;
   box-shadow: 0 0 3px 3px rgb(192, 192, 192);
   opacity: 20%;
 }
 
 .select-highlight {
-  border-radius: 5%;
   box-shadow: 0 0 3px 3px rgb(255, 174, 0);
 }
 
 .select-selected {
   box-shadow: 0 0 3px 3px rgb(255, 81, 0);
-  border-radius: 5%;
 }
 
 </style>

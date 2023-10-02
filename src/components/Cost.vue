@@ -2,7 +2,7 @@
   <div class="cost-div" :style="'flex-direction: ' + direction + '; justify-content: ' + justify + ';'" v-if="cost">
     <div v-for="(c, cid) in cost_computed" :key="cid" :style="costDivStyle()">
       <img
-        :src="'static/images/COST_' + c.type + '.png'"
+        :src="image_path('dice', c.type)"
         :alt="c.type"
         width="100%"
         height="100%"
@@ -59,6 +59,12 @@ export default {
       if (this.direction == 'column') style.width = '100%'
       else style.height = '100%'
       return style
+    },
+    image_path(type, name) {
+      return this.$store.getters.getImagePath({
+        type: type,
+        name: name
+      })
     }
   },
   computed: {

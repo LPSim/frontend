@@ -9,3 +9,4 @@ logs*
 
 collector/*/*/*.png
 static/images
+collector/images
