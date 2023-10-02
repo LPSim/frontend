@@ -94,6 +94,7 @@ export default new Vuex.Store({
         // get target positions from request directly
         state.positions = request.targets
       }
+      if (state.positions.length == 1) state.selectedPositions = [0];
       if (request.cost != undefined) {
         // has cost, update dice selection
         this.commit('updateCost',  { mode: 'cost', player: player_idx, cost: request.cost })
@@ -184,6 +185,7 @@ export default new Vuex.Store({
       this.commit('updateCommandString');
     },
     positionClick(state, position_idx) {
+      console.log(position_idx, state.selectedPositions)
       if (state.selectedRequest == null) return;
       if (position_idx == null || position_idx == -1) return;
       let select_idx = state.selectedPositions.indexOf(position_idx);
@@ -200,6 +202,7 @@ export default new Vuex.Store({
         // other request can only select one position
         state.selectedPositions = [position_idx]
       }
+      console.log(position_idx, state.selectedPositions)
       this.commit('updateCommandString');
     },
     updateCommandString(state) {
@@ -289,7 +292,11 @@ export default new Vuex.Store({
         if (state.selectedPositions.length == 0 && state.positions.length > 0) return;
         if (state.selectedPositions.length == 1) {
           let position = state.positions[state.selectedPositions[0]];
-          for (let i = 0; i < request.targets.length; i++) {
+          if (position.positions) {
+            // multiple position selection
+            res += state.selectedPositions[0] + ' ';
+          }
+          else for (let i = 0; i < request.targets.length; i++) {
             if (request.targets[i].id == position.id) {
               res += i + ' ';
               break;

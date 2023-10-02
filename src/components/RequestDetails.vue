@@ -1,5 +1,5 @@
 <template>
-  <div class="request-details-root">
+  <div class="request-details-root" @click="log_data">
     <div v-if="selectedRequest != null">
       <span>Player {{ selectedRequest.player_idx }}: </span>
       <span>{{ selectedRequest.name.replace("Request", "") }}</span>
@@ -24,6 +24,11 @@ export default {
       default: null,
     },
   },
+  methods: {
+    log_data () {
+      console.log('REQUEST', JSON.parse(JSON.stringify(this.selectedRequest)))
+    }
+  }
 };
 </script>
 

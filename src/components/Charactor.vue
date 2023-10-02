@@ -67,6 +67,7 @@ export default {
     log_data() {
       console.log('CHARACTOR', JSON.parse(JSON.stringify(this.charactor)));
       let name = this.charactor.name;
+      let version = this.charactor.version;
       let desc = this.charactor.desc;
       for (let i = 0; i < this.charactor.skills.length; i++) {
         name += '\n' + this.charactor.skills[i].name;
@@ -74,6 +75,7 @@ export default {
       }
       this.$store.commit('setSelectedObject', {
         name: name,
+        version: version,
         desc: desc
       })
     },
@@ -93,6 +95,7 @@ export default {
     image_path() {
       let name = this.charactor.name.replace('MobMage', 'Mob Mage');
       name = name.replace('Mob', ' Mob');
+      name = name.replace(':', '_');
       return 'static/images/' + name + '.png';
     }
   }

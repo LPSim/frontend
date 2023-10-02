@@ -47,7 +47,7 @@
         </div>
         <div class="requests-div">
           <ul v-if="match != null">
-            <li v-for="(request, rid) in match.requests.filter(request => request.player_idx === currentRequestPlayerId)" :key="rid" @mouseover="showRequestDetails(request)" @mouseout="hideRequestDetails()">
+            <li v-for="(request, rid) in match.requests.filter(request => request.player_idx === currentRequestPlayerId)" :key="rid" @mouseover="showRequestDetails(request)" @mouseout="hideRequestDetails()" @click="logRequest(request)">
               {{ request.name.replace('Request', '') }}
             </li>
           </ul>
@@ -61,6 +61,7 @@
       <div class="desc-container">
         <div v-for="desc in descData">
           <h4>{{ desc.name }}</h4>
+          <p v-if="desc.version">Version: {{ desc.version }}</p>
           <p>{{ desc.desc }}</p>
         </div>
       </div>
@@ -150,14 +151,21 @@ export default {
     window.addEventListener('keydown', this.handleKeyDown);
   },
   methods: {
+    logRequest(request) {
+      console.log('REQUEST', JSON.parse(JSON.stringify(request)));
+    },
     handleKeyDown(event) {
+      let prevent_target = (
+        (event.target.tagName == 'INPUT' && event.target.type !== 'radio')
+        || event.target.tagName == 'TEXTAREA'
+      );
       if (event.keyCode === 27) { // ESC key
-        if (event.target.tagName !== 'INPUT' && event.target.tagName !== 'TEXTAREA') {
+        if (!prevent_target) {
           // Perform the desired action for the ESC key
           this.cancelSelection();
         }
       } else if (event.keyCode === 13 || event.keyCode == 32) { // ENTER or SPACE key
-        if (event.target.tagName !== 'INPUT' && event.target.tagName !== 'TEXTAREA') {
+        if (!prevent_target) {
           // Perform the desired action for the ENTER key
           this.confirmSelection();
         }
@@ -410,7 +418,7 @@ export default {
     descData() {
       let data = this.$store.state.selectedObject;
       if (data === null)
-        return [{ name: '', desc: ''}]
+        return [{ name: '', version: '', desc: ''}]
       if (data.name.indexOf('\n') != -1) {
         let res = []
         let names = data.name.split('\n')
@@ -418,6 +426,7 @@ export default {
         for (let i = 0; i < names.length; i++) {
           res.push({ name: names[i], desc: descs[i] })
         }
+        res[0].version = data.version
         return res
       }
       return [data]
@@ -544,6 +553,7 @@ button:hover {
   padding: 1%;
   height: 100%;
   font-size: 1vw;
+  overflow-y: scroll;
 }
 
 .player-tables-container {

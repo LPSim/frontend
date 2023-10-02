@@ -8,7 +8,22 @@
         </div>
       </div>
 
-      <div class="charactors">
+      <div class="multi-position" v-if="multiplePositionList">
+        <h4>This action has multiple positions, please select below.</h4>
+        <p>Charactor ID start from 0.</p>
+        <div class="multi-position-choices">
+          <label clsss="multi-position-one-choice" v-for="(plist, pidx) in multiplePositionList" :key="pidx">
+            <input type="radio" :name="'multi-position-choice'" :value="pidx" @click="selectMultiplePosition(pidx)" />
+            <br>
+            <span class="multi-position-one-choice-title">From:</span><br>
+            {{ plist[0].charactor_name }}:{{ plist[0].charactor_idx }}<br>
+            <span class="multi-position-one-choice-title">To:</span><br>
+            {{ plist[1].charactor_name }}:{{ plist[1].charactor_idx }}<br>
+          </label>
+        </div>
+      </div>
+
+      <div v-else class="charactors">
         <!-- <h3>Characters</h3> -->
         <div :class="{'charactor-div': true, 'charactor-div-active': cid == playerTable.active_charactor_idx}" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id" @click="selectCharactor(charactor.position)">
           <div class="active-div" v-if="(playerTable.active_charactor_idx != cid) != is_reverse" @click.stop=""></div>
@@ -221,6 +236,13 @@ export default {
         }
       }
     },
+    selectMultiplePosition(position_idx) {
+      if (this.$store.state.selectedRequest == null) {
+        // request not selected
+        return;
+      }
+      this.$store.commit('positionClick', position_idx);
+    },
     selectCharactorClass(object_position) {
       let cidx = object_position.charactor_idx;
       if (this.$store.state.selectedRequest == null) {
@@ -328,13 +350,13 @@ export default {
               now_selected.push(sorted[did].idx);
             }
           }
-          console.log(color, now_selected, now_omni_count)
+          // console.log(color, now_selected, now_omni_count)
           if (now_selected.length < cost.same_dice_number) continue;
           let now_same_count = now_selected.length - now_omni_count;
           // remove overnumber omnis
           if (color != 'OMNI')
             now_omni_count = Math.max(0, cost.same_dice_number - now_same_count);
-          console.log(color, now_selected, now_omni_count,now_same_count, omni_count, same_count)
+          // console.log(color, now_selected, now_omni_count,now_same_count, omni_count, same_count)
           // if use more omni, worse, discard
           if (now_omni_count > omni_count) continue;
           let now_is_main = main_color.has(color);
@@ -430,9 +452,34 @@ export default {
       }
       return result
     },
+    multiplePositionList() {
+      // if target is multiple position, return list; otherwise, return null
+      if (this.$store.state.selectedRequest == null) return null;
+      if (this.$store.state.requests[this.$store.state.selectedRequest].player_idx != this.playerTable.player_idx) return null;
+      if (this.$store.state.positions.length == 0) return null;
+      let positions = this.$store.state.positions;
+      if (positions[0].positions) {
+        // is multiple position instance
+        let ret = []
+        for (let pid = 0; pid < positions.length; pid++) {
+          let position = positions[pid];
+          let oneret = []
+          for (let ppid = 0; ppid < position.positions.length; ppid++) {
+            let pposition = position.positions[ppid];
+            oneret.push({
+              charactor_idx: pposition.charactor_idx,
+              charactor_name: this.playerTable.charactors[pposition.charactor_idx].name,
+            });
+          }
+          ret.push(oneret);
+        }
+        return ret;
+      }
+      return null;
+    },
     watchSelectedRequest() {
       return this.$store.state.selectedRequest;
-    }
+    },
   },
   watch: {
     watchSelectedRequest(newVal, oldVal) {
@@ -518,6 +565,31 @@ export default {
   flex-direction: row;
   width: 17.5%;
   height: 100%;
+}
+
+.multi-position {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+  font-size: 1vw;
+}
+
+.multi-position > * {
+  margin: 0;
+}
+
+.multi-position-choices {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.multi-position-one-choice-title {
+  font-weight: bold;
 }
 
 .charactors {
