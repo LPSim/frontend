@@ -7,5 +7,5 @@ dist
 
 logs*
 
-collector/*/*.png
+collector/*/*/*.png
 static/images
