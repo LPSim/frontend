@@ -180,23 +180,21 @@ export default {
     console.log('STORE', this.$store.state);
 
     // auto load logs.txt. when debug, it avoids manually loading data.
-    const logFilePath = 'logs.txt';
-    const xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
-        this.processing = false;
-        this.matchDataInput = '';
-        if (xhr.status === 200) {
-          this.matchDataInput = xhr.responseText;
-          this.parseCharactorData();
-        }
-      }
-    };
-
-    xhr.open('GET', logFilePath, true);
-    xhr.send();
-    this.processing = true;
+    // const logFilePath = 'logs.txt';
+    // const xhr = new XMLHttpRequest();
+    // xhr.onreadystatechange = () => {
+    //   if (xhr.readyState === 4) {
+    //     this.processing = false;
+    //     this.matchDataInput = '';
+    //     if (xhr.status === 200) {
+    //       this.matchDataInput = xhr.responseText;
+    //       this.parseCharactorData();
+    //     }
+    //   }
+    // };
+    // xhr.open('GET', logFilePath, true);
+    // xhr.send();
+    // this.processing = true;
 
     // listen to ESC and ENTER key
     window.removeEventListener('keydown', this.handleKeyDown);
