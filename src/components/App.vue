@@ -1,41 +1,7 @@
 <template>
   <div id="app">
-    <div class="header-div-container">
-      <div class="header-div">
-        <div class="text-div">
-          <textarea id="DataInput" v-model="matchDataInput" :disabled="processing"></textarea>
-        </div>
-        <div class="buttons-div">
-          <div class="parse-button-container">
-            <button @click="parseCharactorData">Parse</button>
-          </div>
-          <div class="player-table-order">
-            <label>
-              <input type="radio" v-model="playerTableOrder" value="0"> Player Table 0 First
-            </label>
-            <label>
-              <input type="radio" v-model="playerTableOrder" value="1"> Player Table 1 First
-            </label>
-          </div>
-          <div class="data-navigation">
-            <div class="step-count">
-              <label for="step-count-input">Step count:</label>
-              <input id="step-count-input" type="number" v-model="stepCount" min="1" max="1000">
-            </div>
-            <button @click="showPrevData" :disabled="currentDataIndex === 0">Prev</button>
-            <button @click="showNextData" :disabled="currentDataIndex === matchData.length - 1">Next</button>
-            <div class="current-step">
-              <label for="current-step-input">Current step:</label>
-              <input id="current-step-input" type="number" v-model="currentDataIndex" @keydown.enter="jumpToData" min="0" :max="matchData.length - 1">
-            </div>
-            <button @click="jumpToData">Jump</button>
-          </div>
-          <div v-if="match != null">
-            <div class="base-info-div">
-              Round number: {{ match.round_number }}. Current status: {{ match.match_state }}
-            </div>
-          </div>
-        </div>
+    <div class="header-div-container" :style="showDebug ? 'padding-bottom: 16rem' : ''">
+      <div class="header-div" v-if="showDebug">
         <div class="interaction-div">
           <div style="height: 60%; padding: 5%;">
             <textarea v-model="interactionInput" @keydown.enter.prevent="sendInteraction" :disabled="processing"></textarea>
@@ -55,6 +21,88 @@
         <div class="request-details">
           <RequestDetails :selectedRequest="selectedRequest" />
         </div>
+        <div class="text-div">
+          <h4>Upload replay file:</h4>
+          <input type="file" ref="fileInput" @change="handleFileSelect" :disabled="processing">
+        </div>
+      </div>
+      <div class="header-div" :style="showDebug ? 'top: 8rem;' : ''">
+        <div class="radios-div">
+          <p>Display Mode:</p>
+          <div class="judge-mode-div">
+            <label>
+              <input type="radio" v-model="displayInJudgeMode" :value="true" @click="commitMatchToStore(true, null)">
+              Judge Mode (show information of all players)
+            </label>
+            <label>
+              <input type="radio" v-model="displayInJudgeMode" :value="false" @click="commitMatchToStore(false, null)">
+              Play Mode (show information only current player)
+            </label>
+          </div>
+          <p>View point:</p>
+          <div class="player-table-order" v-if="match != null">
+            <label v-for="table, tnum in match.player_tables">
+              <input type="radio" v-model="playerTableOrder" :value="tnum" @click="commitMatchToStore(null, tnum)">
+              Player {{ tnum }}: {{ table.player_name }}
+            </label>
+          </div>
+        </div>
+        <div class="main-info-div">
+          <div v-if="match == null && playerTableOrder == -1">
+            <div class="round-div" style="font-weight: bold; font-size: 2rem;">
+              No Match Data. <br>Refresh or load replay in debug.
+            </div>
+          </div>
+          <div v-if="match != null && playerTableOrder == -1">
+            <div class="round-div" style="font-weight: bold; font-size: 2rem;">
+              Please select view point.
+            </div>
+          </div>
+          <div v-if="match != null && playerTableOrder != -1">
+            <div class="round-div" style="font-weight: bold; font-size: 2rem;">
+              Round {{ match.round_number }}
+            </div>
+          </div>
+          <div v-if="match != null && playerTableOrder != -1">
+            <div class="match-state-div">
+              Current Match State: {{ match.state }}
+            </div>
+          </div>
+          <div v-if="match != null && playerTableOrder != -1">
+            <div class="your-turn-div">
+              Current is {{ isYourTurn ? '' : 'Not ' }} Your Turn
+            </div>
+          </div>
+        </div>
+        <div class="buttons-div">
+          <div class="data-navigation">
+            <div>
+              <div class="step-count">
+                <label for="step-count-input">Step count:</label>
+                <input id="step-count-input" type="number" v-model="stepCount" min="1" max="1000">
+              </div>
+              <button @click="showPrevData" :disabled="currentDataIndex === 0">Prev</button>
+              <button @click="showNextData" :disabled="currentDataIndex === matchData.length - 1">Next</button>
+            </div>
+            <div>
+              <div class="current-step">
+                <label for="current-step-input">Current step:</label>
+                <input id="current-step-input" type="number" v-model="currentDataIndex" @keydown.enter="jumpToData" min="0" :max="matchData.length - 1">
+              </div>
+              <button @click="jumpToData">Jump</button>
+            </div>
+          </div>
+        </div>
+        <div class="debug-refresh-freq-div">
+          <div class="freq-div">
+                <label for="refresh-frequency">Refresh frequency:</label>
+                <input id="refresh-frequency" type="number" v-model="multiCommandTimeout" min="1">
+          </div>
+          <div class="refresh-debug-div">
+            <button @click="refreshData" :disabled="processing">Refresh</button>
+            <button @click="showDebug = !showDebug">Toggle Debug</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="match-container" v-if="match != null">
@@ -67,7 +115,7 @@
       </div>
       <div class="player-tables-container">
         <div class="player-tables" v-for="(playerTable, pid) in sortedPlayerTables" :key="pid" :style="'top: ' + (pid == 1 ? '50%' : '0')">
-          <PlayerTable :class="{'table-current-player': match.current_player == pid, 'table-current-request': currentRequestPlayerId == pid}" :playerTable="playerTable" :is_reverse="pid == 0"/>
+          <PlayerTable :class="{'table-current-player': match.current_player == playerTable.player_idx, 'table-current-request': currentRequestPlayerId == playerTable.player_idx}" :playerTable="playerTable" :is_reverse="pid == 0"/>
         </div>
       </div>
       <div class="requests-button-container">
@@ -113,8 +161,8 @@ export default {
       matchDataInput: 'Loading...',
       matchData: [],
       currentDataIndex: 0,
-      match: null,
-      playerTableOrder: '0',
+      fullMatch: null,
+      playerTableOrder: -1,
       stepCount: 1,
       processing: false,
       selectedRequest: null,
@@ -123,11 +171,15 @@ export default {
       interactionCommands: [[], []],
       commandHistory: [[], []],
       multiCommandTimeout: 200,
+      showDebug: false,
+      displayInJudgeMode: false,
     }
   },
   created() {
-    console.log(this);
-    console.log(this.$store.state);
+    console.log('APP', this);
+    console.log('STORE', this.$store.state);
+
+    // auto load logs.txt. when debug, it avoids manually loading data.
     const logFilePath = 'logs.txt';
     const xhr = new XMLHttpRequest();
 
@@ -151,6 +203,15 @@ export default {
     window.addEventListener('keydown', this.handleKeyDown);
   },
   methods: {
+    handleFileSelect() {
+      const file = this.$refs.fileInput.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.matchDataInput = reader.result;
+        this.parseCharactorData();
+      };
+      reader.readAsText(file);
+    },
     logRequest(request) {
       console.log('REQUEST', JSON.parse(JSON.stringify(request)));
     },
@@ -197,8 +258,17 @@ export default {
           // console.log(request.name)
         }
       }
-      this.match = data
-      this.$store.commit('setMatch', data)
+      this.fullMatch = data
+      this.commitMatchToStore()
+    },
+    commitMatchToStore(mode = null, player_idx = null) {
+      if (player_idx == null) player_idx = this.playerTableOrder;
+      if (mode == null) mode = this.displayInJudgeMode;
+      if (mode) player_idx = null;
+      this.$store.commit('setMatch', {
+        match: this.fullMatch,
+        player_idx: player_idx,
+      })
     },
     parseCharactorData() {
       // Parse the character data and update the match object
@@ -371,8 +441,27 @@ export default {
     }
   },
   computed: {
+    match () {
+      if (!this.fullMatch || this.displayInJudgeMode || this.playerTableOrder == -1) return this.fullMatch;
+      let match = JSON.parse(JSON.stringify(this.fullMatch));
+      let opponent_table = match.player_tables[1 - this.playerTableOrder];
+      for (let i = 0; i < opponent_table.hands.length; i++) {
+        opponent_table.hands[i].name = 'Unknown';
+        opponent_table.hands[i].desc = 'Unknown';
+        opponent_table.hands[i].version = 'Unknown';
+      }
+      for (let i = 0; i < opponent_table.table_deck.length; i++) {
+        opponent_table.hands[i].name = 'Unknown';
+        opponent_table.hands[i].desc = 'Unknown';
+        opponent_table.hands[i].version = 'Unknown';
+      }
+      for (let i = 0; i < opponent_table.dice.colors.length; i ++ )
+        opponent_table.dice.colors[i] = 'UNKNOWN';
+      return match;
+    },
     sortedPlayerTables() {
-      if (this.playerTableOrder === '0') {
+      if (this.playerTableOrder == -1) return []
+      if (this.playerTableOrder == 1) {
         return this.match.player_tables
       } else {
         return [this.match.player_tables[1], this.match.player_tables[0]]
@@ -381,6 +470,7 @@ export default {
     currentRequestPlayerId() {
       let match = this.match;
       if (!match || !match.requests || match.requests.length === 0) return null;
+      if (!this.displayInJudgeMode) return this.playerTableOrder;
       return match.requests[0].player_idx;
     },
     buttonRequests() {
@@ -437,7 +527,10 @@ export default {
         return res
       }
       return [data]
-    }
+    },
+    isYourTurn() {
+      return this.match.current_player == this.playerTableOrder
+    },
     // match: {
     //   get() {
     //     console.log('get', this._match);
@@ -494,7 +587,7 @@ div {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 8rem;
 }
 
 label {
@@ -504,7 +597,7 @@ label {
 
 .text-div {
   display: block;
-  width: 10%;
+  width: 20%;
   height: 100%;
   padding: 1rem;
   /* margin-bottom: 1rem; */
@@ -524,6 +617,10 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.buttons-div {
+  width: 17%;
 }
 
 .parse-button-container {
@@ -626,9 +723,20 @@ button:hover {
 }
 
 /* styles for the data navigation buttons */
-.data-navigation, .interaction-button-group {
+.data-navigation > div, .interaction-button-group {
   display: flex;
   justify-content: center;
+}
+
+.data-navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.data-navigation label {
+  margin: 0.25rem 0rem;
 }
 
 .data-navigation button, .interaction-button-group button {
@@ -644,10 +752,6 @@ button:hover {
 
 .data-navigation button:hover {
   background-color: #3e8e41;
-}
-
-.base-info-div {
-  text-align: center;
 }
 
 .requests-div {
@@ -686,16 +790,18 @@ button:hover {
 .player-table-order {
   display: flex;
   justify-content: center;
+  /* flex-direction: column; */
+  align-items: center;
 }
 
-.player-table-order label {
+.player-table-order > label {
   display: flex;
   align-items: center;
-  margin: 0 1rem;
+  margin: 0.25rem 0rem;
 }
 
 .player-table-order input[type="radio"] {
-  margin-right: 0.5rem;
+  margin: 0.5rem;
 }
 
 .player-tables > * {
@@ -708,6 +814,52 @@ button:hover {
 
 .table-current-request {
   background-color: aliceblue;
+}
+
+.radios-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 30%;
+}
+
+.radios-div > p {
+  margin: 0.5rem 0 0 0;
+  font-weight: bold;
+}
+
+.radios-div label {
+  margin-bottom: 0.25rem;
+}
+
+.main-info-div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 40%;
+}
+
+.debug-refresh-freq-div {
+  width: 13%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.debug-refresh-freq-div > div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.freq-div > * {
+  width: 50%;
+}
+
+.refresh-debug-div > * {
+  margin: 0.5rem;
 }
 
 </style>

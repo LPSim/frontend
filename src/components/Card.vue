@@ -3,7 +3,7 @@
     <img :src="image_link" :alt="card.name" width="100%" height="100%" />
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
-    <div class="cost-outer-div">
+    <div class="cost-outer-div" v-if="card.name != 'Unknown'">
       <Cost :cost="card.cost" :max_number="4.5" :offset_left="10" :offset_top="10" direction="column"/>
     </div>
   </div>

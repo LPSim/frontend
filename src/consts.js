@@ -449,6 +449,8 @@ let nameMap = {
   "element/DENDRO": "status/Common_Element_Grass.png",
   "element/PHYSICAL": "status/Common_Element_Physics.png",
   "element/HEAL": "status/Common_Element_Heal.png",
+  "element/OMNI": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+  "element/UNKNOWN": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
   "dice/PYRO": "dice/Fire.png",
   "dice/HYDRO": "dice/Water.png",
   "dice/CRYO": "dice/Frost.png",
@@ -462,10 +464,12 @@ let nameMap = {
   "dice/UNALIGNED": "dice/Diff.png",
   "dice/ARCANE_FULL": "dice/Legend.png",
   "dice/ARCANE_EMPTY": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+  "dice/UNKNOWN": "dice/Invalid.png",
   "icon/BARRIER": "mark/Barrier.png",
   "icon/SHIELD": "mark/Shield.png",
   "icon/COUNTER": "mark/Counter.png",
   "icon/TIMESTATE": "mark/TimeState.png",
+  "card/Unknown": "cardface/Championship_02.png",
 }
 
 export default nameMap;

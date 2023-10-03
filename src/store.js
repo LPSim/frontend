@@ -21,16 +21,20 @@ export default new Vuex.Store({
     setSelectedObject(state, obj) {
       state.selectedObject = obj;
     },
-    setMatch(state, match) {
+    setMatch(state, data) {
       // when new match set, clear selected and update requests
+      // if player_idx is set, requests with this player_idx will be filtered.
+      // otherwise, filter with player idx with request 0.
+      let match = data.match
+      let player_idx = data.player_idx
+      if (player_idx == null) player_idx = match.requests[0].player_idx
       state.match = match;
-      state.requests = match.requests;
+      state.requests = match.requests.filter((r) => {
+        return r.player_idx == player_idx
+      })
       let request = null;
-      if (state.requests.length > 0) {
-        let filtered = state.requests.filter((r) => {
-          return r.player_idx == state.requests[0].player_idx
-        })
-        if (filtered.length == 1) request = 0;
+      if (state.requests.length == 1) {
+        request = 0;
       }
       this.commit('selectRequest', request);
     },
@@ -185,7 +189,7 @@ export default new Vuex.Store({
       this.commit('updateCommandString');
     },
     positionClick(state, position_idx) {
-      console.log(position_idx, state.selectedPositions)
+      // console.log(position_idx, state.selectedPositions)
       if (state.selectedRequest == null) return;
       if (position_idx == null || position_idx == -1) return;
       let select_idx = state.selectedPositions.indexOf(position_idx);
@@ -202,7 +206,7 @@ export default new Vuex.Store({
         // other request can only select one position
         state.selectedPositions = [position_idx]
       }
-      console.log(position_idx, state.selectedPositions)
+      // console.log(position_idx, state.selectedPositions)
       this.commit('updateCommandString');
     },
     updateCommandString(state) {
@@ -315,6 +319,7 @@ export default new Vuex.Store({
       let type = payload.type;
       let name = payload.name;
       let res = nameMap[type + '/' + name];
+      if (res && res.slice(0, 5) == 'data:') return res;
 
       if (type == 'avatar') {
         res = nameMap['charactor/' + name];

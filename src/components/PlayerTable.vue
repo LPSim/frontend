@@ -57,7 +57,7 @@
         <div v-for="data in sortedColors" :class="disableDice()" :key="data.idx" @click="selectDice(data.idx)">
           <div :class="'dice-select-border ' + selectDiceClass(data.idx)"></div>
           <img class="cost-img" :src="image_path('dice', data.color)" :alt="data.color" />
-          <img class="element-img" v-if="data.color != 'OMNI'" :src="image_path('element', data.color)" :alt="data.color" />
+          <img class="element-img" :src="image_path('element', data.color)" :alt="data.color" />
         </div>
       </div>
     </div>
