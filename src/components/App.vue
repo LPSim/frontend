@@ -4,11 +4,11 @@
       <div class="header-div" v-if="showDebug">
         <div class="interaction-div">
           <div style="height: 60%; padding: 5%;">
-            <textarea v-model="interactionInput" @keydown.enter.prevent="sendInteraction" :disabled="processing"></textarea>
+            <textarea v-model="interactionInput" @keydown.enter.prevent="sendInteraction" :disabled="processing || !this.displayInJudgeMode"></textarea>
           </div>
           <div class="interaction-button-group">
-            <button @click="sendInteraction" :disabled="processing">Send</button>
-            <button @click="refreshData" :disabled="processing">Refresh</button>
+            <button @click="sendInteraction" :disabled="processing">{{ $t('Send') }}</button>
+            <button @click="refreshData" :disabled="processing">{{ $t('Refresh') }}</button>
           </div>
         </div>
         <div class="requests-div">
@@ -22,55 +22,58 @@
           <RequestDetails :selectedRequest="selectedRequest" />
         </div>
         <div class="text-div">
-          <h4>Upload replay file:</h4>
-          <input type="file" ref="fileInput" @change="handleFileSelect" :disabled="processing">
+          <h4>{{ $t('Upload replay file:') }}</h4>
+          <input type="file" ref="fileInput" @change="handleFileSelect" :disabled="processing" style="font-size: 0.8vw">
         </div>
       </div>
       <div class="header-div" :style="showDebug ? 'top: 8rem;' : ''">
         <div class="radios-div">
-          <p>Display Mode:</p>
+          <p>{{ $t('Display Mode:') }}</p>
           <div class="judge-mode-div">
             <label>
               <input type="radio" v-model="displayInJudgeMode" :value="true" @click="commitMatchToStore(true, null)">
-              Judge Mode (show information of all players)
+              {{ $t('Judge Mode (show information of all players)') }}
             </label>
             <label>
               <input type="radio" v-model="displayInJudgeMode" :value="false" @click="commitMatchToStore(false, null)">
-              Play Mode (show information only current player)
+              {{ $t('Play Mode (show information only current player)') }}
             </label>
           </div>
-          <p>View point:</p>
+          <p>{{ $t('View point:') }}</p>
           <div class="player-table-order" v-if="match != null">
             <label v-for="table, tnum in match.player_tables">
               <input type="radio" v-model="playerTableOrder" :value="tnum" @click="commitMatchToStore(null, tnum)">
-              Player {{ tnum }}: {{ table.player_name }}
+              {{ $tc('Player :', tnum) }}{{ table.player_name }}
             </label>
           </div>
         </div>
         <div class="main-info-div">
           <div v-if="match == null && playerTableOrder == -1">
-            <div class="round-div" style="font-weight: bold; font-size: 2rem;">
-              No Match Data. <br>Refresh or load replay in debug.
+            <div class="round-div" style="font-weight: bold; font-size: 2vw;">
+              {{ $t('No Match Data.') }}<br>{{ $t('Refresh or load replay in debug.') }}
             </div>
           </div>
           <div v-if="match != null && playerTableOrder == -1">
-            <div class="round-div" style="font-weight: bold; font-size: 2rem;">
-              Please select view point.
+            <div class="round-div" style="font-weight: bold; font-size: 2vw;">
+              {{ $t('Please select view point.') }}
             </div>
           </div>
           <div v-if="match != null && playerTableOrder != -1">
-            <div class="round-div" style="font-weight: bold; font-size: 2rem;">
-              Round {{ match.round_number }}
+            <div class="round-div" style="font-weight: bold; font-size: 2vw;">
+              {{ $tc('Round ', match.round_number) }}
             </div>
           </div>
           <div v-if="match != null && playerTableOrder != -1">
             <div class="match-state-div">
-              Current Match State: {{ match.state }}
+              {{ $t('Current Match State: ') }}{{ $t('MATCHSTATE/' + match.state) }}
             </div>
           </div>
-          <div v-if="match != null && playerTableOrder != -1">
-            <div class="your-turn-div">
-              Current is {{ isYourTurn ? '' : 'Not ' }} Your Turn
+          <div v-if="match != null && playerTableOrder != -1" style="font-size: 1vw">
+            <div class="your-turn-div" v-if="isYourTurn" style="font-weight: bold;">
+              {{ $t('Current is Your Turn') }}
+            </div>
+            <div class="your-turn-div" v-else>
+              {{ $t('Current is Not Your Turn') }}
             </div>
           </div>
         </div>
@@ -78,39 +81,44 @@
           <div class="data-navigation">
             <div>
               <div class="step-count">
-                <label for="step-count-input">Step count:</label>
+                <label for="step-count-input">{{ $t('Step count:') }}</label>
                 <input id="step-count-input" type="number" v-model="stepCount" min="1" max="1000">
               </div>
-              <button @click="showPrevData" :disabled="currentDataIndex === 0">Prev</button>
-              <button @click="showNextData" :disabled="currentDataIndex === matchData.length - 1">Next</button>
+              <button @click="showPrevData" :disabled="currentDataIndex === 0 || matchData.length === 0">{{ $t('Prev') }}</button>
+              <button @click="showNextData" :disabled="currentDataIndex === matchData.length - 1 || matchData.length === 0">{{ $t('Next') }}</button>
             </div>
             <div>
               <div class="current-step">
-                <label for="current-step-input">Current step:</label>
+                <label for="current-step-input">{{ $t('Current step:') }}</label>
                 <input id="current-step-input" type="number" v-model="currentDataIndex" @keydown.enter="jumpToData" min="0" :max="matchData.length - 1">
               </div>
-              <button @click="jumpToData">Jump</button>
+              <button @click="jumpToData">{{ $t('Jump') }}</button>
             </div>
           </div>
         </div>
         <div class="debug-refresh-freq-div">
+          <div class="server-url-div">
+            <label for="server-url">{{ $t('Server URL:') }}</label>
+            <input id="server-url" type="text" v-model="serverURL">
+          </div>
           <div class="freq-div">
-                <label for="refresh-frequency">Refresh frequency:</label>
-                <input id="refresh-frequency" type="number" v-model="multiCommandTimeout" min="1">
+                <label for="refresh-frequency">{{ $t('Auto Refresh frequency (ms):') }}</label>
+                <input id="refresh-frequency" type="number" v-model="refreshInterval" min="1">
           </div>
           <div class="refresh-debug-div">
-            <button @click="refreshData" :disabled="processing">Refresh</button>
-            <button @click="showDebug = !showDebug">Toggle Debug</button>
+            <button @click="changeLanguage()">Language</button>
+            <button @click="refreshData" :disabled="processing">{{ $t('Refresh') }}</button>
+            <button @click="showDebug = !showDebug">{{ $t('Toggle Debug') }}</button>
           </div>
         </div>
       </div>
     </div>
     <div class="match-container" v-if="match != null">
       <div class="desc-container">
-        <div v-for="desc in descData">
-          <h4>{{ desc.name }}</h4>
-          <p v-if="desc.version">Version: {{ desc.version }}</p>
-          <p>{{ desc.desc }}</p>
+        <div v-for="(desc, did) in descData">
+          <h4>{{ $t(desc.type + '/' + desc.name) }}</h4>
+          <p v-if="desc.version && did == 0">{{ $t('Version: ') }} {{ desc.version }}</p>
+          <p>{{ $t(desc.type + '/' + desc.name + '/' + descData[0].version) }}</p>
         </div>
       </div>
       <div class="player-tables-container">
@@ -129,13 +137,13 @@
             <RequestButton :title="buttonRequests.SwitchCharactor.title" :cost="buttonRequests.SwitchCharactor.cost" :select_class="selectClass('Switch Charactor', buttonRequests.SwitchCharactor.idx)" />
           </div>
           <div v-if="!buttonRequests.SwitchCharactor && buttonRequests.DeclareRoundEnd" @click="selectRequest(buttonRequests.DeclareRoundEnd.idx)">
-            <RequestButton title="Declare Round End" :select_class="selectClass('Declare Round End', buttonRequests.DeclareRoundEnd.idx)" />
+            <RequestButton :title="$t('Declare Round End')" :select_class="selectClass('Declare Round End', buttonRequests.DeclareRoundEnd.idx)" />
           </div>
           <div @click="confirmSelection">
-            <RequestButton title="Confirm" :select_class="selectClass('Confirm')" />
+            <RequestButton :title="$t('Confirm')" :select_class="selectClass('Confirm')" />
           </div>
           <div @click="cancelSelection">
-            <RequestButton title="Cancel" :select_class="selectClass('Cancel')" />
+            <RequestButton :title="$t('Cancel')" :select_class="selectClass('Cancel')" />
           </div>
         </div>
       </div>
@@ -160,7 +168,9 @@ export default {
       dataVersion: null,
       matchDataInput: 'Loading...',
       matchData: [],
+      requestData: [],
       currentDataIndex: 0,
+      maxPlayedDataIndex: 0,
       fullMatch: null,
       playerTableOrder: -1,
       stepCount: 1,
@@ -170,14 +180,22 @@ export default {
       interactionInput: '',
       interactionCommands: [[], []],
       commandHistory: [[], []],
-      multiCommandTimeout: 200,
+      multiCommandTimeout: 100,
+      refreshInterval: 1000,
       showDebug: false,
       displayInJudgeMode: false,
+      serverURL: 'http://localhost:8000',
+      currentLanguage: null,
     }
   },
   created() {
+    // log data when created
     console.log('APP', this);
     console.log('STORE', this.$store.state);
+    // console.log('I18N', this.$root.$i18n, this.$i18n);
+
+    // set current language
+    this.currentLanguage = this.$root.$i18n.locale;
 
     // auto load logs.txt. when debug, it avoids manually loading data.
     // const logFilePath = 'logs.txt';
@@ -188,25 +206,42 @@ export default {
     //     this.matchDataInput = '';
     //     if (xhr.status === 200) {
     //       this.matchDataInput = xhr.responseText;
-    //       this.parseCharactorData();
+    //       this.parseLogFileData();
     //     }
     //   }
     // };
     // xhr.open('GET', logFilePath, true);
     // xhr.send();
     // this.processing = true;
+    // this.playerTableOrder = 1;
+    // this.displayInJudgeMode = true;
+    // this.showDebug = true;
 
     // listen to ESC and ENTER key
     window.removeEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keydown', this.handleKeyDown);
   },
   methods: {
+    changeLanguage(lang = null) {
+      if (lang == null) {
+        // select next language
+        let keys = Object.keys(this.$i18n.messages).sort();
+        let position = keys.indexOf(this.currentLanguage);
+        this.currentLanguage = keys[(position + 1) % keys.length];
+        this.$root.$i18n.locale = this.currentLanguage;
+        console.log('Change language to ' + this.currentLanguage);
+      }
+    },
+    make_alert(title, data) {
+      console.error(data);
+      alert(title + '\nFind detail in console.');
+    },
     handleFileSelect() {
       const file = this.$refs.fileInput.files[0];
       const reader = new FileReader();
       reader.onload = () => {
         this.matchDataInput = reader.result;
-        this.parseCharactorData();
+        this.parseLogFileData();
       };
       reader.readAsText(file);
     },
@@ -231,10 +266,16 @@ export default {
       }
     },
     updateMatch(data) {
+      if (data === undefined) data = this.matchData[this.currentDataIndex];
       data = JSON.parse(JSON.stringify(data))
       data.player_tables[0].player_idx = 0
       data.player_tables[1].player_idx = 1
       let requests = data.requests
+      // console.log(data, requests, this.currentDataIndex, this.matchData.length - 1)
+      if (this.currentDataIndex == this.matchData.length - 1) {
+        // not in last, parse requests from match
+        requests = JSON.parse(JSON.stringify(this.requestData))
+      }
       for (let i = 0; i < requests.length; i++) {
         let request = requests[i]
         request.idx = i
@@ -257,6 +298,7 @@ export default {
         }
       }
       this.fullMatch = data
+      this.fullMatch.requests = requests
       this.commitMatchToStore()
     },
     commitMatchToStore(mode = null, player_idx = null) {
@@ -268,7 +310,7 @@ export default {
         player_idx: player_idx,
       })
     },
-    parseCharactorData() {
+    parseLogFileData() {
       // Parse the character data and update the match object
       let data = this.matchDataInput.trim().split('\n').map(line => JSON.parse(line))
       this.dataVersion = data[0].version
@@ -306,7 +348,7 @@ export default {
           return;
         }
       }
-      catch (e) { }
+      catch (e) {}
       this.interactionCommands[this.currentRequestPlayerId] = input.split('\n');
       if (this.interactionCommands[this.currentRequestPlayerId].length > 1)
         this.processing = true;
@@ -314,6 +356,12 @@ export default {
     },
     realSendInteraction() {
       let cid = this.currentRequestPlayerId;
+      if (cid == null) {
+        // no need response now. maybe network problem, re-run this function
+        // later.
+        setTimeout(() => this.realSendInteraction(), this.multiCommandTimeout);
+        return;
+      }
       let test_appear = false;
       while (this.interactionCommands[cid].length > 0 && this.interactionCommands[cid][0].slice(0, 4) == 'TEST') {
         // skip TEST commands, only save them in history.
@@ -329,7 +377,7 @@ export default {
       const data = { player_idx: this.currentRequestPlayerId, command: this.interactionCommands[cid][0] };
       this.commandPOSTData = data;
       this.interactionCommands[cid] = this.interactionCommands[cid].slice(1);
-      fetch('http://localhost:8000/respond', {
+      fetch(this.serverURL + '/respond', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -338,49 +386,121 @@ export default {
       })
       .then(response => {
         if (!response.ok) {
-          response.json().then(json => console.log(json));
-          throw new Error('HTTP error ' + response.status);
+          response.json().then(data => {
+            throw new Error('Network response is not ok with detail ' + data.detail);
+          })
+          .catch(error => {
+            this.make_alert('Error in sending response. ' + error, error)
+          });
         }
-        return response.json();
+        else return response.json();
       })
       .then(data => {
         console.log('Received Data', data);
         this.commandHistory[this.commandPOSTData.player_idx].push(this.commandPOSTData.command);
         this.interactionInput = '';
-        console.log(this.commandHistory);
-        let last_data = this.matchData[this.matchData.length - 1];
-        if (JSON.stringify(last_data) !== JSON.stringify(data))
-          this.matchData.push(data);
-        this.currentDataIndex = this.matchData.length - 1;
-        this.updateMatch(data);
+        console.log('HISTORY', this.commandHistory);
+        if (data.length == 0) {
+          // send response successfully, but no updated data. update request data.
+          this.updateRequestData();
+        }
+        // let last_data = this.matchData[this.matchData.length - 1];
+        // if (JSON.stringify(last_data) !== JSON.stringify(data))
+        //   this.matchData.push(data);
+        // this.currentDataIndex = this.matchData.length - 1;
+        this.updateMatchData(data);
         if (this.match.requests.length > 0)
           this.selectedRequest = this.match.requests[0];
         setTimeout(() => this.realSendInteraction(), this.multiCommandTimeout);
       })
       .catch(error => {
-        console.error(error);
+        this.make_alert('Error in sending response. ' + error, error);
       });
     },
+    updateMatchData(data) {
+      if (data.length == 0) {
+        if (this.matchData.length > this.maxPlayedDataIndex + 1) {
+          this.maxPlayedDataIndex += 1;
+          this.currentDataIndex = this.maxPlayedDataIndex;
+          this.updateMatch(this.matchData[this.currentDataIndex]);
+        }
+        return;
+      }
+      for (let i = 0; i < data.length; i ++ ) {
+        let d = data[i];
+        let idx = d.idx;
+        let match = d.match;
+        if (idx == this.matchData.length) {
+          this.matchData.push(match);
+          this.requestData = match.requests;
+        }
+        else if (idx > this.matchData.length) {
+          this.make_alert('Error in update match data. ' + idx + ' is greater than current length ' + this.matchData.length, data);
+        }
+        else {
+          this.matchData[idx] = match;
+        }
+      }
+      this.currentDataIndex = this.matchData.length - 1;
+      if (this.currentDataIndex > this.maxPlayedDataIndex) {
+        this.maxPlayedDataIndex += 1;
+        this.currentDataIndex = this.maxPlayedDataIndex;
+      }
+      this.updateMatch(this.matchData[this.currentDataIndex]);
+    },
     refreshData() {
-      fetch('http://localhost:8000/state/1')
+      let next_idx = this.matchData.length;
+      fetch(this.serverURL + '/state/after/' + next_idx + '/-1')
         .then(response => {
           if (!response.ok) {
-            throw new Error('Network response was not ok');
+            response.json().then(data => {
+              throw new Error('Network response is not ok with detail ' + data.detail);
+            })
+            .catch(error => {
+              this.make_alert('Error in refreshing data. ' + error, error)
+            });
           }
-          return response.json();
+          else return response.json();
         })
         .then(data => {
-          console.log(data);
-          let last_data = this.matchData[this.matchData.length - 1];
-          if (JSON.stringify(last_data) !== JSON.stringify(data))
-            this.matchData.push(data);
-          this.currentDataIndex = this.matchData.length - 1;
-          this.updateMatch(data);
+          if (data.length > 0) console.log('Refresh data', data);
+          // let last_data = this.matchData[this.matchData.length - 1];
+          // if (JSON.stringify(last_data) !== JSON.stringify(data))
+          //   this.matchData.push(data);
+          // this.currentDataIndex = this.matchData.length - 1;
+          this.updateMatchData(data);
+          // if (this.match.requests.length > 0)
+          //   this.selectedRequest = this.match.requests[0];
+          this.updateRequestData();
+          setTimeout(() => this.refreshData(), this.refreshInterval);
+        })
+        .catch(error => {
+          this.make_alert('Error in refreshing data: ' + error + '\nAuto refresh stopped.', error)
+        });
+    },
+    updateRequestData() {
+      fetch(this.serverURL + '/request/-1')
+        .then(response => {
+          if (!response.ok) {
+            response.json().then(data => {
+              throw new Error('Network response is not ok with detail ' + data.detail);
+            })
+            .catch(error => {
+              this.make_alert('Error in getting requests. ' + error, error)
+            });
+          }
+          else return response.json();
+        })
+        .then(data => {
+          if (JSON.stringify(this.requestData) == JSON.stringify(data)) return;
+          console.log('Request data', data);
+          this.requestData = data;
+          this.updateMatch();
           if (this.match.requests.length > 0)
             this.selectedRequest = this.match.requests[0];
         })
         .catch(error => {
-          console.error(error);
+          this.make_alert('Error in refreshing data. ' + error, error)
         });
     },
     showRequestDetails(request) {
@@ -395,7 +515,14 @@ export default {
         let table = this.match.player_tables[req.player_idx];
         let char = table.charactors[table.active_charactor_idx];
         let skill = char.skills[req.skill_idx];
-        this.$store.commit('setSelectedObject', skill);
+        this.$store.commit('setSelectedObject', {
+          type: 'SKILL',
+          skill_type: skill.skill_type,
+          charactor_name: char.name,
+          name: skill.name,
+          desc: skill.desc,
+          version: char.version,
+        });
       }
       this.$store.commit('selectRequest', request_idx);
     },
@@ -443,15 +570,16 @@ export default {
       if (!this.fullMatch || this.displayInJudgeMode || this.playerTableOrder == -1) return this.fullMatch;
       let match = JSON.parse(JSON.stringify(this.fullMatch));
       let opponent_table = match.player_tables[1 - this.playerTableOrder];
+      console.log(match, this.fullMatch)
       for (let i = 0; i < opponent_table.hands.length; i++) {
         opponent_table.hands[i].name = 'Unknown';
         opponent_table.hands[i].desc = 'Unknown';
         opponent_table.hands[i].version = 'Unknown';
       }
       for (let i = 0; i < opponent_table.table_deck.length; i++) {
-        opponent_table.hands[i].name = 'Unknown';
-        opponent_table.hands[i].desc = 'Unknown';
-        opponent_table.hands[i].version = 'Unknown';
+        opponent_table.table_deck[i].name = 'Unknown';
+        opponent_table.table_deck[i].desc = 'Unknown';
+        opponent_table.table_deck[i].version = 'Unknown';
       }
       for (let i = 0; i < opponent_table.dice.colors.length; i ++ )
         opponent_table.dice.colors[i] = 'UNKNOWN';
@@ -482,14 +610,16 @@ export default {
         if (request.name == 'UseSkillRequest') {
           let skill_idx = request.skill_idx;
           finalres[name + skill_idx] = request;
-          finalres[name + skill_idx].title = this.match.player_tables[request.player_idx].charactors[request.charactor_idx].skills[skill_idx].name;
+          let char = this.match.player_tables[request.player_idx].charactors[request.charactor_idx];
+          let key = 'SKILL_' + char.name + '_' + char.skills[skill_idx].skill_type + '/' + char.skills[skill_idx].name;
+          finalres[name + skill_idx].title = this.$t(key);
         }
         else if (request.name == 'SwitchCharactorRequest') {
           let charactor_idx = request.target_charactor_idx;
           let charactors = this.match.player_tables[request.player_idx].charactors;
           let target = charactors[charactor_idx];
           let name = 'SwitchCharactor';
-          request.title = 'Switch To ' + target.name;
+          request.title = this.$t('Switch To ') + this.$t('CHARACTOR/' + target.name);
           if (this.$store.state.selectedRequest !== null) {
             let selectedRequest = this.$store.state.requests[this.$store.state.selectedRequest];
             if (selectedRequest.idx == request.idx) {
@@ -499,13 +629,13 @@ export default {
         }
         else {
           finalres[name] = request;
-          request.title = {
+          request.title = this.$t({
             SwitchCard: 'Switch Card',
             RerollDice: 'Reroll Dice',
             ChooseCharactor: 'Choose Charactor',
             ElementalTuning: 'Elemental Tuning',
             DeclareRoundEnd: 'Declare Round End',
-          }[name];
+          }[name]);
         }
       }
       return finalres;
@@ -513,16 +643,50 @@ export default {
     descData() {
       let data = this.$store.state.selectedObject;
       if (data === null)
-        return [{ name: '', version: '', desc: ''}]
-      if (data.name.indexOf('\n') != -1) {
-        let res = []
-        let names = data.name.split('\n')
-        let descs = data.desc.split('\n')
-        for (let i = 0; i < names.length; i++) {
-          res.push({ name: names[i], desc: descs[i] })
+        return []
+      if (data.type == 'CHARACTOR') {
+        // show skills of charactors
+        let res = [
+          {
+            type: 'CHARACTOR',
+            name: data.name,
+            desc: data.desc,
+            version: data.version,
+          }
+        ];
+        for (let i = 0; i < data.skills.length; i ++ ) {
+          let skill = data.skills[i];
+          res.push({
+            type: 'SKILL_' + data.name + '_' + skill.skill_type,
+            name: skill.name,
+            desc: skill.desc,
+          })
         }
-        res[0].version = data.version
-        return res
+        return res;
+      }
+      if (data.type == 'TALENT') {
+        // add charactor name into type
+        let res = [
+          {
+            type: 'TALENT_' + data.charactor_name,
+            name: data.name,
+            desc: data.desc,
+            version: data.version,
+          }
+        ];
+        return res;
+      }
+      if (data.type == 'SKILL') {
+        // add charactor name and skill type
+        let res = [
+          {
+            type: 'SKILL_' + data.charactor_name + '_' + data.skill_type,
+            name: data.name,
+            desc: data.desc,
+            version: data.version,
+          }
+        ];
+        return res;
       }
       return [data]
     },
@@ -574,7 +738,7 @@ div {
 .header-div-container {
   position: relative;
   width: 100%;
-  padding-bottom: 8rem;
+  padding-bottom: 5vw;
 }
 
 .header-div {
@@ -585,7 +749,7 @@ div {
   top: 0;
   left: 0;
   width: 100%;
-  height: 8rem;
+  height: 5vw;
 }
 
 label {
@@ -598,6 +762,7 @@ label {
   width: 20%;
   height: 100%;
   padding: 1rem;
+  font-size: 1vw;
   /* margin-bottom: 1rem; */
   /* margin-left: 20%; */
 }
@@ -618,7 +783,7 @@ textarea {
 }
 
 .buttons-div {
-  width: 17%;
+  width: 15%;
 }
 
 .parse-button-container {
@@ -654,7 +819,7 @@ button:hover {
   width: 11.11111111111%;
   padding: 1%;
   height: 100%;
-  font-size: 1vw;
+  font-size: 0.75vw;
   overflow-y: scroll;
 }
 
@@ -724,6 +889,7 @@ button:hover {
 .data-navigation > div, .interaction-button-group {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .data-navigation {
@@ -731,10 +897,11 @@ button:hover {
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
+  align-items: center;
 }
 
 .data-navigation label {
-  margin: 0.25rem 0rem;
+  margin: 0.1vw 0;
 }
 
 .data-navigation button, .interaction-button-group button {
@@ -742,10 +909,14 @@ button:hover {
   color: #fff;
   border: none;
   border-radius: 3px;
-  padding: 0.5rem 1rem;
+  padding: 0.25vw 0.5vw;
   font-size: 1em;
   cursor: pointer;
-  margin: 0 0.5rem;
+  margin: 0 0.25vw;
+}
+
+.data-navigation button {
+  height: 60%;
 }
 
 .data-navigation button:hover {
@@ -795,11 +966,11 @@ button:hover {
 .player-table-order > label {
   display: flex;
   align-items: center;
-  margin: 0.25rem 0rem;
+  margin: 0vw 0vw;
 }
 
 .player-table-order input[type="radio"] {
-  margin: 0.5rem;
+  margin: 0 0.5vw;
 }
 
 .player-tables > * {
@@ -823,12 +994,12 @@ button:hover {
 }
 
 .radios-div > p {
-  margin: 0.5rem 0 0 0;
+  margin: 0.0vw 0 0 0;
   font-weight: bold;
 }
 
 .radios-div label {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.00vw;
 }
 
 .main-info-div {
@@ -841,7 +1012,7 @@ button:hover {
 }
 
 .debug-refresh-freq-div {
-  width: 13%;
+  width: 15%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -850,6 +1021,10 @@ button:hover {
 .debug-refresh-freq-div > div {
   display: flex;
   justify-content: space-around;
+  height: 30%;
+}
+.debug-refresh-freq-div input {
+  margin: 0.2vw;
 }
 
 .freq-div > * {
@@ -857,7 +1032,12 @@ button:hover {
 }
 
 .refresh-debug-div > * {
-  margin: 0.5rem;
+  margin: 0.2vw;
+  padding: 0 0.25vw;
+}
+
+.header-div {
+  font-size: 0.8vw;
 }
 
 </style>

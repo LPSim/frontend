@@ -121,23 +121,20 @@ export default {
   align-items: center;
 }
 
-.select-none {
-  border-radius: 5%;
+.select-none, .select-disabled, .select-highlight, .select-selected {
+  border-radius: 0.6vw;
 }
 
 .select-disabled {
-  border-radius: 5%;
   box-shadow: 0 0 3px 3px rgb(192, 192, 192);
   opacity: 20%;
 }
 
 .select-highlight {
-  border-radius: 5%;
   box-shadow: 0 0 3px 3px rgb(255, 174, 0);
 }
 
 .select-selected {
   box-shadow: 0 0 3px 3px rgb(255, 81, 0);
-  border-radius: 5%;
 }
 </style>

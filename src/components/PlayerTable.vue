@@ -37,11 +37,11 @@
               </div>
             </div>
           </div>
-          <div v-if="showDetailsFlag && (playerTable.active_charactor_idx == cid)" class="status-details">
+          <div v-if="showDetailsFlag && (playerTable.active_charactor_idx == cid)" :class="'status-details' + (is_reverse ? ' status-details-reverse' : '')">
             <div class="p-div">
-              <h4>{{ detailData.name }}</h4>
-              <p>{{ detailData.desc }}</p>
-              <!-- <p>Usage: {{ detailData.usage }}</p> -->
+              <h4>{{ $t(detailData.type + '/' + detailData.name) }}</h4>
+              <p>{{ $t('Version: ') }}{{ detailData.version }}</p>
+              <p>{{ $t(detailData.type + '/' + detailData.name + '/' + detailData.version) }}</p>
             </div>
           </div>
         </div>
@@ -68,8 +68,8 @@
 
       <div class="round-ended-and-arcane">
         <div class="round-ended">
-          <p v-if="playerTable.has_round_ended" style="font-weight: bolder; color:rgb(238, 105, 22)">Round has ended</p>
-          <p v-else>Round has not ended</p>
+          <p v-if="playerTable.has_round_ended" style="font-weight: bolder; color:rgb(238, 105, 22)">{{ $t('Round has ended') }}</p>
+          <p v-else>{{ $t('Round has not ended') }}</p>
         </div>
         <div class="arcane-legend">
           <img :src="image_path('dice', 'ARCANE_' + (playerTable.arcane_legend ? 'FULL' : 'EMPTY'))" height="100%" />
@@ -81,7 +81,7 @@
           <Card :card="card" />
         </div>
       </div>
-      <div class="table-deck" v-else>Table Deck: {{ playerTable.table_deck.length }} cards</div>
+      <div class="table-deck" v-else>{{ $tc('Table Deck: ', playerTable.table_deck.length) }}</div>
 
       <div class="hands">
         <!-- <h3>Hands</h3> -->
@@ -321,7 +321,7 @@ export default {
         return;
       let sorted = this.sortedColors;
       if (dice_rule.mode == 'tune') {
-        console.log(sorted)
+        // console.log(sorted)
         this.$store.commit('diceClick', sorted[sorted.length - 1].idx);
         return;
       }
@@ -526,6 +526,7 @@ export default {
   justify-content: left;
   align-items: center;
   height: 33%;
+  font-size: 1vw;
 }
 
 .player-name, .round-ended-and-arcane, .table-deck {
@@ -778,7 +779,7 @@ export default {
   position: absolute;
   top: 0;
   left: -100%;
-  top: 17.28%;
+  top: 8.64%;
   width: 100%;
   height: 82.72%;
   background-color: white;
@@ -796,6 +797,10 @@ export default {
   font-weight: normal;
   -webkit-text-stroke-width: 0;
   -webkit-text-stroke-color: black;
+}
+
+.status-details-reverse {
+  top: 17.28%;
 }
 
 .status-details > .p-div {

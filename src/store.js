@@ -27,7 +27,7 @@ export default new Vuex.Store({
       // otherwise, filter with player idx with request 0.
       let match = data.match
       let player_idx = data.player_idx
-      if (player_idx == null) player_idx = match.requests[0].player_idx
+      if (player_idx == null && match.requests.length > 0) player_idx = match.requests[0].player_idx
       state.match = match;
       state.requests = match.requests.filter((r) => {
         return r.player_idx == player_idx
@@ -61,7 +61,6 @@ export default new Vuex.Store({
       else if (request.name == 'ChooseCharactorRequest') {
         // all charactors listed in available_charactor_idxs are valid positions
         let charactors = table.charactors
-        console.log(charactors, request)
         for (let i = 0; i < request.available_charactor_idxs.length; i++) {
           state.positions.push(charactors[request.available_charactor_idxs[i]].position)
         }
@@ -127,14 +126,16 @@ export default new Vuex.Store({
         }
       }
       else if (state.diceSelectionRule.mode == 'tune') {
+        let valid = state.requests[state.selectedRequest].dice_idxs;
+        if (valid.indexOf(data.idx) == -1) return;
         // can only select one die with different element as active charactor
-        let active = table.active_charactor_idx
-        let element = table.charactors[active].element
-        let dice_color = table.dice.colors[data.idx]
-        console.log(element, dice_color)
-        if (dice_color == element || dice_color == 'OMNI') {
-          return
-        }
+        // let active = table.active_charactor_idx
+        // let element = table.charactors[active].element
+        // let dice_color = table.dice.colors[data.idx]
+        // // console.log(element, dice_color)
+        // if (dice_color == element || dice_color == 'OMNI') {
+        //   return
+        // }
         // keep only one die
         state.selectedDice = [data.idx]
       }

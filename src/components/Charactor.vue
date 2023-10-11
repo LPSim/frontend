@@ -24,8 +24,9 @@
       </div>
       <div v-if="showDetailsFlag" class="charactor-details" :style="'width: ' + (detailData.img_name ? '2' : '1') + '00%;' + 'left: -' + (detailData.img_name ? '2' : '1') + '00%;'">
         <div class="p-div">
-          <h4>{{ detailData.name }}</h4>
-          <p>{{ detailData.desc }}</p>
+          <h4>{{ $t(detailData.type + '/' + detailData.name) }}</h4>
+          <p>{{ $t('Version: ') }}{{ detailData.version }}</p>
+          <p>{{ $t(detailData.type + '/' + detailData.name + '/' + detailData.version) }}</p>
           <!-- <p>Usage: {{ detailData.usage }}</p> -->
         </div>
         <div class="detail-img-div" v-if="detailData.img_name">
@@ -66,18 +67,7 @@ export default {
   methods: {
     log_data() {
       console.log('CHARACTOR', JSON.parse(JSON.stringify(this.charactor)));
-      let name = this.charactor.name;
-      let version = this.charactor.version;
-      let desc = this.charactor.desc;
-      for (let i = 0; i < this.charactor.skills.length; i++) {
-        name += '\n' + this.charactor.skills[i].name;
-        desc += '\n' + this.charactor.skills[i].desc;
-      }
-      this.$store.commit('setSelectedObject', {
-        name: name,
-        version: version,
-        desc: desc
-      })
+      this.$store.commit('setSelectedObject', this.charactor)
     },
     log_object(obj) {
       console.log(obj.type, JSON.parse(JSON.stringify(obj)));
