@@ -11,5 +11,6 @@ for (let i = 0; i < languages.length; i++) {
 
 export default {
   locale: languages[0],
+  fallbackLocale: languages,
   messages,
 };

@@ -118,6 +118,7 @@
         <div v-for="(desc, did) in descData">
           <h4>{{ $t(desc.type + '/' + desc.name) }}</h4>
           <p v-if="desc.version && did == 0">{{ $t('Version: ') }} {{ desc.version }}</p>
+          <p v-if="desc.skill_type">{{ $t('SKILL_TYPE/' + desc.skill_type) }}</p>
           <p>{{ $t(desc.type + '/' + desc.name + '/' + descData[0].version) }}</p>
         </div>
       </div>
@@ -570,7 +571,7 @@ export default {
       if (!this.fullMatch || this.displayInJudgeMode || this.playerTableOrder == -1) return this.fullMatch;
       let match = JSON.parse(JSON.stringify(this.fullMatch));
       let opponent_table = match.player_tables[1 - this.playerTableOrder];
-      console.log(match, this.fullMatch)
+      // console.log(match, this.fullMatch)
       for (let i = 0; i < opponent_table.hands.length; i++) {
         opponent_table.hands[i].name = 'Unknown';
         opponent_table.hands[i].desc = 'Unknown';
@@ -658,6 +659,7 @@ export default {
           let skill = data.skills[i];
           res.push({
             type: 'SKILL_' + data.name + '_' + skill.skill_type,
+            skill_type: skill.skill_type,
             name: skill.name,
             desc: skill.desc,
           })
@@ -681,6 +683,7 @@ export default {
         let res = [
           {
             type: 'SKILL_' + data.charactor_name + '_' + data.skill_type,
+            skill_type: data.skill_type,
             name: data.name,
             desc: data.desc,
             version: data.version,

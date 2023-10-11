@@ -35,6 +35,11 @@
   "Play Mode (show information only current player)": "Play Mode (show information only current player)",
   "Upload replay file:": "Upload replay file:",
 
+  "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
+  "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",
+  "SKILL_TYPE/ELEMENTAL_BURST": "Elemental Burst",
+  "SKILL_TYPE/PASSIVE": "Passive Skill",
+
   "MATCHSTATE/INVALID": "Invalid",
   "MATCHSTATE/ERROR": "Error",
   "MATCHSTATE/WAITING": "Waiting",
