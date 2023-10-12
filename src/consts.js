@@ -469,6 +469,9 @@ let nameMap = {
   "icon/SHIELD": "mark/Shield.png",
   "icon/COUNTER": "mark/Counter.png",
   "icon/TIMESTATE": "mark/TimeState.png",
+  "icon/EQUIP_WEAPON": "status/Equip_Weapon.png",
+  "icon/EQUIP_ARTIFACT": "status/Equip_Relic.png",
+  "icon/EQUIP_TALENT": "status/Equip_Talent.png",
   "card/Unknown": "cardface/Championship_02.png",
 }
 

@@ -13,13 +13,13 @@
           :style="{ color: i <= charactor.charge ? 'yellow' : 'grey' }">&#x25CF;</span>
       </div>
       <div v-if="charactor.weapon" @click="log_object(charactor.weapon)" @mouseover="showDetails(charactor.weapon)" @mouseout="hideDetails()" class="charactor-weapon">
-        <img src="static/images/status/Equip_Weapon.png" width="100%" height="100%" />
+        <img :src="image_path('icon', 'EQUIP_WEAPON')" width="100%" height="100%" />
       </div>
       <div v-if="charactor.artifact" @click="log_object(charactor.artifact)" @mouseover="showDetails(charactor.artifact)" @mouseout="hideDetails()" class="charactor-artifact">
-        <img src="static/images/status/Equip_Relic.png" width="100%" height="100%" />
+        <img :src="image_path('icon', 'EQUIP_ARTIFACT')" width="100%" height="100%" />
       </div>
       <div v-if="charactor.talent" @click="log_object(charactor.talent)" @mouseover="showDetails(charactor.talent)" @mouseout="hideDetails()" class="charactor-talent">
-        <img src="static/images/status/Equip_Talent.png" width="100%" height="100%" />
+        <img :src="image_path('icon', 'EQUIP_TALENT')" width="100%" height="100%" />
       </div>
       <div v-if="showDetailsFlag" class="charactor-details" :style="'width: ' + (detailData.img_name ? '2' : '1') + '00%;' + 'left: -' + (detailData.img_name ? '2' : '1') + '00%;'">
         <div class="p-div">
@@ -111,7 +111,7 @@ export default {
           if (item.type == 'HEAL') item.damage = '+' + item.damage;
           else item.damage = '-' + item.damage;
           let colors = {
-            'PYRO': 'rgb(250, 121, 129)',
+            'PYRO': 'rgb(242, 121, 71)',
             'CRYO': 'rgb(111, 215, 225)',
             'HYDRO': 'rgb(95, 154, 227)',
             'ELECTRO': 'rgb(181, 123, 236)',

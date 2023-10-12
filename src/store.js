@@ -322,6 +322,8 @@ export default new Vuex.Store({
   },
   getters: {
     getImagePath: (state) => (payload) => {
+      // let prefix = 'static/images/';
+      let prefix = 'https://static.zyr17.cn/GITCG-frontend/images/';
       let type = payload.type;
       let name = payload.name;
       let res = nameMap[type + '/' + name];
@@ -330,7 +332,7 @@ export default new Vuex.Store({
       if (type == 'avatar') {
         res = nameMap['charactor/' + name];
         if (res == undefined) return;
-        return 'static/images/' + res.replace(/cardface\/Char_(Avatar|Enemy|Monster)_/, 'avatar/')
+        return prefix + res.replace(/cardface\/Char_(Avatar|Enemy|Monster)_/, 'avatar/')
       }
 
       if ((type == 'charactor_status' || type == 'team_status') && res == undefined) {
@@ -342,7 +344,7 @@ export default new Vuex.Store({
         res_name = res_name.join('_');
         if (res_name.slice(0, 7) != 'Element')
           res_name = 'Common_' + res_name;
-        return 'static/images/status/' + res_name + '.png';
+        return prefix + 'status/' + res_name + '.png';
       }
 
       if (type == 'support') res = nameMap['card/' + name]
@@ -350,7 +352,7 @@ export default new Vuex.Store({
         res = res.replace('cardface', 'small_card')
       }
       if (res == undefined) return;
-      return 'static/images/' + res;
+      return prefix + res;
     }
   },
 });
