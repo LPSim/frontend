@@ -127,6 +127,18 @@
           <PlayerTable :class="{'table-current-player': match.current_player == playerTable.player_idx, 'table-current-request': currentRequestPlayerId == playerTable.player_idx}" :playerTable="playerTable" :is_reverse="pid == 0"/>
         </div>
       </div>
+      <div v-if="skillNotify" :class="{ 'skill-notify-container': true, 'notify-right-part': skillNotify.player_id != playerTableOrder }">
+        <div :class="{ 'opponent-shadow-color': skillNotify.player_id != playerTableOrder }">
+          <img :src="$store.getters.getImagePath({ type: 'avatar', name: skillNotify.charactor_name })">
+          <div>
+            <p>{{ $t('CHARACTOR/' + skillNotify.charactor_name) }} {{ $t('used') }} {{ $t('SKILL_TYPE/' + skillNotify.skill_type) }}</p>
+            <p>{{ $t('SKILL_' + skillNotify.charactor_name + '_' + skillNotify.skill_type + '/' + skillNotify.skill_name) }}</p>
+          </div>
+        </div>
+      </div>
+      <div v-if="cardNotify" :class="{ 'card-notify-container': true, 'notify-right-part': cardNotify.player_id != playerTableOrder }">
+        <img :src="$store.getters.getImagePath({ type: 'card', name: cardNotify.card_name })" :class="{ 'opponent-shadow-color': cardNotify.player_id != playerTableOrder }">
+      </div>
       <div class="requests-button-container">
         <div class="prev-buttons">
           <div v-if="key != 'DeclareRoundEnd' && key != 'SwitchCharactor'" v-for="data, key in buttonRequests" :key="key" @click="selectRequest(data.idx)" >
@@ -199,24 +211,24 @@ export default {
     this.currentLanguage = this.$root.$i18n.locale;
 
     // auto load logs.txt. when debug, it avoids manually loading data.
-    // const logFilePath = 'logs.txt';
-    // const xhr = new XMLHttpRequest();
-    // xhr.onreadystatechange = () => {
-    //   if (xhr.readyState === 4) {
-    //     this.processing = false;
-    //     this.matchDataInput = '';
-    //     if (xhr.status === 200) {
-    //       this.matchDataInput = xhr.responseText;
-    //       this.parseLogFileData();
-    //     }
-    //   }
-    // };
-    // xhr.open('GET', logFilePath, true);
-    // xhr.send();
-    // this.processing = true;
-    // this.playerTableOrder = 1;
-    // this.displayInJudgeMode = true;
-    // this.showDebug = true;
+    const logFilePath = 'logs.txt';
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        this.processing = false;
+        this.matchDataInput = '';
+        if (xhr.status === 200) {
+          this.matchDataInput = xhr.responseText;
+          this.parseLogFileData();
+        }
+      }
+    };
+    xhr.open('GET', logFilePath, true);
+    xhr.send();
+    this.processing = true;
+    this.playerTableOrder = 1;
+    this.displayInJudgeMode = true;
+    this.showDebug = true;
 
     // listen to ESC and ENTER key
     window.removeEventListener('keydown', this.handleKeyDown);
@@ -696,6 +708,46 @@ export default {
     isYourTurn() {
       return this.match.current_player == this.playerTableOrder
     },
+    skillNotify() {
+      if (!this.match) return null;
+      if (this.match.last_action.type != 'USE_SKILL') return null;
+      let position = this.match.last_action.skill_position;
+      let skills = this.match.player_tables[position.player_idx].charactors[position.charactor_idx].skills;
+      for (let i = 0; i < skills.length; i ++ ) {
+        if (skills[i].id == position.id) {
+          let ret = {
+            player_id: position.player_idx,
+            charactor_name: this.match.player_tables[position.player_idx].charactors[position.charactor_idx].name,
+            skill_type: skills[i].skill_type,
+            skill_name: skills[i].name,
+          };
+          return ret;
+        }
+      }
+      console.error('Cannot find skill');
+      return null;
+    },
+    cardNotify() {
+      if (!this.match) return null;
+      if (this.match.last_action.type != 'USE_CARD') return null;
+      let position = this.match.last_action.card_position;
+      let hands = this.match.player_tables[position.player_idx].hands;
+      let ret = {
+        player_id: position.player_idx,
+        card_name: null,
+      };
+      for (let i = 0; i < hands.length; i ++ ) {
+        if (hands[i].id == position.id) {
+          ret.card_name = hands[i].name;
+          break;
+        }
+      }
+      if (ret.card_name == null) {
+        console.error('Cannot find card');
+        return null;
+      }
+      return ret;
+    },
     // match: {
     //   get() {
     //     console.log('get', this._match);
@@ -1041,6 +1093,64 @@ button:hover {
 
 .header-div {
   font-size: 0.8vw;
+}
+
+.skill-notify-container {
+  position: absolute;
+  top: 0;
+  left: 11.11111111111%;
+  width: 44.44444444444%;
+  height: 50%;
+  font-size: 1.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skill-notify-container > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 33%;
+  /* width: 80%; */
+  background-color: white;
+  box-shadow: 0 0 10px 10px rgb(255, 174, 0);
+  border-radius: 1000px;
+  padding-right: 5%;
+}
+
+.skill-notify-container > div > img {
+  height: 100%;
+}
+
+.skill-notify-container > div > div > p {
+  white-space: nowrap;
+  padding-left: 5%;
+}
+
+.card-notify-container {
+  position: absolute;
+  top: 0;
+  left: 11.11111111111%;
+  width: 44.44444444444%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-notify-container > img {
+  height: 50%;
+  box-shadow: 0 0 10px 10px rgb(255, 174, 0);
+  border-radius: 1.2vw;
+}
+
+.notify-right-part {
+  left: 55.55555555555%;
+}
+
+.opponent-shadow-color {
+  box-shadow: 0 0 10px 10px rgb(0, 145, 255) !important;
 }
 
 </style>

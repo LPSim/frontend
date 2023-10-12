@@ -34,6 +34,7 @@
   "Judge Mode (show information of all players)": "裁判模式（展示双方信息）",
   "Play Mode (show information only current player)": "游戏模式（仅展示当前玩家信息）",
   "Upload replay file:": "上传对战回放：",
+  "used": "使用了",
 
   "SKILL_TYPE/NORMAL_ATTACK": "普通攻击",
   "SKILL_TYPE/ELEMENTAL_SKILL": "元素战技",
