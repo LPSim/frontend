@@ -75,8 +75,12 @@ export default {
       console.log(obj.type, JSON.parse(JSON.stringify(obj)));
     },
     showDetails(data, img = true) {
+      data = JSON.parse(JSON.stringify(data));
       this.showDetailsFlag = true;
       if (img) data.img_name = data.name;
+      if (data.type == 'TALENT') {
+        data.type = data.type + '_' + data.charactor_name;
+      }
       this.detailData = data;
     },
     hideDetails() {
