@@ -739,16 +739,16 @@ export default {
 }
 
 .select-disabled {
-  box-shadow: 0 0 3px 3px rgb(192, 192, 192);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(192, 192, 192);
   opacity: 20%;
 }
 
 .select-highlight {
-  box-shadow: 0 0 3px 3px rgb(255, 174, 0);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(255, 174, 0);
 }
 
 .select-selected {
-  box-shadow: 0 0 3px 3px rgb(255, 81, 0);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(255, 81, 0);
 }
 
 .select-dice-none {
@@ -757,12 +757,12 @@ export default {
 
 .select-dice-selected {
   border-radius: 50%;
-  box-shadow: 0 0 5px 5px rgb(255, 81, 0);
+  box-shadow: 0 0 0.3vw 0.3vw rgb(255, 81, 0);
 }
 
 .select-dice-disabled {
   border-radius: 5%;
-  /* box-shadow: 0 0 3px 3px rgb(192, 192, 192); */
+  /* box-shadow: 0 0 0.25vw 0.25vw rgb(192, 192, 192); */
   opacity: 20%;
 }
 

@@ -7,7 +7,6 @@
     </div>
     <div :class="(charactor.is_alive ? 'charactor ' : 'charactor-died ') + selectClass">
       <img class="charactor-image" :src="image_path('charactor', charactor.name)">
-      <!-- <div class="charactor-name">{{ charactor.name }}</div> -->
       <div class="charactor-hp">{{ charactor.hp }}</div>
       <div class="charactor-charge">
         <span v-for="i in charactor.max_charge" :key="i"
@@ -32,6 +31,9 @@
         <div class="detail-img-div" v-if="detailData.img_name">
           <img :src="image_path('card', detailData.img_name)" width="100%" height="100%" />
         </div>
+      </div>
+      <div class="damage-notify-div" v-if="damage_notify.length > 0">
+        <p v-for="(notify, nid) in damage_notify" :key="nid" :style="{ color: notify.color, 'font-size': notify.font_size }">{{ notify.damage }}</p>
       </div>
       <div class="charactor-status-div">
         <div v-for="(status, sid) in charactor.status" :key="sid" @click="log_object(status)" @mouseover="showDetails(status, false)" @mouseout="hideDetails()" >
@@ -97,6 +99,45 @@ export default {
       })
     }
   },
+  computed: {
+    damage_notify() {
+      let notify = this.$store.state.damageNotify;
+      if (notify && notify[this.charactor.position.player_idx]
+          && notify[this.charactor.position.player_idx][this.charactor.position.charactor_idx]) {
+        let res = [];
+        for (let i = 0; i < notify[this.charactor.position.player_idx][this.charactor.position.charactor_idx].length; i++) {
+          let item = notify[this.charactor.position.player_idx][this.charactor.position.charactor_idx][i];
+          item = JSON.parse(JSON.stringify(item));
+          if (item.type == 'HEAL') item.damage = '+' + item.damage;
+          else item.damage = '-' + item.damage;
+          let colors = {
+            'PYRO': 'rgb(250, 121, 129)',
+            'CRYO': 'rgb(111, 215, 225)',
+            'HYDRO': 'rgb(95, 154, 227)',
+            'ELECTRO': 'rgb(181, 123, 236)',
+            'ANEMO': 'rgb(88, 220, 171)',
+            'GEO': 'rgb(225, 169, 16)',
+            'DENDRO': 'rgb(151, 200, 89)',
+            'PHYSICAL': 'rgb(119, 106, 102)',
+            'HEAL': 'rgb(80, 213, 103)',
+            'PIERCING': 'rgb(119, 106, 102)',
+          }
+          console.log(item)
+          item.color = colors[item.type];
+          res.push(item);
+        }
+        let sizes = ['3vw', '3vw', '2.5vw', '2vw', '1.5vw', '1vw', '0.5vw'];
+        let target_size = res.length;
+        if (target_size > 6) target_size = 6;
+        for (let i = 0; i < res.length; i++) {
+          res[i].font_size = sizes[target_size];
+        }
+        console.log(res)
+        return res;
+      }
+      return [];
+    }
+  }
 }
 </script>
 
@@ -274,16 +315,34 @@ export default {
 }
 
 .select-disabled {
-  box-shadow: 0 0 3px 3px rgb(192, 192, 192);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(192, 192, 192);
   opacity: 20%;
 }
 
 .select-highlight {
-  box-shadow: 0 0 3px 3px rgb(255, 174, 0);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(255, 174, 0);
 }
 
 .select-selected {
-  box-shadow: 0 0 3px 3px rgb(255, 81, 0);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(255, 81, 0);
+}
+
+.damage-notify-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.damage-notify-div > * {
+  border-radius: 1000px;
+  background-color: rgb(244, 239, 216);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(211, 179, 138);
+  margin: 0.25vw;
+  padding: 0.25vw;
+  -webkit-text-stroke-width: 0.5px;
 }
 
 </style>

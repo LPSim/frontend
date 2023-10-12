@@ -127,6 +127,14 @@
           <PlayerTable :class="{'table-current-player': match.current_player == playerTable.player_idx, 'table-current-request': currentRequestPlayerId == playerTable.player_idx}" :playerTable="playerTable" :is_reverse="pid == 0"/>
         </div>
       </div>
+      <div v-if="switchNotify" :class="{ 'switch-notify-container': true, 'notify-right-part': switchNotify.player_id != playerTableOrder }">
+        <div :class="{ 'opponent-shadow-color': switchNotify.player_id != playerTableOrder }">
+          <img :src="$store.getters.getImagePath({ type: 'avatar', name: switchNotify.charactor_name })">
+          <div>
+            <p>{{ $t('Switch to') }} {{ $t('CHARACTOR/' + switchNotify.charactor_name) }}</p>
+          </div>
+        </div>
+      </div>
       <div v-if="skillNotify" :class="{ 'skill-notify-container': true, 'notify-right-part': skillNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': skillNotify.player_id != playerTableOrder }">
           <img :src="$store.getters.getImagePath({ type: 'avatar', name: skillNotify.charactor_name })">
@@ -312,6 +320,16 @@ export default {
       }
       this.fullMatch = data
       this.fullMatch.requests = requests
+      let match = this.fullMatch
+      console.log(match.last_action.type)
+      let damage_info = null;
+      if (match.last_action.type == 'MAKE_DAMAGE') {
+        console.log(JSON.parse(JSON.stringify(match.last_action)))
+        console.log(JSON.parse(JSON.stringify(match.action_info)))
+        damage_info = match.action_info;
+        damage_info.position = match.last_action.damage_value_list[0].position;
+      }
+      this.$store.commit('setDamageNotify', damage_info)
       this.commitMatchToStore()
     },
     commitMatchToStore(mode = null, player_idx = null) {
@@ -748,6 +766,12 @@ export default {
       }
       return ret;
     },
+    switchNotify() {
+      if (!this.match) return null;
+      if (this.match.last_action.type != 'SWITCH_CHARACTOR') return null;
+      let char = this.match.player_tables[this.match.last_action.player_idx].charactors[this.match.last_action.charactor_idx];
+      return { player_id: this.match.last_action.player_idx, charactor_name: char.name };
+    },
     // match: {
     //   get() {
     //     console.log('get', this._match);
@@ -1095,7 +1119,7 @@ button:hover {
   font-size: 0.8vw;
 }
 
-.skill-notify-container {
+.skill-notify-container, .switch-notify-container {
   position: absolute;
   top: 0;
   left: 11.11111111111%;
@@ -1107,23 +1131,23 @@ button:hover {
   align-items: center;
 }
 
-.skill-notify-container > div {
+.skill-notify-container > div, .switch-notify-container > div {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 33%;
   /* width: 80%; */
   background-color: white;
-  box-shadow: 0 0 10px 10px rgb(255, 174, 0);
+  box-shadow: 0 0 0.7vw 0.7vw rgb(255, 174, 0);
   border-radius: 1000px;
   padding-right: 5%;
 }
 
-.skill-notify-container > div > img {
+.skill-notify-container > div > img, .switch-notify-container > div > img {
   height: 100%;
 }
 
-.skill-notify-container > div > div > p {
+.skill-notify-container > div > div > p, .switch-notify-container > div > div > p {
   white-space: nowrap;
   padding-left: 5%;
 }
@@ -1141,8 +1165,8 @@ button:hover {
 
 .card-notify-container > img {
   height: 50%;
-  box-shadow: 0 0 10px 10px rgb(255, 174, 0);
-  border-radius: 1.2vw;
+  box-shadow: 0 0 0.7vw 0.7vw rgb(255, 174, 0);
+  border-radius: 1.3vw;
 }
 
 .notify-right-part {
@@ -1150,7 +1174,7 @@ button:hover {
 }
 
 .opponent-shadow-color {
-  box-shadow: 0 0 10px 10px rgb(0, 145, 255) !important;
+  box-shadow: 0 0 0.7vw 0.7vw rgb(0, 145, 255) !important;
 }
 
 </style>

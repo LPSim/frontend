@@ -53,7 +53,7 @@ export default {
 }
 
 .active-card {
-  box-shadow: 0 0 3px 3px rgb(255, 174, 0);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(255, 174, 0);
   border-radius: 5%;
 }
 

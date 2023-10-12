@@ -16,6 +16,7 @@ export default new Vuex.Store({
     selectedDice: [],
     commandString: '',
     selectedObject: null,
+    damageNotify: null,
   },
   mutations: {
     setSelectedObject(state, obj) {
@@ -314,6 +315,10 @@ export default new Vuex.Store({
       state.commandString = res;
       // console.log(res)
     },
+    setDamageNotify(state, data) {
+      // console.log(data)
+      state.damageNotify = data;
+    }
   },
   getters: {
     getImagePath: (state) => (payload) => {

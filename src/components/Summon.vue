@@ -126,15 +126,15 @@ export default {
 }
 
 .select-disabled {
-  box-shadow: 0 0 3px 3px rgb(192, 192, 192);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(192, 192, 192);
   opacity: 20%;
 }
 
 .select-highlight {
-  box-shadow: 0 0 3px 3px rgb(255, 174, 0);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(255, 174, 0);
 }
 
 .select-selected {
-  box-shadow: 0 0 3px 3px rgb(255, 81, 0);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(255, 81, 0);
 }
 </style>

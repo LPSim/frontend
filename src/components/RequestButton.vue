@@ -40,26 +40,29 @@ export default {
   width: 100%;
   height: 100%;
   font-size: 0.95vw;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .select-none {
-  box-shadow: 0 0 3px 3px rgb(255, 174, 0);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(255, 174, 0);
 }
 
 .select-disabled {
-  box-shadow: 0 0 3px 3px rgb(192, 192, 192);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(192, 192, 192);
   opacity: 20%;
 }
 
 .select-highlight {
-  box-shadow: 0 0 3px 3px rgb(255, 81, 0);
+  box-shadow: 0 0 0.25vw 0.25vw rgb(255, 81, 0);
 }
 
 .request-button-root > div > .cost-div {
   position: absolute;
   width: 100%;
-  height: 33.3333333333%;
-  top: 66.6666666667%;
+  height: 35.5555555555%;
+  top: 64.4444444444%;
   display: flex;
 }
 
