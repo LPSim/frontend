@@ -36,6 +36,8 @@
   "Upload replay file:": "Upload replay file:",
   "used": "used",
   "Switch to": "Switch to",
+  "You declare round end": "You declare round end",
+  "Opponent declare round end": "Opponent declare round end",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",

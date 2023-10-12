@@ -147,6 +147,9 @@
       <div v-if="cardNotify" :class="{ 'card-notify-container': true, 'notify-right-part': cardNotify.player_id != playerTableOrder }">
         <img :src="$store.getters.getImagePath({ type: 'card', name: cardNotify.card_name })" :class="{ 'opponent-shadow-color': cardNotify.player_id != playerTableOrder }">
       </div>
+      <div v-if="roundEndNotify" :class="{ 'round-end-notify-container': true, 'opponent-shadow-color': roundEndNotify.player_id != playerTableOrder }">
+        <span>{{ $tc((roundEndNotify.player_id != playerTableOrder ? 'Opponent' : 'You') + ' declare round end', ) }}</span>
+      </div>
       <div class="requests-button-container">
         <div class="prev-buttons">
           <div v-if="key != 'DeclareRoundEnd' && key != 'SwitchCharactor'" v-for="data, key in buttonRequests" :key="key" @click="selectRequest(data.idx)" >
@@ -749,7 +752,7 @@ export default {
       if (!this.match) return null;
       if (this.match.last_action.type != 'USE_CARD') return null;
       let position = this.match.last_action.card_position;
-      let hands = this.match.player_tables[position.player_idx].hands;
+      let hands = this.fullMatch.player_tables[position.player_idx].hands;
       let ret = {
         player_id: position.player_idx,
         card_name: null,
@@ -771,6 +774,11 @@ export default {
       if (this.match.last_action.type != 'SWITCH_CHARACTOR') return null;
       let char = this.match.player_tables[this.match.last_action.player_idx].charactors[this.match.last_action.charactor_idx];
       return { player_id: this.match.last_action.player_idx, charactor_name: char.name };
+    },
+    roundEndNotify() {
+      if (!this.match) return null;
+      if (this.match.last_action.type != 'DECLARE_ROUND_END') return null;
+      return { player_id: this.match.last_action.player_idx };
     },
     // match: {
     //   get() {
@@ -1161,6 +1169,22 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.round-end-notify-container {
+  position:absolute;
+  height: 15%;
+  width: 30%;
+  left: 40.11111111111%;
+  top: 42.5%;
+  border-radius: 10000px;
+  font-size: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 0 0.7vw 0.7vw rgb(255, 174, 0);
 }
 
 .card-notify-container > img {
