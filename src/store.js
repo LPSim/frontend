@@ -1,8 +1,21 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import nameMap from './consts';
+import nameMap from './nameMap';
 
 Vue.use(Vuex);
+
+// get all available version number
+let version = [];
+import descTranslation from './locales/en-US/descs.json';
+for (let key in descTranslation) {
+  key = key.split('/');
+  let last = key[key.length - 1];
+  if (last == '' || last == '1.0') continue;
+  if (version.indexOf(last) == -1) {
+    version.push(last);
+  }
+}
+version.sort();
 
 export default new Vuex.Store({
   state: {
@@ -17,6 +30,10 @@ export default new Vuex.Store({
     commandString: '',
     selectedObject: null,
     damageNotify: null,
+    deck: [],
+    availableVersions: version,
+    showDeckDiv: false,
+    serverURL: 'http://localhost:8000'
   },
   mutations: {
     setSelectedObject(state, obj) {
@@ -318,6 +335,37 @@ export default new Vuex.Store({
     setDamageNotify(state, data) {
       // console.log(data)
       state.damageNotify = data;
+    },
+    setDeck(state, data) {
+      // console.log(data)
+      state.deck = data;
+    },
+    removeDeckCard(state, data) {
+      let player_id = data.player_id;
+      let type = data.type;
+      let id = data.id;
+      state.deck[player_id][type].splice(id, 1);
+    },
+    removeAllDeckCards(state, data) {
+      let player_id = data.player_id;
+      state.deck[player_id].charactors = [];
+      state.deck[player_id].cards = [];
+    },
+    addDeckCard(state, data) {
+      let player_id = data.player_id;
+      let type = data.type.toLowerCase() + 's';
+      let name = data.name;
+      state.deck[player_id][type].push({
+        type: name.split('/')[0],
+        name: name.split('/')[1],
+        version: data.version
+      });
+    },
+    setShowDeckDiv(state, data) {
+      state.showDeckDiv = data;
+    },
+    setServerURL(state, data) {
+      state.serverURL = data;
     }
   },
   getters: {
@@ -326,16 +374,20 @@ export default new Vuex.Store({
       let prefix = 'https://static.zyr17.cn/GITCG-frontend/images/';
       let type = payload.type;
       let name = payload.name;
+      if (type == 'TALENT') {
+        type = type + '_' + payload.charactor_name;
+      }
+      if (name == 'Unknown') type = 'CARD';
       let res = nameMap[type + '/' + name];
       if (res && res.slice(0, 5) == 'data:') return res;
 
-      if (type == 'avatar') {
-        res = nameMap['charactor/' + name];
-        if (res == undefined) return;
-        return prefix + res.replace(/cardface\/Char_(Avatar|Enemy|Monster)_/, 'avatar/')
-      }
+      // if (type == 'avatar') {
+      //   res = nameMap['charactor/' + name];
+      //   if (res == undefined) return;
+      //   return prefix + res.replace(/cardface\/Char_(Avatar|Enemy|Monster)_/, 'avatar/')
+      // }
 
-      if ((type == 'charactor_status' || type == 'team_status') && res == undefined) {
+      if ((type == 'CHARACTOR_STATUS' || type == 'TEAM_STATUS') && res == undefined) {
         let name_arr = name.toLowerCase().split('_');
         let res_name = [];
         for (let i = 0; i < name_arr.length; i++) {
@@ -347,12 +399,32 @@ export default new Vuex.Store({
         return prefix + 'status/' + res_name + '.png';
       }
 
-      if (type == 'support') res = nameMap['card/' + name]
-      if (type == 'summon' || type == 'support') {
+      if ((type == 'SUMMON' || type == 'SUPPORT') && payload.small_card) {
         res = res.replace('cardface', 'small_card')
       }
       if (res == undefined) return;
       return prefix + res;
+    },
+    getNamesWithType: (state) => (type) => {
+      let result = [];
+      for (let key in nameMap) {
+        if (key.split('/')[0] == type) {
+          result.push(key)
+        }
+      }
+      return result;
+    },
+    findNearestVersion: (state) => (name, version) => {
+      let nearest = null;
+      for (let key in descTranslation)
+        if (key.includes(name)) {
+          key = key.split('/');
+          let last = key[key.length - 1];
+          if (last == '') continue;
+          if (last > version) continue;
+          if (nearest == null || last > nearest) nearest = last;
+        }
+      return nearest;
     }
   },
 });

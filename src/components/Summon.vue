@@ -1,11 +1,11 @@
 <template>
   <div :class="'summon ' + selectClass" @click="log_data">
-    <img :src="image_path('summon', summon.name)" :alt="summon.name"/>
+    <img :src="image_path('SUMMON', summon.name)" :alt="summon.name"/>
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="summon-usage-div">
       <div>
-        <img :src="image_path('icon', summon.icon_type)" :alt="summon.damage_elemental_type" width="100%" height="100%" />
+        <img :src="image_path('ICON', summon.icon_type)" :alt="summon.icon_type" width="100%" height="100%" />
         <div class="span-div">
           <span>{{ summon.usage }}</span>
         </div>
@@ -13,7 +13,7 @@
     </div>
     <div class="damage-div">
       <div>
-        <img :src="image_path('element', summon.damage_elemental_type)" :alt="summon.damage_elemental_type" width="100%" height="100%" />
+        <img :src="image_path('ELEMENT', summon.damage_elemental_type)" :alt="summon.damage_elemental_type" width="100%" height="100%" />
         <div class="span-div">
           <span>{{ summon.damage }}</span>
         </div>
@@ -47,7 +47,8 @@ export default {
     image_path(type, name) {
       return this.$store.getters.getImagePath({
         type: type,
-        name: name
+        name: name,
+        small_card: true
       })
     }
   }

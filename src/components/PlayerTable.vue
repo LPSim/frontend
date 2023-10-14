@@ -56,14 +56,14 @@
       <div class="dice" @click="log_dice()">
         <div v-for="data in sortedColors" :class="disableDice()" :key="data.idx" @click="selectDice(data.idx)">
           <div :class="'dice-select-border ' + selectDiceClass(data.idx)"></div>
-          <img class="cost-img" :src="image_path('dice', data.color)" :alt="data.color" />
-          <img class="element-img" :src="image_path('element', data.color)" :alt="data.color" />
+          <img class="cost-img" :src="image_path('DICE', data.color)" :alt="data.color" />
+          <img class="element-img" :src="image_path('ELEMENT', data.color)" :alt="data.color" />
         </div>
       </div>
     </div>
     <div class="player-info">
       <div class="player-name">
-        <img class="player-icon" :src="image_path('avatar', playerTable.player_name)">
+        <img class="player-icon" :src="image_path('AVATAR', playerTable.player_name)">
       </div>
 
       <div class="round-ended-and-arcane">
@@ -72,7 +72,7 @@
           <p v-else>{{ $t('Round has not ended') }}</p>
         </div>
         <div class="arcane-legend">
-          <img :src="image_path('dice', 'ARCANE_' + (playerTable.arcane_legend ? 'FULL' : 'EMPTY'))" height="100%" />
+          <img :src="image_path('DICE', 'ARCANE_' + (playerTable.arcane_legend ? 'FULL' : 'EMPTY'))" height="100%" />
         </div>
       </div>
       <div class="table-deck" v-if="show_table_deck">
@@ -431,7 +431,7 @@ export default {
         name = status.icon_type;
       }
       return this.$store.getters.getImagePath({
-        type: 'team_status',
+        type: 'TEAM_STATUS',
         name: name
       })
     },

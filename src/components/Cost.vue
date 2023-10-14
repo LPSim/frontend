@@ -2,7 +2,7 @@
   <div class="cost-div" :style="'flex-direction: ' + direction + '; justify-content: ' + justify + ';'" v-if="cost">
     <div v-for="(c, cid) in cost_computed" :key="cid" :style="costDivStyle()">
       <img
-        :src="image_path('dice', c.type)"
+        :src="image_path('DICE', c.type)"
         :alt="c.type"
         width="100%"
         height="100%"

@@ -18,10 +18,7 @@ export default {
   },
   computed: {
     image_link() {
-      return this.$store.getters.getImagePath({
-        type: 'card',
-        name: this.card.name
-      })
+      return this.$store.getters.getImagePath(this.card)
     }
   },
   props: {

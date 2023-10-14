@@ -1,11 +1,14 @@
 <template>
   <div :class="'support ' + selectClass" @click="log_data">
-    <img :src="image_path('support', support.name)" :alt="support.name"/>
+    <img :src="image_path('SUPPORT', support.name)" :alt="support.name"/>
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="support-usage-div">
       <div>
-        <span>{{ support.usage }}</span>
+        <img v-if="support.icon_type != 'NONE'" :src="image_path('ICON', support.icon_type)" :alt="support.icon_type" width="100%" height="100%" />
+        <div class="span-div">
+          <span>{{ support.usage }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -36,7 +39,8 @@ export default {
     image_path(type, name) {
       return this.$store.getters.getImagePath({
         type: type,
-        name: name
+        name: name,
+        small_card: true,
       })
     }
   },
@@ -73,6 +77,23 @@ export default {
   left: 70%;
   width: 30%;
   height: 30%;
+}
+
+.span-div, .support-usage-div > div {
+  position: absolute;
+  font-size: 1.5vw;
+  font-weight: bolder;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  /* line-height: 130%; */
+  color: white;
+  /* z-index: 999; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .select-none, .select-disabled, .select-highlight, .select-selected {

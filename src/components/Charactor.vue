@@ -2,24 +2,24 @@
   <div @click="log_data">
     <div class="elements">
       <div class="element" v-for="(element, eid) in charactor.element_application" :key="eid">
-        <img :src="image_path('element', element)" width="100%" height="100%">
+        <img :src="image_path('ELEMENT', element)" width="100%" height="100%">
       </div>
     </div>
     <div :class="(charactor.is_alive ? 'charactor ' : 'charactor-died ') + selectClass">
-      <img class="charactor-image" :src="image_path('charactor', charactor.name)">
+      <img class="charactor-image" :src="image_path('CHARACTOR', charactor.name)">
       <div class="charactor-hp">{{ charactor.hp }}</div>
       <div class="charactor-charge">
         <span v-for="i in charactor.max_charge" :key="i"
           :style="{ color: i <= charactor.charge ? 'yellow' : 'grey' }">&#x25CF;</span>
       </div>
       <div v-if="charactor.weapon" @click="log_object(charactor.weapon)" @mouseover="showDetails(charactor.weapon)" @mouseout="hideDetails()" class="charactor-weapon">
-        <img :src="image_path('icon', 'EQUIP_WEAPON')" width="100%" height="100%" />
+        <img :src="image_path('ICON', 'EQUIP_WEAPON')" width="100%" height="100%" />
       </div>
       <div v-if="charactor.artifact" @click="log_object(charactor.artifact)" @mouseover="showDetails(charactor.artifact)" @mouseout="hideDetails()" class="charactor-artifact">
-        <img :src="image_path('icon', 'EQUIP_ARTIFACT')" width="100%" height="100%" />
+        <img :src="image_path('ICON', 'EQUIP_ARTIFACT')" width="100%" height="100%" />
       </div>
       <div v-if="charactor.talent" @click="log_object(charactor.talent)" @mouseover="showDetails(charactor.talent)" @mouseout="hideDetails()" class="charactor-talent">
-        <img :src="image_path('icon', 'EQUIP_TALENT')" width="100%" height="100%" />
+        <img :src="image_path('ICON', 'EQUIP_TALENT')" width="100%" height="100%" />
       </div>
       <div v-if="showDetailsFlag" class="charactor-details" :style="'width: ' + (detailData.img_name ? '2' : '1') + '00%;' + 'left: -' + (detailData.img_name ? '2' : '1') + '00%;'">
         <div class="p-div">
@@ -29,7 +29,7 @@
           <!-- <p>Usage: {{ detailData.usage }}</p> -->
         </div>
         <div class="detail-img-div" v-if="detailData.img_name">
-          <img :src="image_path('card', detailData.img_name)" width="100%" height="100%" />
+          <img :src="image_path(detailData.type, detailData.img_name)" width="100%" height="100%" />
         </div>
       </div>
       <div class="damage-notify-div" v-if="damage_notify.length > 0">
@@ -92,7 +92,7 @@ export default {
         name = status.icon_type;
       }
       return this.$store.getters.getImagePath({
-        type: 'charactor_status',
+        type: 'CHARACTOR_STATUS',
         name: name
       })
     },
@@ -126,7 +126,6 @@ export default {
             'HEAL': 'rgb(80, 213, 103)',
             'PIERCING': 'rgb(119, 106, 102)',
           }
-          console.log(item)
           item.color = colors[item.type];
           res.push(item);
         }
@@ -136,7 +135,6 @@ export default {
         for (let i = 0; i < res.length; i++) {
           res[i].font_size = sizes[target_size];
         }
-        console.log(res)
         return res;
       }
       return [];

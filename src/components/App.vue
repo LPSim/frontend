@@ -25,8 +25,16 @@
           <h4>{{ $t('Upload replay file:') }}</h4>
           <input type="file" ref="fileInput" @change="handleFileSelect" :disabled="processing" style="font-size: 0.8vw">
         </div>
+        <div>
+          <button @click="resetByIndex()">ResetToThisIndex</button>
+          <button @click="stopRefresh()">stopRefresh</button>
+        </div>
       </div>
       <div class="header-div" :style="showDebug ? 'top: 8rem;' : ''">
+        <div class="deck-start-div">
+          <button id="check-show-deck" @click="clickCheckShowDeck" :disabled="playerTableOrder == -1">{{ $t('Check/Set Deck') }}</button>
+          <button id="start-new-match" @click="clickStartNewMatch" :disabled="playerTableOrder == -1">{{ $t('Start New Match') }}</button>
+        </div>
         <div class="radios-div">
           <p>{{ $t('Display Mode:') }}</p>
           <div class="judge-mode-div">
@@ -40,22 +48,22 @@
             </label>
           </div>
           <p>{{ $t('View point:') }}</p>
-          <div class="player-table-order" v-if="match != null">
-            <label v-for="table, tnum in match.player_tables">
+          <div class="player-table-order">
+            <label v-for="tnum in [0, 1]">
               <input type="radio" v-model="playerTableOrder" :value="tnum" @click="commitMatchToStore(null, tnum)">
-              {{ $tc('Player :', tnum) }}{{ table.player_name }}
+              {{ $tc('Player :', tnum) }}{{ match ? match.player_tables[tnum].player_name : '' }}
             </label>
           </div>
         </div>
         <div class="main-info-div">
-          <div v-if="match == null && playerTableOrder == -1">
-            <div class="round-div" style="font-weight: bold; font-size: 2vw;">
-              {{ $t('No Match Data.') }}<br>{{ $t('Refresh or load replay in debug.') }}
-            </div>
-          </div>
-          <div v-if="match != null && playerTableOrder == -1">
+          <div v-if="playerTableOrder == -1">
             <div class="round-div" style="font-weight: bold; font-size: 2vw;">
               {{ $t('Please select view point.') }}
+            </div>
+          </div>
+          <div v-if="match == null && playerTableOrder != -1">
+            <div class="round-div" style="font-weight: bold; font-size: 2vw;">
+              {{ $t('No Match Data.') }}<br>{{ $t('Refresh or load replay in debug.') }}
             </div>
           </div>
           <div v-if="match != null && playerTableOrder != -1">
@@ -92,7 +100,7 @@
                 <label for="current-step-input">{{ $t('Current step:') }}</label>
                 <input id="current-step-input" type="number" v-model="currentDataIndex" @keydown.enter="jumpToData" min="0" :max="matchData.length - 1">
               </div>
-              <button @click="jumpToData">{{ $t('Jump') }}</button>
+              <button @click="jumpToData" :disabled="matchData.length === 0">{{ $t('Jump') }}</button>
             </div>
           </div>
         </div>
@@ -107,13 +115,27 @@
           </div>
           <div class="refresh-debug-div">
             <button @click="changeLanguage()">Language</button>
-            <button @click="refreshData" :disabled="processing">{{ $t('Refresh') }}</button>
+            <button @click="refreshData" :disabled="processing || playerTableOrder == -1">{{ $t('Refresh') }}</button>
             <button @click="showDebug = !showDebug">{{ $t('Toggle Debug') }}</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="match-container" v-if="match != null">
+    <div v-if="showDeckDiv" class="deck-container">
+      <div class="desc-container">
+        <div v-for="(desc, did) in descData">
+          <h4>{{ $t(desc.type + '/' + desc.name) }}</h4>
+          <p v-if="desc.version && did == 0">{{ $t('Version: ') }} {{ desc.version }}</p>
+          <p v-if="desc.skill_type">{{ $t('SKILL_TYPE/' + desc.skill_type) }}</p>
+          <p>{{ $t(desc.type + '/' + desc.name + '/' + descData[0].version) }}</p>
+        </div>
+      </div>
+      <div class="deck-container-inner">
+        <Deck :player-idx="1 - playerTableOrder" :card-modifiable="displayInJudgeMode"></Deck>
+        <Deck :player-idx="playerTableOrder" :card-modifiable="true"></Deck>
+      </div>
+    </div>
+    <div class="match-container" v-if="match != null && !showDeckDiv">
       <div class="desc-container">
         <div v-for="(desc, did) in descData">
           <h4>{{ $t(desc.type + '/' + desc.name) }}</h4>
@@ -129,7 +151,7 @@
       </div>
       <div v-if="switchNotify" :class="{ 'switch-notify-container': true, 'notify-right-part': switchNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': switchNotify.player_id != playerTableOrder }">
-          <img :src="$store.getters.getImagePath({ type: 'avatar', name: switchNotify.charactor_name })">
+          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: switchNotify.charactor_name })">
           <div>
             <p>{{ $t('Switch to') }} {{ $t('CHARACTOR/' + switchNotify.charactor_name) }}</p>
           </div>
@@ -137,7 +159,7 @@
       </div>
       <div v-if="skillNotify" :class="{ 'skill-notify-container': true, 'notify-right-part': skillNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': skillNotify.player_id != playerTableOrder }">
-          <img :src="$store.getters.getImagePath({ type: 'avatar', name: skillNotify.charactor_name })">
+          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: skillNotify.charactor_name })">
           <div>
             <p>{{ $t('CHARACTOR/' + skillNotify.charactor_name) }} {{ $t('used') }} {{ $t('SKILL_TYPE/' + skillNotify.skill_type) }}</p>
             <p>{{ $t('SKILL_' + skillNotify.charactor_name + '_' + skillNotify.skill_type + '/' + skillNotify.skill_name) }}</p>
@@ -145,7 +167,7 @@
         </div>
       </div>
       <div v-if="cardNotify" :class="{ 'card-notify-container': true, 'notify-right-part': cardNotify.player_id != playerTableOrder }">
-        <img :src="$store.getters.getImagePath({ type: 'card', name: cardNotify.card_name })" :class="{ 'opponent-shadow-color': cardNotify.player_id != playerTableOrder }">
+        <img :src="$store.getters.getImagePath(cardNotify)" :class="{ 'opponent-shadow-color': cardNotify.player_id != playerTableOrder }">
       </div>
       <div v-if="roundEndNotify" :class="{ 'round-end-notify-container': true, 'opponent-shadow-color': roundEndNotify.player_id != playerTableOrder }">
         <span>{{ $tc((roundEndNotify.player_id != playerTableOrder ? 'Opponent' : 'You') + ' declare round end', ) }}</span>
@@ -179,14 +201,16 @@
 import PlayerTable from './PlayerTable.vue'
 import RequestDetails from './RequestDetails.vue';
 import RequestButton from './RequestButton.vue';
+import Deck from './Deck.vue';
 
 export default {
   name: 'App',
   components: {
     PlayerTable,
     RequestDetails,
-    RequestButton
-},
+    RequestButton,
+    Deck
+  },
   data() {
     return {
       dataVersion: null,
@@ -208,8 +232,8 @@ export default {
       refreshInterval: 1000,
       showDebug: false,
       displayInJudgeMode: false,
-      serverURL: 'http://localhost:8000',
       currentLanguage: null,
+      refreshTimeout: null,
     }
   },
   created() {
@@ -222,24 +246,24 @@ export default {
     this.currentLanguage = this.$root.$i18n.locale;
 
     // auto load logs.txt. when debug, it avoids manually loading data.
-    const logFilePath = 'logs.txt';
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
-        this.processing = false;
-        this.matchDataInput = '';
-        if (xhr.status === 200) {
-          this.matchDataInput = xhr.responseText;
-          this.parseLogFileData();
-        }
-      }
-    };
-    xhr.open('GET', logFilePath, true);
-    xhr.send();
-    this.processing = true;
-    this.playerTableOrder = 1;
-    this.displayInJudgeMode = true;
-    this.showDebug = true;
+    // const logFilePath = 'logs.txt';
+    // const xhr = new XMLHttpRequest();
+    // xhr.onreadystatechange = () => {
+    //   if (xhr.readyState === 4) {
+    //     this.processing = false;
+    //     this.matchDataInput = '';
+    //     if (xhr.status === 200) {
+    //       this.matchDataInput = xhr.responseText;
+    //       this.parseLogFileData();
+    //     }
+    //   }
+    // };
+    // xhr.open('GET', logFilePath, true);
+    // xhr.send();
+    // this.processing = true;
+    // this.playerTableOrder = 1;
+    // this.displayInJudgeMode = true;
+    // this.showDebug = true;
 
     // listen to ESC and ENTER key
     window.removeEventListener('keydown', this.handleKeyDown);
@@ -324,15 +348,25 @@ export default {
       this.fullMatch = data
       this.fullMatch.requests = requests
       let match = this.fullMatch
-      console.log(match.last_action.type)
+      // console.log(match.last_action.type)
+
+      // set damage info
       let damage_info = null;
       if (match.last_action.type == 'MAKE_DAMAGE') {
-        console.log(JSON.parse(JSON.stringify(match.last_action)))
-        console.log(JSON.parse(JSON.stringify(match.action_info)))
+        // console.log(JSON.parse(JSON.stringify(match.last_action)))
+        // console.log(JSON.parse(JSON.stringify(match.action_info)))
         damage_info = match.action_info;
         damage_info.position = match.last_action.damage_value_list[0].position;
       }
       this.$store.commit('setDamageNotify', damage_info)
+
+      // update deck in it has deck information
+      // let deck = [];
+      // for (let i = 0; i < match.player_tables; i ++ )
+      //   if (match.player_tables[i].deck)
+      //     deck.push(match.player_tables[i].deck);
+      // if (deck.length == 0) deck = null;
+      // this.$store.commit('setDeck', deck);
       this.commitMatchToStore()
     },
     commitMatchToStore(mode = null, player_idx = null) {
@@ -443,6 +477,10 @@ export default {
         //   this.matchData.push(data);
         // this.currentDataIndex = this.matchData.length - 1;
         this.updateMatchData(data);
+        if (this.refreshTimeout != null) {
+          clearTimeout(this.refreshTimeout);
+          this.refreshTimeout = setInterval(() => this.refreshData(), this.refreshInterval);
+        }
         if (this.match.requests.length > 0)
           this.selectedRequest = this.match.requests[0];
         setTimeout(() => this.realSendInteraction(), this.multiCommandTimeout);
@@ -483,6 +521,15 @@ export default {
       this.updateMatch(this.matchData[this.currentDataIndex]);
     },
     refreshData() {
+      if (this.refreshTimeout != null)
+        clearTimeout(this.refreshTimeout);
+      this.refreshTimeout = null;
+      if (this.matchData.length > this.maxPlayedDataIndex + 1) {
+        // in auto play, no need to refresh data
+        this.updateMatchData([]);
+        this.refreshTimeout = setTimeout(() => this.refreshData(), this.refreshInterval);
+        return;
+      }
       let next_idx = this.matchData.length;
       fetch(this.serverURL + '/state/after/' + next_idx + '/-1')
         .then(response => {
@@ -497,7 +544,7 @@ export default {
           else return response.json();
         })
         .then(data => {
-          if (data.length > 0) console.log('Refresh data', data);
+          // if (data.length > 0) console.log('Refresh data', data);
           // let last_data = this.matchData[this.matchData.length - 1];
           // if (JSON.stringify(last_data) !== JSON.stringify(data))
           //   this.matchData.push(data);
@@ -506,7 +553,7 @@ export default {
           // if (this.match.requests.length > 0)
           //   this.selectedRequest = this.match.requests[0];
           this.updateRequestData();
-          setTimeout(() => this.refreshData(), this.refreshInterval);
+          this.refreshTimeout = setTimeout(() => this.refreshData(), this.refreshInterval);
         })
         .catch(error => {
           this.make_alert('Error in refreshing data: ' + error + '\nAuto refresh stopped.', error)
@@ -597,7 +644,124 @@ export default {
       console.log('Command: ' + this.$store.state.commandString)
       this.interactionInput = this.$store.state.commandString;
       this.sendInteraction();
-    }
+    },
+    clickCheckShowDeck() {
+      // first receive deck info from server, then show deck div
+      if (this.showDeckDiv) {
+        this.$store.commit('setShowDeckDiv', false);
+        return;
+      }
+      fetch(this.serverURL + '/decks')
+        .then(response => {
+          if (!response.ok) {
+            response.json().then(data => {
+              throw new Error('Network response is not ok with detail ' + data.detail);
+            })
+            .catch(error => {
+              this.make_alert('Error in getting deck. ' + error, error)
+            });
+          }
+          else return response.json();
+        })
+        .then(data => {
+          // console.log('Deck data', data);
+          // let res = [];
+          // for (let i = 0; i < data.length; i ++ ) {
+          //   res.push({
+          //     player_idx: i,
+          //     deck: data[i],
+          //   });
+          // }
+          // if (this.playerTableOrder == 0) {
+          //   res.reverse();
+          // }
+          this.$store.commit('setDeck', data);
+          this.$store.commit('setShowDeckDiv', true);
+        })
+        .catch(error => {
+          this.make_alert('Error in getting deck. ' + error, error)
+        });
+    },
+    clickStartNewMatch() {
+      fetch(this.$store.state.serverURL + '/reset', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+        }),
+      })
+      .then(response => {
+        if (!response.ok) {
+          response.json().then(data => {
+            throw new Error('Network response is not ok with detail ' + data.detail);
+          })
+          .catch(error => {
+            this.make_alert('Error in reset game. ' + error, error);
+          });
+          throw new Error('Network response is not ok with status ' + response.status);
+        }
+        else return response.json();
+      })
+      .then(data => {
+        document.activeElement.blur();
+        this.$store.commit('setShowDeckDiv', false);
+        clearTimeout(this.refreshTimeout);
+        this.matchData = [];
+        this.currentDataIndex = 0;
+        this.maxPlayedDataIndex = 0;
+        this.interactionCommands = [[], []];
+        this.commandHistory = [[], []];
+        alert(this.$t('Game reset successfully!'));
+        this.refreshData();
+      })
+      .catch(error => {
+        this.make_alert('Error in reset game. ' + error, error);
+      });
+    },
+    resetByIndex() {
+      let current_index = this.currentDataIndex;
+      fetch(this.$store.state.serverURL + '/reset', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          match_state_idx: current_index,
+        }),
+      })
+      .then(response => {
+        if (!response.ok) {
+          response.json().then(data => {
+            throw new Error('Network response is not ok with detail ' + data.detail);
+          })
+          .catch(error => {
+            this.make_alert('Error in reset game. ' + error, error);
+          });
+          throw new Error('Network response is not ok with status ' + response.status);
+        }
+        else return response.json();
+      })
+      .then(data => {
+        document.activeElement.blur();
+        this.$store.commit('setShowDeckDiv', false);
+        clearTimeout(this.refreshTimeout);
+        this.matchData = [];
+        this.currentDataIndex = 0;
+        this.maxPlayedDataIndex = 0;
+        this.interactionCommands = [[], []];
+        this.commandHistory = [[], []];
+        alert(this.$t('Game reset successfully!'));
+        this.refreshData();
+      })
+      .catch(error => {
+        this.make_alert('Error in reset game. ' + error, error);
+      });
+    },
+    stopRefresh() {
+      clearTimeout(this.refreshTimeout);
+      this.refreshTimeout = null;
+    },
   },
   computed: {
     match () {
@@ -755,15 +919,14 @@ export default {
       let hands = this.fullMatch.player_tables[position.player_idx].hands;
       let ret = {
         player_id: position.player_idx,
-        card_name: null,
       };
       for (let i = 0; i < hands.length; i ++ ) {
         if (hands[i].id == position.id) {
-          ret.card_name = hands[i].name;
+          ret = { ...ret, ...hands[i] };
           break;
         }
       }
-      if (ret.card_name == null) {
+      if (ret.name == null) {
         console.error('Cannot find card');
         return null;
       }
@@ -780,6 +943,17 @@ export default {
       if (this.match.last_action.type != 'DECLARE_ROUND_END') return null;
       return { player_id: this.match.last_action.player_idx };
     },
+    showDeckDiv() {
+      return this.$store.state.showDeckDiv;
+    },
+    serverURL: {
+      get () {
+        return this.$store.state.serverURL;
+      },
+      set (value) {
+        this.$store.commit('setServerURL', value);
+      }
+    }
     // match: {
     //   get() {
     //     console.log('get', this._match);
@@ -848,7 +1022,6 @@ label {
   display: block;
   width: 20%;
   height: 100%;
-  padding: 1rem;
   font-size: 1vw;
   /* margin-bottom: 1rem; */
   /* margin-left: 20%; */
@@ -885,6 +1058,12 @@ button {
   padding: 0.5rem 1rem;
   font-size: 1em;
   cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed !important;
+  background-color: #cccccc !important;
+  color: #888888 !important;
 }
 
 button:hover {
@@ -1072,12 +1251,20 @@ button:hover {
   background-color: aliceblue;
 }
 
+.deck-start-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 10%;
+}
+
 .radios-div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 30%;
+  width: 20%;
 }
 
 .radios-div > p {
@@ -1199,6 +1386,31 @@ button:hover {
 
 .opponent-shadow-color {
   box-shadow: 0 0 0.7vw 0.7vw rgb(0, 145, 255) !important;
+}
+
+.deck-container {
+  position: relative;
+  width: 90%;
+  height: 0;
+  padding-bottom: 45%; /* 16:9 aspect ratio */
+  /* margin-left: 10%; */
+  /* display: flex;
+  flex-direction: column; */
+  font-size: 1vw;
+}
+
+.deck-container-inner {
+  position: absolute;
+  width: 88.888888888888%;
+  left: 11.111111111111%;
+  height: 100%;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+}
+
+.deck-container-inner > * {
+  height: 50%;
 }
 
 </style>
