@@ -321,7 +321,7 @@ export default {
       let requests = data.requests
       // console.log(data, requests, this.currentDataIndex, this.matchData.length - 1)
       if (this.currentDataIndex == this.matchData.length - 1) {
-        // not in last, parse requests from match
+        // in last, parse requests from match
         requests = JSON.parse(JSON.stringify(this.requestData))
       }
       for (let i = 0; i < requests.length; i++) {
@@ -332,7 +332,8 @@ export default {
           let card_idx = request.card_idx
           let hands = data.player_tables[player_idx].hands
           let card = hands[card_idx]
-          card.cost = request.cost
+          if (card) card.cost = request.cost
+          else console.error('UseCardRequest, but card not exist', request, hands)
           // console.log(request.name, request, request.cost)
         }
         else if (request.name == 'UseSkillRequest') {
@@ -489,6 +490,63 @@ export default {
         this.make_alert('Error in sending response. ' + error, error);
       });
     },
+    decodeDiffMatchData(data) {
+      let res = [];
+      if (data.length == 0) return res;
+      for (let i = 0; i < data.length; i ++ ) {
+        if (data[i].type == 'FULL') {
+          res.push(data[i]);
+        }
+        else {
+          // type is diff
+          let diffs = data[i].match_diff;
+          let recover_match = JSON.parse(JSON.stringify(data[i - 1].match));
+          for (let i = 0; i < diffs.length; i ++ ) {
+            let diff = diffs[i];
+            let key = diff[1];
+            if (typeof key === 'string') key = key.split('.');
+            let target = recover_match;
+            // leave last key for later use
+            for (let k = 0; k < key.length - 1; k ++ ) target = target[key[k]];
+            key = key[key.length - 1];
+
+            if (diff[0] == 'change') {
+              target[key] = diff[2][1];
+            }
+            else if (diff[0] == 'add') {
+              for (let r of diff[2]) {
+                let rkey = r[0];
+                target[key][rkey] = r[1];
+              }
+            }
+            else if (diff[0] == 'remove') {
+              for (let r of diff[2]) {
+                let rkey = r[0];
+                delete target[key][rkey];
+                if (Array.isArray(target[key])) {
+                  // for array, after remove, should delete undefined and null
+                  while (target[key].length
+                         && (target[key][target[key].length - 1] === undefined
+                             || target[key][target[key].length - 1] === null))
+                    target[key].pop();
+                }
+              }
+            }
+          }
+          // var _ = require('lodash');
+          // if (!_.isEqual(recover_match, data[i].match)) {
+          //   console.log(data[i].match_diff);
+          //   console.error('different', recover_match == data[i].match,
+          //                 Object.is(recover_match, data[i].match),
+          //                 _.isEqual(recover_match, data[i].match),
+          //                 recover_match, data[i].match);
+          // }
+          data[i].match = recover_match;
+          res.push(data[i]);
+        }
+      }
+      return res;
+    },
     updateMatchData(data) {
       if (data.length == 0) {
         if (this.matchData.length > this.maxPlayedDataIndex + 1) {
@@ -498,6 +556,7 @@ export default {
         }
         return;
       }
+      data = this.decodeDiffMatchData(data);
       for (let i = 0; i < data.length; i ++ ) {
         let d = data[i];
         let idx = d.idx;
@@ -712,6 +771,7 @@ export default {
         this.maxPlayedDataIndex = 0;
         this.interactionCommands = [[], []];
         this.commandHistory = [[], []];
+        this.requestData = [];
         alert(this.$t('Game reset successfully!'));
         this.refreshData();
       })
@@ -751,6 +811,7 @@ export default {
         this.maxPlayedDataIndex = 0;
         this.interactionCommands = [[], []];
         this.commandHistory = [[], []];
+        this.requestData = [];
         alert(this.$t('Game reset successfully!'));
         this.refreshData();
       })
