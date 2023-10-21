@@ -3,18 +3,6 @@
 > Simple frontend for [zyr17/GITCG](https://github.com/zyr17/GITCG), or lpsim
 > on PyPI.
 
-## resorces downloading
-
-We do not provide images here, you should collect them by your self before
-using this project, otherwise images will not shown. Download `images.zip` from
-[Baidu Netdisk](https://pan.baidu.com/s/1O1K2pdHSIsl2JY2p3UOVhw?pwd=tgic)
-or 
-[Google Drive](https://drive.google.com/drive/folders/12yKmNslSDwTCxoqOpuBD9fVzb_AYBWf1?usp=sharing),
-unzip it and put the `images` folder in the
-`static` folder. The author collected the images from network, and do not
-guarantee the availability of the links. All copy right of images belongs to 
-their original authors, and no commercial use is allowed.
-
 ## usage
 
 ### replay
