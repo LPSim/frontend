@@ -23,7 +23,7 @@
   "Jump": "跳至该帧",
   "Round ": "第 {n} 回合",
   "No Match Data.": "无对战数据。",
-  "Refresh or load replay in debug.": "刷新或在调试界面加载对战回放。",
+  "Refresh or load replay in debug.": "刷新，开始新对局或在调试界面加载对战回放。",
   "Please select view point.": "请在左方选择视角。",
   "Current Match State: ": "当前对战状态：",
   "Current is Your Turn": "当前是你的回合",

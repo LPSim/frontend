@@ -50,6 +50,8 @@ export default new Vuex.Store({
       state.requests = match.requests.filter((r) => {
         return r.player_idx == player_idx
       })
+      for (let i = 0; i < state.requests.length; i++)
+        state.requests[i].idx = i;
       let request = null;
       if (state.requests.length == 1) {
         request = 0;

@@ -33,7 +33,7 @@
         <div class="deck-start-div">
           <button id="check-show-deck" @click="clickCheckShowDeck" :disabled="playerTableOrder == -1">{{ $t('Check/Set Deck') }}</button>
           <button id="start-new-match" @click="clickStartNewMatch" :disabled="playerTableOrder == -1">{{ $t('Start New Match') }}</button>
-          <button @click="resetByIndex()">{{ $t('Reset Match to This Index') }}</button>
+          <button @click="resetByIndex()" :disabled="playerTableOrder == -1 || matchData.length === 0">{{ $t('Reset Match to This Index') }}</button>
         </div>
         <div class="radios-div">
           <p>{{ $t('Display Mode:') }}</p>
@@ -62,7 +62,7 @@
             </div>
           </div>
           <div v-if="match == null && playerTableOrder != -1">
-            <div class="round-div" style="font-weight: bold; font-size: 2vw;">
+            <div class="round-div" style="font-weight: bold; font-size: 1.5vw;">
               {{ $t('No Match Data.') }}<br>{{ $t('Refresh or load replay in debug.') }}
             </div>
           </div>
@@ -272,11 +272,11 @@ export default {
     // xhr.open('GET', logFilePath, true);
     // xhr.send();
     // this.processing = true;
-    this.playerTableOrder = 1;
-    this.displayInJudgeMode = true;
-    this.showDebug = true;
-    this.refreshInterval = 100;
-    this.refreshData();
+    // this.playerTableOrder = 1;
+    // this.displayInJudgeMode = true;
+    // this.showDebug = true;
+    // this.refreshInterval = 100;
+    // this.refreshData();
 
     // listen to ESC and ENTER key
     window.removeEventListener('keydown', this.handleKeyDown);
@@ -340,7 +340,6 @@ export default {
       }
       for (let i = 0; i < requests.length; i++) {
         let request = requests[i]
-        request.idx = i
         if (request.name == 'UseCardRequest') {
           let player_idx = request.player_idx
           let card_idx = request.card_idx
@@ -438,9 +437,6 @@ export default {
       this.realSendInteraction();
     },
     realSendInteraction() {
-      if (this.refreshTimeout != null) {
-        clearTimeout(this.refreshTimeout);
-      }
       let cid = this.currentRequestPlayerId;
       if (cid == null) {
         // no need response now. maybe network problem, re-run this function
@@ -463,6 +459,9 @@ export default {
       const data = { player_idx: this.currentRequestPlayerId, command: this.interactionCommands[cid][0] };
       this.commandPOSTData = data;
       this.interactionCommands[cid] = this.interactionCommands[cid].slice(1);
+      if (this.refreshTimeout != null) {
+        clearTimeout(this.refreshTimeout);
+      }
       fetch(this.serverURL + '/respond', {
         method: 'POST',
         headers: {
@@ -495,7 +494,7 @@ export default {
         //   this.matchData.push(data);
         // this.currentDataIndex = this.matchData.length - 1;
         this.updateMatchData(data);
-        this.refreshTimeout = setInterval(() => this.refreshData(), this.refreshInterval);
+        this.refreshTimeout = setTimeout(() => this.refreshData(), this.refreshInterval);
         if (this.match.requests.length > 0)
           this.selectedRequest = this.match.requests[0];
         setTimeout(() => this.realSendInteraction(), this.multiCommandTimeout);
@@ -681,7 +680,7 @@ export default {
       if (request.prediction) {
         this.predictFullMatch = request.prediction;
       }
-      if (request_idx) this.$store.commit('selectRequest', request_idx);
+      if (request_idx !== null && request_idx !== undefined) this.$store.commit('selectRequest', request_idx);
     },
     selectClass(title, idx) {
       if (title == 'Confirm') {
@@ -694,8 +693,8 @@ export default {
         }
       }
       else if (title == 'Cancel') {
-        // can use when request selected
-        if (this.$store.state.selectedRequest != null) {
+        // can use when request selected or in prediction mode
+        if (this.$store.state.selectedRequest != null || this.predictFullMatch) {
           return 'select-highlight'
         }
         else {
@@ -923,7 +922,8 @@ export default {
     },
     buttonRequests() {
       // requests that show in right button. current id same, and not card.
-      let res = this.match.requests.filter(request => request.player_idx === this.currentRequestPlayerId);
+      // let res = this.match.requests.filter(request => request.player_idx === this.currentRequestPlayerId);
+      let res = this.$store.state.requests;
       res = res.filter(request => request.name !== 'UseCardRequest');
       let finalres = {};
       for (let i = 0; i < this.match.skill_predictions.length; i ++ ) {
