@@ -105,12 +105,14 @@ export default new Vuex.Store({
         // no other positions
       }
       else if (request.name == 'UseSkillRequest') {
+        // no other positions
+
         // opponent active charactor as position
-        let o_table = state.match.player_tables[1 - player_idx]
-        let o_charactors = o_table.charactors
-        let active = o_table.active_charactor_idx
-        state.positions.push(o_charactors[active].position)
-        state.selectedPositions = [0]
+        // let o_table = state.match.player_tables[1 - player_idx]
+        // let o_charactors = o_table.charactors
+        // let active = o_table.active_charactor_idx
+        // state.positions.push(o_charactors[active].position)
+        // state.selectedPositions = [0]
       }
       else if (request.name == 'UseCardRequest') {
         // get target positions from request directly

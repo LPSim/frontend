@@ -162,9 +162,14 @@ export default {
         }
         return '';
       }
+      let request = this.$store.state.requests[this.$store.state.selectedRequest];
+      // request is selected, if request is use skill, show all card normally.
+      // TODO can we show by diff?
+      if (request.name == 'UseSkillRequest') {
+        return 'select-none';
+      }
       // request is selected, if card is corresponding request, select it.
       // otherwise, disable.
-      let request = this.$store.state.requests[this.$store.state.selectedRequest];
       if (request.name == 'UseCardRequest') {
         if (request.card_idx == cidx && request.player_idx == this.playerTable.player_idx)
           return 'select-selected';
@@ -207,6 +212,12 @@ export default {
     selectObjectClass(object_position) {
       if (this.$store.state.selectedRequest == null) {
         // request not selected, none
+        return 'select-none';
+      }
+      let request = this.$store.state.requests[this.$store.state.selectedRequest];
+      // request is selected, if request is use skill, show normally.
+      // TODO can we show by diff?
+      if (request.name == 'UseSkillRequest') {
         return 'select-none';
       }
       let positions = this.$store.state.positions;
@@ -260,6 +271,12 @@ export default {
         return 'select-none';
       }
       let request = this.$store.state.requests[this.$store.state.selectedRequest];
+      // request is selected, if request is use skill, show normally.
+      // TODO can we show by diff?
+      if (request.name == 'UseSkillRequest') {
+        return 'select-none';
+      }
+      // if is SwitchCharactorRequest, show target
       if (request.name == 'SwitchCharactorRequest') {
         if (request.target_charactor_idx == cidx && request.player_idx == this.playerTable.player_idx)
           return 'select-selected';

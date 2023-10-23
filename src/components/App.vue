@@ -144,7 +144,12 @@
           <p>{{ $t(desc.type + '/' + desc.name + '/' + descData[0].version) }}</p>
         </div>
       </div>
-      <div class="player-tables-container">
+      <div v-if="predictMatch" class="player-tables-container prediction-container">
+        <div class="player-tables" v-for="(playerTable, pid) in sortedPredictPlayerTables" :key="pid" :style="'top: ' + (pid == 1 ? '50%' : '0')">
+          <PlayerTable :class="{'table-current-player': match.current_player == playerTable.player_idx, 'table-current-request': currentRequestPlayerId == playerTable.player_idx}" :playerTable="playerTable" :is_reverse="pid == 0"/>
+        </div>
+      </div>
+      <div v-else class="player-tables-container">
         <div class="player-tables" v-for="(playerTable, pid) in sortedPlayerTables" :key="pid" :style="'top: ' + (pid == 1 ? '50%' : '0')">
           <PlayerTable :class="{'table-current-player': match.current_player == playerTable.player_idx, 'table-current-request': currentRequestPlayerId == playerTable.player_idx}" :playerTable="playerTable" :is_reverse="pid == 0"/>
         </div>
@@ -169,20 +174,25 @@
       <div v-if="cardNotify" :class="{ 'card-notify-container': true, 'notify-right-part': cardNotify.player_id != playerTableOrder }">
         <img :src="$store.getters.getImagePath(cardNotify)" :class="{ 'opponent-shadow-color': cardNotify.player_id != playerTableOrder }">
       </div>
-      <div v-if="roundEndNotify" :class="{ 'round-end-notify-container': true, 'opponent-shadow-color': roundEndNotify.player_id != playerTableOrder }">
+      <div v-if="roundEndNotify" :class="{ 'center-text-notify-container': true, 'opponent-shadow-color': roundEndNotify.player_id != playerTableOrder }">
         <span>{{ $tc((roundEndNotify.player_id != playerTableOrder ? 'Opponent' : 'You') + ' declare round end', ) }}</span>
+      </div>
+      <div v-if="predictFullMatch" class="prediction-notify-container">
+        <div v-for="number in 15">
+          <span>{{ $t('Skill Prediction') }}</span>
+        </div>
       </div>
       <div class="requests-button-container">
         <div class="prev-buttons">
-          <div v-if="key != 'DeclareRoundEnd' && key != 'SwitchCharactor'" v-for="data, key in buttonRequests" :key="key" @click="selectRequest(data.idx)" >
+          <div v-if="key != 'DeclareRoundEnd' && key != 'SwitchCharactor'" v-for="data, key in buttonRequests" :key="key" @click="selectRequest(data)" >
             <RequestButton :title="data.title" :cost="data.cost" :select_class="selectClass(data.title, data.idx)" />
           </div>
         </div>
         <div class="last-buttons">
-          <div v-if="buttonRequests.SwitchCharactor" @click="selectRequest(buttonRequests.SwitchCharactor.idx)">
+          <div v-if="buttonRequests.SwitchCharactor" @click="selectRequest(buttonRequests.SwitchCharactor)">
             <RequestButton :title="buttonRequests.SwitchCharactor.title" :cost="buttonRequests.SwitchCharactor.cost" :select_class="selectClass('Switch Charactor', buttonRequests.SwitchCharactor.idx)" />
           </div>
-          <div v-if="!buttonRequests.SwitchCharactor && buttonRequests.DeclareRoundEnd" @click="selectRequest(buttonRequests.DeclareRoundEnd.idx)">
+          <div v-if="!buttonRequests.SwitchCharactor && buttonRequests.DeclareRoundEnd" @click="selectRequest(buttonRequests.DeclareRoundEnd)">
             <RequestButton :title="$t('Declare Round End')" :select_class="selectClass('Declare Round End', buttonRequests.DeclareRoundEnd.idx)" />
           </div>
           <div @click="confirmSelection">
@@ -220,6 +230,7 @@ export default {
       currentDataIndex: 0,
       maxPlayedDataIndex: 0,
       fullMatch: null,
+      predictFullMatch: null,
       playerTableOrder: -1,
       stepCount: 1,
       processing: false,
@@ -264,6 +275,8 @@ export default {
     // this.playerTableOrder = 1;
     // this.displayInJudgeMode = true;
     // this.showDebug = true;
+    // this.refreshInterval = 100;
+    // this.refreshData();
 
     // listen to ESC and ENTER key
     window.removeEventListener('keydown', this.handleKeyDown);
@@ -649,9 +662,10 @@ export default {
     hideRequestDetails() {
       // this.selectedRequest = null;
     },
-    selectRequest(request_idx) {
+    selectRequest(request) {
+      let request_idx = request.idx;
       let req = this.$store.state.requests[request_idx];
-      if (req.name == 'UseSkillRequest') {
+      if (req && req.name == 'UseSkillRequest') {
         let table = this.match.player_tables[req.player_idx];
         let char = table.charactors[table.active_charactor_idx];
         let skill = char.skills[req.skill_idx];
@@ -664,7 +678,10 @@ export default {
           version: char.version,
         });
       }
-      this.$store.commit('selectRequest', request_idx);
+      if (request.prediction) {
+        this.predictFullMatch = request.prediction;
+      }
+      if (request_idx) this.$store.commit('selectRequest', request_idx);
     },
     selectClass(title, idx) {
       if (title == 'Confirm') {
@@ -686,6 +703,10 @@ export default {
         }
       }
       else {
+        if (idx === undefined || idx === null) {
+          // no corresponding request
+          return 'select-disabled'
+        }
         // for others, whether idx matches selectedRequest
         if (this.$store.state.selectedRequest == idx) {
           return 'select-highlight'
@@ -697,6 +718,7 @@ export default {
     },
     cancelSelection() {
       this.$store.commit('selectRequest', null);
+      this.predictFullMatch = null;
     },
     confirmSelection() {
       if (this.$store.state.commandString == '') return
@@ -844,12 +866,40 @@ export default {
         opponent_table.dice.colors[i] = 'UNKNOWN';
       return match;
     },
+    predictMatch() {
+      let fm = this.predictFullMatch;
+      if (!fm || this.displayInJudgeMode || this.playerTableOrder == -1) return fm;
+      let match = JSON.parse(JSON.stringify(fm));
+      let opponent_table = match.player_tables[1 - this.playerTableOrder];
+      // console.log(match, this.fullMatch)
+      for (let i = 0; i < opponent_table.hands.length; i++) {
+        opponent_table.hands[i].name = 'Unknown';
+        opponent_table.hands[i].desc = 'Unknown';
+        opponent_table.hands[i].version = 'Unknown';
+      }
+      for (let i = 0; i < opponent_table.table_deck.length; i++) {
+        opponent_table.table_deck[i].name = 'Unknown';
+        opponent_table.table_deck[i].desc = 'Unknown';
+        opponent_table.table_deck[i].version = 'Unknown';
+      }
+      for (let i = 0; i < opponent_table.dice.colors.length; i ++ )
+        opponent_table.dice.colors[i] = 'UNKNOWN';
+      return match;
+    },
     sortedPlayerTables() {
       if (this.playerTableOrder == -1) return []
       if (this.playerTableOrder == 1) {
         return this.match.player_tables
       } else {
         return [this.match.player_tables[1], this.match.player_tables[0]]
+      }
+    },
+    sortedPredictPlayerTables() {
+      if (this.playerTableOrder == -1) return []
+      if (this.playerTableOrder == 1) {
+        return this.predictMatch.player_tables
+      } else {
+        return [this.predictMatch.player_tables[1], this.predictMatch.player_tables[0]]
       }
     },
     currentRequestPlayerId() {
@@ -863,12 +913,36 @@ export default {
       let res = this.match.requests.filter(request => request.player_idx === this.currentRequestPlayerId);
       res = res.filter(request => request.name !== 'UseCardRequest');
       let finalres = {};
+      for (let i = 0; i < this.match.skill_predictions.length; i ++ ) {
+        let pred = this.match.skill_predictions[i];
+        if (pred.player_idx == this.currentRequestPlayerId) {
+          let name = 'UseSkill' + pred.skill_idx;
+          let char = this.match.player_tables[pred.player_idx].charactors[pred.charactor_idx];
+          let key = 'SKILL_' + char.name + '_' + char.skills[pred.skill_idx].skill_type + '/' + char.skills[pred.skill_idx].name;
+          let diff = pred.diff;
+          let fake_datas = [
+            {
+              type: 'FULL',
+              match: this.fullMatch
+            },
+            {
+              type: 'DIFF',
+              match_diff: diff,
+            }
+          ];
+          fake_datas = this.decodeDiffMatchData(fake_datas);
+          finalres[name] = {
+            title: this.$t(key),
+            prediction: fake_datas[1].match
+          };
+        }
+      }
       for (let i = 0; i < res.length; i++) {
         let request = res[i];
         let name = request.name.replace('Request', '');
         if (request.name == 'UseSkillRequest') {
           let skill_idx = request.skill_idx;
-          finalres[name + skill_idx] = request;
+          finalres[name + skill_idx] = {...finalres[name + skill_idx], ...request};
           let char = this.match.player_tables[request.player_idx].charactors[request.charactor_idx];
           let key = 'SKILL_' + char.name + '_' + char.skills[skill_idx].skill_type + '/' + char.skills[skill_idx].name;
           finalres[name + skill_idx].title = this.$t(key);
@@ -1419,7 +1493,7 @@ button:hover {
   align-items: center;
 }
 
-.round-end-notify-container {
+.center-text-notify-container {
   position:absolute;
   height: 15%;
   width: 30%;
@@ -1433,6 +1507,27 @@ button:hover {
   text-align: center;
   background-color: white;
   box-shadow: 0 0 0.7vw 0.7vw rgb(255, 174, 0);
+}
+
+.prediction-notify-container {
+  opacity: 20%;
+  position: absolute;
+  width: 85%;
+  left: 11.111111111111%;
+  height: 100%;
+  font-size: 2vw;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  pointer-events: none;
+}
+
+.prediction-notify-container > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 33%;
+  width: 19%;
 }
 
 .card-notify-container > img {
