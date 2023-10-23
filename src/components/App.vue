@@ -26,14 +26,14 @@
           <input type="file" ref="fileInput" @change="handleFileSelect" :disabled="processing" style="font-size: 0.8vw">
         </div>
         <div>
-          <button @click="resetByIndex()">ResetToThisIndex</button>
-          <button @click="stopRefresh()">stopRefresh</button>
+          <!-- <button @click="stopRefresh()">stopRefresh</button> -->
         </div>
       </div>
       <div class="header-div" :style="showDebug ? 'top: 8rem;' : ''">
         <div class="deck-start-div">
           <button id="check-show-deck" @click="clickCheckShowDeck" :disabled="playerTableOrder == -1">{{ $t('Check/Set Deck') }}</button>
           <button id="start-new-match" @click="clickStartNewMatch" :disabled="playerTableOrder == -1">{{ $t('Start New Match') }}</button>
+          <button @click="resetByIndex()">{{ $t('Reset Match to This Index') }}</button>
         </div>
         <div class="radios-div">
           <p>{{ $t('Display Mode:') }}</p>
@@ -110,12 +110,12 @@
             <input id="server-url" type="text" v-model="serverURL">
           </div>
           <div class="freq-div">
-                <label for="refresh-frequency">{{ $t('Auto Refresh frequency (ms):') }}</label>
-                <input id="refresh-frequency" type="number" v-model="refreshInterval" min="1">
+              <label for="refresh-frequency">{{ $t('Auto Refresh frequency (ms):') }}</label>
+              <input id="refresh-frequency" type="number" v-model="refreshInterval" min="1">
+              <button @click="refreshTimeout ? stopRefresh() : refreshData()" :disabled="processing || playerTableOrder == -1" :style="refreshTimeout ? 'background-color: #ffa500' : ''">{{ $t(refreshTimeout ? 'Stop Refresh' : 'Start Refresh') }}</button>
           </div>
           <div class="refresh-debug-div">
             <button @click="changeLanguage()">Language</button>
-            <button @click="refreshData" :disabled="processing || playerTableOrder == -1">{{ $t('Refresh') }}</button>
             <button @click="showDebug = !showDebug">{{ $t('Toggle Debug') }}</button>
           </div>
         </div>
@@ -272,11 +272,11 @@ export default {
     // xhr.open('GET', logFilePath, true);
     // xhr.send();
     // this.processing = true;
-    // this.playerTableOrder = 1;
-    // this.displayInJudgeMode = true;
-    // this.showDebug = true;
-    // this.refreshInterval = 100;
-    // this.refreshData();
+    this.playerTableOrder = 1;
+    this.displayInJudgeMode = true;
+    this.showDebug = true;
+    this.refreshInterval = 100;
+    this.refreshData();
 
     // listen to ESC and ENTER key
     window.removeEventListener('keydown', this.handleKeyDown);
@@ -296,6 +296,7 @@ export default {
     make_alert(title, data) {
       console.error(data);
       alert(title + '\nFind detail in console.');
+      this.refreshTimeout = null;
     },
     handleFileSelect() {
       const file = this.$refs.fileInput.files[0];
@@ -437,6 +438,9 @@ export default {
       this.realSendInteraction();
     },
     realSendInteraction() {
+      if (this.refreshTimeout != null) {
+        clearTimeout(this.refreshTimeout);
+      }
       let cid = this.currentRequestPlayerId;
       if (cid == null) {
         // no need response now. maybe network problem, re-run this function
@@ -491,10 +495,7 @@ export default {
         //   this.matchData.push(data);
         // this.currentDataIndex = this.matchData.length - 1;
         this.updateMatchData(data);
-        if (this.refreshTimeout != null) {
-          clearTimeout(this.refreshTimeout);
-          this.refreshTimeout = setInterval(() => this.refreshData(), this.refreshInterval);
-        }
+        this.refreshTimeout = setInterval(() => this.refreshData(), this.refreshInterval);
         if (this.match.requests.length > 0)
           this.selectedRequest = this.match.requests[0];
         setTimeout(() => this.realSendInteraction(), this.multiCommandTimeout);
@@ -595,7 +596,6 @@ export default {
     refreshData() {
       if (this.refreshTimeout != null)
         clearTimeout(this.refreshTimeout);
-      this.refreshTimeout = null;
       if (this.matchData.length > this.maxPlayedDataIndex + 1) {
         // in auto play, no need to refresh data
         this.updateMatchData([]);
@@ -721,6 +721,7 @@ export default {
       this.predictFullMatch = null;
     },
     confirmSelection() {
+      this.predictFullMatch = null;
       if (this.$store.state.commandString == '') return
       console.log('Command: ' + this.$store.state.commandString)
       this.interactionInput = this.$store.state.commandString;
@@ -764,6 +765,12 @@ export default {
         });
     },
     clickStartNewMatch() {
+      let userConfirmation = confirm(
+        this.$t('Are you sure to start a new match?')
+      );
+      if (!userConfirmation) return;
+      clearTimeout(this.refreshTimeout);
+      this.refreshTimeout = null;
       fetch(this.$store.state.serverURL + '/reset', {
         method: 'POST',
         headers: {
@@ -802,6 +809,12 @@ export default {
       });
     },
     resetByIndex() {
+      let userConfirmation = confirm(
+        this.$tc('Are you sure to reset match to current index?', this.currentDataIndex)
+      );
+      if (!userConfirmation) return;
+      clearTimeout(this.refreshTimeout);
+      this.refreshTimeout = null;
       let current_index = this.currentDataIndex;
       fetch(this.$store.state.serverURL + '/reset', {
         method: 'POST',
@@ -1190,7 +1203,7 @@ button {
   color: #fff;
   border: none;
   border-radius: 3px;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 1rem;
   font-size: 1em;
   cursor: pointer;
 }
@@ -1430,17 +1443,28 @@ button:hover {
 .debug-refresh-freq-div > div {
   display: flex;
   justify-content: space-around;
-  height: 30%;
+  height: 27.5%;
+}
+.debug-refresh-freq-div > .freq-div {
+  height: 45%;
 }
 .debug-refresh-freq-div input {
   margin: 0.2vw;
 }
 
-.freq-div > * {
+.freq-div > label {
   width: 50%;
 }
 
-.refresh-debug-div > * {
+.freq-div > input {
+  width: 20%;
+}
+
+.freq-div > button {
+  width: 30%;
+}
+
+.refresh-debug-div > *, .freq-div > button {
   margin: 0.2vw;
   padding: 0 0.25vw;
 }

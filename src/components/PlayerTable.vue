@@ -210,6 +210,12 @@ export default {
       return this.selectObject(card.position)
     },
     selectObjectClass(object_position) {
+      if (this.$store.state.damageNotify && this.$store.state.damageNotify.position) {
+        // has damage notify, if this is the position, show it
+        if (this.$store.state.damageNotify.position.id == object_position.id) {
+          return 'select-selected';
+        }
+      }
       if (this.$store.state.selectedRequest == null) {
         // request not selected, none
         return 'select-none';
@@ -259,6 +265,13 @@ export default {
     },
     selectCharactorClass(object_position) {
       let cidx = object_position.charactor_idx;
+      if (this.$store.state.damageNotify && this.$store.state.damageNotify.position) {
+        // has damage notify, if this is the position, show it
+        if (this.$store.state.damageNotify.position.player_idx == this.playerTable.player_idx
+            && this.$store.state.damageNotify.position.charactor_idx == cidx) {
+          return 'select-selected';
+        }
+      }
       if (this.$store.state.selectedRequest == null) {
         // not selected, if contain switch charactor, can select
         let requests = this.$store.state.requests;

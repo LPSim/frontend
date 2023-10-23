@@ -58,6 +58,11 @@
   "Clear": "Clear",
   "Game reset successfully!": "Game reset successfully!",
   "Skill Prediction": "Skill Prediction",
+  "Start Refresh": "Start Refresh",
+  "Stop Refresh": "Stop Refresh",
+  "Reset Match to This Index": "Reset Match to This Index",
+  "Are you sure to start a new match?": "Are you sure to start a new match?",
+  "Are you sure to reset match to current index?": "Are you sure to reset match to current index {n}?",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",
