@@ -63,6 +63,8 @@
   "Reset Match to This Index": "重置对局至该帧",
   "Are you sure to start a new match?": "确定要开始新对局吗？",
   "Are you sure to reset match to current index?": "确定要重置对局至当前帧 {n} 吗？",
+  "Current": "当前",
+  "Available": "可用",
 
   "SKILL_TYPE/NORMAL_ATTACK": "普通攻击",
   "SKILL_TYPE/ELEMENTAL_SKILL": "元素战技",

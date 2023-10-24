@@ -63,6 +63,8 @@
   "Reset Match to This Index": "Reset Match to This Index",
   "Are you sure to start a new match?": "Are you sure to start a new match?",
   "Are you sure to reset match to current index?": "Are you sure to reset match to current index {n}?",
+  "Current": "Current",
+  "Available": "Available",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",

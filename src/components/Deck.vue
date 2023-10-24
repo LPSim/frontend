@@ -17,19 +17,35 @@
       <button id="upload-deck-button" v-if="cardModifiable" @click="uploadDeck">{{ $t('Upload Deck') }}</button>
     </div>
     <!-- <div class="images-container-div"> -->
-      <div class="images-div images-select-div" v-if="selectionMode">
-          <img v-for="name, cid in selectCards" @click="selectCard(name)" @mousemove="showDetail(name.split('/')[0], name.split('/')[1])" :src="getCardImageUrl({ type: name.split('/')[0], name: name.split('/')[1] })" :alt="name" />
+      <div class="select-divs" v-if="selectionMode">
+          <div class="select-splitter-div">{{  $t('Current') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Charactors') }} * {{ selectionMode == 'CARD' ? cards.length : charactors.length }}</div>
+          <div v-if="selectionMode == 'CHARACTOR'" class="images-div images-select-div-left" style="width: 15%">
+            <div class="one-image-div" v-for="charactor, cid in charactors">
+              <img @click="removeCard(charactor, cid)" :src="getCardImageUrl(charactor)" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="charactor.name" />
+              <span>{{ charactor.version }}</span>
+            </div>
+          </div>
+          <div v-else class="images-div images-select-div-left" style="width: 30%">
+            <div class="one-image-div" v-for="card, cid in cards">
+              <img @click="removeCard(card, cid)" :src="getCardImageUrl(card)" @mousemove="showDetail(card.type, card.name, card.version, card)" :alt="card.name" />
+              <span>{{ card.version }}</span>
+            </div>
+          </div>
+          <div class="select-splitter-div">{{  $t('Available') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Charactors') }}</div>
+          <div class="images-div images-select-div-right" :style="'width: ' + (selectionMode == 'CARD' ? '60%' : '75%')">
+            <img v-for="name, cid in selectCards" @click="selectCard(name)" @mousemove="showDetail(name.split('/')[0], name.split('/')[1])" :src="getCardImageUrl({ type: name.split('/')[0], name: name.split('/')[1] })" :alt="name" />
+          </div>
       </div>
       <div v-else class="images-div">
         <!-- <div class="charactors-div"> -->
-          <div class="splitter-div">{{  $t('Charactors') }}</div>
+          <div class="splitter-div">{{  $t('Charactors') }} * {{ charactors.length }}</div>
           <div class="one-image-div" v-for="charactor, cid in charactors">
             <img @click="removeCard(charactor, cid)" :src="getCardImageUrl(charactor)" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="charactor.name" />
             <span>{{ charactor.version }}</span>
           </div>
         <!-- </div> -->
         <!-- <div class="cards-div"> -->
-          <div class="splitter-div">{{  $t('Cards') }}</div>
+          <div class="splitter-div">{{  $t('Cards') }} * {{ cards.length }}</div>
           <div class="one-image-div" v-for="card, cid in cards">
             <img @click="removeCard(card, cid)" :src="getCardImageUrl(card)" @mousemove="showDetail(card.type, card.name, card.version, card)" :alt="card.name" />
             <span>{{ card.version }}</span>
@@ -97,7 +113,11 @@ export default {
         name: name,
         version: nearestVersion
       })
-      this.selectionMode = null;
+      // this.selectionMode = null;
+      setTimeout(() => {
+        let select_left_div = document.getElementsByClassName('images-select-div-left')[0];
+        select_left_div.scrollLeft = select_left_div.scrollWidth;
+      }, 0)
     },
     showDetail(type, name, version, obj = null) {
       if (!version) version = this.$store.getters.findNearestVersion(type + '/' + name, this.selectedVersion);
@@ -256,9 +276,22 @@ export default {
   flex-wrap: wrap;
 }
 
-.images-select-div {
-  width: 85%;
+.select-divs {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.images-select-div-left, .images-select-div-right {
   overflow-x: scroll;
+}
+
+.select-splitter-div {
+  width: 5%;
+  height: 100%;
+  writing-mode: vertical-rl;
+  font-size: 2vw;
 }
 
 .charactors-div, .cards-div, .command-div {
@@ -281,6 +314,10 @@ export default {
   padding-bottom: 10%;
   margin-right: 0.5vw;
   position: relative
+}
+
+.images-select-div-left > .one-image-div {
+  padding-bottom: 0.66vw;
 }
 
 .one-image-div img {
