@@ -1536,7 +1536,7 @@ button:hover {
 }
 
 .prediction-notify-container {
-  opacity: 20%;
+  opacity: 0.2;
   position: absolute;
   width: 85%;
   left: 11.111111111111%;

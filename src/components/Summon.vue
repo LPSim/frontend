@@ -128,7 +128,7 @@ export default {
 
 .select-disabled {
   box-shadow: 0 0 0.25vw 0.25vw rgb(192, 192, 192);
-  opacity: 20%;
+  opacity: 0.2;
 }
 
 .select-highlight {
