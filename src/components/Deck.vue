@@ -5,8 +5,8 @@
       <p>{{ $tc('Player :', playerIdx) }}</p>
       <p>{{ $t('Deck name:') }}<br>{{ deck.name }}</p>
       <div>
-        <label for="versionDropdown" style="margin: 0">{{ $t('Version for added cards:') }}</label>
-        <select id="versionDropdown" v-model="selectedVersion">
+        <label for="versionDropdown" style="margin: 0" v-if="cardModifiable">{{ $t('Version for added cards:') }}</label>
+        <select id="versionDropdown" v-model="selectedVersion" v-if="cardModifiable">
           <option v-for="version in availableVersions" :value="version">{{ version }}</option>
         </select>
       </div>
@@ -144,6 +144,7 @@ export default {
           .catch(error => {
             this.make_alert('Error in uploading deck. ' + error, error);
           });
+          throw new Error('Network response is not ok');
         }
         else return response.json();
       })

@@ -411,6 +411,8 @@ export default {
     showNextData() {
       let stepCount = parseInt(this.stepCount)
       this.currentDataIndex = Math.min(this.matchData.length - 1, this.currentDataIndex + stepCount);
+      if (this.currentDataIndex > this.maxPlayedDataIndex)
+        this.maxPlayedDataIndex = this.currentDataIndex;
       this.jumpToData()
     },
     jumpToData() {
