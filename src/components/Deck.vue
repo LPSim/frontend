@@ -210,7 +210,7 @@ export default {
       return this.$store.getters.getNamesWithType('CHARACTOR');
     },
     allCards() {
-      let keys = ['WEAPON', 'ARTIFACT', 'SUPPORT', 'CARD'];
+      let keys = ['WEAPON', 'ARTIFACT', 'SUPPORT', 'ARCANE', 'CARD'];
       // let talents = this.$store.getters.getNamesWithType('TALENT');
       let res = []
       for (let charactor of this.deck.charactors) {
