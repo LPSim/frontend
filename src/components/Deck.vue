@@ -330,7 +330,7 @@ export default {
   left: 0;
   background: white;
   border-radius: 0.25vw;
-  font-size: 0.25vw;
+  /* font-size: 0.25vw; */
 }
 
 .images-div > .splitter-div {
