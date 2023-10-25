@@ -65,6 +65,8 @@
   "Are you sure to reset match to current index?": "确定要重置对局至当前帧 {n} 吗？",
   "Current": "当前",
   "Available": "可用",
+  "To connect localhost server, visit https://lpsim.zyr17.cn. Currently you are visiting http page.": "连接本地服务器，请访问 https://lpsim.zyr17.cn。当前你正在访问 http 页面。",
+  "To connect LAN server, visit http://lpsim.zyr17.cn. Currently you are visiting https page.": "连接局域网服务器，请访问 http://lpsim.zyr17.cn。当前你正在访问 https 页面。",
 
   "SKILL_TYPE/NORMAL_ATTACK": "普通攻击",
   "SKILL_TYPE/ELEMENTAL_SKILL": "元素战技",

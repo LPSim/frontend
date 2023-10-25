@@ -65,6 +65,8 @@
   "Are you sure to reset match to current index?": "Are you sure to reset match to current index {n}?",
   "Current": "Current",
   "Available": "Available",
+  "To connect localhost server, visit https://lpsim.zyr17.cn. Currently you are visiting http page.": "To connect localhost server, visit https://lpsim.zyr17.cn. Currently you are visiting http page.",
+  "To connect LAN server, visit http://lpsim.zyr17.cn. Currently you are visiting https page.": "To connect LAN server, visit http://lpsim.zyr17.cn. Currently you are visiting https page.",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",

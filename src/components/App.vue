@@ -283,6 +283,27 @@ export default {
     window.addEventListener('keydown', this.handleKeyDown);
   },
   methods: {
+    wrongProtocol() {
+      // when from lpsim.zyr17.cn, use http to connect localhost, or use https
+      // to connect LAN server, the protocol is wrong.
+      // if protocol wrong, give alert and raise error.
+      let url = document.URL;
+      if (!url.includes('lpsim.zyr17.cn')) return;
+      let current_protocol = url.split(':')[0];
+      let target = this.$store.state.serverURL;
+      if (target.includes('localhost') || target.includes('127.0.0.1')) {
+        if (current_protocol == 'https') return;
+        let msg = this.$t('To connect localhost server, visit https://lpsim.zyr17.cn. Currently you are visiting http page.');
+        alert(msg);
+        throw new Error(msg);
+      }
+      else {
+        if (current_protocol == 'http') return;
+        let msg = this.$t('To connect LAN server, visit http://lpsim.zyr17.cn. Currently you are visiting https page.');
+        alert(msg);
+        throw new Error(msg);
+      }
+    },
     changeLanguage(lang = null) {
       if (lang == null) {
         // select next language
@@ -595,6 +616,7 @@ export default {
       this.updateMatch(this.matchData[this.currentDataIndex]);
     },
     refreshData() {
+      this.wrongProtocol();
       if (this.refreshTimeout != null)
         clearTimeout(this.refreshTimeout);
       if (this.matchData.length > this.maxPlayedDataIndex + 1) {
@@ -729,6 +751,7 @@ export default {
       this.sendInteraction();
     },
     clickCheckShowDeck() {
+      this.wrongProtocol();
       // first receive deck info from server, then show deck div
       if (this.showDeckDiv) {
         this.$store.commit('setShowDeckDiv', false);
@@ -766,6 +789,7 @@ export default {
         });
     },
     clickStartNewMatch() {
+      this.wrongProtocol();
       let userConfirmation = confirm(
         this.$t('Are you sure to start a new match?')
       );

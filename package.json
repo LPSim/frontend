@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "GITCG-frontend",
-  "productName": "GITCG-frontend",
-  "description": "Simple frontend for zyr17/GITCG",
+  "name": "lpsim-frontend",
+  "productName": "lpsim-frontend",
+  "description": "Simple frontend for LPSim",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {

@@ -1,7 +1,6 @@
-# GITCG-frontend
+# LPSim-frontend
 
-> Simple frontend for [zyr17/GITCG](https://github.com/zyr17/GITCG), or lpsim
-> on PyPI.
+> Simple frontend for [LPSim](https://github.com/LPSim/backend).
 
 ## usage
 
@@ -9,7 +8,7 @@
 
 run in development mode as Commands section.
 
-Top left text box is used to put JSONL logs from zyr17/GITCG and show the data.
+Top left text box is used to put JSONL logs from LPSim/backend and show the data.
 If `/log.txt` exists, it will automatically read it. Otherwise, input data
 and click Parse.
 
@@ -21,8 +20,8 @@ elements will print its corresponding data in console.
 
 # command-line interaction
 
-To interact with GITCG, first open FastAPI server
-on GITCG, then click refresh to receive current state. When requests is needed,
+To interact with LPSim, first open FastAPI server
+on LPSim, then click refresh to receive current state. When requests is needed,
 they will be shown on top-right. hover on a request will show the detail
 of the request.
 Text box in the middle is used to input command, type command and press enter
@@ -39,11 +38,11 @@ players in the command box, and click send to perform automatic interaction.
 For detail of automatic interaction, please refer to codes in App.vue.
 
 For the detail of commands, please refer to 
-`agents/interaction_agent.py` in zyr17/GITCG.
+`agents/interaction_agent.py` in LPSim/backend.
 
 ### GUI interaction
 
-To interact with GUI, first open FastAPI server on GITCG, then click refresh
+To interact with GUI, first open FastAPI server on LPSim, then click refresh
 to receive current state. When requests is needed, available requests and 
 objects will be marked with gold border. To perform elemental tuning, skill,
 or decleare round end, click corresponding buttons on right. To switch 
