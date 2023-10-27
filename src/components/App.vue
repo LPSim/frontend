@@ -291,6 +291,16 @@ export default {
       if (!url.includes('lpsim.zyr17.cn')) return;
       let current_protocol = url.split(':')[0];
       let target = this.$store.state.serverURL;
+      let target_protocol = target.split(':')[0];
+      if (target_protocol == 'https') {
+        // target is https, current must https
+        if (current_protocol != 'https') {
+          let msg = this.$t('To connect https server, visit https://lpsim.zyr17.cn. Currently you are visiting http page.');
+          alert(msg);
+          throw new Error(msg);
+        }
+        return;
+      }
       if (target.includes('localhost') || target.includes('127.0.0.1')) {
         if (current_protocol == 'https') return;
         let msg = this.$t('To connect localhost server, visit https://lpsim.zyr17.cn. Currently you are visiting http page.');
@@ -970,9 +980,13 @@ export default {
             }
           ];
           fake_datas = this.decodeDiffMatchData(fake_datas);
+          // keep dice in fake data same as original
+          let fake_match = fake_datas[1].match;
+          for (let i = 0; i < 2; i ++ )
+            fake_match.player_tables[i].dice = this.fullMatch.player_tables[i].dice;
           finalres[name] = {
             title: this.$t(key),
-            prediction: fake_datas[1].match
+            prediction: fake_match
           };
         }
       }
