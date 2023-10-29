@@ -1104,13 +1104,16 @@ export default {
       if (!this.match) return null;
       if (this.match.last_action.type != 'USE_CARD') return null;
       let position = this.match.last_action.card_position;
-      let hands = this.fullMatch.player_tables[position.player_idx].hands;
+      let table = this.match.player_tables[position.player_idx];
+      let hands = table.hands;
       let ret = {
         player_id: position.player_idx,
       };
-      for (let i = 0; i < hands.length; i ++ ) {
-        if (hands[i].id == position.id) {
-          ret = { ...ret, ...hands[i] };
+      let full_hands = hands.slice();
+      if (table.using_hand != null) full_hands.push(table.using_hand);
+      for (let i = 0; i < full_hands.length; i ++ ) {
+        if (full_hands[i].id == position.id) {
+          ret = { ...ret, ...full_hands[i] };
           break;
         }
       }
