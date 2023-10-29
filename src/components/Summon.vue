@@ -15,7 +15,7 @@
       <div>
         <img :src="image_path('ELEMENT', summon.damage_elemental_type)" :alt="summon.damage_elemental_type" width="100%" height="100%" />
         <div class="span-div">
-          <span>{{ summon.damage }}</span>
+          <span>{{ summon.damage_elemental_type == 'HEAL' ? - summon.damage : summon.damage }}</span>
         </div>
       </div>
     </div>
