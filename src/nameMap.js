@@ -1,3 +1,7 @@
+/*
+This file will re-map the key of image path, that match the names in translation file.
+After mapping, the key order of imagePath will keep the same as its original.
+*/
 import nameMapOriginal from './imagePath.json';
 
 import nameTranslation from './locales/en-US/names.json';
