@@ -1,6 +1,6 @@
 <template>
   <div :class="'summon ' + selectClass" @click="log_data">
-    <img :src="image_path('SUMMON', summon.name)" :alt="summon.name"/>
+    <img class="main-img" :src="image_path('SUMMON', summon.name)" :alt="$t('SUMMON/' + summon.name)"/>
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="summon-usage-div">
@@ -137,5 +137,10 @@ export default {
 
 .select-selected {
   box-shadow: 0 0 0.25vw 0.25vw rgb(255, 81, 0);
+}
+
+.main-img {
+  font-size: 50%;
+  -webkit-text-stroke-width: 0;
 }
 </style>

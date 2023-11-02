@@ -1,6 +1,6 @@
 <template>
   <div :class="'support ' + selectClass" @click="log_data">
-    <img :src="image_path('SUPPORT', support.name)" :alt="support.name"/>
+    <img class="main-img" :src="image_path('SUPPORT', support.name)" :alt="$t('SUPPORT/' + support.name)"/>
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="support-usage-div">
@@ -111,5 +111,10 @@ export default {
 
 .select-selected {
   box-shadow: 0 0 0.25vw 0.25vw rgb(255, 81, 0);
+}
+
+.main-img {
+  font-size: 50%;
+  -webkit-text-stroke-width: 0;
 }
 </style>

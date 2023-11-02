@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import nameMap from './nameMap';
+import imagePath from './imagePath.json';
+import nameToId from './nameToId.json';
 
 Vue.use(Vuex);
 
@@ -31,11 +32,85 @@ export default new Vuex.Store({
     selectedObject: null,
     damageNotify: null,
     deck: [],
-    availableVersions: version,
     showDeckDiv: false,
-    serverURL: 'http://localhost:8000'
+    serverURL: 'http://localhost:8000',
+
+    // when imagePath is updated, it will be sorted by nameToId. Initially,
+    // order of imagePath is same as file, so need to call update function
+    // once app is loaded.
+    imagePath: imagePath,
+    nameToId: nameToId,
+    availableVersions: version,
   },
   mutations: {
+    updateImagePath(state) {
+      let new_dict = {};
+      let keys = Object.keys(state.imagePath);
+      keys.sort((a, b) => {
+        a = a.split('/')[1];
+        b = b.split('/')[1];
+        let a_id = state.nameToId[a];
+        let b_id = state.nameToId[b];
+        if (a_id == undefined) a_id = 999999;
+        if (b_id == undefined) b_id = 999999;
+        return a_id - b_id;
+      });
+      for (let i = 0; i < keys.length; i++) {
+        new_dict[keys[i]] = state.imagePath[keys[i]];
+      }
+      state.imagePath = new_dict;
+    },
+    updateDataByPatch(state, patch) {
+      `patch format. update imagePath, nameToId and availableVersions
+      {
+          "version": "1.0",
+          "patch": {
+              "BACKEND_FULL_KEY": {
+                  // all are optional. e.g. balance change cards will only have descs
+                  // of newest version.
+                  "imagepath": "new/path",
+                  "id": 123456,
+                  "names": {
+                      "zh-CN": "new name",
+                      "en-US": "new name"
+                  },
+                  "descs": {
+                      "DESC_VERSION": {
+                          "zh-CN": "new desc",
+                          "en-US": "new desc"
+                      }
+                  }
+              }
+          }
+      }
+      `
+      let patch_version = patch.version;
+      if (patch_version != '1.0') throw 'Patch version not supported';
+      let patch_data = patch.patch;
+      let new_imagePath = JSON.parse(JSON.stringify(state.imagePath));
+      let new_nameToId = JSON.parse(JSON.stringify(state.nameToId));
+      let new_availableVersions = JSON.parse(JSON.stringify(state.availableVersions));
+      for (let full_key in patch_data) {
+        let data = patch_data[full_key];
+        if (data.imagepath) {
+          new_imagePath[full_key] = data.imagepath;
+        }
+        if (data.id) {
+          new_nameToId[full_key.split('/')[1]] = data.id;
+        }
+        if (data.descs) {
+          for (let version in data.descs)
+            if (new_availableVersions.indexOf(version) == -1) {
+              new_availableVersions.push(version);
+            }
+        }
+      }
+      new_availableVersions.sort();
+      state.imagePath = new_imagePath;
+      state.nameToId = new_nameToId;
+      state.availableVersions = new_availableVersions;
+      this.commit('updateImagePath');
+    },
     setSelectedObject(state, obj) {
       state.selectedObject = obj;
     },
@@ -382,11 +457,11 @@ export default new Vuex.Store({
         type = type + '_' + payload.charactor_name;
       }
       if (name == 'Unknown') type = 'CARD';
-      let res = nameMap[type + '/' + name];
+      let res = state.imagePath[type + '/' + name];
       if (res && res.slice(0, 5) == 'data:') return res;
 
       // if (type == 'avatar') {
-      //   res = nameMap['charactor/' + name];
+      //   res = state.imagePath['charactor/' + name];
       //   if (res == undefined) return;
       //   return prefix + res.replace(/cardface\/Char_(Avatar|Enemy|Monster)_/, 'avatar/')
       // }
@@ -403,7 +478,7 @@ export default new Vuex.Store({
         return prefix + 'status/' + res_name + '.png';
       }
 
-      if ((type == 'SUMMON' || type == 'SUPPORT') && payload.small_card) {
+      if ((type == 'SUMMON' || type == 'SUPPORT') && payload.small_card && res) {
         res = res.replace('cardface', 'small_card')
       }
       if (res == undefined) return;
@@ -411,17 +486,17 @@ export default new Vuex.Store({
     },
     getNamesWithType: (state) => (type) => {
       let result = [];
-      for (let key in nameMap) {
+      for (let key in state.imagePath) {
         if (key.split('/')[0] == type) {
           result.push(key)
         }
       }
       return result;
     },
-    findNearestVersion: (state) => (name, version) => {
+    findNearestVersion: (state) => (name, version, descs) => {
       let nearest = null;
-      for (let key in descTranslation)
-        if (key.includes(name)) {
+      for (let key in descs)
+        if (key.includes(name) && key != name) {
           key = key.split('/');
           let last = key[key.length - 1];
           if (last == '') continue;

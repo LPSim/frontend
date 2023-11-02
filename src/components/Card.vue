@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'card': true, 'active-card': card.is_active }" @click="log_data">
-    <img :src="image_link" :alt="card.name" width="100%" height="100%" />
+    <img class="main-img" :src="image_link" :alt="image_alt" width="100%" height="100%" />
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="cost-outer-div" v-if="card.name != 'Unknown'">
@@ -19,6 +19,14 @@ export default {
   computed: {
     image_link() {
       return this.$store.getters.getImagePath(this.card)
+    },
+    image_alt() {
+      let type = this.card.type;
+      if (type == 'TALENT') {
+        type = type + '_' + this.card.charactor_name;
+      }
+      if (this.card.name == 'Unknown') type = 'CARD'
+      return this.$t(type + '/' + this.card.name);
     }
   },
   props: {
@@ -66,5 +74,8 @@ img {
   height: 100%;
 }
 
+.main-img {
+  font-size: 1vw;
+}
 
 </style>

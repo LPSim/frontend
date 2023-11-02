@@ -245,6 +245,7 @@ export default {
       displayInJudgeMode: false,
       currentLanguage: null,
       refreshTimeout: null,
+      checkVersionTimeout: null,
     }
   },
   created() {
@@ -278,11 +279,98 @@ export default {
     // this.refreshInterval = 100;
     // this.refreshData();
 
+    // check server version
+    this.checkVersionTimeout = setTimeout(() => this.checkVersion(), 3000);
+
+    // update image path
+    this.$store.commit('updateImagePath');
+
+    // load patchs
+    // let patch_url = 'https://lpsim.zyr17.cn/patch/';
+    let patch_url = 'patch/';
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          let patchs = JSON.parse(xhr.responseText);
+          console.log('PATCH LIST', patchs);
+          for (let patch of patchs) {
+            let xhr2 = new XMLHttpRequest();
+            xhr2.onreadystatechange = () => {
+              if (xhr2.readyState === 4) {
+                if (xhr2.status === 200) {
+                  let patch_message = JSON.parse(xhr2.responseText);
+                  console.log('PATCH', patch, Object.keys(patch_message.patch).length, 'KEYS');
+                  this.updateLocales(patch_message);
+                  this.$store.commit('updateDataByPatch', patch_message);
+                }
+              }
+            };
+            xhr2.open('GET', patch_url + patch, true);
+            xhr2.send();
+          }
+        }
+      }
+    };
+    xhr.open('GET', patch_url + 'patchs.json', true);
+    xhr.send();
+
     // listen to ESC and ENTER key
     window.removeEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keydown', this.handleKeyDown);
   },
   methods: {
+    checkVersion() {
+      let url = this.$store.state.serverURL;
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            let version = JSON.parse(xhr.responseText).version;
+            console.log('SERVER VERSION', version);
+
+            if (version == undefined || version == 'unknown')
+              // undefined, old server, return directly.
+              // or unknown, debug server, no error message.
+              return;
+            let self_version = require('../../package.json').version;
+            if (version != self_version) {
+              let msg = this.$t('Server version is ') + version + this.$t(', but client version is ') + self_version + this.$t('. Client may not work properly.');
+              alert(msg);
+              throw new Error(msg);
+            }
+          }
+        }
+      };
+      xhr.open('GET', url + '/version', true);
+      xhr.send();
+    },
+    updateLocales(patch) {
+      let version = patch.version;
+      if (version != '1.0') throw new Error('Unknown patch version ' + version);
+      patch = patch.patch;
+      let new_messages = {};
+      for (let full_key in patch) {
+        let data = patch[full_key];
+        if (data.names) {
+          for (let lang in data.names) {
+            if (!new_messages[lang]) new_messages[lang] = {};
+            new_messages[lang][full_key] = data.names[lang];
+          }
+        }
+        if (data.descs) {
+          for (let version in data.descs) {
+            for (let lang in data.descs[version]) {
+              if (!new_messages[lang]) new_messages[lang] = {};
+              new_messages[lang][full_key + '/' + version] = data.descs[version][lang];
+            }
+          }
+        }
+      }
+      console.log('NEW MESSAGES', new_messages);
+      for (let lang in new_messages)
+        this.$i18n.mergeLocaleMessage(lang, new_messages[lang]);
+    },
     wrongProtocol() {
       // when from lpsim.zyr17.cn, use http to connect localhost, or use https
       // to connect LAN server, the protocol is wrong.
@@ -1142,6 +1230,8 @@ export default {
         return this.$store.state.serverURL;
       },
       set (value) {
+        clearTimeout(this.checkVersionTimeout);
+        this.checkVersionTimeout = setTimeout(() => this.checkVersion(), 3000);
         this.$store.commit('setServerURL', value);
       }
     }

@@ -43,3 +43,37 @@ for (i = 0; i < links.length; i++) {
     results[bottom.innerText] = Number(id_num)
 }
 console.log(results)
+
+/*
+used to collect skill descs. combine jsonl with ipynb
+*/
+VERSION = '4.2'
+links = document.querySelectorAll('a')
+divs = document.querySelectorAll('div[name=" Skill"]');
+res = {}
+cname = document.querySelector('h1').innerText
+if (document.URL.includes('/en/')) lang = 'en-US'
+else if (document.URL.includes('/chs/')) lang = 'zh-CN'
+else lang = undefined
+for (i = 0; i < divs.length; i++) {
+    div = divs[i]
+    first_c = div.children[0]
+    second_c = div.children[1]
+    first_c = first_c.children[1]
+    name = first_c.children[0].innerText
+    type = first_c.children[1].innerText
+    desc = second_c.children[0].children[0].innerText
+    console.log(name, type, desc)
+    let key = 'SKILL_' + cname + '_' + type.toUpperCase() + '/' + name
+    res[key] = {
+        names: {
+            [lang]: name
+        },
+        descs: {
+            [VERSION]: {
+                [lang]: desc
+            }
+        }
+    }
+}
+console.log(JSON.stringify(res))

@@ -12,7 +12,7 @@
       </div>
       <button id="add-charactor-button" v-if="cardModifiable" @click="selectionMode = 'CHARACTOR'">{{ $t('Add Charactor') }}</button>
       <button id="add-card-button" v-if="cardModifiable" @click="selectionMode = 'CARD'">{{ $t('Add Card') }}</button>
-      <button id="cancel-button" v-if="cardModifiable && selectionMode" @click="selectionMode = null">{{ $t('Cancel') }}</button>
+      <button id="cancel-button" v-if="cardModifiable && selectionMode" @click="selectionMode = null">{{ $t('Back') }}</button>
       <button id="clear-button" v-if="cardModifiable && !selectionMode" @click="clearAllCards">{{ $t('Clear') }}</button>
       <button id="upload-deck-button" v-if="cardModifiable" @click="uploadDeck">{{ $t('Upload Deck') }}</button>
     </div>
@@ -96,7 +96,7 @@ export default {
       })
     },
     selectCard(name) {
-      let nearestVersion = this.$store.getters.findNearestVersion(name, this.selectedVersion);
+      let nearestVersion = this.$store.getters.findNearestVersion(name, this.selectedVersion, this.$i18n.messages['en-US']);
       if (nearestVersion == null) {
         let type = name.split('/')[0];
         alert(
@@ -120,7 +120,7 @@ export default {
       }, 0)
     },
     showDetail(type, name, version, obj = null) {
-      if (!version) version = this.$store.getters.findNearestVersion(type + '/' + name, this.selectedVersion);
+      if (!version) version = this.$store.getters.findNearestVersion(type + '/' + name, this.selectedVersion, this.$i18n.messages['en-US']);
       if (version == null) {
         this.$store.commit('setSelectedObject', null);
         return;
