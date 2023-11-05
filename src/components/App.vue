@@ -454,7 +454,7 @@ export default {
       let requests = data.requests
       // console.log(data, requests, this.currentDataIndex, this.matchData.length - 1)
       if (this.currentDataIndex == this.matchData.length - 1) {
-        // in last, parse requests from match
+        // in last, parse requests from requestData
         requests = JSON.parse(JSON.stringify(this.requestData))
       }
       for (let i = 0; i < requests.length; i++) {
@@ -473,6 +473,12 @@ export default {
         }
         else if (request.name == 'SwitchCharactorRequest') {
           // console.log(request.name, request.cost)
+        }
+        else if (request.name == 'RerollDiceRequest') {
+          // if is reroll-dice request, update dice color from request
+          let player_idx = request.player_idx
+          let colors = request.colors
+          data.player_tables[player_idx].dice.colors = colors
         }
         else {
           // console.log(request.name)
@@ -506,6 +512,7 @@ export default {
       if (player_idx == null) player_idx = this.playerTableOrder;
       if (mode == null) mode = this.displayInJudgeMode;
       if (mode) player_idx = null;
+      this.predictFullMatch = null;
       this.$store.commit('setMatch', {
         match: this.fullMatch,
         player_idx: player_idx,
@@ -768,7 +775,15 @@ export default {
         .then(data => {
           if (JSON.stringify(this.requestData) == JSON.stringify(data)) return;
           console.log('Request data', data);
+          let old_req_data = this.requestData;
           this.requestData = data;
+          let pid = this.currentRequestPlayerId;
+          if (pid != null) {
+            // if requests related to pid not change, do not update
+            let now = old_req_data.filter(r => r.player_idx == pid);
+            let receive = data.filter(r => r.player_idx == pid);
+            if (JSON.stringify(now) == JSON.stringify(receive)) return;
+          }
           this.updateMatch();
           if (this.match.requests.length > 0)
             this.selectedRequest = this.match.requests[0];
