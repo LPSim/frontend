@@ -120,7 +120,7 @@ export default {
       }, 0)
     },
     showDetail(type, name, version, obj = null) {
-      if (!version) version = this.$store.getters.findNearestVersion(type + '/' + name, this.selectedVersion, this.$i18n.messages['en-US']);
+      if (!version) version = this.$store.getters.findNearestVersion(type + '/' + name, this.selectedVersion, this.$i18n.messages['zh-CN']);
       if (version == null) {
         this.$store.commit('setSelectedObject', null);
         return;

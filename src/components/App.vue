@@ -361,14 +361,26 @@ export default {
         if (data.names) {
           for (let lang in data.names) {
             if (!new_messages[lang]) new_messages[lang] = {};
-            new_messages[lang][full_key] = data.names[lang];
+            let name = data.names[lang];
+            if (name[0] == '$') {
+              // is reference
+              let ref_key = name.slice(1);
+              name = this.$i18n.messages[lang][ref_key];
+            }
+            new_messages[lang][full_key] = name;
           }
         }
         if (data.descs) {
           for (let version in data.descs) {
             for (let lang in data.descs[version]) {
               if (!new_messages[lang]) new_messages[lang] = {};
-              new_messages[lang][full_key + '/' + version] = data.descs[version][lang];
+              let desc = data.descs[version][lang];
+              if (desc[0] == '$') {
+                // is reference
+                let ref_key = desc.slice(1);
+                desc = this.$i18n.messages[lang][ref_key];
+              }
+              new_messages[lang][full_key + '/' + version] = desc
             }
           }
         }
@@ -454,6 +466,7 @@ export default {
     },
     updateMatch(data, mode = null, player_idx = null) {
       if (data === undefined) data = this.matchData[this.currentDataIndex];
+      if (data === undefined) return;
       data = JSON.parse(JSON.stringify(data))
       data.player_tables[0].player_idx = 0
       data.player_tables[1].player_idx = 1
@@ -1154,7 +1167,7 @@ export default {
           {
             type: 'CHARACTOR',
             name: data.name,
-            desc: data.desc,
+            desc: "",
             version: data.version,
           }
         ];
