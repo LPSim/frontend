@@ -966,13 +966,18 @@ export default {
       });
     },
     resetByIndex() {
+      let current_index = this.currentDataIndex;
+      let match = this.matchData[current_index];
+      if (match.requests.length == 0) {
+        alert(this.$t('No available action at current index! cannot reset to this index.'));
+        return;
+      }
       let userConfirmation = confirm(
         this.$tc('Are you sure to reset match to current index?', this.currentDataIndex)
       );
       if (!userConfirmation) return;
       clearTimeout(this.refreshTimeout);
       this.refreshTimeout = null;
-      let current_index = this.currentDataIndex;
       fetch(this.$store.state.serverURL + '/reset', {
         method: 'POST',
         headers: {

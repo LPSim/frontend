@@ -76,6 +76,7 @@
   "Game End": "Game End",
   "You win": "You win",
   "Opponent win": "Opponent win",
+  "No available action at current index! cannot reset to this index.": "No available action at current index! cannot reset to this index.",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",
