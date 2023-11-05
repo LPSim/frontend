@@ -39,18 +39,18 @@
           <p>{{ $t('Display Mode:') }}</p>
           <div class="judge-mode-div">
             <label>
-              <input type="radio" v-model="displayInJudgeMode" :value="true" @click="commitMatchToStore(true, null)">
+              <input type="radio" v-model="displayInJudgeMode" :value="true" @click="updateMatch(undefined,true, null)">
               {{ $t('Judge Mode (show information of all players)') }}
             </label>
             <label>
-              <input type="radio" v-model="displayInJudgeMode" :value="false" @click="commitMatchToStore(false, null)">
+              <input type="radio" v-model="displayInJudgeMode" :value="false" @click="updateMatch(undefined, false, null)">
               {{ $t('Play Mode (show information only current player)') }}
             </label>
           </div>
           <p>{{ $t('View point:') }}</p>
           <div class="player-table-order">
             <label v-for="tnum in [0, 1]">
-              <input type="radio" v-model="playerTableOrder" :value="tnum" @click="commitMatchToStore(null, tnum)">
+              <input type="radio" v-model="playerTableOrder" :value="tnum" @click="updateMatch(undefined, null, tnum)">
               {{ $tc('Player :', tnum) }}{{ match ? match.player_tables[tnum].player_name : '' }}
             </label>
           </div>
@@ -146,12 +146,12 @@
       </div>
       <div v-if="predictMatch" class="player-tables-container prediction-container">
         <div class="player-tables" v-for="(playerTable, pid) in sortedPredictPlayerTables" :key="pid" :style="'top: ' + (pid == 1 ? '50%' : '0')">
-          <PlayerTable :class="{'table-current-player': match.current_player == playerTable.player_idx, 'table-current-request': currentRequestPlayerId == playerTable.player_idx}" :playerTable="playerTable" :is_reverse="pid == 0"/>
+          <PlayerTable :class="{'table-current-player': match.current_player == playerTable.player_idx, 'table-current-request': currentRespondingPlayerId == playerTable.player_idx}" :playerTable="playerTable" :is_reverse="pid == 0"/>
         </div>
       </div>
       <div v-else class="player-tables-container">
         <div class="player-tables" v-for="(playerTable, pid) in sortedPlayerTables" :key="pid" :style="'top: ' + (pid == 1 ? '50%' : '0')">
-          <PlayerTable :class="{'table-current-player': match.current_player == playerTable.player_idx, 'table-current-request': currentRequestPlayerId == playerTable.player_idx}" :playerTable="playerTable" :is_reverse="pid == 0"/>
+          <PlayerTable :class="{'table-current-player': match.current_player == playerTable.player_idx, 'table-current-request': currentRespondingPlayerId == playerTable.player_idx}" :playerTable="playerTable" :is_reverse="pid == 0"/>
         </div>
       </div>
       <div v-if="switchNotify" :class="{ 'switch-notify-container': true, 'notify-right-part': switchNotify.player_id != playerTableOrder }">
@@ -175,7 +175,13 @@
         <img :src="$store.getters.getImagePath(cardNotify)" :class="{ 'opponent-shadow-color': cardNotify.player_id != playerTableOrder }">
       </div>
       <div v-if="roundEndNotify" :class="{ 'center-text-notify-container': true, 'opponent-shadow-color': roundEndNotify.player_id != playerTableOrder }">
-        <span>{{ $tc((roundEndNotify.player_id != playerTableOrder ? 'Opponent' : 'You') + ' declare round end', ) }}</span>
+        <span>{{ $t((roundEndNotify.player_id != playerTableOrder ? 'Opponent' : 'You') + ' declare round end', ) }}</span>
+      </div>
+      <div v-if="waitOpponentNotify" :class="{ 'center-text-notify-container': true, 'opponent-shadow-color': true }">
+        <span style="font-size: 1.25vw">{{ $t('Waiting for opponent action. Current state is initial state, state will update until both players have done actions.') }}</span>
+      </div>
+      <div v-if="match.winner != -1" :class="{ 'center-text-notify-container': true, 'opponent-shadow-color': match.winner != playerTableOrder }">
+        <span>{{ $t('Game End') }} {{ $t((match.winner != playerTableOrder ? 'Opponent' : 'You') + ' win', ) }}</span>
       </div>
       <div v-if="predictFullMatch" class="prediction-notify-container">
         <div v-for="number in 15">
@@ -446,7 +452,7 @@ export default {
         }
       }
     },
-    updateMatch(data) {
+    updateMatch(data, mode = null, player_idx = null) {
       if (data === undefined) data = this.matchData[this.currentDataIndex];
       data = JSON.parse(JSON.stringify(data))
       data.player_tables[0].player_idx = 0
@@ -506,7 +512,7 @@ export default {
       //     deck.push(match.player_tables[i].deck);
       // if (deck.length == 0) deck = null;
       // this.$store.commit('setDeck', deck);
-      this.commitMatchToStore()
+      this.commitMatchToStore(mode, player_idx)
     },
     commitMatchToStore(mode = null, player_idx = null) {
       if (player_idx == null) player_idx = this.playerTableOrder;
@@ -1059,6 +1065,14 @@ export default {
       if (!this.displayInJudgeMode) return this.playerTableOrder;
       return match.requests[0].player_idx;
     },
+    currentRespondingPlayerId() {
+      let match = this.match;
+      if (!match || !match.requests || match.requests.length === 0) return null;
+      // not in judge mode, and current player has request, return current player
+      if (!this.displayInJudgeMode && match.requests.filter(r => r.player_idx == this.playerTableOrder).length > 0) return this.playerTableOrder;
+      // otherwise, return first request player
+      return match.requests[0].player_idx;
+    },
     buttonRequests() {
       // requests that show in right button. current id same, and not card.
       // let res = this.match.requests.filter(request => request.player_idx === this.currentRequestPlayerId);
@@ -1133,6 +1147,7 @@ export default {
       let data = this.$store.state.selectedObject;
       if (data === null)
         return []
+      if (data.name == 'Unknown') return []
       if (data.type == 'CHARACTOR') {
         // show skills of charactors
         let res = [
@@ -1236,6 +1251,22 @@ export default {
       if (!this.match) return null;
       if (this.match.last_action.type != 'DECLARE_ROUND_END') return null;
       return { player_id: this.match.last_action.player_idx };
+    },
+    waitOpponentNotify() {
+      if (!this.match) return null;
+      let reqs = this.match.requests.filter(
+        r => (
+          r.name == 'RerollDiceRequest'
+          || r.name == 'SwitchCardRequest'
+          || r.name == 'ChooseCharactorRequest'
+        )
+      );
+      let self = this.currentRequestPlayerId;
+      if (self == null) return null;
+      let self_reqs = reqs.filter(r => r.player_idx == self);
+      let opponent_reqs = reqs.filter(r => r.player_idx != self);
+      if (self_reqs.length == 0 && opponent_reqs.length > 0) return true;
+      return null;
     },
     showDeckDiv() {
       return this.$store.state.showDeckDiv;
@@ -1679,6 +1710,7 @@ button:hover {
   text-align: center;
   background-color: white;
   box-shadow: 0 0 0.7vw 0.7vw rgb(255, 174, 0);
+  padding: 0 5%;
 }
 
 .prediction-notify-container {
