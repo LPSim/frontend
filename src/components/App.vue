@@ -255,6 +255,13 @@ export default {
     }
   },
   created() {
+    // if localstorage is empty, save server url to localstorage
+    if (localStorage.getItem('serverURL') == null) {
+      localStorage.setItem('serverURL', this.$store.state.serverURL);
+    }
+    // read server url from localstorage
+    this.serverURL = localStorage.getItem('serverURL');
+
     // log data when created
     console.log('APP', this);
     console.log('STORE', this.$store.state);
@@ -1296,6 +1303,7 @@ export default {
       set (value) {
         clearTimeout(this.checkVersionTimeout);
         this.checkVersionTimeout = setTimeout(() => this.checkVersion(), 3000);
+        localStorage.setItem('serverURL', value);
         this.$store.commit('setServerURL', value);
       }
     }
