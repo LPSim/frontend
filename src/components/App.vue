@@ -1128,7 +1128,8 @@ export default {
             fake_match.player_tables[i].dice = this.fullMatch.player_tables[i].dice;
           finalres[name] = {
             title: this.$t(key),
-            prediction: fake_match
+            prediction: fake_match,
+            cost: char.skills[pred.skill_idx].cost,
           };
         }
       }

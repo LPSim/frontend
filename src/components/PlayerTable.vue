@@ -623,13 +623,6 @@ export default {
   height: 67%;
 }
 
-.supports {
-  display: flex;
-  flex-direction: row;
-  width: 17.5%;
-  height: 100%;
-}
-
 .multi-position {
   display: flex;
   flex-direction: column;
@@ -692,8 +685,9 @@ export default {
 }
 
 .summons > div, .supports > div {
-  width: 50%;
+  width: 44.4444444444%;
   height: 50%;
+  margin: 2.77777777%;
 }
 
 .team-status-div {
