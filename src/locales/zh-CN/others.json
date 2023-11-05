@@ -72,6 +72,11 @@
   "Server version is ": "服务器版本为 ",
   ", but client version is ": "，但客户端版本为 ",
   ". Client may not work properly.": "。客户端可能无法正常工作。",
+  "Waiting for opponent action. Current state is initial state, state will update until both players have done actions.": "等待对手行动。当前显示状态为初始状态，状态将在双方都完成行动后更新。",
+  "Game End": "游戏结束",
+  "You win": "你获胜了",
+  "Opponent win": "对手获胜",
+  "No available action at current index! cannot reset to this index.": "当前帧没有可用行动！无法重置至该帧。",
 
   "SKILL_TYPE/NORMAL_ATTACK": "普通攻击",
   "SKILL_TYPE/ELEMENTAL_SKILL": "元素战技",
@@ -92,5 +97,7 @@
   "MATCHSTATE/PLAYER_ACTION_REQUEST": "等待玩家选择行动",
   "MATCHSTATE/ROUND_ENDING": "结束阶段",
   "MATCHSTATE/ROUND_ENDED": "回合已结束",
-  "MATCHSTATE/ENDED": "游戏结束"
+  "MATCHSTATE/ENDED": "游戏结束",
+
+  "CARD/Unknown": "未知"
 }

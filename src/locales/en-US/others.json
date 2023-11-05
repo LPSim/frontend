@@ -72,6 +72,11 @@
   "Server version is ": "Server version is ",
   ", but client version is ": ", but client version is ",
   ". Client may not work properly.": ". Client may not work properly.",
+  "Waiting for opponent action. Current state is initial state, state will update until both players have done actions.": "Waiting for opponent action. Current state is initial state, state will update until both players have done actions.",
+  "Game End": "Game End",
+  "You win": "You win",
+  "Opponent win": "Opponent win",
+  "No available action at current index! cannot reset to this index.": "No available action at current index! cannot reset to this index.",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",
@@ -92,5 +97,7 @@
   "MATCHSTATE/PLAYER_ACTION_REQUEST": "Waiting for Player to Choose Action",
   "MATCHSTATE/ROUND_ENDING": "Ending Phase",
   "MATCHSTATE/ROUND_ENDED": "Round Ended",
-  "MATCHSTATE/ENDED": "Game Ended"
+  "MATCHSTATE/ENDED": "Game Ended",
+
+  "CARD/Unknown": "Unknown"
 }
