@@ -101,7 +101,7 @@
                 <input id="current-step-input" type="number" v-model="currentDataIndex" @keydown.enter="jumpToData" min="0" :max="matchData.length - 1">
               </div>
               <button @click="jumpToData" :disabled="matchData.length === 0">{{ $t('Jump') }}</button>
-              <button @click="jumpToEndData" :disabled="matchData.length === 0">{{ $t('Jump to End') }}</button>
+              <button @click="jumpToEndData" :disabled="(!matchData) || (matchData.length === 0) || (currentDataIndex == matchData.length - 1)" style="background-color: #ffa500">{{ $t('Jump to End') }}</button>
             </div>
           </div>
         </div>
