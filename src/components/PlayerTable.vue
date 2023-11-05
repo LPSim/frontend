@@ -165,7 +165,7 @@ export default {
       let request = this.$store.state.requests[this.$store.state.selectedRequest];
       // request is selected, if request is use skill, show all card normally.
       // TODO can we show by diff?
-      if (request.name == 'UseSkillRequest') {
+      if (request.name == 'UseSkillRequest' || request.name == 'DeclareRoundEndRequest') {
         return 'select-none';
       }
       // request is selected, if card is corresponding request, select it.
@@ -223,7 +223,7 @@ export default {
       let request = this.$store.state.requests[this.$store.state.selectedRequest];
       // request is selected, if request is use skill, show normally.
       // TODO can we show by diff?
-      if (request.name == 'UseSkillRequest') {
+      if (request.name == 'UseSkillRequest' || request.name == 'DeclareRoundEndRequest') {
         return 'select-none';
       }
       let positions = this.$store.state.positions;
@@ -286,7 +286,7 @@ export default {
       let request = this.$store.state.requests[this.$store.state.selectedRequest];
       // request is selected, if request is use skill, show normally.
       // TODO can we show by diff?
-      if (request.name == 'UseSkillRequest') {
+      if (request.name == 'UseSkillRequest' || request.name == 'DeclareRoundEndRequest') {
         return 'select-none';
       }
       // if is SwitchCharactorRequest, show target
