@@ -77,6 +77,7 @@
   "You win": "你获胜了",
   "Opponent win": "对手获胜",
   "No available action at current index! cannot reset to this index.": "当前帧没有可用行动！无法重置至该帧。",
+  "Jump to End": "跳至末尾",
 
   "SKILL_TYPE/NORMAL_ATTACK": "普通攻击",
   "SKILL_TYPE/ELEMENTAL_SKILL": "元素战技",

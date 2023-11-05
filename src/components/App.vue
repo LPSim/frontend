@@ -101,6 +101,7 @@
                 <input id="current-step-input" type="number" v-model="currentDataIndex" @keydown.enter="jumpToData" min="0" :max="matchData.length - 1">
               </div>
               <button @click="jumpToData" :disabled="matchData.length === 0">{{ $t('Jump') }}</button>
+              <button @click="jumpToEndData" :disabled="matchData.length === 0">{{ $t('Jump to End') }}</button>
             </div>
           </div>
         </div>
@@ -291,9 +292,6 @@ export default {
     // this.showDebug = true;
     // this.refreshInterval = 100;
     // this.refreshData();
-
-    // check server version
-    this.checkVersionTimeout = setTimeout(() => this.checkVersion(), 3000);
 
     // update image path
     this.$store.commit('updateImagePath');
@@ -569,6 +567,11 @@ export default {
     },
     jumpToData() {
       this.currentDataIndex = Math.min(this.matchData.length - 1, Math.max(0, this.currentDataIndex))
+      this.updateMatch(this.matchData[this.currentDataIndex])
+    },
+    jumpToEndData() {
+      this.currentDataIndex = this.matchData.length - 1;
+      this.maxPlayedDataIndex = this.currentDataIndex;
       this.updateMatch(this.matchData[this.currentDataIndex])
     },
     sendInteraction() {
