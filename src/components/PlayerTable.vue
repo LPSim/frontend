@@ -694,7 +694,7 @@ export default {
 .summons > div, .supports > div {
   width: 44.4444444444%;
   height: 50%;
-  margin: 2.77777777%;
+  margin: 0 2.77777777%;
 }
 
 .team-status-div {
