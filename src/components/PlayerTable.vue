@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="dice" @click="log_dice()">
-        <div v-for="data in sortedColors" :class="disableDice()" :key="data.idx" @click="selectDice(data.idx)">
+        <div v-for="data in sortedColors" :class="disableDice(data.idx)" :key="data.idx" @click="selectDice(data.idx)">
           <div :class="'dice-select-border ' + selectDiceClass(data.idx)"></div>
           <img class="cost-img" :src="image_path('DICE', data.color)" :alt="data.color" />
           <img class="element-img" :src="image_path('ELEMENT', data.color)" :alt="data.color" />
@@ -322,7 +322,7 @@ export default {
         return 'select-dice-none';
       }
       if (this.$store.state.requests[this.$store.state.selectedRequest].player_idx != this.playerTable.player_idx) {
-        // request not selected, none
+        // not this player
         return 'select-dice-none';
       }
       let selected = this.$store.state.selectedDice;
@@ -335,11 +335,11 @@ export default {
     selectDice(dice_idx) {
       if (this.$store.state.selectedRequest == null) {
         // request not selected, none
-        return 'select-dice-none';
+        return;
       }
       if (this.$store.state.requests[this.$store.state.selectedRequest].player_idx != this.playerTable.player_idx) {
-        // request not selected, none
-        return 'select-dice-none';
+        // not this player
+        return;
       }
       this.$store.commit('diceClick', dice_idx)
     },
@@ -445,15 +445,22 @@ export default {
       }
       return;
     },
-    disableDice() {
+    disableDice(idx) {
       if (this.$store.state.selectedRequest == null) {
         // request not selected
         return 'select-none';
       }
+      let req = this.$store.state.requests[this.$store.state.selectedRequest];
+      if (req == undefined) return 'select-none';
       if (this.$store.state.requests[this.$store.state.selectedRequest].player_idx != this.playerTable.player_idx) {
         // not this player
         return 'select-dice-disabled';
       }
+      if (req.name == 'ElementalTuningRequest') {
+        if (req.dice_idxs && req.dice_idxs.indexOf(idx) == -1)
+          return 'select-dice-disabled';
+      }
+      return 'select-none';
     },
     status_path(status) {
       let name = status.name;
