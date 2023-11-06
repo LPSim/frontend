@@ -347,11 +347,30 @@ export default {
       let dice_rule = this.$store.state.diceSelectionRule;
       if (dice_rule.player != this.playerTable.player_idx)
         return;
-      if (dice_rule == null || dice_rule.mode == 'any' || dice_rule.mode == 'none')
+      if (dice_rule == null || dice_rule.mode == 'none')
         return;
       let sorted = this.sortedColors;
+      if (dice_rule.mode == 'any') {
+        // reroll-dice will be any. select dice that color not right
+        let c_colors = ['OMNI'];
+        for (let i = 0; i < this.playerTable.charactors.length; i ++ ) {
+          let charactor = this.playerTable.charactors[i];
+          if (!charactor.is_alive) continue;
+          c_colors.push(charactor.element);
+          if (charactor.name == 'Maguu Kenki')
+            c_colors.push('CRYO')
+        }
+        // click all wrong color dice
+        for (let cid = 0; cid < sorted.length; cid++) {
+          let color = sorted[cid].color;
+          if (c_colors.indexOf(color) == -1) {
+            this.$store.commit('diceClick', sorted[cid].idx);
+          }
+        }
+        return;
+      }
       if (dice_rule.mode == 'tune') {
-        // console.log(sorted)
+        // click last
         this.$store.commit('diceClick', sorted[sorted.length - 1].idx);
         return;
       }
@@ -484,14 +503,22 @@ export default {
       return this.is_reverse ? 'player-table-reverse' : 'player-table-normal';
     },
     sortedColors() {
+      // omni always first
       let order = ['OMNI'];
-      for (let cid = 0; cid < this.playerTable.charactors.length; cid++) {
+      // active first, then alive standby
+      let active = this.playerTable.active_charactor_idx;
+      let cnum = this.playerTable.charactors.length;
+      if (active == -1) active = 0;
+      for (let cid = -1; cid < cnum; cid++) {
         let charactor = this.playerTable.charactors[cid];
+        if (cid == -1) charactor = this.playerTable.charactors[active];
+        if (!charactor.is_alive) continue;
         order.push(charactor.element);
         if (charactor.name == 'Maguu Kenki')
           order.push('CRYO')
       }
       let result = [];
+      // fill known
       let table_colors = this.playerTable.dice.colors;
       for (let cid = 0; cid < order.length; cid++) {
         let color = order[cid];
@@ -501,12 +528,22 @@ export default {
             result.push({ idx: did, color: color });
         }
       }
+      // collect unknown and count color number
+      let others = [];
+      let ocmap = {};
       for (let did = 0; did < table_colors.length; did++) {
         let color = this.playerTable.dice.colors[did];
+        if (ocmap[color] == undefined) ocmap[color] = 0;
+        ocmap[color] += 1;
         if (!order.includes(color))
-          result.push({ idx: did, color: color });
+          others.push({ idx: did, color: color });
       }
-      return result
+      // sort unknown by color number, large first
+      others.sort((a, b) => {
+        return ocmap[b.color] - ocmap[a.color];
+      });
+      // concat
+      return result.concat(others);
     },
     multiplePositionList() {
       // if target is multiple position, return list; otherwise, return null
