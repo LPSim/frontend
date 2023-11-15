@@ -159,27 +159,27 @@ export default {
       .then(response => {
         if (!response.ok) {
           response.json().then(data => {
-            throw new Error('Network response is not ok with detail ' + data.detail);
+            throw new Error(this.$t('Network response is not ok with detail \n\n') + data.detail);
           })
           .catch(error => {
-            this.make_alert('Error in uploading deck. ' + error, error);
+            this.make_alert(this.$t('Error in uploading deck. ') + error, error);
           });
-          throw new Error('Network response is not ok');
         }
         else return response.json();
       })
       .then(data => {
+        if (!data) return;
         // console.log(data);
         alert(this.$t('Deck uploaded successfully!'));
         // this.$store.commit('setShowDeckDiv', false);
       })
       .catch(error => {
-        this.make_alert('Error in uploading deck. ' + error, error);
+        this.make_alert(this.$t('Error in uploading deck. ') + error, error);
       });
     },
     make_alert(title, data) {
       console.error(data);
-      alert(title + '\nFind detail in console.');
+      alert(title + this.$t('\n\nFind detail in console.'));
     },
     clearAllCards() {
       if (!this.cardModifiable) return;

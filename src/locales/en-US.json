@@ -83,6 +83,9 @@
   "Please connect server.": "Please connect server.",
   "Connected to server.": "Connected to server.",
   "Stop server connection by error, clear all data?": "Error occured, auto refresh is disabled and disconnect to server. Do you want to clear all data and re-connect server? If the reason that caused the error is starting new match, click OK. If you want to check current match history or error caused by other reason, click Cancel.",
+  "Network response is not ok with detail \n\n": "Network response is not ok with detail \n\n",
+  "Error in uploading deck. ": "Error in uploading deck. ",
+  "\n\nFind detail in console.": "\n\nFind detail in console.",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",
