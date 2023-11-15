@@ -1,22 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import imagePath from './imagePath.json';
-import nameToId from './nameToId.json';
 
 Vue.use(Vuex);
-
-// get all available version number
-let version = [];
-import descTranslation from './locales/en-US/descs.json';
-for (let key in descTranslation) {
-  key = key.split('/');
-  let last = key[key.length - 1];
-  if (last == '' || last == '1.0') continue;
-  if (version.indexOf(last) == -1) {
-    version.push(last);
-  }
-}
-version.sort();
 
 export default new Vuex.Store({
   state: {
@@ -34,13 +20,14 @@ export default new Vuex.Store({
     deck: [],
     showDeckDiv: false,
     serverURL: 'http://localhost:8000',
+    serverConnected: false,
 
     // when imagePath is updated, it will be sorted by nameToId. Initially,
     // order of imagePath is same as file, so need to call update function
     // once app is loaded.
     imagePath: imagePath,
-    nameToId: nameToId,
-    availableVersions: version,
+    nameToId: {},
+    availableVersions: [],
   },
   mutations: {
     updateImagePath(state) {
@@ -92,8 +79,8 @@ export default new Vuex.Store({
       let new_availableVersions = JSON.parse(JSON.stringify(state.availableVersions));
       for (let full_key in patch_data) {
         let data = patch_data[full_key];
-        if (data.imagepath) {
-          new_imagePath[full_key] = data.imagepath;
+        if (data.image_path) {
+          new_imagePath[full_key] = data.image_path;
         }
         if (data.id) {
           new_nameToId[full_key.split('/')[1]] = data.id;
@@ -109,6 +96,7 @@ export default new Vuex.Store({
       state.imagePath = new_imagePath;
       state.nameToId = new_nameToId;
       state.availableVersions = new_availableVersions;
+      console.log('updateDataByPatch', state.imagePath, state.nameToId, state.availableVersions)
       this.commit('updateImagePath');
     },
     setSelectedObject(state, obj) {
@@ -445,6 +433,9 @@ export default new Vuex.Store({
     },
     setServerURL(state, data) {
       state.serverURL = data;
+    },
+    setServerConnected(state, data) {
+      state.serverConnected = data;
     }
   },
   getters: {
@@ -453,10 +444,17 @@ export default new Vuex.Store({
       let prefix = 'https://static.zyr17.cn/GITCG-frontend/images/';
       let type = payload.type;
       let name = payload.name;
+      let desc = payload.desc;
       if (type == 'TALENT') {
         type = type + '_' + payload.charactor_name;
       }
-      if (name == 'Unknown') type = 'CARD';
+      if (name == 'Unknown') {
+        type = 'CARD';
+        desc = '';
+      }
+      if (desc && desc != '')
+        // have desc, modify name
+        name = name + '_' + desc;
       let res = state.imagePath[type + '/' + name];
       if (res && res.slice(0, 5) == 'data:') return res;
 
@@ -504,6 +502,10 @@ export default new Vuex.Store({
           if (nearest == null || last > nearest) nearest = last;
         }
       return nearest;
+    },
+    getNameWithDesc: (state) => (obj) => {
+      if (obj.desc && obj.desc != '') return obj.name + '_' + obj.desc;
+      return obj.name;
     }
   },
 });

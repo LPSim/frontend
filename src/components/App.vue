@@ -31,9 +31,9 @@
       </div>
       <div class="header-div" :style="showDebug ? 'top: 8rem;' : ''">
         <div class="deck-start-div">
-          <button id="check-show-deck" @click="clickCheckShowDeck" :disabled="playerTableOrder == -1">{{ $t('Check/Set Deck') }}</button>
-          <button id="start-new-match" @click="clickStartNewMatch" :disabled="playerTableOrder == -1">{{ $t('Start New Match') }}</button>
-          <button @click="resetByIndex()" :disabled="playerTableOrder == -1 || matchData.length === 0">{{ $t('Reset Match to This Index') }}</button>
+          <button id="check-show-deck" @click="clickCheckShowDeck" :disabled="playerTableOrder == -1 || !serverConnected">{{ $t('Check/Set Deck') }}</button>
+          <button id="start-new-match" @click="clickStartNewMatch" :disabled="playerTableOrder == -1 || !serverConnected">{{ $t('Start New Match') }}</button>
+          <button @click="resetByIndex()" :disabled="playerTableOrder == -1 || matchData.length === 0 || !serverConnected">{{ $t('Reset Match to This Index') }}</button>
         </div>
         <div class="radios-div">
           <p>{{ $t('Display Mode:') }}</p>
@@ -47,8 +47,8 @@
               {{ $t('Play Mode (show information only current player)') }}
             </label>
           </div>
-          <p>{{ $t('View point:') }}</p>
-          <div class="player-table-order">
+          <p :style="playerTableOrder == -1 ? 'color: red' : ''">{{ $t('View point:') }}</p>
+          <div class="player-table-order" :style="playerTableOrder == -1 ? 'color: red' : ''">
             <label v-for="tnum in [0, 1]">
               <input type="radio" v-model="playerTableOrder" :value="tnum" @click="updateMatch(undefined, null, tnum)">
               {{ $tc('Player :', tnum) }}{{ match ? match.player_tables[tnum].player_name : '' }}
@@ -61,22 +61,27 @@
               {{ $t('Please select view point.') }}
             </div>
           </div>
-          <div v-if="match == null && playerTableOrder != -1">
+          <div v-if="playerTableOrder != -1 && !serverConnected">
+            <div class="round-div" style="font-weight: bold; font-size: 1.5vw;">
+              {{ $t('Please connect server.') }}
+            </div>
+          </div>
+          <div v-if="match == null && playerTableOrder != -1 && serverConnected">
             <div class="round-div" style="font-weight: bold; font-size: 1.5vw;">
               {{ $t('No Match Data.') }}<br>{{ $t('Refresh or load replay in debug.') }}
             </div>
           </div>
-          <div v-if="match != null && playerTableOrder != -1">
+          <div v-if="match != null && playerTableOrder != -1 && serverConnected">
             <div class="round-div" style="font-weight: bold; font-size: 2vw;">
               {{ $tc('Round ', match.round_number) }}
             </div>
           </div>
-          <div v-if="match != null && playerTableOrder != -1">
+          <div v-if="match != null && playerTableOrder != -1 && serverConnected">
             <div class="match-state-div">
               {{ $t('Current Match State: ') }}{{ $t('MATCHSTATE/' + match.state) }}
             </div>
           </div>
-          <div v-if="match != null && playerTableOrder != -1" style="font-size: 1vw">
+          <div v-if="match != null && playerTableOrder != -1 && serverConnected" style="font-size: 1vw">
             <div class="your-turn-div" v-if="isYourTurn" style="font-weight: bold;">
               {{ $t('Current is Your Turn') }}
             </div>
@@ -109,6 +114,7 @@
           <div class="server-url-div">
             <label for="server-url">{{ $t('Server URL:') }}</label>
             <input id="server-url" type="text" v-model="serverURL">
+            <button id="connect-server-button" @click="connectServer" :disabled="playerTableOrder == -1" :style="serverConnected ? '' : 'background-color: #ffa500'">{{ $t(serverConnected ? 'Connected' : 'Connect') }}</button>
           </div>
           <div class="freq-div">
               <label for="refresh-frequency">{{ $t('Auto Refresh frequency (ms):') }}</label>
@@ -125,10 +131,10 @@
     <div v-if="showDeckDiv" class="deck-container">
       <div class="desc-container">
         <div v-for="(desc, did) in descData">
-          <h4>{{ $t(desc.type + '/' + desc.name) }}</h4>
+          <h4>{{ $t(desc.type + '/' + $store.getters.getNameWithDesc(desc)) }}</h4>
           <p v-if="desc.version && did == 0">{{ $t('Version: ') }} {{ desc.version }}</p>
           <p v-if="desc.skill_type">{{ $t('SKILL_TYPE/' + desc.skill_type) }}</p>
-          <p>{{ $t(desc.type + '/' + desc.name + '/' + descData[0].version) }}</p>
+          <p>{{ $t(desc.type + '/' + $store.getters.getNameWithDesc(desc) + '/' + descData[0].version) }}</p>
         </div>
       </div>
       <div class="deck-container-inner">
@@ -139,10 +145,10 @@
     <div class="match-container" v-if="match != null && !showDeckDiv">
       <div class="desc-container">
         <div v-for="(desc, did) in descData">
-          <h4>{{ $t(desc.type + '/' + desc.name) }}</h4>
+          <h4>{{ $t(desc.type + '/' + $store.getters.getNameWithDesc(desc)) }}</h4>
           <p v-if="desc.version && did == 0">{{ $t('Version: ') }} {{ desc.version }}</p>
           <p v-if="desc.skill_type">{{ $t('SKILL_TYPE/' + desc.skill_type) }}</p>
-          <p>{{ $t(desc.type + '/' + desc.name + '/' + descData[0].version) }}</p>
+          <p>{{ $t(desc.type + '/' + $store.getters.getNameWithDesc(desc) + '/' + descData[0].version) }}</p>
         </div>
       </div>
       <div v-if="predictMatch" class="player-tables-container prediction-container">
@@ -157,18 +163,18 @@
       </div>
       <div v-if="switchNotify" :class="{ 'switch-notify-container': true, 'notify-right-part': switchNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': switchNotify.player_id != playerTableOrder }">
-          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: switchNotify.charactor_name })">
+          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })">
           <div>
-            <p>{{ $t('Switch to') }} {{ $t('CHARACTOR/' + switchNotify.charactor_name) }}</p>
+            <p>{{ $t('Switch to') }} {{ $t('CHARACTOR/' + $store.getters.getNameWithDesc({ name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })) }}</p>
           </div>
         </div>
       </div>
       <div v-if="skillNotify" :class="{ 'skill-notify-container': true, 'notify-right-part': skillNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': skillNotify.player_id != playerTableOrder }">
-          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: skillNotify.charactor_name })">
+          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })">
           <div>
-            <p>{{ $t('CHARACTOR/' + skillNotify.charactor_name) }} {{ $t('used') }} {{ $t('SKILL_TYPE/' + skillNotify.skill_type) }}</p>
-            <p>{{ $t('SKILL_' + skillNotify.charactor_name + '_' + skillNotify.skill_type + '/' + skillNotify.skill_name) }}</p>
+            <p>{{ $t('CHARACTOR/' + $store.getters.getNameWithDesc({ name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })) }} {{ $t('used') }} {{ $t('SKILL_TYPE/' + skillNotify.skill_type) }}</p>
+            <p>{{ $t('SKILL_' + $store.getters.getNameWithDesc({ name: skillNotify.charactor_name, desc: skillNotify.charactor_desc }) + '_' + skillNotify.skill_type + '/' + skillNotify.skill_name) }}</p>
           </div>
         </div>
       </div>
@@ -252,7 +258,6 @@ export default {
       displayInJudgeMode: false,
       currentLanguage: null,
       refreshTimeout: null,
-      checkVersionTimeout: null,
     }
   },
   created() {
@@ -296,42 +301,61 @@ export default {
     // update image path
     this.$store.commit('updateImagePath');
 
-    // load patchs
-    // let patch_url = 'https://lpsim.zyr17.cn/patch/';
-    let patch_url = 'patch/';
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          let patchs = JSON.parse(xhr.responseText);
-          console.log('PATCH LIST', patchs);
-          for (let patch of patchs) {
-            let xhr2 = new XMLHttpRequest();
-            xhr2.onreadystatechange = () => {
-              if (xhr2.readyState === 4) {
-                if (xhr2.status === 200) {
-                  let patch_message = JSON.parse(xhr2.responseText);
-                  console.log('PATCH', patch, Object.keys(patch_message.patch).length, 'KEYS');
-                  this.updateLocales(patch_message);
-                  this.$store.commit('updateDataByPatch', patch_message);
-                }
-              }
-            };
-            xhr2.open('GET', patch_url + patch, true);
-            xhr2.send();
-          }
-        }
-      }
-    };
-    xhr.open('GET', patch_url + 'patchs.json', true);
-    xhr.send();
-
     // listen to ESC and ENTER key
     window.removeEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keydown', this.handleKeyDown);
   },
   methods: {
-    checkVersion() {
+    connectServer() {
+      if (this.serverConnected) return;
+      // try to connect server. will first check version, and send callback
+      // that will request patch data.
+      function patch_callback() {
+        let patch_url = this.serverURL + '/patch';
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              let patch_message = JSON.parse(xhr.responseText);
+              console.log('PATCH', patch_message, Object.keys(patch_message.patch).length, 'KEYS');
+              this.updateLocales(patch_message);
+              this.$store.commit('updateDataByPatch', patch_message);
+              alert(this.$t('Connected to server.'));
+              this.serverConnected = true;
+              // when successfully connected, start auto refreshing immediately.
+              this.refreshTimeout = setTimeout(() => this.refreshData(), 0);
+            }
+          }
+        };
+        xhr.open('GET', patch_url, true);
+        xhr.send();
+      }
+      this.checkVersion(patch_callback.bind(this));
+    },
+    stopServerByError() {
+      // error occured, stop connect to server and stop auto refresh.
+      // Make confirmation that whether user want to clear all data.
+      clearTimeout(this.refreshTimeout);
+      this.refreshTimeout = null;
+      this.serverConnected = false;
+      if (confirm(this.$t('Stop server connection by error, clear all data?'))) {
+        this.clearAllData();
+        this.connectServer();
+      }
+    },
+    clearAllData() {
+        document.activeElement.blur();
+        this.$store.commit('setShowDeckDiv', false);
+        clearTimeout(this.refreshTimeout);
+        this.matchData = [];
+        this.currentDataIndex = 0;
+        this.maxPlayedDataIndex = 0;
+        this.interactionCommands = [[], []];
+        this.commandHistory = [[], []];
+        this.requestData = [];
+        alert(this.$t('Game reset successfully!'));
+    },
+    checkVersion(callback = undefined) {
       let url = this.$store.state.serverURL;
       let xhr = new XMLHttpRequest();
       xhr.onreadystatechange = () => {
@@ -339,17 +363,16 @@ export default {
           if (xhr.status === 200) {
             let version = JSON.parse(xhr.responseText).version;
             console.log('SERVER VERSION', version);
-
-            if (version == undefined || version == 'unknown')
-              // undefined, old server, return directly.
-              // or unknown, debug server, no error message.
-              return;
             let self_version = require('../../package.json').version;
-            if (version != self_version) {
-              let msg = this.$t('Server version is ') + version + this.$t(', but client version is ') + self_version + this.$t('. Client may not work properly.');
-              alert(msg);
-              throw new Error(msg);
+            if (!(version == undefined || version == 'unknown')) {
+              // undefined, old server, no error message.
+              // or unknown, debug server, no error message.
+              if (version != self_version) {
+                let msg = this.$t('Server version is ') + version + this.$t(', but client version is ') + self_version + this.$t('. Client may not work properly.');
+                alert(msg);
+              }
             }
+            if (callback) callback();
           }
         }
       };
@@ -633,11 +656,13 @@ export default {
           })
           .catch(error => {
             this.make_alert('Error in sending response. ' + error, error)
+            this.stopServerByError();
           });
         }
         else return response.json();
       })
       .then(data => {
+        if (!data) return; // error on previous or empty data, no need to update
         console.log('Received Data', data);
         this.commandHistory[this.commandPOSTData.player_idx].push(this.commandPOSTData.command);
         this.interactionInput = '';
@@ -768,11 +793,13 @@ export default {
             })
             .catch(error => {
               this.make_alert('Error in refreshing data. ' + error, error)
+              this.stopServerByError();
             });
           }
           else return response.json();
         })
         .then(data => {
+          if (!data) return; // error on previous or empty data, no need to update
           // if (data.length > 0) console.log('Refresh data', data);
           // let last_data = this.matchData[this.matchData.length - 1];
           // if (JSON.stringify(last_data) !== JSON.stringify(data))
@@ -786,6 +813,7 @@ export default {
         })
         .catch(error => {
           this.make_alert('Error in refreshing data: ' + error + '\nAuto refresh stopped.', error)
+          this.stopServerByError();
         });
     },
     updateRequestData() {
@@ -797,11 +825,13 @@ export default {
             })
             .catch(error => {
               this.make_alert('Error in getting requests. ' + error, error)
+              this.stopServerByError();
             });
           }
           else return response.json();
         })
         .then(data => {
+          if (!data) return; // error on previous or empty data, no need to update
           if (JSON.stringify(this.requestData) == JSON.stringify(data)) return;
           console.log('Request data', data);
           let old_req_data = this.requestData;
@@ -819,6 +849,7 @@ export default {
         })
         .catch(error => {
           this.make_alert('Error in refreshing data. ' + error, error)
+          this.stopServerByError();
         });
     },
     showRequestDetails(request) {
@@ -959,16 +990,7 @@ export default {
         else return response.json();
       })
       .then(data => {
-        document.activeElement.blur();
-        this.$store.commit('setShowDeckDiv', false);
-        clearTimeout(this.refreshTimeout);
-        this.matchData = [];
-        this.currentDataIndex = 0;
-        this.maxPlayedDataIndex = 0;
-        this.interactionCommands = [[], []];
-        this.commandHistory = [[], []];
-        this.requestData = [];
-        alert(this.$t('Game reset successfully!'));
+        this.clearAllData();
         this.refreshData();
       })
       .catch(error => {
@@ -1010,16 +1032,7 @@ export default {
         else return response.json();
       })
       .then(data => {
-        document.activeElement.blur();
-        this.$store.commit('setShowDeckDiv', false);
-        clearTimeout(this.refreshTimeout);
-        this.matchData = [];
-        this.currentDataIndex = 0;
-        this.maxPlayedDataIndex = 0;
-        this.interactionCommands = [[], []];
-        this.commandHistory = [[], []];
-        this.requestData = [];
-        alert(this.$t('Game reset successfully!'));
+        this.clearAllData();
         this.refreshData();
       })
       .catch(error => {
@@ -1039,12 +1052,12 @@ export default {
       // console.log(match, this.fullMatch)
       for (let i = 0; i < opponent_table.hands.length; i++) {
         opponent_table.hands[i].name = 'Unknown';
-        opponent_table.hands[i].desc = 'Unknown';
+        opponent_table.hands[i].desc = '';
         opponent_table.hands[i].version = 'Unknown';
       }
       for (let i = 0; i < opponent_table.table_deck.length; i++) {
         opponent_table.table_deck[i].name = 'Unknown';
-        opponent_table.table_deck[i].desc = 'Unknown';
+        opponent_table.table_deck[i].desc = '';
         opponent_table.table_deck[i].version = 'Unknown';
       }
       for (let i = 0; i < opponent_table.dice.colors.length; i ++ )
@@ -1059,12 +1072,12 @@ export default {
       // console.log(match, this.fullMatch)
       for (let i = 0; i < opponent_table.hands.length; i++) {
         opponent_table.hands[i].name = 'Unknown';
-        opponent_table.hands[i].desc = 'Unknown';
+        opponent_table.hands[i].desc = '';
         opponent_table.hands[i].version = 'Unknown';
       }
       for (let i = 0; i < opponent_table.table_deck.length; i++) {
         opponent_table.table_deck[i].name = 'Unknown';
-        opponent_table.table_deck[i].desc = 'Unknown';
+        opponent_table.table_deck[i].desc = '';
         opponent_table.table_deck[i].version = 'Unknown';
       }
       for (let i = 0; i < opponent_table.dice.colors.length; i ++ )
@@ -1112,7 +1125,7 @@ export default {
         if (pred.player_idx == this.currentRequestPlayerId) {
           let name = 'UseSkill' + pred.skill_idx;
           let char = this.match.player_tables[pred.player_idx].charactors[pred.charactor_idx];
-          let key = 'SKILL_' + char.name + '_' + char.skills[pred.skill_idx].skill_type + '/' + char.skills[pred.skill_idx].name;
+          let key = 'SKILL_' + this.$store.getters.getNameWithDesc(char) + '_' + char.skills[pred.skill_idx].skill_type + '/' + char.skills[pred.skill_idx].name;
           let diff = pred.diff;
           let fake_datas = [
             {
@@ -1143,7 +1156,7 @@ export default {
           let skill_idx = request.skill_idx;
           finalres[name + skill_idx] = {...finalres[name + skill_idx], ...request};
           let char = this.match.player_tables[request.player_idx].charactors[request.charactor_idx];
-          let key = 'SKILL_' + char.name + '_' + char.skills[skill_idx].skill_type + '/' + char.skills[skill_idx].name;
+          let key = 'SKILL_' + this.$store.getters.getNameWithDesc(char) + '_' + char.skills[skill_idx].skill_type + '/' + char.skills[skill_idx].name;
           finalres[name + skill_idx].title = this.$t(key);
         }
         else if (request.name == 'SwitchCharactorRequest') {
@@ -1183,7 +1196,7 @@ export default {
           {
             type: 'CHARACTOR',
             name: data.name,
-            desc: "",
+            desc: data.desc,
             version: data.version,
           }
         ];
@@ -1238,6 +1251,7 @@ export default {
           let ret = {
             player_id: position.player_idx,
             charactor_name: this.match.player_tables[position.player_idx].charactors[position.charactor_idx].name,
+            charactor_desc: this.match.player_tables[position.player_idx].charactors[position.charactor_idx].desc,
             skill_type: skills[i].skill_type,
             skill_name: skills[i].name,
           };
@@ -1274,7 +1288,11 @@ export default {
       if (!this.match) return null;
       if (this.match.last_action.type != 'SWITCH_CHARACTOR') return null;
       let char = this.match.player_tables[this.match.last_action.player_idx].charactors[this.match.last_action.charactor_idx];
-      return { player_id: this.match.last_action.player_idx, charactor_name: char.name };
+      return {
+        player_id: this.match.last_action.player_idx,
+        charactor_name: char.name,
+        charactor_desc: char.desc,
+      };
     },
     roundEndNotify() {
       if (!this.match) return null;
@@ -1305,12 +1323,21 @@ export default {
         return this.$store.state.serverURL;
       },
       set (value) {
-        clearTimeout(this.checkVersionTimeout);
-        this.checkVersionTimeout = setTimeout(() => this.checkVersion(), 3000);
+        // if URL changes, stop refreshing.
+        clearTimeout(self.refreshTimeout);
+        self.refreshTimeout = null;
         localStorage.setItem('serverURL', value);
         this.$store.commit('setServerURL', value);
       }
-    }
+    },
+    serverConnected: {
+      get () {
+        return this.$store.state.serverConnected;
+      },
+      set (value) {
+        this.$store.commit('setServerConnected', value);
+      }
+    },
     // match: {
     //   get() {
     //     console.log('get', this._match);
@@ -1400,7 +1427,7 @@ textarea {
 }
 
 .buttons-div {
-  width: 15%;
+  width: 13%;
 }
 
 .parse-button-container {
@@ -1643,7 +1670,7 @@ button:hover {
 }
 
 .debug-refresh-freq-div {
-  width: 15%;
+  width: 17%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -1654,15 +1681,29 @@ button:hover {
   justify-content: space-around;
   height: 27.5%;
 }
-.debug-refresh-freq-div > .freq-div {
+.debug-refresh-freq-div > .server-url-div {
   height: 45%;
 }
 .debug-refresh-freq-div input {
   margin: 0.2vw;
 }
 
-.freq-div > label {
+.server-url-div > label {
+  width: 15%;
+}
+
+.server-url-div > input {
   width: 50%;
+}
+
+.server-url-div > button {
+  width: 25%;
+  margin: 0.2vw 0.05vw;
+  padding: 0 0.05vw;
+}
+
+.freq-div > label {
+  width: 60%;
 }
 
 .freq-div > input {
@@ -1670,7 +1711,7 @@ button:hover {
 }
 
 .freq-div > button {
-  width: 30%;
+  width: 20%;
 }
 
 .refresh-debug-div > *, .freq-div > button {

@@ -78,7 +78,7 @@ export default {
     removeCard(obj, id) {
       if (!this.cardModifiable) return;
       let type = obj.type;
-      let name = obj.name;
+      let name = this.$store.getters.getNameWithDesc(obj);
       if (type == 'TALENT')
         type = type + '_' + obj.charactor_name;
       let userConfirmation = confirm(

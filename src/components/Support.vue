@@ -1,6 +1,6 @@
 <template>
   <div :class="'support ' + selectClass" @click="log_data">
-    <img class="main-img" :src="image_path('SUPPORT', support.name)" :alt="$t('SUPPORT/' + support.name)"/>
+    <img class="main-img" :src="image_path('SUPPORT', support.name, support.desc)" :alt="$t('SUPPORT/' + support.name)"/>
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="support-usage-div">
@@ -36,10 +36,11 @@ export default {
       console.log('SUPPORT', JSON.parse(JSON.stringify(this.support)))
       this.$store.commit('setSelectedObject', this.support);
     },
-    image_path(type, name) {
+    image_path(type, name, desc) {
       return this.$store.getters.getImagePath({
         type: type,
         name: name,
+        desc: desc,
         small_card: true,
       })
     }

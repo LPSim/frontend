@@ -26,7 +26,7 @@ export default {
         type = type + '_' + this.card.charactor_name;
       }
       if (this.card.name == 'Unknown') type = 'CARD'
-      return this.$t(type + '/' + this.card.name);
+      return this.$t(type + '/' + this.$store.getters.getNameWithDesc(this.card));
     }
   },
   props: {

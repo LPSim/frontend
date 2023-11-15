@@ -1,6 +1,6 @@
 <template>
   <div :class="'summon ' + selectClass" @click="log_data">
-    <img class="main-img" :src="image_path('SUMMON', summon.name)" :alt="$t('SUMMON/' + summon.name)"/>
+    <img class="main-img" :src="image_path('SUMMON', summon.name, summon.desc)" :alt="$t('SUMMON/' + summon.name)"/>
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="summon-usage-div">
@@ -44,10 +44,11 @@ export default {
       console.log('SUMMON', JSON.parse(JSON.stringify(this.summon)))
       this.$store.commit('setSelectedObject', this.summon);
     },
-    image_path(type, name) {
+    image_path(type, name, desc) {
       return this.$store.getters.getImagePath({
         type: type,
         name: name,
+        desc: desc,
         small_card: true
       })
     }

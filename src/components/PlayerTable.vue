@@ -39,9 +39,9 @@
           </div>
           <div v-if="showDetailsFlag && (playerTable.active_charactor_idx == cid)" :class="'status-details' + (is_reverse ? ' status-details-reverse' : '')">
             <div class="p-div">
-              <h4>{{ $t(detailData.type + '/' + detailData.name) }}</h4>
+              <h4>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData)) }}</h4>
               <p>{{ $t('Version: ') }}{{ detailData.version }}</p>
-              <p>{{ $t(detailData.type + '/' + detailData.name + '/' + detailData.version) }}</p>
+              <p>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData) + '/' + detailData.version) }}</p>
             </div>
           </div>
         </div>
@@ -483,12 +483,15 @@ export default {
     },
     status_path(status) {
       let name = status.name;
+      let desc = status.desc;
       if (status.icon_type != 'OTHERS') {
         name = status.icon_type;
+        desc = '';
       }
       return this.$store.getters.getImagePath({
         type: 'TEAM_STATUS',
-        name: name
+        name: name,
+        desc: desc
       })
     },
     image_path(type, name) {

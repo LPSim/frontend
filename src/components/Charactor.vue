@@ -6,7 +6,7 @@
       </div>
     </div>
     <div :class="(charactor.is_alive ? 'charactor ' : 'charactor-died ') + selectClass">
-      <img class="charactor-image" :src="image_path('CHARACTOR', charactor.name)" :alt="$t('CHARACTOR/' + charactor.name)">
+      <img class="charactor-image" :src="image_path('CHARACTOR', charactor.name, charactor.desc)" :alt="$t('CHARACTOR/' + charactor.name)">
       <div class="charactor-hp">{{ charactor.hp }}</div>
       <div class="charactor-charge">
         <span v-for="i in charactor.max_charge" :key="i"
@@ -23,13 +23,13 @@
       </div>
       <div v-if="showDetailsFlag" class="charactor-details" :style="'width: ' + (detailData.img_name ? '2' : '1') + '00%;' + 'left: -' + (detailData.img_name ? '2' : '1') + '00%;'">
         <div class="p-div">
-          <h4>{{ $t(detailData.type + '/' + detailData.name) }}</h4>
+          <h4>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData)) }}</h4>
           <p>{{ $t('Version: ') }}{{ detailData.version }}</p>
-          <p>{{ $t(detailData.type + '/' + detailData.name + '/' + detailData.version) }}</p>
+          <p>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData) + '/' + detailData.version) }}</p>
           <!-- <p>Usage: {{ detailData.usage }}</p> -->
         </div>
         <div class="detail-img-div" v-if="detailData.img_name">
-          <img :src="image_path(detailData.type, detailData.img_name)" width="100%" height="100%" />
+          <img :src="image_path(detailData.type, detailData.img_name, detailData.desc)" width="100%" height="100%" />
         </div>
       </div>
       <div class="damage-notify-div" v-if="damage_notify.length > 0">
@@ -88,18 +88,22 @@ export default {
     },
     status_path(status) {
       let name = status.name;
+      let desc = status.desc;
       if (status.icon_type != 'OTHERS') {
         name = status.icon_type;
+        desc = '';
       }
       return this.$store.getters.getImagePath({
-        type: 'CHARACTOR_STATUS',
-        name: name
+        type: 'TEAM_STATUS',
+        name: name,
+        desc: desc
       })
     },
-    image_path(type, name) {
+    image_path(type, name, desc) {
       return this.$store.getters.getImagePath({
         type: type,
-        name: name
+        name: name,
+        desc: desc
       })
     }
   },
