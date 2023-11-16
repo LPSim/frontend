@@ -170,7 +170,6 @@ export default {
         else return response.json();
       })
       .then(data => {
-        if (!data) return;
         // console.log(data);
         alert(this.$t('Deck uploaded successfully!'));
         // this.$store.commit('setShowDeckDiv', false);
