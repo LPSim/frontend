@@ -12,8 +12,8 @@
       </div>
       <button id="add-charactor-button" v-if="cardModifiable" @click="selectionMode = 'CHARACTOR'">{{ $t('Add Charactor') }}</button>
       <button id="add-card-button" v-if="cardModifiable" @click="selectionMode = 'CARD'">{{ $t('Add Card') }}</button>
-      <button id="cancel-button" v-if="cardModifiable && selectionMode" @click="selectionMode = null">{{ $t('Back') }}</button>
-      <button id="clear-button" v-if="cardModifiable && !selectionMode" @click="clearAllCards">{{ $t('Clear') }}</button>
+      <button id="cancel-button" v-if="cardModifiable" @click="selectionMode = null" :disabled="!selectionMode">{{ $t('Back') }}</button>
+      <button id="clear-button" v-if="cardModifiable" @click="clearAllCards">{{ $t('Clear') }}</button>
       <button id="upload-deck-button" v-if="cardModifiable" @click="uploadDeck">{{ $t('Upload Deck') }}</button>
     </div>
     <!-- <div class="images-container-div"> -->
@@ -280,7 +280,7 @@ export default {
 }
 
 .select-divs {
-  width: 100%;
+  width: 85%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -348,7 +348,7 @@ export default {
 }
 
 .command-div > * {
-  margin-bottom: 0.5vw;
+  margin-bottom: 0.4vw;
 }
 
 </style>
