@@ -71,12 +71,12 @@
               {{ $t('No Match Data.') }}<br>{{ $t('Refresh or load replay in debug.') }}
             </div>
           </div>
-          <div v-if="match != null && playerTableOrder != -1 && serverConnected">
+          <div v-if="match != null && playerTableOrder != -1">
             <div class="round-div" style="font-weight: bold; font-size: 2vw;">
               {{ $tc('Round ', match.round_number) }}
             </div>
           </div>
-          <div v-if="match != null && playerTableOrder != -1 && serverConnected">
+          <div v-if="match != null && playerTableOrder != -1">
             <div class="match-state-div">
               {{ $t('Current Match State: ') }}{{ $t('MATCHSTATE/' + match.state) }}
             </div>
