@@ -5,7 +5,7 @@
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="summon-usage-div">
       <div>
-        <img :src="image_path('ICON', summon.icon_type)" :alt="summon.icon_type" width="100%" height="100%" />
+        <img v-if="summon.icon_type != 'NONE'" :src="image_path('ICON', summon.icon_type)" :alt="summon.icon_type" width="100%" height="100%" />
         <div class="span-div">
           <span>{{ summon.usage }}</span>
         </div>

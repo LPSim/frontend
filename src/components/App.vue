@@ -1147,10 +1147,38 @@ export default {
             }
           ];
           fake_datas = this.decodeDiffMatchData(fake_datas);
-          // keep dice in fake data same as original
+          // keep dice, hand in fake data same as original
           let fake_match = fake_datas[1].match;
-          for (let i = 0; i < 2; i ++ )
+          for (let i = 0; i < 2; i ++ ) {
             fake_match.player_tables[i].dice = this.fullMatch.player_tables[i].dice;
+            fake_match.player_tables[i].hands = this.fullMatch.player_tables[i].hands;
+          }
+          // for rhodeia summon, when it is newly summoned (not appear in current match), change it to fake summon.
+          // TODO: when summon number exceeded max, renew summon info is shown. Not very important, ignore it now.
+          let fake_summon = {
+            name: 'Oceanic Mimic: Squirrel',
+            version: '3.3',
+            desc: '',
+            usage: '',
+            max_usage: '',
+            damage_elemental_type: 'HYDRO',
+            damage: '',
+            icon_type: 'NONE'
+          }
+          for (let i = 0; i < fake_match.player_tables.length; i ++ ) {
+            let table = fake_match.player_tables[i];
+            let ori_table = this.fullMatch.player_tables[i];
+            for (let j = ori_table.summons.length; j < table.summons.length; j ++ ) {
+              // only consider newly summoned
+              if (
+                table.summons[j].name == 'Oceanic Mimic: Squirrel'
+                || table.summons[j].name == 'Oceanic Mimic: Raptor'
+                || table.summons[j].name == 'Oceanic Mimic: Frog'
+              ) {
+                table.summons[j] = fake_summon;
+              }
+            }
+          }
           finalres[name] = {
             title: this.$t(key),
             prediction: fake_match,
