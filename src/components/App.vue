@@ -1285,13 +1285,15 @@ export default {
       let skills = this.match.player_tables[position.player_idx].charactors[position.charactor_idx].skills;
       for (let i = 0; i < skills.length; i ++ ) {
         if (skills[i].id == position.id) {
+          let char = this.match.player_tables[position.player_idx].charactors[position.charactor_idx];
           let ret = {
             player_id: position.player_idx,
-            charactor_name: this.match.player_tables[position.player_idx].charactors[position.charactor_idx].name,
-            charactor_desc: this.match.player_tables[position.player_idx].charactors[position.charactor_idx].desc,
+            charactor_name: char.name,
+            charactor_desc: char.desc,
             skill_type: skills[i].skill_type,
             skill_name: skills[i].name,
           };
+          this.$store.commit('setSelectedObject', { version: char.version, charactor_name: char.name, ...skills[i] });
           return ret;
         }
       }
@@ -1319,12 +1321,14 @@ export default {
         console.error('Cannot find card');
         return null;
       }
+      this.$store.commit('setSelectedObject', ret);
       return ret;
     },
     switchNotify() {
       if (!this.match) return null;
       if (this.match.last_action.type != 'SWITCH_CHARACTOR') return null;
       let char = this.match.player_tables[this.match.last_action.player_idx].charactors[this.match.last_action.charactor_idx];
+      this.$store.commit('setSelectedObject', char);
       return {
         player_id: this.match.last_action.player_idx,
         charactor_name: char.name,

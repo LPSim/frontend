@@ -4,7 +4,7 @@
       <div class="supports">
         <!-- <h3>Supports</h3> -->
         <div v-for="support in playerTable.supports" :key="support.id" @click="selectObject(support.position)">
-          <Support :support="support" :select-class="selectObjectClass(support.position)" />
+          <Support :support="support" :select-class="selectObjectClass(support)" />
         </div>
       </div>
 
@@ -27,7 +27,7 @@
         <!-- <h3>Characters</h3> -->
         <div :class="{'charactor-div': true, 'charactor-div-active': cid == playerTable.active_charactor_idx}" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id" @click="selectCharactor(charactor.position)">
           <div class="active-div" v-if="(playerTable.active_charactor_idx != cid) != is_reverse" @click.stop=""></div>
-          <Charactor class="charactor-inner" :charactor="charactor" :select-class="selectCharactorClass(charactor.position)" />
+          <Charactor class="charactor-inner" :charactor="charactor" :select-class="selectCharactorClass(charactor)" />
           <div class="team-status-div" v-if="playerTable.active_charactor_idx == cid">
             <!-- <h3>Team Status</h3> -->
             <div v-for="(status, sid) in playerTable.team_status" :key="sid" @mouseover="showDetails(status)" @mouseout="hideDetails(status)" @click="log_status(sid)">
@@ -50,7 +50,7 @@
       <div class="summons">
         <!-- <h3>Summons</h3> -->
         <div v-for="summon in playerTable.summons" :key="summon.id" @click="selectObject(summon.position)">
-          <Summon :summon="summon" :select-class="selectObjectClass(summon.position)" />
+          <Summon :summon="summon" :select-class="selectObjectClass(summon)" />
         </div>
       </div>
       <div class="dice" @click="log_dice()">
@@ -209,10 +209,12 @@ export default {
       }
       return this.selectObject(card.position)
     },
-    selectObjectClass(object_position) {
+    selectObjectClass(object) {
+      let object_position = object.position;
       if (this.$store.state.damageNotify && this.$store.state.damageNotify.position) {
         // has damage notify, if this is the position, show it
         if (this.$store.state.damageNotify.position.id == object_position.id) {
+          this.$store.commit('setSelectedObject', object);
           return 'select-selected';
         }
       }
@@ -263,7 +265,8 @@ export default {
       }
       this.$store.commit('positionClick', position_idx);
     },
-    selectCharactorClass(object_position) {
+    selectCharactorClass(object) {
+      let object_position = object.position;
       let cidx = object_position.charactor_idx;
       if (this.$store.state.damageNotify && this.$store.state.damageNotify.position) {
         // has damage notify, if this is the position, show it
@@ -296,7 +299,7 @@ export default {
         else
           return 'select-disabled';
       }
-      return this.selectObjectClass(object_position);
+      return this.selectObjectClass(object);
     },
     selectCharactor(object_position) {
       let cidx = object_position.charactor_idx;
