@@ -86,6 +86,7 @@
   "Network response is not ok with detail \n\n": "网络响应错误，详情：\n\n",
   "Error in uploading deck. ": "上传卡组时发生错误。 ",
   "\n\nFind detail in console.": "\n\n请在控制台查看详情。",
+  "Deck is modified, are you sure to close it?": "卡组已被修改，确定要关闭吗？",
 
   "SKILL_TYPE/NORMAL_ATTACK": "普通攻击",
   "SKILL_TYPE/ELEMENTAL_SKILL": "元素战技",

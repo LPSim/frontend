@@ -89,6 +89,7 @@ export default {
       );
       if (!userConfirmation) return;
       if (type != 'CHARACTOR') type = 'CARD';
+      this.$store.commit('addDeckModifyCounter', null);
       this.$store.commit('removeDeckCard', {
         player_id: this.playerIdx,
         type: type.toLowerCase() + 's',
@@ -113,6 +114,7 @@ export default {
         name: name,
         version: nearestVersion
       })
+      this.$store.commit('addDeckModifyCounter', null);
       // this.selectionMode = null;
       setTimeout(() => {
         let select_left_div = document.getElementsByClassName('images-select-div-left')[0];
@@ -172,6 +174,7 @@ export default {
         // console.log(data);
         alert(this.$t('Deck uploaded successfully!'));
         // this.$store.commit('setShowDeckDiv', false);
+        this.$store.commit('resetDeckModifyCounter', null);
       })
       .catch(error => {
         this.make_alert(this.$t('Error in uploading deck. ') + error, error);

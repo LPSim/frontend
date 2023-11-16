@@ -18,6 +18,7 @@ export default new Vuex.Store({
     selectedObject: null,
     damageNotify: null,
     deck: [],
+    deckModifyCounter: 0,
     showDeckDiv: false,
     serverURL: 'http://localhost:8000',
     serverConnected: false,
@@ -436,6 +437,12 @@ export default new Vuex.Store({
     },
     setServerConnected(state, data) {
       state.serverConnected = data;
+    },
+    addDeckModifyCounter(state) {
+      state.deckModifyCounter += 1;
+    },
+    resetDeckModifyCounter(state) {
+      state.deckModifyCounter = 0;
     }
   },
   getters: {

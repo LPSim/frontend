@@ -925,11 +925,20 @@ export default {
     },
     clickCheckShowDeck() {
       this.wrongProtocol();
-      // first receive deck info from server, then show deck div
       if (this.showDeckDiv) {
+        // is shown, if modified, give confirm
+        if (this.$store.state.deckModifyCounter > 0) {
+          let userConfirmation = confirm(
+            this.$t('Deck is modified, are you sure to close it?')
+          );
+          if (!userConfirmation) return;
+        }
+        this.$store.commit('resetDeckModifyCounter', null);
         this.$store.commit('setShowDeckDiv', false);
         return;
       }
+      // first receive deck info from server, then show deck div
+      this.$store.commit('resetDeckModifyCounter', null);
       fetch(this.serverURL + '/decks')
         .then(response => {
           if (!response.ok) {

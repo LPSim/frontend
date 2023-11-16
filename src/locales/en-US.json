@@ -86,6 +86,7 @@
   "Network response is not ok with detail \n\n": "Network response is not ok with detail \n\n",
   "Error in uploading deck. ": "Error in uploading deck. ",
   "\n\nFind detail in console.": "\n\nFind detail in console.",
+  "Deck is modified, are you sure to close it?": "Deck is modified, are you sure to close it?",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",
