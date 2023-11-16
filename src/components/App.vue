@@ -683,6 +683,7 @@ export default {
       })
       .catch(error => {
         this.make_alert('Error in sending response. ' + error, error);
+        this.stopServerByError();
       });
     },
     decodeDiffMatchData(data) {
