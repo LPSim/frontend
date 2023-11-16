@@ -465,11 +465,19 @@ export default new Vuex.Store({
       let res = state.imagePath[type + '/' + name];
       if (res && res.slice(0, 5) == 'data:') return res;
 
-      // if (type == 'avatar') {
-      //   res = state.imagePath['charactor/' + name];
-      //   if (res == undefined) return;
-      //   return prefix + res.replace(/cardface\/Char_(Avatar|Enemy|Monster)_/, 'avatar/')
-      // }
+      if (type == 'AVATAR') {
+        // if is avatar, first get CHARACTOR/name, then convert to avatar path
+        let res = state.imagePath['CHARACTOR/' + name];
+        console.log('CHARACTOR/' + name, res);
+        if (res) {
+          // for normal cards
+          res = res.replace(/cardface\/Char_(Avatar|Enemy|Monster)_/, 'avatar/')
+          // for custom cards
+          res = res.replace(/cardface\//, 'avatar/')
+        }
+        console.log(prefix + res);
+        return prefix + res;
+      }
 
       if ((type == 'CHARACTOR_STATUS' || type == 'TEAM_STATUS') && res == undefined) {
         let name_arr = name.toLowerCase().split('_');
@@ -486,6 +494,7 @@ export default new Vuex.Store({
       if ((type == 'SUMMON' || type == 'SUPPORT') && payload.small_card && res) {
         res = res.replace('cardface', 'small_card')
       }
+
       if (res == undefined) return;
       return prefix + res;
     },
