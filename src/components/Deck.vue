@@ -179,7 +179,7 @@ export default {
       for (let charactor of this.deck.charactors) {
         deck_str += 'charactor:' + charactor.name + '@' + charactor.version + '\n';
       }
-      for (let card of this.deck.cards) {
+      for (let card of this.cards) {
         deck_str += card.name + '@' + card.version + '\n';
       }
       console.log(deck_str);
