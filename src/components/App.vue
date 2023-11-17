@@ -347,6 +347,8 @@ export default {
         this.$store.commit('setShowDeckDiv', false);
         clearTimeout(this.refreshTimeout);
         this.matchData = [];
+        this.fullMatch = null;
+        this.predictFullMatch = null;
         this.currentDataIndex = 0;
         this.maxPlayedDataIndex = 0;
         this.interactionCommands = [[], []];
