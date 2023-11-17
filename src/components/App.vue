@@ -298,9 +298,6 @@ export default {
     // this.refreshInterval = 100;
     // this.refreshData();
 
-    // update image path
-    this.$store.commit('updateImagePath');
-
     // listen to ESC and ENTER key
     window.removeEventListener('keydown', this.handleKeyDown);
     window.addEventListener('keydown', this.handleKeyDown);

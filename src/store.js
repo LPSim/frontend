@@ -23,31 +23,11 @@ export default new Vuex.Store({
     serverURL: 'http://localhost:8000',
     serverConnected: false,
 
-    // when imagePath is updated, it will be sorted by nameToId. Initially,
-    // order of imagePath is same as file, so need to call update function
-    // once app is loaded.
     imagePath: imagePath,
     nameToId: {},
     availableVersions: [],
   },
   mutations: {
-    updateImagePath(state) {
-      let new_dict = {};
-      let keys = Object.keys(state.imagePath);
-      keys.sort((a, b) => {
-        a = a.split('/')[1];
-        b = b.split('/')[1];
-        let a_id = state.nameToId[a];
-        let b_id = state.nameToId[b];
-        if (a_id == undefined) a_id = 999999;
-        if (b_id == undefined) b_id = 999999;
-        return a_id - b_id;
-      });
-      for (let i = 0; i < keys.length; i++) {
-        new_dict[keys[i]] = state.imagePath[keys[i]];
-      }
-      state.imagePath = new_dict;
-    },
     updateDataByPatch(state, patch) {
       `patch format. update imagePath, nameToId and availableVersions
       {
@@ -84,7 +64,7 @@ export default new Vuex.Store({
           new_imagePath[full_key] = data.image_path;
         }
         if (data.id) {
-          new_nameToId[full_key.split('/')[1]] = data.id;
+          new_nameToId[full_key] = data.id;
         }
         if (data.descs) {
           for (let version in data.descs)
@@ -98,7 +78,6 @@ export default new Vuex.Store({
       state.nameToId = new_nameToId;
       state.availableVersions = new_availableVersions;
       console.log('updateDataByPatch', state.imagePath, state.nameToId, state.availableVersions)
-      this.commit('updateImagePath');
     },
     setSelectedObject(state, obj) {
       state.selectedObject = obj;
@@ -500,11 +479,18 @@ export default new Vuex.Store({
     },
     getNamesWithType: (state) => (type) => {
       let result = [];
-      for (let key in state.imagePath) {
+      for (let key in state.nameToId) {
         if (key.split('/')[0] == type) {
           result.push(key)
         }
       }
+      result.sort((a, b) => {
+        let a_id = state.nameToId[a];
+        let b_id = state.nameToId[b];
+        if (a_id == undefined) a_id = 999999;
+        if (b_id == undefined) b_id = 999999;
+        return a_id - b_id;
+      });
       return result;
     },
     findNearestVersion: (state) => (name, version, descs) => {
