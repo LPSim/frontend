@@ -180,6 +180,7 @@ export default {
         deck_str += 'charactor:' + charactor.name + '@' + charactor.version + '\n';
       }
       for (let card of this.cards) {
+        if (card.name == 'Empty' && card.type == 'CARD') continue;
         deck_str += card.name + '@' + card.version + '\n';
       }
       console.log(deck_str);
