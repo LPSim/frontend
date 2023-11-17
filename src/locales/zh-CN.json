@@ -99,6 +99,7 @@
   "Current deck is modified and not uploaded, please upload the deck before getting the deck code!": "当前卡组已被修改且未上传，请在获取卡组分享码前上传卡组，或者关闭并重新打开卡组界面重置当前卡组！",
   "Error in getting deck code. ": "获取卡组分享码时发生错误。 ",
   "Error in getting deck. ": "获取卡组时发生错误。 ",
+  "Deck code length should be 68!": "卡组分享码长度应为 68！",
 
   "SKILL_TYPE/NORMAL_ATTACK": "普通攻击",
   "SKILL_TYPE/ELEMENTAL_SKILL": "元素战技",

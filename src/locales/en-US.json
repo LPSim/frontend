@@ -99,6 +99,7 @@
   "Current deck is modified and not uploaded, please upload the deck before getting the deck code!": "Current deck is modified and not uploaded, please upload the deck before getting the deck code, or exit and re-enter deck page to reset deck!",
   "Error in getting deck code. ": "Error in getting deck code. ",
   "Error in getting deck. ": "Error in getting deck. ",
+  "Deck code length should be 68!": "Deck code length should be 68!",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",

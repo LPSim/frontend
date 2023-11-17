@@ -187,6 +187,10 @@ export default {
     },
     uploadDeckCode() {
       // Upload the deck code
+      if (this.inputDeckCode.length != 68) {
+        alert(this.$t('Deck code length should be 68!'));
+        return;
+      }
       let closeDeckCodeDiv = () => {
         this.showDeckCodeDiv = false;
         this.$store.commit('resetDeckModifyCounter', null);
@@ -232,11 +236,13 @@ export default {
           .catch(error => {
             this.make_alert(this.$t('Error in uploading deck. ') + error, error);
           });
+          return 'error';
         }
         else return response.json();
       })
       .then(data => {
         // console.log(data);
+        if (data == 'error') return;
         alert(this.$t('Deck uploaded successfully!'));
         // this.$store.commit('setShowDeckDiv', false);
         this.$store.commit('resetDeckModifyCounter', null);
