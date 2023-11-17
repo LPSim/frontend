@@ -321,7 +321,9 @@ export default {
               this.serverConnected = true;
               // when successfully connected, start auto refreshing immediately.
               this.refreshTimeout = setTimeout(() => this.refreshData(), 0);
+              return;
             }
+            this.make_alert(this.$t('Error in connecting server.') + xhr.status, xhr);
           }
         };
         xhr.open('GET', patch_url, true);
@@ -370,7 +372,9 @@ export default {
               }
             }
             if (callback) callback();
+            return;
           }
+          this.make_alert(this.$t('Error in connecting server.') + xhr.status, xhr);
         }
       };
       xhr.open('GET', url + '/version', true);
@@ -457,7 +461,7 @@ export default {
     },
     make_alert(title, data) {
       console.error(data);
-      alert(title + '\nFind detail in console.');
+      alert(title + this.$t('\nFind detail in console.'));
       this.refreshTimeout = null;
     },
     handleFileSelect() {
@@ -944,28 +948,17 @@ export default {
               throw new Error('Network response is not ok with detail ' + data.detail);
             })
             .catch(error => {
-              this.make_alert('Error in getting deck. ' + error, error)
+              this.make_alert($t('Error in getting deck. ') + error, error)
             });
           }
           else return response.json();
         })
         .then(data => {
-          // console.log('Deck data', data);
-          // let res = [];
-          // for (let i = 0; i < data.length; i ++ ) {
-          //   res.push({
-          //     player_idx: i,
-          //     deck: data[i],
-          //   });
-          // }
-          // if (this.playerTableOrder == 0) {
-          //   res.reverse();
-          // }
           this.$store.commit('setDeck', data);
           this.$store.commit('setShowDeckDiv', true);
         })
         .catch(error => {
-          this.make_alert('Error in getting deck. ' + error, error)
+          this.make_alert(this.$t('Error in getting deck. ') + error, error)
         });
     },
     clickStartNewMatch() {
