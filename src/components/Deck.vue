@@ -499,6 +499,7 @@ export default {
 
 .command-div > * {
   margin-bottom: 0.4vw;
+  margin-top: 0;
 }
 
 .deck-code-div {
