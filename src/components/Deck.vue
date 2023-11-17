@@ -1,6 +1,22 @@
 <template>
   <!-- shape is expected to be 16:4.5 -->
   <div class="deck-component-container">
+    <div class="deck-code-div" v-if="showDeckCodeDiv">
+      <div class="input-group">
+        <label>{{ $t('Current Deck Code') }}</label>
+        <input type="text" v-model="receiveDeckCode" readonly />
+      </div>
+      <div class="input-group">
+        <label>{{ $t('Input Deck Code') }}</label>
+        <input type="text" v-model="inputDeckCode" :disabled="!cardModifiable" />
+      </div>
+      <div class="button-group">
+        <button @click="copyDeckCode">{{ $t(copyButtonText) }}</button>
+        <button @click="uploadDeckCode" :disabled="!cardModifiable">{{ $t('Upload Code') }}</button>
+        <button @click="showDeckCodeDiv = false">{{ $t('Close') }}</button>
+      </div>
+    </div>
+    <div class="overlay" v-if="showDeckCodeDiv"></div>
     <div class="command-div">
       <p>{{ $tc('Player :', playerIdx) }}</p>
       <p>{{ $t('Deck name:') }}<br>{{ deck.name }}</p>
@@ -15,39 +31,40 @@
       <button id="cancel-button" v-if="cardModifiable" @click="selectionMode = null" :disabled="!selectionMode">{{ $t('Back') }}</button>
       <button id="clear-button" v-if="cardModifiable" @click="clearAllCards">{{ $t('Clear') }}</button>
       <button id="upload-deck-button" v-if="cardModifiable" @click="uploadDeck">{{ $t('Upload Deck') }}</button>
+      <button id="deck-code-button" @click="showDeckCodeDivFunc">{{ $t('Deck Code') }}</button>
     </div>
     <!-- <div class="images-container-div"> -->
       <div class="select-divs" v-if="selectionMode">
-          <div class="select-splitter-div">{{  $t('Current') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Charactors') }} * {{ selectionMode == 'CARD' ? cards.length : charactors.length }}</div>
+          <div class="select-splitter-div">{{  $t('Current') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Charactors') }} * {{ selectionMode == 'CARD' ? cardRealLength : charactors.length }}</div>
           <div v-if="selectionMode == 'CHARACTOR'" class="images-div images-select-div-left" style="width: 15%">
             <div class="one-image-div" v-for="charactor, cid in charactors">
-              <img @click="removeCard(charactor, cid)" :src="getCardImageUrl(charactor)" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="charactor.name" />
+              <img @click="removeCard(charactor)" :src="getCardImageUrl(charactor)" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="$t(getFullName(charactor))" />
               <span>{{ charactor.version }}</span>
             </div>
           </div>
-          <div v-else class="images-div images-select-div-left" style="width: 30%">
-            <div class="one-image-div" v-for="card, cid in cards">
-              <img @click="removeCard(card, cid)" :src="getCardImageUrl(card)" @mousemove="showDetail(card.type, card.name, card.version, card)" :alt="card.name" />
+          <div v-else class="images-div images-select-div-left" style="width: 40%">
+            <div class="one-image-div one-small-image-div" v-for="card, cid in cards">
+              <img @click="removeCard(card)" :src="getCardImageUrl(card)" @mousemove="showDetail(card.type, card.name, card.version, card)" :alt="$t(getFullName(card))" />
               <span>{{ card.version }}</span>
             </div>
           </div>
           <div class="select-splitter-div">{{  $t('Available') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Charactors') }}</div>
-          <div class="images-div images-select-div-right" :style="'width: ' + (selectionMode == 'CARD' ? '60%' : '75%')">
-            <img v-for="name, cid in selectCards" @click="selectCard(name)" @mousemove="showDetail(name.split('/')[0], name.split('/')[1])" :src="getCardImageUrl({ type: name.split('/')[0], name: name.split('/')[1] })" :alt="name" />
+          <div class="images-div images-select-div-right" :style="'width: ' + (selectionMode == 'CARD' ? '50%' : '75%')">
+            <img v-for="name, cid in selectCards" @click="selectCard(name)" @mousemove="showDetail(name.split('/')[0], name.split('/')[1])" :src="getCardImageUrl({ type: name.split('/')[0], name: name.split('/')[1] })" :alt="$t(name)" />
           </div>
       </div>
       <div v-else class="images-div">
         <!-- <div class="charactors-div"> -->
           <div class="splitter-div">{{  $t('Charactors') }} * {{ charactors.length }}</div>
           <div class="one-image-div" v-for="charactor, cid in charactors">
-            <img @click="removeCard(charactor, cid)" :src="getCardImageUrl(charactor)" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="charactor.name" />
+            <img @click="removeCard(charactor)" :src="getCardImageUrl(charactor)" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="$t(getFullName(charactor))" />
             <span>{{ charactor.version }}</span>
           </div>
         <!-- </div> -->
         <!-- <div class="cards-div"> -->
-          <div class="splitter-div">{{  $t('Cards') }} * {{ cards.length }}</div>
+          <div class="splitter-div">{{  $t('Cards') }} * {{ cardRealLength }}</div>
           <div class="one-image-div" v-for="card, cid in cards">
-            <img @click="removeCard(card, cid)" :src="getCardImageUrl(card)" @mousemove="showDetail(card.type, card.name, card.version, card)" :alt="card.name" />
+            <img @click="removeCard(card)" :src="getCardImageUrl(card)" @mousemove="showDetail(card.type, card.name, card.version, card)" :alt="$t(getFullName(card))" />
             <span>{{ card.version }}</span>
           </div>
         <!-- </div> -->
@@ -61,11 +78,20 @@ export default {
   props: {
     playerIdx: Number,
     cardModifiable: Boolean,
+    sortCards: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
       selectionMode: null,
       selectedVersion: null,
+      receiveDeckCode: '',
+      inputDeckCode: '',
+      showDeckCodeDiv: false,
+      copyButtonText: 'Copy Code',
+      cardRealLength: 0,
     }
   },
   created () {
@@ -75,7 +101,15 @@ export default {
     getCardImageUrl(obj) {
       return this.$store.getters.getImagePath(obj)
     },
-    removeCard(obj, id) {
+    getFullName(obj) {
+      let type = obj.type;
+      let name = this.$store.getters.getNameWithDesc(obj);
+      if (type == 'TALENT')
+        type = type + '_' + obj.charactor_name;
+      return type + '/' + name;
+    },
+    removeCard(obj) {
+      if (obj.name == 'Empty' && obj.type == 'CARD') return;
       if (!this.cardModifiable) return;
       let type = obj.type;
       let name = this.$store.getters.getNameWithDesc(obj);
@@ -93,7 +127,7 @@ export default {
       this.$store.commit('removeDeckCard', {
         player_id: this.playerIdx,
         type: type.toLowerCase() + 's',
-        id: id
+        id: obj.idx
       })
     },
     selectCard(name) {
@@ -116,12 +150,14 @@ export default {
       })
       this.$store.commit('addDeckModifyCounter', null);
       // this.selectionMode = null;
-      setTimeout(() => {
-        let select_left_div = document.getElementsByClassName('images-select-div-left')[0];
-        select_left_div.scrollLeft = select_left_div.scrollWidth;
-      }, 0)
+      // scroll to end
+      // setTimeout(() => {
+      //   let select_left_div = document.getElementsByClassName('images-select-div-left')[0];
+      //   select_left_div.scrollLeft = select_left_div.scrollWidth;
+      // }, 0)
     },
     showDetail(type, name, version, obj = null) {
+      if (type == 'CARD' && name == 'Empty') return;
       if (!version) version = this.$store.getters.findNearestVersion(type + '/' + name, this.selectedVersion, this.$i18n.messages['zh-CN']);
       if (version == null) {
         this.$store.commit('setSelectedObject', null);
@@ -147,8 +183,38 @@ export default {
         deck_str += card.name + '@' + card.version + '\n';
       }
       console.log(deck_str);
-
-      fetch(this.$store.state.serverURL + '/deck', {
+      this.uploadDeckData(deck_str, '/deck');
+    },
+    uploadDeckCode() {
+      // Upload the deck code
+      let closeDeckCodeDiv = () => {
+        this.showDeckCodeDiv = false;
+        this.$store.commit('resetDeckModifyCounter', null);
+        // refresh deck information
+        fetch(this.$store.state.serverURL + '/decks')
+          .then(response => {
+            if (!response.ok) {
+              response.json().then(data => {
+                throw new Error('Network response is not ok with detail ' + data.detail);
+              })
+              .catch(error => {
+                this.make_alert(this.$t('Error in getting deck. ') + error, error)
+              });
+            }
+            else return response.json();
+          })
+          .then(data => {
+            this.$store.commit('setDeck', data);
+            this.$store.commit('setShowDeckDiv', true);
+          })
+          .catch(error => {
+            this.make_alert(this.$t('Error in getting deck. ') + error, error)
+          });
+      }
+      this.uploadDeckData(this.inputDeckCode, '/deck_code', closeDeckCodeDiv.bind(this));
+    },
+    uploadDeckData(deck_str, target_url, callback) {
+      fetch(this.$store.state.serverURL + target_url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -174,6 +240,7 @@ export default {
         alert(this.$t('Deck uploaded successfully!'));
         // this.$store.commit('setShowDeckDiv', false);
         this.$store.commit('resetDeckModifyCounter', null);
+        if (callback) callback();
       })
       .catch(error => {
         this.make_alert(this.$t('Error in uploading deck. ') + error, error);
@@ -192,6 +259,41 @@ export default {
       this.$store.commit('removeAllDeckCards', {
         player_id: this.playerIdx,
       })
+    },
+    copyDeckCode() {
+      // Copy the deck code to the clipboard
+      navigator.clipboard.writeText(this.receiveDeckCode).then(() => {
+        // The deck code was successfully copied
+        this.copyButtonText = 'Copied!';
+        setTimeout(() => {
+          this.copyButtonText = 'Copy Code';
+        }, 1000);
+      }).catch(error => {
+        // The deck code could not be copied
+        console.error(error);
+      });
+    },
+    showDeckCodeDivFunc() {
+      // receive deck code from server and show div
+      if (this.$store.state.deckModifyCounter > 0) {
+        alert(this.$t('Current deck is modified and not uploaded, please upload the deck before getting the deck code!'));
+        return;
+      }
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            this.receiveDeckCode = JSON.parse(xhr.responseText);
+            this.showDeckCodeDiv = true;
+            this.inputDeckCode = '';
+          }
+          else {
+            alert(this.$t('Error in getting deck code. ') + xhr.responseText);
+          }
+        }
+      };
+      xhr.open('GET', this.$store.state.serverURL + '/deck_code/' + this.playerIdx, true);
+      xhr.send();
     }
   },
   computed: {
@@ -199,10 +301,50 @@ export default {
       return this.$store.state.deck[this.playerIdx];
     },
     charactors() {
-      return this.deck.charactors;
+      let ret = [];
+      for (let i = 0; i < this.deck.charactors.length; i++) {
+        let c = JSON.parse(JSON.stringify(this.deck.charactors[i]));
+        c.idx = i;
+        ret.push(c);
+      }
+      // let state = this.$store.state;
+      // ret.sort((a, b) => {
+      //   let a_id = state.nameToId[this.getFullName(a)];
+      //   let b_id = state.nameToId[this.getFullName(b)];
+      //   if (a_id == undefined) a_id = 999999;
+      //   if (b_id == undefined) b_id = 999999;
+      //   return a_id - b_id;
+      // });
+      return ret;
     },
     cards() {
-      return this.deck.cards;
+      let ret = [];
+      for (let i = 0; i < this.deck.cards.length; i++) {
+        let c = JSON.parse(JSON.stringify(this.deck.cards[i]));
+        c.idx = i;
+        ret.push(c);
+      }
+      if (this.sortCards) {
+        let state = this.$store.state;
+        ret.sort((a, b) => {
+          let a_id = state.nameToId[this.getFullName(a)];
+          let b_id = state.nameToId[this.getFullName(b)];
+          if (a_id == undefined) a_id = 999999;
+          if (b_id == undefined) b_id = 999999;
+          return a_id - b_id;
+        });
+      }
+      this.cardRealLength = ret.length;
+      while (ret.length < 30) {
+        ret.push({
+          type: 'CARD',
+          name: 'Empty',
+          desc: '',
+          version: '',
+          idx: ret.length,
+        });
+      }
+      return ret;
     },
     deck_name() {
       console.log(this.deck, this.$store.state.deck)
@@ -303,10 +445,10 @@ export default {
 }
 
 .images-div > img {
-  height: 30%;
-  width: 3.74748vw;
-  padding-bottom: 0.66vw;
-  margin-right: 0.5vw;
+  height: 23.625%;
+  width: 2.95vw;
+  padding-bottom: 0.25vw;
+  margin-right: 0.25vw;
   /* width: 10%; */
 }
 
@@ -320,6 +462,15 @@ export default {
 
 .images-select-div-left > .one-image-div {
   padding-bottom: 0.66vw;
+}
+
+.images-div .one-small-image-div {
+  height: 25%;
+  width: 2.9vw;
+  padding-bottom: 1%;
+  margin-right: 0.25vw;
+  position: relative;
+  font-size: 0.75vw;
 }
 
 .one-image-div img {
@@ -348,6 +499,77 @@ export default {
 
 .command-div > * {
   margin-bottom: 0.4vw;
+}
+
+.deck-code-div {
+  position: absolute;
+  width: 80%;
+  height: 50%;
+  left: 10%;
+  top: 25%;
+  border: 1px solid black;
+  background-color: white;
+  z-index: 999;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 1vw;
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-group label {
+  margin-right: 10px;
+  flex: 2;
+}
+
+.input-group input {
+  flex: 10;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+}
+
+.button-group button {
+  width: 15%;
+  height: 2vw;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 0.1rem 1rem;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed !important;
+  background-color: #cccccc !important;
+  color: #888888 !important;
+}
+
+button:hover {
+  background-color: #3e8e41;
 }
 
 </style>

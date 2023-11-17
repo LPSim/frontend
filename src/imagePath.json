@@ -31,5 +31,6 @@
   "ICON/EQUIP_WEAPON": "status/Equip_Weapon.png",
   "ICON/EQUIP_ARTIFACT": "status/Equip_Relic.png",
   "ICON/EQUIP_TALENT": "status/Equip_Talent.png",
-  "CARD/Unknown": "cardface/Championship_02.png"
+  "CARD/Unknown": "cardface/Championship_02.png",
+  "CARD/Empty": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
 }
