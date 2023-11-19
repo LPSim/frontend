@@ -1,47 +1,12 @@
-/*
-used in https://ambr.top/en/gcg, to find image path of new images, and their
-ids, and href target page URL.
-
-Save the result manually into new_cards.json.
-*/
-available = `
-... fill exist cardface filenames
-`
-available = available.split('\n').filter(x => x != '')
-imgs = document.querySelectorAll('img')
-links = document.querySelectorAll('a')
-alinks = []
-for (i = 0; i < links.length; i++) {
-    alinks.push(links[i])
-}
-links = alinks.filter(o => o.href.includes('/gcg/'))
-urls = []
-for (i = 0; i < links.length; i++) {
-    link = links[i]
-    link_href = link.href.split('/')
-    id_num = link_href[link_href.length - 2]
-    bottom = link.querySelector('.absolute.bottom-0')
-
-    img = link.querySelector('img')
-    src = img.src
-    if (!src.includes('CardFace')) continue
-    src_split = src.split('/')
-    filename = src_split[src_split.length - 1]
-    filename = filename.split('.sm.png')[0]
-    filename = filename.split('UI_Gcg_CardFace_')[1]
-    filename = filename + '.png'
-    src = src.split('.sm.png')[0] + '.png'
-    if (available.includes(filename)) continue
-    urls.push([src, filename, bottom.innerText, id_num, link.href])
-}
-console.log(urls)
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import json
 
 
-/*
-used to collect skill descs. combine jsonl with ipynb
-*/
+js_code = '''
 function collect_skill_desc() {
-VERSION = '4.2'
+VERSION = 'X.X'
 links = document.querySelectorAll('a')
 divs = document.querySelectorAll('div[name=" Skill"]');
 res = {}
@@ -92,7 +57,7 @@ else {
         charactor_name = title_div.innerText.split(':')[0].trim()
         key = 'TALENT_' + charactor_name
     }
-    res[key + '_' + cname] = {
+    res[key + '/' + cname] = {
         names: {
             [lang]: cname
         },
@@ -106,3 +71,48 @@ else {
 }
 }
 console.log(collect_skill_desc())
+return collect_skill_desc()
+'''
+
+
+def wait_until_loaded(driver, selector):
+    while True:
+        try:
+            driver.find_element(By.CSS_SELECTOR, selector)
+            break
+        except Exception:
+            time.sleep(0.5)
+
+
+def get_skill_desc(driver, link, version):
+    print(link)
+    driver.get(link)
+    wait_until_loaded(driver, 'div[name=" Skill"]')
+    print('open done')
+    try:
+        res = driver.execute_script(js_code.replace('X.X', version))
+    except Exception:
+        print(f'error in link {link}')
+        return None
+    return res
+
+
+if __name__ == '__main__':
+    VERSION = '4.3'
+    driver = webdriver.Chrome()
+    image_urls = json.load(open('new_cards.json'))
+    res = []
+    for oneline in image_urls:
+        en_url = oneline[-1]
+        cn_url = en_url.replace('/en/', '/chs/')
+        r = get_skill_desc(driver, en_url, VERSION)
+        if r is not None:
+            res.append(r)
+        r = get_skill_desc(driver, cn_url, VERSION)
+        if r is not None:
+            res.append(r)
+    print(res)
+    json.dump(res, open('new_desc.json', 'w', encoding='utf-8'),
+              ensure_ascii=False, indent=2)
+    input('press any key to quit')
+    driver.quit()
