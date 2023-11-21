@@ -122,5 +122,6 @@
   "MATCHSTATE/ROUND_ENDED": "Round Ended",
   "MATCHSTATE/ENDED": "Game Ended",
 
-  "CARD/Unknown": "Unknown"
+  "CARD/Unknown": "Unknown",
+  "CARD/Empty": ""
 }

@@ -122,5 +122,6 @@
   "MATCHSTATE/ROUND_ENDED": "回合已结束",
   "MATCHSTATE/ENDED": "游戏结束",
 
-  "CARD/Unknown": "未知"
+  "CARD/Unknown": "未知",
+  "CARD/Empty": ""
 }

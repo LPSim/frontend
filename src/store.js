@@ -443,6 +443,7 @@ export default new Vuex.Store({
         name = name + '_' + desc;
       let res = state.imagePath[type + '/' + name];
       if (res && res.slice(0, 5) == 'data:') return res;
+      if (res && res.slice(0, 4) == 'http') return res;
 
       if (type == 'AVATAR') {
         // if is avatar, first get CHARACTOR/name, then convert to avatar path
@@ -454,7 +455,6 @@ export default new Vuex.Store({
           // for custom cards
           res = res.replace(/cardface\//, 'avatar/')
         }
-        console.log(prefix + res);
         return prefix + res;
       }
 
