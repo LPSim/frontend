@@ -1,13 +1,9 @@
 /*
-used in https://ambr.top/en/gcg, to find image path of new images, and their
-ids, and href target page URL.
+used in https://ambr.top/en/changelog?v=xx, to find image path of new images, 
+and their ids, and href target page URL.
 
 Save the result manually into new_cards.json.
 */
-available = `
-... fill exist cardface filenames
-`
-available = available.split('\n').filter(x => x != '')
 imgs = document.querySelectorAll('img')
 links = document.querySelectorAll('a')
 alinks = []
@@ -31,7 +27,6 @@ for (i = 0; i < links.length; i++) {
     filename = filename.split('UI_Gcg_CardFace_')[1]
     filename = filename + '.png'
     src = src.split('.sm.png')[0] + '.png'
-    if (available.includes(filename)) continue
     urls.push([src, filename, bottom.innerText, id_num, link.href])
 }
 console.log(urls)
