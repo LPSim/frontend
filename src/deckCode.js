@@ -170,6 +170,7 @@ function deckStrToDeckCode(deckStr, maxRetryTime = 10000) {
 
     for (let i of cardStrL) {
         let number = 1;
+        let numberStr = '';
         if (i.includes('*')) {
             [i, numberStr] = i.split('*');
             number = parseInt(numberStr);
