@@ -307,7 +307,8 @@ export default {
       if (this.serverConnected) return;
       // try to connect server. will first check version, and send callback
       // that will request patch data.
-      function patch_callback() {
+      function connected_callback() {
+        // patch
         let patch_url = this.serverURL + '/patch';
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = () => {
@@ -328,8 +329,25 @@ export default {
         };
         xhr.open('GET', patch_url, true);
         xhr.send();
+
+        // deck code data
+        let deck_code_url = this.serverURL + '/deck_code_data';
+        const xhr2 = new XMLHttpRequest();
+        xhr2.onreadystatechange = () => {
+          if (xhr2.readyState === 4) {
+            if (xhr2.status === 200) {
+              let deck_code_data = JSON.parse(xhr2.responseText);
+              console.log('DECK CODE DATA', deck_code_data);
+              this.$store.commit('setDeckCodeData', deck_code_data);
+              return;
+            }
+            this.make_alert(this.$t('Error in connecting server.') + xhr2.status, xhr2);
+          }
+        };
+        xhr2.open('GET', deck_code_url, true);
+        xhr2.send();
       }
-      this.checkVersion(patch_callback.bind(this));
+      this.checkVersion(connected_callback.bind(this));
     },
     stopServerByError() {
       // error occured, stop connect to server and stop auto refresh.

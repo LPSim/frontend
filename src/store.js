@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import imagePath from './imagePath.json';
+import { init as deckCodeInit, deckStrToDeckCode } from './deckCode';
 
 Vue.use(Vuex);
 
@@ -22,12 +23,16 @@ export default new Vuex.Store({
     showDeckDiv: false,
     serverURL: 'http://localhost:8000',
     serverConnected: false,
-
+    deckCodeData: {},
     imagePath: imagePath,
     nameToId: {},
     availableVersions: [],
   },
   mutations: {
+    setDeckCodeData(state, data) {
+      state.deckCodeData = data;
+      deckCodeInit(data, state.nameToId);
+    },
     updateDataByPatch(state, patch) {
       `patch format. update imagePath, nameToId and availableVersions
       {
@@ -77,6 +82,7 @@ export default new Vuex.Store({
       state.imagePath = new_imagePath;
       state.nameToId = new_nameToId;
       state.availableVersions = new_availableVersions;
+      deckCodeInit(state.deckCodeData, state.nameToId);
       console.log('updateDataByPatch', state.imagePath, state.nameToId, state.availableVersions)
     },
     setSelectedObject(state, obj) {
@@ -508,6 +514,12 @@ export default new Vuex.Store({
     getNameWithDesc: (state) => (obj) => {
       if (obj.desc && obj.desc != '') return obj.name + '_' + obj.desc;
       return obj.name;
+    },
+    deckCodeToDeckStr: (state) => (deck_code) => {
+      throw 'Not implemented';
+    },
+    deckStrToDeckCode: (state) => (deck_str) => {
+      return deckStrToDeckCode(deck_str);
     }
   },
 });

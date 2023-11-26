@@ -174,7 +174,7 @@ export default {
       if (!args.skills) args.skills = [];
       this.$store.commit('setSelectedObject', args);
     },
-    uploadDeck() {
+    getDeckString() {
       let deck_str = '';
       for (let charactor of this.deck.charactors) {
         deck_str += 'charactor:' + charactor.name + '@' + charactor.version + '\n';
@@ -183,7 +183,11 @@ export default {
         if (card.name == 'Empty' && card.type == 'CARD') continue;
         deck_str += card.name + '@' + card.version + '\n';
       }
-      console.log(deck_str);
+      return deck_str;
+    },
+    uploadDeck() {
+      let deck_str = this.getDeckString();
+      console.log('DECK STRING', deck_str);
       this.uploadDeckData(deck_str, '/deck');
     },
     uploadDeckCode() {
@@ -281,6 +285,19 @@ export default {
       });
     },
     showDeckCodeDivFunc() {
+      try {
+        let deckString = this.getDeckString();
+        console.log(deckString);
+        this.receiveDeckCode = this.$store.getters.deckStrToDeckCode(deckString);
+        this.showDeckCodeDiv = true;
+        this.inputDeckCode = '';
+      }
+      catch (error) {
+        alert(this.$t('Error in getting deck code. ') + error);
+        throw error;
+      }
+    },
+    receiveDeckCodeFromServer() {
       // receive deck code from server and show div
       if (this.$store.state.deckModifyCounter > 0) {
         alert(this.$t('Current deck is modified and not uploaded, please upload the deck before getting the deck code!'));
