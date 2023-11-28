@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import imagePath from './imagePath.json';
-import { init as deckCodeInit, deckStrToDeckCode } from './deckCode';
+import { init as deckCodeInit, deckStrToDeckCode, deckCodeToDeckStr } from './deckCode';
 
 Vue.use(Vuex);
 
@@ -499,6 +499,28 @@ export default new Vuex.Store({
       });
       return result;
     },
+    findFullNameOfCard: (state) => (name, descs) => {
+      for (let key in descs) {
+        let key_arr = key.split('/');
+        if (key_arr.length != 2) continue;
+        let type = key_arr[0];
+        let kname = key_arr[1];
+        if (
+          type.includes('CHARACTOR')
+          || type.includes('TALENT')
+          || type.includes('CARD')
+          || type.includes('WEAPON')
+          || type.includes('ARTIFACT')
+          || type.includes('SUPPORT')
+          || type.includes('ARCANE')
+        ) {
+          if (kname == name) {
+            return key;
+          }
+        }
+      }
+      throw 'Cannot find full name of ' + name;
+    },
     findNearestVersion: (state) => (name, version, descs) => {
       let nearest = null;
       for (let key in descs)
@@ -515,11 +537,46 @@ export default new Vuex.Store({
       if (obj.desc && obj.desc != '') return obj.name + '_' + obj.desc;
       return obj.name;
     },
-    deckCodeToDeckStr: (state) => (deck_code) => {
-      throw 'Not implemented';
+    deckCodeToDeckStr: (state) => (code, version, sort) => {
+      return deckCodeToDeckStr(code, version, sort);
     },
     deckStrToDeckCode: (state) => (deck_str) => {
       return deckStrToDeckCode(deck_str);
+    },
+    deckStrToDeckDict: (state, getters) => (deck_str, descs) => {
+      let deck = {
+        charactors: [],
+        cards: [],
+      };
+      let default_version = '9.9';
+      let lines = deck_str.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        let line = lines[i].trim();
+        if (line == '') continue;
+        if (line.startsWith('default_version:')) {
+          default_version = line.slice(16);
+          continue;
+        }
+        if (line.startsWith('charactor:')) {
+          deck.charactors.push({
+            type: 'CHARACTOR',
+            name: line.slice(10),
+            desc: '',
+            version: getters.findNearestVersion('CHARACTOR/' + line.slice(10), default_version, descs)
+          });
+        }
+        else {
+          let fullname = getters.findFullNameOfCard(line, descs);
+          let fullname_arr = fullname.split('/');
+          deck.cards.push({
+            type: fullname_arr[0],
+            name: fullname_arr[1],
+            desc: '',
+            version: getters.findNearestVersion(fullname, default_version, descs)
+          });
+        }
+      }
+      return deck;
     }
   },
 });

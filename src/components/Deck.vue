@@ -12,7 +12,7 @@
       </div>
       <div class="button-group">
         <button @click="copyDeckCode">{{ $t(copyButtonText) }}</button>
-        <button @click="uploadDeckCode" :disabled="!cardModifiable">{{ $t('Upload Code') }}</button>
+        <button @click="useDeckCode" :disabled="!cardModifiable">{{ $t('Use Code') }}</button>
         <button @click="showDeckCodeDiv = false">{{ $t('Close') }}</button>
       </div>
     </div>
@@ -175,7 +175,7 @@ export default {
       this.$store.commit('setSelectedObject', args);
     },
     getDeckString() {
-      let deck_str = '';
+      let deck_str = 'default_version:' + this.selectedVersion + '\n';
       for (let charactor of this.deck.charactors) {
         deck_str += 'charactor:' + charactor.name + '@' + charactor.version + '\n';
       }
@@ -190,37 +190,33 @@ export default {
       console.log('DECK STRING', deck_str);
       this.uploadDeckData(deck_str, '/deck');
     },
-    uploadDeckCode() {
-      // Upload the deck code
+    useDeckCode() {
+      // Use the deck code
       if (this.inputDeckCode.length != 68) {
         alert(this.$t('Deck code length should be 68!'));
         return;
       }
-      let closeDeckCodeDiv = () => {
+      try {
+        let deckString = this.$store.getters.deckCodeToDeckStr(
+          this.inputDeckCode, this.selectedVersion, true);
+        let deckDict = this.$store.getters.deckStrToDeckDict(
+          deckString, this.$i18n.messages['en-US'], true);
+        let no_version = deckDict.charactors.filter((item) => item.version == null).concat(deckDict.cards.filter((item) => item.version == null));
+        deckDict.charactors = deckDict.charactors.filter((item) => item.version != null);
+        deckDict.cards = deckDict.cards.filter((item) => item.version != null);
+        let decks = JSON.parse(JSON.stringify(this.$store.state.deck));
+        decks[this.playerIdx] = deckDict;
+        this.$store.commit('setDeck', decks);
+        let message = this.$t('Deck code parsed successfully! Currently not uploaded to server, please upload manually.');
+        if (no_version.length > 0)
+          message += this.$t('\n\nWarning: the following cards/charactors are not available in selected version, they will be ignored:\n') + no_version.map((item) => this.$t(item.type + '/' + item.name)).join(', ');
+        alert(message);
         this.showDeckCodeDiv = false;
-        this.$store.commit('resetDeckModifyCounter', null);
-        // refresh deck information
-        fetch(this.$store.state.serverURL + '/decks')
-          .then(response => {
-            if (!response.ok) {
-              response.json().then(data => {
-                throw new Error('Network response is not ok with detail ' + data.detail);
-              })
-              .catch(error => {
-                this.make_alert(this.$t('Error in getting deck. ') + error, error)
-              });
-            }
-            else return response.json();
-          })
-          .then(data => {
-            this.$store.commit('setDeck', data);
-            this.$store.commit('setShowDeckDiv', true);
-          })
-          .catch(error => {
-            this.make_alert(this.$t('Error in getting deck. ') + error, error)
-          });
+        this.$store.commit('addDeckModifyCounter', null);
       }
-      this.uploadDeckData(this.inputDeckCode, '/deck_code', closeDeckCodeDiv.bind(this));
+      catch (e) {
+        console.log(this.$t('Error in parsing deck code\n\n') + e);
+      }
     },
     uploadDeckData(deck_str, target_url, callback) {
       fetch(this.$store.state.serverURL + target_url, {
@@ -563,7 +559,7 @@ export default {
 }
 
 .button-group button {
-  width: 15%;
+  width: 20%;
   height: 2vw;
 }
 
