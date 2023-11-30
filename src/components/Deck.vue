@@ -29,7 +29,10 @@
       <button id="add-charactor-button" v-if="cardModifiable" @click="selectionMode = 'CHARACTOR'">{{ $t('Add Charactor') }}</button>
       <button id="add-card-button" v-if="cardModifiable" @click="selectionMode = 'CARD'">{{ $t('Add Card') }}</button>
       <button id="cancel-button" v-if="cardModifiable" @click="selectionMode = null" :disabled="!selectionMode">{{ $t('Back') }}</button>
-      <button id="clear-button" v-if="cardModifiable" @click="clearAllCards">{{ $t('Clear') }}</button>
+      <!-- TODO when selecting charactor or card, only clear them, not others. -->
+      <button id="clear-button" v-if="cardModifiable && selectionMode == null" @click="clearCards">{{ $t('Clear') }}</button>
+      <button id="clear-card-button" v-if="cardModifiable && selectionMode == 'CARD'" @click="clearCards">{{ $t('Clear') }}</button>
+      <button id="clear-charactor-button" v-if="cardModifiable && selectionMode == 'CHARACTOR'" @click="clearCards">{{ $t('Clear') }}</button>
       <button id="upload-deck-button" v-if="cardModifiable" @click="uploadDeck">{{ $t('Upload Deck') }}</button>
       <button id="deck-code-button" @click="showDeckCodeDivFunc">{{ $t('Deck Code') }}</button>
     </div>
@@ -257,14 +260,17 @@ export default {
       console.error(data);
       alert(title + this.$t('\n\nFind detail in console.'));
     },
-    clearAllCards() {
+    clearCards() {
       if (!this.cardModifiable) return;
-      let userConfirmation = confirm(
-        this.$t('Are you sure to remove all cards?')
-      );
+      let msg = 'Are you sure to remove all ';
+      if (this.selectionMode == 'CHARACTOR') msg += 'charactors?';
+      else if (this.selectionMode == 'CARD') msg += 'cards?';
+      else msg += 'charactors and cards?';
+      let userConfirmation = confirm(this.$t(msg));
       if (!userConfirmation) return;
-      this.$store.commit('removeAllDeckCards', {
+      this.$store.commit('removeDeckCards', {
         player_id: this.playerIdx,
+        area: this.selectionMode ? this.selectionMode : 'ALL'
       })
     },
     copyDeckCode() {

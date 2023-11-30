@@ -399,10 +399,12 @@ export default new Vuex.Store({
       let id = data.id;
       state.deck[player_id][type].splice(id, 1);
     },
-    removeAllDeckCards(state, data) {
+    removeDeckCards(state, data) {
+      // ALL to clear all; CHARACTOR to charactor; CARD to card
       let player_id = data.player_id;
-      state.deck[player_id].charactors = [];
-      state.deck[player_id].cards = [];
+      let area = data.area;
+      if (area == 'ALL' || area == 'CHARACTOR') state.deck[player_id].charactors = [];
+      if (area == 'ALL' || area == 'CARD') state.deck[player_id].cards = [];
     },
     addDeckCard(state, data) {
       let player_id = data.player_id;
