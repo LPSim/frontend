@@ -454,7 +454,6 @@ export default new Vuex.Store({
       if (type == 'AVATAR') {
         // if is avatar, first get CHARACTOR/name, then convert to avatar path
         let res = state.imagePath['CHARACTOR/' + name];
-        console.log('CHARACTOR/' + name, res);
         if (res) {
           // for normal cards
           res = res.replace(/cardface\/Char_(Avatar|Enemy|Monster)_/, 'avatar/')
