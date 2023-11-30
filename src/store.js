@@ -505,13 +505,13 @@ export default new Vuex.Store({
         let type = key_arr[0];
         let kname = key_arr[1];
         if (
-          type.includes('CHARACTOR')
+          type == 'CHARACTOR'
           || type.includes('TALENT')
-          || type.includes('CARD')
-          || type.includes('WEAPON')
-          || type.includes('ARTIFACT')
-          || type.includes('SUPPORT')
-          || type.includes('ARCANE')
+          || type == 'CARD'
+          || type == 'WEAPON'
+          || type == 'ARTIFACT'
+          || type == 'SUPPORT'
+          || type == 'ARCANE'
         ) {
           if (kname == name) {
             return key;
