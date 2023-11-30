@@ -99,7 +99,7 @@ function deckCodeToDeckStr(deckCode, version = null, sort = true) {
         results.push(`default_version:${version}`);
     }
     for (let x of decode) {
-        if (x > 0) {
+        if (x > 0 && x <= nameMap.length) {
             if (charactorsIdx.includes(x - 1)) {
                 results_charactor.push(`charactor:${nameMap[x - 1]}`);
             } else {
