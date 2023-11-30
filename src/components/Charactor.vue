@@ -6,7 +6,7 @@
       </div>
     </div>
     <div :class="(charactor.is_alive ? 'charactor ' : 'charactor-died ') + selectClass">
-      <img class="charactor-image" :src="image_path('CHARACTOR', charactor.name, charactor.desc)" :alt="$t('CHARACTOR/' + charactor.name)">
+      <img class="charactor-image" :src="image_path('CHARACTOR', charactor.name, charactor.desc)" :alt="$t('CHARACTOR/' + charactor.name + (charactor.desc.length > 0 ? '_' : '') + charactor.desc)">
       <div class="charactor-hp">{{ charactor.hp }}</div>
       <div class="charactor-charge">
         <span v-for="i in charactor.max_charge" :key="i"

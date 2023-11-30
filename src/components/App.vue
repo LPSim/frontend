@@ -1145,7 +1145,7 @@ export default {
         if (pred.player_idx == this.currentRequestPlayerId) {
           let name = 'UseSkill' + pred.skill_idx;
           let char = this.match.player_tables[pred.player_idx].charactors[pred.charactor_idx];
-          let key = 'SKILL_' + this.$store.getters.getNameWithDesc(char) + '_' + char.skills[pred.skill_idx].skill_type + '/' + char.skills[pred.skill_idx].name;
+          let key = 'SKILL_' + char.name + '_' + char.skills[pred.skill_idx].skill_type + '/' + char.skills[pred.skill_idx].name;
           let diff = pred.diff;
           let fake_datas = [
             {
@@ -1204,7 +1204,7 @@ export default {
           let skill_idx = request.skill_idx;
           finalres[name + skill_idx] = {...finalres[name + skill_idx], ...request};
           let char = this.match.player_tables[request.player_idx].charactors[request.charactor_idx];
-          let key = 'SKILL_' + this.$store.getters.getNameWithDesc(char) + '_' + char.skills[skill_idx].skill_type + '/' + char.skills[skill_idx].name;
+          let key = 'SKILL_' + char.name + '_' + char.skills[skill_idx].skill_type + '/' + char.skills[skill_idx].name;
           finalres[name + skill_idx].title = this.$t(key);
         }
         else if (request.name == 'SwitchCharactorRequest') {
