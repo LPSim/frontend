@@ -103,6 +103,8 @@
   "Deck code parsed successfully! Currently not uploaded to server, please upload manually.": "Deck code parsed successfully! Currently not uploaded to server, please upload manually.",
   "\n\nWarning: the following cards/charactors are not available in selected version, they will be ignored:\n": "\n\nWarning: the following cards/charactors are not available in selected version, they will be ignored:\n",
   "Error in parsing deck code\n\n": "Error in parsing deck code\n\n",
+  "Too many characters or cards": "Too many characters or cards",
+  "In generating deck code: retry time exceeded": "In generating deck code: retry time exceeded",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",
