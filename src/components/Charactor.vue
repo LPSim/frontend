@@ -94,7 +94,7 @@ export default {
         desc = '';
       }
       return this.$store.getters.getImagePath({
-        type: 'TEAM_STATUS',
+        type: status.type,
         name: name,
         desc: desc
       })
