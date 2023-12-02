@@ -174,7 +174,7 @@
           <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })">
           <div>
             <p>{{ $t('CHARACTOR/' + $store.getters.getNameWithDesc({ name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })) }} {{ $t('used') }} {{ $t('SKILL_TYPE/' + skillNotify.skill_type) }}</p>
-            <p>{{ $t('SKILL_' + $store.getters.getNameWithDesc({ name: skillNotify.charactor_name, desc: skillNotify.charactor_desc }) + '_' + skillNotify.skill_type + '/' + skillNotify.skill_name) }}</p>
+            <p>{{ $t('SKILL_' + skillNotify.charactor_name + '_' + skillNotify.skill_type + '/' + skillNotify.skill_name) }}</p>
           </div>
         </div>
       </div>
