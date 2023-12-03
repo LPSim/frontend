@@ -364,6 +364,7 @@ export default {
         this.interactionCommands = [[], []];
         this.commandHistory = [[], []];
         this.requestData = [];
+        this.processing = false;
         alert(this.$t('Game reset successfully!'));
     },
     checkVersion(callback = undefined) {

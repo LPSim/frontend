@@ -3,7 +3,8 @@
     <h3 id="title">{{ title }}</h3>
     <p id="version-p" v-if="show_version">{{ $t('Version: ') }} {{ version }}</p>
     <p id="skill-type-p" v-if="skill_type">{{ skill_type }}</p>
-    <Cost id="cost" :cost="cost" direction="row" justify="flex-start" :cost_font_size="0.8" />
+    <Cost v-if="cost" id="cost" :cost="cost" direction="row" justify="flex-start" :cost_font_size="0.8" />
+    <div id="no-cost-div" v-else></div>
     <p id="detail-p" v-if="detail">{{ detail }}</p>
   </div>
 </template>
@@ -68,9 +69,13 @@ export default {
   font-size: 0.69vw;
 }
 
+#no-cost-div {
+  margin-bottom: 0.2vw;
+}
+
 #version-p, #skill-type-p {
   margin-top: 0;
-  margin-bottom: 0.2vw;
+  margin-bottom: 0;
   color: #555;
   font-size: 0.65vw;
 }
