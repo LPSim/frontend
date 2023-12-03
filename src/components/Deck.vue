@@ -161,7 +161,7 @@ export default {
     },
     showDetail(type, name, version, obj = null) {
       if (type == 'CARD' && name == 'Empty') return;
-      if (!version) version = this.$store.getters.findNearestVersion(type + '/' + name, this.selectedVersion, this.$i18n.messages['zh-CN']);
+      if (!version) version = this.$store.getters.findNearestVersion(type + '/' + name, this.selectedVersion, this.$i18n.messages['en-US']);
       if (version == null) {
         this.$store.commit('setSelectedObject', null);
         return;
@@ -174,7 +174,39 @@ export default {
       if (obj) {
         args = { ...args, ...obj };
       }
-      if (!args.skills) args.skills = [];
+      if (!args.skills && args.type == 'CHARACTOR') {
+        // find skill names from descs
+        let msg = this.$i18n.messages['en-US'];
+        let prefix = 'SKILL_' + args.name;
+        let skills = [];
+        for (let key in msg)
+            if (key.startsWith(prefix)) {
+                if (key.split('/').length != 3) continue;
+                let split = key.split('/');
+                let type = split[0];
+                let skill_name = split[1];
+                let version = split[2];
+                if (version != args.version) continue;
+                let skill_type = type.replace(prefix + '_', '');
+                skills.push({
+                    name: skill_name,
+                    version: version,
+                    skill_type: skill_type,
+                    desc: ''
+                });
+            }
+        skills.sort((a, b) => {
+            function get_order(k) {
+                if (k == 'NORMAL_ATTACK') return 0;
+                else if (k == 'ELEMENTAL_SKILL') return 1;
+                else if (k == 'ELEMENTAL_BURST') return 2;
+                else if (k == 'PASSIVE') return 3;
+                else return 9;
+            }
+            return get_order(a.skill_type) - get_order(b.skill_type);
+        });
+        args.skills = skills;
+      }
       this.$store.commit('setSelectedObject', args);
     },
     getDeckString() {
