@@ -130,12 +130,7 @@
     </div>
     <div v-if="showDeckDiv" class="deck-container">
       <div class="desc-container">
-        <div v-for="(desc, did) in descData">
-          <h4>{{ $t(desc.type + '/' + $store.getters.getNameWithDesc(desc)) }}</h4>
-          <p v-if="desc.version && did == 0">{{ $t('Version: ') }} {{ desc.version }}</p>
-          <p v-if="desc.skill_type">{{ $t('SKILL_TYPE/' + desc.skill_type) }}</p>
-          <p>{{ $t(desc.type + '/' + $store.getters.getNameWithDesc(desc) + '/' + descData[0].version) }}</p>
-        </div>
+        <DescBlock v-for="(desc, did) in descData" :key="did" :desc="desc" :version="descData[0].version" :show_version="did == 0" />
       </div>
       <div class="deck-container-inner">
         <Deck :player-idx="1 - playerTableOrder" :card-modifiable="displayInJudgeMode"></Deck>
@@ -144,12 +139,7 @@
     </div>
     <div class="match-container" v-if="match != null && !showDeckDiv">
       <div class="desc-container">
-        <div v-for="(desc, did) in descData">
-          <h4>{{ $t(desc.type + '/' + $store.getters.getNameWithDesc(desc)) }}</h4>
-          <p v-if="desc.version && did == 0">{{ $t('Version: ') }} {{ desc.version }}</p>
-          <p v-if="desc.skill_type">{{ $t('SKILL_TYPE/' + desc.skill_type) }}</p>
-          <p>{{ $t(desc.type + '/' + $store.getters.getNameWithDesc(desc) + '/' + descData[0].version) }}</p>
-        </div>
+        <DescBlock v-for="(desc, did) in descData" :key="did" :desc="desc" :version="descData[0].version" :show_version="did == 0" />
       </div>
       <div v-if="predictMatch" class="player-tables-container prediction-container">
         <div class="player-tables" v-for="(playerTable, pid) in sortedPredictPlayerTables" :key="pid" :style="'top: ' + (pid == 1 ? '50%' : '0')">
@@ -225,6 +215,7 @@ import PlayerTable from './PlayerTable.vue'
 import RequestDetails from './RequestDetails.vue';
 import RequestButton from './RequestButton.vue';
 import Deck from './Deck.vue';
+import DescBlock from './DescBlock.vue';
 
 export default {
   name: 'App',
@@ -232,7 +223,8 @@ export default {
     PlayerTable,
     RequestDetails,
     RequestButton,
-    Deck
+    Deck,
+    DescBlock
   },
   data() {
     return {

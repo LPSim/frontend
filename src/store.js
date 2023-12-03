@@ -27,6 +27,7 @@ export default new Vuex.Store({
     imagePath: imagePath,
     nameToId: {},
     availableVersions: [],
+    descKeyToCost: {}
   },
   mutations: {
     setDeckCodeData(state, data) {
@@ -52,6 +53,14 @@ export default new Vuex.Store({
                           "zh-CN": "new desc",
                           "en-US": "new desc"
                       }
+                  },
+                  "cost": {
+                      "DESC_VERSION": {
+                        "any_dice_number": 0,
+                        "same_dice_number": 0,
+                        "elemental_dice_number": 0,
+                        "elemental_dice_color": "FIRE"
+                      }
                   }
               }
           }
@@ -63,6 +72,7 @@ export default new Vuex.Store({
       let new_imagePath = JSON.parse(JSON.stringify(state.imagePath));
       let new_nameToId = JSON.parse(JSON.stringify(state.nameToId));
       let new_availableVersions = JSON.parse(JSON.stringify(state.availableVersions));
+      let new_descKeyToCost = JSON.parse(JSON.stringify(state.descKeyToCost));
       for (let full_key in patch_data) {
         let data = patch_data[full_key];
         if (data.image_path) {
@@ -77,11 +87,19 @@ export default new Vuex.Store({
               new_availableVersions.push(version);
             }
         }
+        if (data.cost) {
+          for (let version in data.cost)
+            if (new_availableVersions.indexOf(version) != -1) {
+              // corresponding version exist
+              new_descKeyToCost[full_key + '/' + version] = data.cost[version];
+            }
+        }
       }
       new_availableVersions.sort();
       state.imagePath = new_imagePath;
       state.nameToId = new_nameToId;
       state.availableVersions = new_availableVersions;
+      state.descKeyToCost = new_descKeyToCost;
       deckCodeInit(state.deckCodeData, state.nameToId);
       console.log('updateDataByPatch', state.imagePath, state.nameToId, state.availableVersions)
     },

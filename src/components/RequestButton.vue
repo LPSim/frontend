@@ -61,8 +61,8 @@ export default {
 .request-button-root > div > .cost-div {
   position: absolute;
   width: 100%;
-  height: 35.5555555555%;
-  top: 64.4444444444%;
+  height: 33.33333333%;
+  top: 66.66666666%;
   display: flex;
 }
 

@@ -1,8 +1,6 @@
 <template>
   <div :class="'summon ' + selectClass" @click="log_data">
     <img class="main-img" :src="image_path('SUMMON', summon.name, summon.desc)" :alt="$t('SUMMON/' + summon.name)"/>
-    <!-- <p>{{ card.name }}</p> -->
-    <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="summon-usage-div">
       <div>
         <img v-if="summon.icon_type != 'NONE'" :src="image_path('ICON', summon.icon_type)" :alt="summon.icon_type" width="100%" height="100%" />

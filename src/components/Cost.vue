@@ -1,13 +1,15 @@
 <template>
   <div class="cost-div" :style="'flex-direction: ' + direction + '; justify-content: ' + justify + ';'" v-if="cost">
     <div v-for="(c, cid) in cost_computed" :key="cid" :style="costDivStyle()">
-      <img
-        :src="image_path('DICE', c.type)"
-        :alt="c.type"
-        width="100%"
-        height="100%"
-      />
-      <div class="cost-span-div">
+      <div :style="imgDivStyle(c)">
+        <img
+          :src="image_path('DICE', c.type)"
+          :alt="c.type"
+          width="100%"
+          height="100%"
+        />
+      </div>
+      <div class="cost-span-div" :style="spanDivStyle()">
         <span
           :class="{ 'cost-higher': c.is_higher, 'cost-lower': c.is_lower }"
           >{{ c.value }}</span
@@ -44,6 +46,10 @@ export default {
     justify: {
       type: String,
       default: 'flex-start'
+    },
+    cost_font_size: {
+      type: Number,
+      default: 1.25
     }
   },
   methods: {
@@ -65,6 +71,22 @@ export default {
         type: type,
         name: name
       })
+    },
+    imgDivStyle(c) {
+      let full_width = (c.type == 'CHARGE' || c.type == 'ARCANE_FULL');
+      let ret = {
+        width: (full_width ? 100 : 93.75) + '%',
+        'margin-left': full_width ? '0%' : '3.125%',
+        height: '100%'
+      };
+      return ret;
+    },
+    spanDivStyle() {
+      let text_stroke_width = this.cost_font_size / 1.25;
+      return {
+        'font-size': this.cost_font_size + 'vw',
+        '-webkit-text-stroke-width': text_stroke_width + 'px',
+      }
     }
   },
   computed: {
@@ -146,14 +168,12 @@ export default {
 
 .cost-span-div {
   position: absolute;
-  font-size: 1.25vw;
   font-weight: bolder;
   text-align: center;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
   /* line-height: 130%; */
   color: white;

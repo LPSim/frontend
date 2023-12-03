@@ -1,8 +1,6 @@
 <template>
   <div :class="'support ' + selectClass" @click="log_data">
     <img class="main-img" :src="image_path('SUPPORT', support.name, support.desc)" :alt="$t('SUPPORT/' + support.name)"/>
-    <!-- <p>{{ card.name }}</p> -->
-    <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="support-usage-div">
       <div>
         <img v-if="support.icon_type != 'NONE'" :src="image_path('ICON', support.icon_type)" :alt="support.icon_type" width="100%" height="100%" />

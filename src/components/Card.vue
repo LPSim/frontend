@@ -70,7 +70,7 @@ img {
   /* position: absolute; */
   position: relative;
   flex-direction: column;
-  width: 35.625%;
+  width: 36.615%;
   height: 100%;
 }
 
