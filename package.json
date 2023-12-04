@@ -3,7 +3,7 @@
   "name": "lpsim-frontend",
   "productName": "lpsim-frontend",
   "description": "Simple frontend for LPSim",
-  "version": "0.4.2.2",
+  "version": "0.4.2.3",
   "license": "MIT",
   "scripts": {
     "dev": "NODE_OPTIONS=--openssl-legacy-provider poi",
