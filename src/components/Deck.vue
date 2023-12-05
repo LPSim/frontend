@@ -177,7 +177,7 @@ export default {
       if (!args.skills && args.type == 'CHARACTOR') {
         // find skill names from descs
         let msg = this.$i18n.messages['en-US'];
-        let prefix = 'SKILL_' + args.name;
+        let prefix = 'SKILL_' + args.name + '_';
         let skills = [];
         for (let key in msg)
             if (key.startsWith(prefix)) {
@@ -187,7 +187,7 @@ export default {
                 let skill_name = split[1];
                 let version = split[2];
                 if (version != args.version) continue;
-                let skill_type = type.replace(prefix + '_', '');
+                let skill_type = type.replace(prefix, '');
                 skills.push({
                     name: skill_name,
                     version: version,
@@ -210,13 +210,25 @@ export default {
       this.$store.commit('setSelectedObject', args);
     },
     getDeckString() {
-      let deck_str = 'default_version:' + this.selectedVersion + '\n';
+      let deck_arr = ['default_version:' + this.selectedVersion];
       for (let charactor of this.deck.charactors) {
-        deck_str += 'charactor:' + charactor.name + '@' + charactor.version + '\n';
+        deck_arr.push('charactor:' + charactor.name + '@' + charactor.version);
       }
       for (let card of this.cards) {
         if (card.name == 'Empty' && card.type == 'CARD') continue;
-        deck_str += card.name + '@' + card.version + '\n';
+        deck_arr.push(card.name + '@' + card.version);
+      }
+      let deck_dict = {};
+      for (let i of deck_arr) {
+        if (i in deck_dict) deck_dict[i] += 1;
+        else deck_dict[i] = 1;
+      }
+      let deck_str = '';
+      for (let i of deck_arr) {
+        if (deck_dict[i] == 0) continue;
+        if (deck_dict[i] == 1) deck_str += i + '\n';
+        else deck_str += i + '*' + deck_dict[i] + '\n';
+        deck_dict[i] = 0;
       }
       return deck_str;
     },

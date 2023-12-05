@@ -379,6 +379,7 @@ export default {
             if (!(version == undefined || version == 'unknown')) {
               // undefined, old server, no error message.
               // or unknown, debug server, no error message.
+              version = version.replace(/post\d+$/, '');  // ignore post versions
               if (version != self_version) {
                 let msg = this.$t('Server version is ') + version + this.$t(', but client version is ') + self_version + this.$t('. Client may not work properly.');
                 alert(msg);
