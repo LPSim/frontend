@@ -117,7 +117,7 @@
             <button id="connect-server-button" @click="connectServer" :disabled="playerTableOrder == -1" :style="serverConnected ? '' : 'background-color: #ffa500'">{{ $t(serverConnected ? 'Connected' : 'Connect') }}</button>
           </div>
           <div class="freq-div">
-              <label for="refresh-frequency">{{ $t('Auto Refresh frequency (ms):') }}</label>
+              <label :class="refreshInterval < 300 ? 'freq-label-warning' : ''" for="refresh-frequency">{{ $t('Auto Refresh frequency (ms):') }}</label>
               <input id="refresh-frequency" type="number" v-model="refreshInterval" min="1">
               <button @click="refreshTimeout ? stopRefresh() : refreshData()" :disabled="processing || playerTableOrder == -1" :style="refreshTimeout ? 'background-color: #ffa500' : ''">{{ $t(refreshTimeout ? 'Stop Refresh' : 'Start Refresh') }}</button>
           </div>
@@ -1749,7 +1749,7 @@ button:hover {
 }
 
 .freq-div > label {
-  width: 60%;
+  width: 62%;
 }
 
 .freq-div > input {
@@ -1757,7 +1757,7 @@ button:hover {
 }
 
 .freq-div > button {
-  width: 20%;
+  width: 18%;
 }
 
 .refresh-debug-div > *, .freq-div > button {
@@ -1888,6 +1888,18 @@ button:hover {
 
 .deck-container-inner > * {
   height: 50%;
+}
+
+.freq-label-warning {
+  animation: blink 2s linear infinite;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0% { color: black; }
+  40% { color: red; }
+  60% { color: red; }
+  100% { color: black; }
 }
 
 </style>
