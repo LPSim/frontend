@@ -52,12 +52,26 @@ let nameMap = [];
 let forbidList = [];
 let nameToId = {};
 let forbiddenTrie = new Trie();
+let charactorsIdx = Array.from({length: 60}, (_, i) => i);
 
 
 function init(data, nti) {
+    if (data == undefined || data == null) return;
+    if (data.name_map == undefined || data.name_map == null) return;
+    if (data.forbid_list == undefined || data.forbid_list == null) return;
+    if (nti == undefined || nti == null) return;
     nameMap = data.name_map;
     forbidList = data.forbid_list;
     nameToId = {};
+    let newCharactorsIdx = [];
+    for (let i = 0; i < nameMap.length; i++) {
+        if (nameMap[i].startsWith('charactor:')) {
+            newCharactorsIdx.push(i);
+            nameMap[i] = nameMap[i].slice(10);
+        }
+    }
+    // compatible with old version, if no charactor marked in name_map, use default charactors
+    if (newCharactorsIdx.length > 0) charactorsIdx = newCharactorsIdx;
     for (let key in nti) {
         let id = nti[key];
         let name = key.split('/')[1];
@@ -69,9 +83,6 @@ function init(data, nti) {
         forbiddenTrie.insert(forbidList[i]);
 }
 
-
-// mark charactors, if in the list, it is a charactor card.
-let charactorsIdx = Array.from({length: 60}, (_, i) => i);
 
 function deckCodeToDeckStr(deckCode, version = null, sort = true) {
     // Convert the base64 deck code to deck str. If version is set, add default_version.

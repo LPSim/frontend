@@ -209,7 +209,7 @@ export default {
       }
       this.$store.commit('setSelectedObject', args);
     },
-    getDeckString() {
+    getDeckString(compress = false) {
       let deck_arr = ['default_version:' + this.selectedVersion];
       for (let charactor of this.deck.charactors) {
         deck_arr.push('charactor:' + charactor.name + '@' + charactor.version);
@@ -218,6 +218,7 @@ export default {
         if (card.name == 'Empty' && card.type == 'CARD') continue;
         deck_arr.push(card.name + '@' + card.version);
       }
+      if (!compress) return deck_arr.join('\n');
       let deck_dict = {};
       for (let i of deck_arr) {
         if (i in deck_dict) deck_dict[i] += 1;
@@ -233,7 +234,7 @@ export default {
       return deck_str;
     },
     uploadDeck() {
-      let deck_str = this.getDeckString();
+      let deck_str = this.getDeckString(true);
       console.log('DECK STRING', deck_str);
       this.uploadDeckData(deck_str, '/deck');
     },
