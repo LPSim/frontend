@@ -7,10 +7,23 @@
     </div>
     <div :class="(charactor.is_alive ? 'charactor ' : 'charactor-died ') + selectClass">
       <img class="charactor-image" :src="image_path('CHARACTOR', charactor.name, charactor.desc)" :alt="$t('CHARACTOR/' + charactor.name + (charactor.desc.length > 0 ? '_' : '') + charactor.desc)">
-      <div class="charactor-hp">{{ charactor.hp }}</div>
-      <div class="charactor-charge">
-        <span v-for="i in charactor.max_charge" :key="i"
-          :style="{ color: i <= charactor.charge ? 'yellow' : 'grey' }">&#x25CF;</span>
+      <div class="charactor-hp">
+        <div>
+          <img :src="image_path('ICON', 'HP')" width="100%" heright="100%"/>
+          <div class="hp-span-div">
+            <span :style="charactor.hp > 9 ? 'padding-right: 0.2vw;' : ''">{{ charactor.hp }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="charactor-charge-back">
+        <div v-for="i in charactor.max_charge" :key="i">
+          <img :src="image_path('ICON', 'CHARGE_BACK')" width="100%" height="100%" />
+        </div>
+      </div>
+      <div class="charactor-charge-front">
+        <div v-for="i in charactor.charge" :key="i">
+          <img :src="image_path('ICON', 'CHARGE_FRONT')" width="100%" height="100%" />
+        </div>
       </div>
       <div v-if="charactor.weapon" @click="log_object(charactor.weapon)" @mouseover="showDetails(charactor.weapon)" @mouseout="hideDetails()" class="charactor-weapon">
         <img :src="image_path('ICON', 'EQUIP_WEAPON')" width="100%" height="100%" />
@@ -210,8 +223,40 @@ export default {
 
 .charactor-hp {
   /* Add styles for the charactor hp div */
-  height: 20%;
-  width: 20%;
+  position: absolute;
+  top: -5%;
+  left: -7%;
+  height: 30%;
+  width: 41.856%;
+  opacity: 1;
+}
+
+.charactor-hp > div {
+  position: absolute;
+  font-size: 1.7vw;
+  font-weight: bolder;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  /* -webkit-text-stroke-width: 1px; */
+  -webkit-text-stroke-color: black;
+  /* line-height: 130%; */
+  color: white;
+  /* z-index: 999; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hp-span-div {
+  position: absolute;
+  left: 0;
+  letter-spacing: -0.2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .charactor-charge {
@@ -224,23 +269,73 @@ export default {
   align-items: end;
 }
 
+.charactor-charge-back {
+  display: flex;
+  flex-direction: column;
+  width: 26.01%;
+  height: 100%;
+  left: 87%;
+  opacity: 1;
+}
+
+.charactor-charge-back > div {
+  height: 15.174%;
+  width: 100%;
+  margin-top: 0.25vw;
+}
+
+.charactor-charge-front > div > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.charactor-charge-front {
+  display: flex;
+  flex-direction: column;
+  width: 40.81%;
+  height: 100%;
+  left: 79.6%;
+  opacity: 1;
+}
+
+.charactor-charge-front > div {
+  /* height: 19.62%; */
+  position: relative;
+  height: 15.174%;
+  width: 100%;
+  /* margin-top: 15%; */
+  margin-top: 0.25vw;
+}
+
+.charactor-charge-front > div > img {
+  position: absolute;
+  height: 129.31%;
+  /* top: -14.655%; */
+}
+
 .charactor-weapon {
   /* Add styles for the charactor weapon div */
-  top: 20%;
+  top: 25%;
+  left: -5%;
   height: 20%;
   width: 36.2%;
 }
 
 .charactor-artifact {
   /* Add styles for the charactor artifact div */
-  top: 40%;
+  top: 45%;
+  left: -5%;
   height: 20%;
   width: 36.2%;
 }
 
 .charactor-talent {
   /* Add styles for the charactor talent div */
-  top: 60%;
+  top: 65%;
+  left: -5%;
   height: 20%;
   width: 36.2%;
 }

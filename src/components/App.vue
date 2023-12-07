@@ -1678,7 +1678,14 @@ button:hover {
 }
 
 .table-current-request {
-  background-color: aliceblue;
+  animation: blink-current-request 3s linear infinite;
+  background-color: white;
+}
+
+@keyframes blink-current-request {
+  0% { background-color: white; }
+  50% { background-color: rgb(215, 236, 255); }
+  100% { background-color: white; }
 }
 
 .deck-start-div {
@@ -1891,11 +1898,11 @@ button:hover {
 }
 
 .freq-label-warning {
-  animation: blink 2s linear infinite;
+  animation: blink-label-warning 2s linear infinite;
   font-weight: bold;
 }
 
-@keyframes blink {
+@keyframes blink-label-warning {
   0% { color: black; }
   40% { color: red; }
   60% { color: red; }

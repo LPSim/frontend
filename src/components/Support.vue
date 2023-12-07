@@ -72,9 +72,9 @@ export default {
 
 .support-usage-div {
   position: absolute;
-  top: 0;
-  left: 70%;
-  width: 33.75%;
+  top: -10%;
+  left: 82.05%;
+  width: 35.9%;
   height: 30%;
 }
 
