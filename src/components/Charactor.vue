@@ -34,14 +34,14 @@
       <div v-if="charactor.talent" @click="log_object(charactor.talent)" @mouseover="showDetails(charactor.talent)" @mouseout="hideDetails()" class="charactor-talent">
         <img :src="image_path('ICON', 'EQUIP_TALENT')" width="100%" height="100%" />
       </div>
-      <div v-if="showDetailsFlag" class="charactor-details" :style="'width: ' + (detailData.img_name ? '2' : '1') + '00%;' + 'left: -' + (detailData.img_name ? '2' : '1') + '00%;'">
-        <div class="p-div">
+      <div v-if="showDetailsFlag" class="charactor-details" :style="detailDivStyle(detailData)">
+        <div class="p-div" :style="'width: ' + detailTextWidth + '%'">
           <h4>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData)) }}</h4>
           <p>{{ $t('Version: ') }}{{ detailData.version }}</p>
           <p>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData) + '/' + detailData.version) }}</p>
           <!-- <p>Usage: {{ detailData.usage }}</p> -->
         </div>
-        <div class="detail-img-div" v-if="detailData.img_name">
+        <div class="detail-img-div" v-if="detailData.img_name" :style="'width: ' + detailImgWidth + '%'">
           <img :src="image_path(detailData.type, detailData.img_name, detailData.desc)" width="100%" height="100%" />
         </div>
       </div>
@@ -68,6 +68,10 @@ export default {
       type: Object,
       required: true
     },
+    detailTextWidth: {
+      type: Number,
+      default: 175
+    },
     selectClass: {
       type: String,
       default: 'select-none'
@@ -77,6 +81,8 @@ export default {
     return {
       showDetailsFlag: false,
       detailData: null,
+      detailImgWidth: 50,
+      detailOffset: 15,
     }
   },
   methods: {
@@ -118,6 +124,20 @@ export default {
         name: name,
         desc: desc
       })
+    },
+    detailDivStyle(detailData) {
+      let text_width = this.detailTextWidth;
+      let img_width = this.detailImgWidth;
+      let offset = this.detailOffset;
+      let width = 0;
+      if (detailData.img_name) {
+        width = text_width + img_width;
+      }
+      else {
+        width = text_width;
+      }
+      let left = - width - offset;
+      return 'width: ' + width + '%; left: ' + left + '%';
     }
   },
   computed: {
@@ -225,7 +245,7 @@ export default {
   /* Add styles for the charactor hp div */
   position: absolute;
   top: -5%;
-  left: -7%;
+  left: -17%;
   height: 30%;
   width: 41.856%;
   opacity: 1;
@@ -319,7 +339,7 @@ export default {
 .charactor-weapon {
   /* Add styles for the charactor weapon div */
   top: 25%;
-  left: -5%;
+  left: -15%;
   height: 20%;
   width: 36.2%;
 }
@@ -327,7 +347,7 @@ export default {
 .charactor-artifact {
   /* Add styles for the charactor artifact div */
   top: 45%;
-  left: -5%;
+  left: -15%;
   height: 20%;
   width: 36.2%;
 }
@@ -335,7 +355,7 @@ export default {
 .charactor-talent {
   /* Add styles for the charactor talent div */
   top: 65%;
-  left: -5%;
+  left: -15%;
   height: 20%;
   width: 36.2%;
 }
@@ -364,8 +384,6 @@ export default {
 .charactor-details {
   position: absolute;
   top: 0;
-  left: -200%;
-  width: 200%;
   height: 100%;
   background-color: white;
   border: 1px solid black;
@@ -389,9 +407,16 @@ export default {
 }
 
 .charactor-details > .p-div {
-  width: 150%;
   color: black;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.p-div > * {
+  margin-top: 0;
+}
+
+.p-div > h4 {
+  margin: 0;
 }
 
 .usage-span-div {
@@ -399,7 +424,6 @@ export default {
   font-size: 0.5vw;
   font-weight: bolder;
   text-align: center;
-  width: 50%;
   height: 50%;
   top: 50%;
   left: 50%;

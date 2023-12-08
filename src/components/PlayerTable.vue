@@ -27,7 +27,7 @@
         <!-- <h3>Characters</h3> -->
         <div :class="{'charactor-div': true, 'charactor-div-active': cid == playerTable.active_charactor_idx}" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id" @click="selectCharactor(charactor.position)">
           <div class="active-div" v-if="(playerTable.active_charactor_idx != cid) != is_reverse" @click.stop=""></div>
-          <Charactor class="charactor-inner" :charactor="charactor" :select-class="selectCharactorClass(charactor)" />
+          <Charactor class="charactor-inner" :charactor="charactor" :select-class="selectCharactorClass(charactor)" :detail-text-width="detailTextWidth" />
           <div class="team-status-div" v-if="playerTable.active_charactor_idx == cid">
             <!-- <h3>Team Status</h3> -->
             <div v-for="(status, sid) in playerTable.team_status" :key="sid" @mouseover="showDetails(status)" @mouseout="hideDetails(status)" @click="log_status(sid)">
@@ -37,7 +37,7 @@
               </div>
             </div>
           </div>
-          <div v-if="showDetailsFlag && (playerTable.active_charactor_idx == cid)" :class="'status-details' + (is_reverse ? ' status-details-reverse' : '')">
+          <div v-if="showDetailsFlag && (playerTable.active_charactor_idx == cid)" :class="'status-details' + (is_reverse ? ' status-details-reverse' : '')" :style="'width: ' + detailTextWidth + '%; left: -' + detailTextWidth + '%'">
             <div class="p-div">
               <h4>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData)) }}</h4>
               <p>{{ $t('Version: ') }}{{ detailData.version }}</p>
@@ -125,6 +125,7 @@ export default {
   data () {
     return {
       showDetailsFlag: false,
+      detailTextWidth: 150,
     }
   },
   components: {
@@ -882,4 +883,13 @@ export default {
   color: black;
   background-color: rgba(255, 255, 255, 0.5);
 }
+
+.p-div > * {
+  margin-top: 0;
+}
+
+.p-div > h4 {
+  margin: 0;
+}
+
 </style>
