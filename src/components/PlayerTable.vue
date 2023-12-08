@@ -40,7 +40,7 @@
           <div v-if="showDetailsFlag && (playerTable.active_charactor_idx == cid)" :class="'status-details' + (is_reverse ? ' status-details-reverse' : '')" :style="'width: ' + detailTextWidth + '%; left: -' + detailTextWidth + '%'">
             <div class="p-div">
               <h4>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData)) }}</h4>
-              <p>{{ $t('Version: ') }}{{ detailData.version }}</p>
+              <p style="color: #555; font-size: 0.65vw;">{{ $t('Version: ') }}{{ detailData.version }}</p>
               <p>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData) + '/' + detailData.version) }}</p>
             </div>
           </div>

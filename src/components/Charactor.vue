@@ -37,7 +37,7 @@
       <div v-if="showDetailsFlag" class="charactor-details" :style="detailDivStyle(detailData)">
         <div class="p-div" :style="'width: ' + detailTextWidth + '%'">
           <h4>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData)) }}</h4>
-          <p>{{ $t('Version: ') }}{{ detailData.version }}</p>
+          <p style="color: #555; font-size: 0.65vw;">{{ $t('Version: ') }}{{ detailData.version }}</p>
           <p>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData) + '/' + detailData.version) }}</p>
           <!-- <p>Usage: {{ detailData.usage }}</p> -->
         </div>
