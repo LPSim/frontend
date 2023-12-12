@@ -39,6 +39,7 @@ class Trie {
 
     search(word) {
         // test if word contains any word in trie
+        word = word.toLowerCase();
         for (let i = 0; i < word.length; i++) {
             if (this.match(word.slice(i))) {
                 return true;
