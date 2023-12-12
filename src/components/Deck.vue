@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import HTTP from '../http';
 export default {
   props: {
     playerIdx: Number,
@@ -267,39 +268,41 @@ export default {
       }
     },
     uploadDeckData(deck_str, target_url, callback) {
-      fetch(this.$store.state.serverURL + target_url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          deck_str: deck_str,
-          player_idx: this.playerIdx,
-        }),
-      })
-      .then(response => {
-        if (!response.ok) {
-          response.json().then(data => {
-            throw new Error(this.$t('Network response is not ok with detail \n\n') + data.detail);
-          })
-          .catch(error => {
-            this.make_alert(this.$t('Error in uploading deck. ') + error, error);
-          });
-          return 'error';
-        }
-        else return response.json();
-      })
-      .then(data => {
+      function successFunc(data) {
         // console.log(data);
         if (data == 'error') return;
         alert(this.$t('Deck uploaded successfully!'));
         // this.$store.commit('setShowDeckDiv', false);
         this.$store.commit('resetDeckModifyCounter', null);
         if (callback) callback();
-      })
-      .catch(error => {
-        this.make_alert(this.$t('Error in uploading deck. ') + error, error);
-      });
+      }
+      function failFunc(err) {
+        this.make_alert(this.$t(msg) + err, err);
+      }
+      function checkFunc(response) {
+        // receive response from fetch, return message json if ok, else throw
+        // error.
+        if (!response.ok) {
+          response.json().then(data => {
+            throw new Error(this.$t('Network response is not ok with detail ') + data.detail);
+          })
+          .catch(error => {
+            this.make_alert(this.$t(err_msg) + error, error)
+          });
+          return 'error';
+        }
+        else return response.json();
+      }
+      HTTP.postBaseFunc(
+        this.$store.state.serverURL + target_url,
+        {
+          deck_str: deck_str,
+          player_idx: this.playerIdx,
+        },
+        successFunc.bind(this),
+        checkFunc.bind(this),
+        failFunc.bind(this),
+      );
     },
     make_alert(title, data) {
       console.error(data);

@@ -216,6 +216,7 @@ import RequestDetails from './RequestDetails.vue';
 import RequestButton from './RequestButton.vue';
 import Deck from './Deck.vue';
 import DescBlock from './DescBlock.vue';
+import HTTP from '../http';
 
 export default {
   name: 'App',
@@ -295,51 +296,66 @@ export default {
     window.addEventListener('keydown', this.handleKeyDown);
   },
   methods: {
+    getFailFunc(msg, stopServerConnection = false) {
+      function failFunc(err) {
+        this.make_alert(this.$t(msg) + err, err);
+        if (stopServerConnection) this.stopServerByError();
+      }
+      return failFunc.bind(this);
+    },
+    getCheckFunc(err_msg, stopServerConnection = true) {
+      function notOK(response) {
+        // receive response from fetch, return message json if ok, else throw
+        // error.
+        if (!response.ok) {
+          response.json().then(data => {
+            throw new Error(this.$t('Network response is not ok with detail ') + data.detail);
+          })
+          .catch(error => {
+            this.make_alert(this.$t(err_msg) + error, error)
+            if (stopServerConnection) this.stopServerByError();
+          });
+        }
+        else return response.json();
+      }
+      return notOK.bind(this);
+    },
     connectServer() {
       if (this.serverConnected) return;
       // try to connect server. will first check version, and send callback
       // that will request patch data.
-      function connected_callback() {
-        // patch
-        let patch_url = this.serverURL + '/patch';
-        const xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = () => {
-          if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-              let patch_message = JSON.parse(xhr.responseText);
-              console.log('PATCH', patch_message, Object.keys(patch_message.patch).length, 'KEYS');
-              this.updateLocales(patch_message);
-              this.$store.commit('updateDataByPatch', patch_message);
-              alert(this.$t('Connected to server.'));
-              this.serverConnected = true;
-              // when successfully connected, start auto refreshing immediately.
-              this.refreshTimeout = setTimeout(() => this.refreshData(), 0);
-              return;
-            }
-            this.make_alert(this.$t('Error in connecting server.') + xhr.status, xhr);
-          }
-        };
-        xhr.open('GET', patch_url, true);
-        xhr.send();
 
-        // deck code data
-        let deck_code_url = this.serverURL + '/deck_code_data';
-        const xhr2 = new XMLHttpRequest();
-        xhr2.onreadystatechange = () => {
-          if (xhr2.readyState === 4) {
-            if (xhr2.status === 200) {
-              let deck_code_data = JSON.parse(xhr2.responseText);
-              console.log('DECK CODE DATA', deck_code_data);
-              this.$store.commit('setDeckCodeData', deck_code_data);
-              return;
-            }
-            this.make_alert(this.$t('Error in connecting server.') + xhr2.status, xhr2);
-          }
-        };
-        xhr2.open('GET', deck_code_url, true);
-        xhr2.send();
+      function patchSuccess(patch_message) {
+        // let patch_message = JSON.parse(xhr.responseText);
+        console.log('PATCH', patch_message, Object.keys(patch_message.patch).length, 'KEYS');
+        this.updateLocales(patch_message);
+        this.$store.commit('updateDataByPatch', patch_message);
+        alert(this.$t('Connected to server.'));
+        this.serverConnected = true;
+        // when successfully connected, start auto refreshing immediately.
+        this.refreshTimeout = setTimeout(() => this.refreshData(), 0);
       }
-      this.checkVersion(connected_callback.bind(this));
+      function deckCodeSuccess(deck_code_data) {
+        console.log('DECK CODE DATA', deck_code_data);
+        this.$store.commit('setDeckCodeData', deck_code_data);
+      }
+
+      let err_msg = 'Error in connecting server. ';
+      function connectedCallback() {
+        HTTP.getPatch(
+          this.serverURL,
+          patchSuccess.bind(this),
+          this.getCheckFunc(err_msg).bind(this),
+          this.getFailFunc(err_msg).bind(this)
+        );
+        HTTP.getDeckCodeData(
+          this.serverURL,
+          deckCodeSuccess.bind(this),
+          this.getCheckFunc(err_msg).bind(this),
+          this.getFailFunc(err_msg).bind(this)
+        );
+      }
+      this.checkVersion(connectedCallback.bind(this));
     },
     stopServerByError() {
       // error occured, stop connect to server and stop auto refresh.
@@ -368,31 +384,28 @@ export default {
         alert(this.$t('Game reset successfully!'));
     },
     checkVersion(callback = undefined) {
-      let url = this.$store.state.serverURL;
-      let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            let version = JSON.parse(xhr.responseText).version;
-            console.log('SERVER VERSION', version);
-            let self_version = require('../../package.json').version;
-            if (!(version == undefined || version == 'unknown')) {
-              // undefined, old server, no error message.
-              // or unknown, debug server, no error message.
-              version = version.replace(/\.post\d+$/, '');  // ignore post versions
-              if (version != self_version) {
-                let msg = this.$t('Server version is ') + version + this.$t(', but client version is ') + self_version + this.$t('. Client may not work properly.');
-                alert(msg);
-              }
-            }
-            if (callback) callback();
-            return;
+      function versionSuccess(obj) {
+        let version = obj.version;
+        console.log('SERVER VERSION', version);
+        let self_version = require('../../package.json').version;
+        if (!(version == undefined || version == 'unknown')) {
+          // undefined, old server, no error message.
+          // or unknown, debug server, no error message.
+          version = version.replace(/\.post\d+$/, '');  // ignore post versions
+          if (version != self_version) {
+            let msg = this.$t('Server version is ') + version + this.$t(', but client version is ') + self_version + this.$t('. Client may not work properly.');
+            alert(msg);
           }
-          this.make_alert(this.$t('Error in connecting server.') + xhr.status, xhr);
         }
-      };
-      xhr.open('GET', url + '/version', true);
-      xhr.send();
+        if (callback) callback();
+      }
+      let err_msg = 'Error in checking server version. ';
+      HTTP.getVersion(
+        this.serverURL,
+        versionSuccess.bind(this),
+        this.getCheckFunc(err_msg).bind(this),
+        this.getFailFunc(err_msg).bind(this)
+      );
     },
     updateLocales(patch) {
       let version = patch.version;
@@ -476,6 +489,7 @@ export default {
     make_alert(title, data) {
       console.error(data);
       alert(title + this.$t('\nFind detail in console.'));
+      clearTimeout(this.refreshTimeout);
       this.refreshTimeout = null;
     },
     handleFileSelect() {
@@ -657,26 +671,7 @@ export default {
       if (this.refreshTimeout != null) {
         clearTimeout(this.refreshTimeout);
       }
-      fetch(this.serverURL + '/respond', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-      })
-      .then(response => {
-        if (!response.ok) {
-          response.json().then(data => {
-            throw new Error('Network response is not ok with detail ' + data.detail);
-          })
-          .catch(error => {
-            this.make_alert('Error in sending response. ' + error, error)
-            this.stopServerByError();
-          });
-        }
-        else return response.json();
-      })
-      .then(data => {
+      function postSuccess(data) {
         if (!data) return; // error on previous or empty data, no need to update
         console.log('Received Data', data);
         this.commandHistory[this.commandPOSTData.player_idx].push(this.commandPOSTData.command);
@@ -686,20 +681,21 @@ export default {
           // send response successfully, but no updated data. update request data.
           this.updateRequestData();
         }
-        // let last_data = this.matchData[this.matchData.length - 1];
-        // if (JSON.stringify(last_data) !== JSON.stringify(data))
-        //   this.matchData.push(data);
-        // this.currentDataIndex = this.matchData.length - 1;
         this.updateMatchData(data);
         this.refreshTimeout = setTimeout(() => this.refreshData(), this.refreshInterval);
         if (this.match.requests.length > 0)
           this.selectedRequest = this.match.requests[0];
         setTimeout(() => this.realSendInteraction(), this.multiCommandTimeout);
-      })
-      .catch(error => {
-        this.make_alert('Error in sending response. ' + error, error);
-        this.stopServerByError();
-      });
+      }
+      let err_msg = 'Error in sending response. If this error occurs frequently, please try refreshing the page. Detail: ';
+      HTTP.postRespond(
+        this.serverURL,
+        data,
+        postSuccess.bind(this),
+        this.getCheckFunc(err_msg),
+        this.getFailFunc(err_msg).bind(this)
+      );
+      return;
     },
     decodeDiffMatchData(data) {
       let res = [];
@@ -801,72 +797,48 @@ export default {
         return;
       }
       let next_idx = this.matchData.length;
-      fetch(this.serverURL + '/state/after/' + next_idx + '/-1')
-        .then(response => {
-          if (!response.ok) {
-            response.json().then(data => {
-              throw new Error('Network response is not ok with detail ' + data.detail);
-            })
-            .catch(error => {
-              this.make_alert('Error in refreshing data. ' + error, error)
-              this.stopServerByError();
-            });
-          }
-          else return response.json();
-        })
-        .then(data => {
-          if (!data) return; // error on previous or empty data, no need to update
-          // if (data.length > 0) console.log('Refresh data', data);
-          // let last_data = this.matchData[this.matchData.length - 1];
-          // if (JSON.stringify(last_data) !== JSON.stringify(data))
-          //   this.matchData.push(data);
-          // this.currentDataIndex = this.matchData.length - 1;
-          this.updateMatchData(data);
-          // if (this.match.requests.length > 0)
-          //   this.selectedRequest = this.match.requests[0];
-          this.updateRequestData();
-          this.refreshTimeout = setTimeout(() => this.refreshData(), this.refreshInterval);
-        })
-        .catch(error => {
-          this.make_alert('Error in refreshing data: ' + error + '\nAuto refresh stopped.', error)
-          this.stopServerByError();
-        });
+      function successFunc(data) {
+        if (!data) return; // error on previous or empty data, no need to update
+        this.updateMatchData(data);
+        this.refreshTimeout = setTimeout(() => this.refreshData(), this.refreshInterval);
+      }
+      HTTP.getState(
+        this.serverURL,
+        'after',
+        next_idx,
+        -1,
+        successFunc.bind(this),
+        this.getCheckFunc('Error in refreshing data. ', true).bind(this),
+        this.getFailFunc('Error in refreshing data. ', true).bind(this)
+      );
+      return;
     },
     updateRequestData() {
-      fetch(this.serverURL + '/request/-1')
-        .then(response => {
-          if (!response.ok) {
-            response.json().then(data => {
-              throw new Error('Network response is not ok with detail ' + data.detail);
-            })
-            .catch(error => {
-              this.make_alert('Error in getting requests. ' + error, error)
-              this.stopServerByError();
-            });
-          }
-          else return response.json();
-        })
-        .then(data => {
-          if (!data) return; // error on previous or empty data, no need to update
-          if (JSON.stringify(this.requestData) == JSON.stringify(data)) return;
-          console.log('Request data', data);
-          let old_req_data = this.requestData;
-          this.requestData = data;
-          let pid = this.currentRequestPlayerId;
-          if (pid != null) {
-            // if requests related to pid not change, do not update
-            let now = old_req_data.filter(r => r.player_idx == pid);
-            let receive = data.filter(r => r.player_idx == pid);
-            if (JSON.stringify(now) == JSON.stringify(receive)) return;
-          }
-          this.updateMatch();
-          if (this.match.requests.length > 0)
-            this.selectedRequest = this.match.requests[0];
-        })
-        .catch(error => {
-          this.make_alert('Error in refreshing data. ' + error, error)
-          this.stopServerByError();
-        });
+      function successFunc(data) {
+        if (!data) return; // error on previous or empty data, no need to update
+        if (JSON.stringify(this.requestData) == JSON.stringify(data)) return;
+        console.log('Request data', data);
+        let old_req_data = this.requestData;
+        this.requestData = data;
+        let pid = this.currentRequestPlayerId;
+        if (pid != null) {
+          // if requests related to pid not change, do not update
+          let now = old_req_data.filter(r => r.player_idx == pid);
+          let receive = data.filter(r => r.player_idx == pid);
+          if (JSON.stringify(now) == JSON.stringify(receive)) return;
+        }
+        this.updateMatch();
+        if (this.match.requests.length > 0)
+          this.selectedRequest = this.match.requests[0];
+      }
+      HTTP.getRequest(
+        this.serverURL,
+        -1,
+        successFunc.bind(this),
+        this.getCheckFunc('Error in refreshing data. ', true).bind(this),
+        this.getFailFunc('Error in refreshing data. ', true).bind(this)
+      );
+      return;
     },
     showRequestDetails(request) {
       this.selectedRequest = request;
@@ -955,25 +927,18 @@ export default {
       }
       // first receive deck info from server, then show deck div
       this.$store.commit('resetDeckModifyCounter', null);
-      fetch(this.serverURL + '/decks')
-        .then(response => {
-          if (!response.ok) {
-            response.json().then(data => {
-              throw new Error('Network response is not ok with detail ' + data.detail);
-            })
-            .catch(error => {
-              this.make_alert($t('Error in getting deck. ') + error, error)
-            });
-          }
-          else return response.json();
-        })
-        .then(data => {
-          this.$store.commit('setDeck', data);
-          this.$store.commit('setShowDeckDiv', true);
-        })
-        .catch(error => {
-          this.make_alert(this.$t('Error in getting deck. ') + error, error)
-        });
+      function successFunc(data) {
+        this.$store.commit('setDeck', data);
+        this.$store.commit('setShowDeckDiv', true);
+      }
+      let err_msg = 'Error in getting deck. If this error occurs frequently, please try refreshing the page. Detail: ';
+      HTTP.getDecks(
+        this.serverURL,
+        successFunc.bind(this),
+        this.getCheckFunc(err_msg).bind(this),
+        this.getFailFunc(err_msg).bind(this)
+      );
+      return;
     },
     clickStartNewMatch() {
       this.wrongProtocol();
@@ -983,33 +948,19 @@ export default {
       if (!userConfirmation) return;
       clearTimeout(this.refreshTimeout);
       this.refreshTimeout = null;
-      fetch(this.$store.state.serverURL + '/reset', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-        }),
-      })
-      .then(response => {
-        if (!response.ok) {
-          response.json().then(data => {
-            throw new Error('Network response is not ok with detail ' + data.detail);
-          })
-          .catch(error => {
-            this.make_alert('Error in reset game. ' + error, error);
-          });
-          throw new Error('Network response is not ok with status ' + response.status);
-        }
-        else return response.json();
-      })
-      .then(data => {
+      function successFunc(data) {
         this.clearAllData();
         this.refreshData();
-      })
-      .catch(error => {
-        this.make_alert('Error in reset game. ' + error, error);
-      });
+      }
+      let err_msg = 'Error in reset game. ';
+      HTTP.postReset(
+        this.serverURL,
+        {},
+        successFunc.bind(this),
+        this.getCheckFunc(err_msg).bind(this),
+        this.getFailFunc(err_msg).bind(this)
+      );
+      return;
     },
     resetByIndex() {
       let current_index = this.currentDataIndex;
@@ -1024,34 +975,19 @@ export default {
       if (!userConfirmation) return;
       clearTimeout(this.refreshTimeout);
       this.refreshTimeout = null;
-      fetch(this.$store.state.serverURL + '/reset', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          match_state_idx: current_index,
-        }),
-      })
-      .then(response => {
-        if (!response.ok) {
-          response.json().then(data => {
-            throw new Error('Network response is not ok with detail ' + data.detail);
-          })
-          .catch(error => {
-            this.make_alert('Error in reset game. ' + error, error);
-          });
-          throw new Error('Network response is not ok with status ' + response.status);
-        }
-        else return response.json();
-      })
-      .then(data => {
+      function successFunc(data) {
         this.clearAllData();
         this.refreshData();
-      })
-      .catch(error => {
-        this.make_alert('Error in reset game. ' + error, error);
-      });
+      }
+      let err_msg = 'Error in reset game. ';
+      HTTP.postReset(
+        this.serverURL,
+        { match_state_idx: current_index },
+        successFunc.bind(this),
+        this.getCheckFunc(err_msg).bind(this),
+        this.getFailFunc(err_msg).bind(this)
+      );
+      return;
     },
     stopRefresh() {
       clearTimeout(this.refreshTimeout);
