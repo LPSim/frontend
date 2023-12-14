@@ -211,6 +211,9 @@
 </template>
 
 <script>
+// to disable existing service workers
+navigator.serviceWorker.getRegistrations().then( function(registrations) { for(let registration of registrations) { registration.unregister(); } });
+
 import PlayerTable from './PlayerTable.vue'
 import RequestDetails from './RequestDetails.vue';
 import RequestButton from './RequestButton.vue';
@@ -453,28 +456,28 @@ export default {
       // if protocol wrong, give alert and raise error.
       let url = document.URL;
       if (!url.includes('lpsim.zyr17.cn')) return;
-      let current_protocol = url.split(':')[0];
-      let target = this.$store.state.serverURL;
-      let target_protocol = target.split(':')[0];
+      let current_protocol = window.location.protocol;
+      let target = this.serverURL;
+      let target_protocol = target.split(':')[0].trim().toLowerCase();
       if (target_protocol == 'https') {
         // target is https, current must https
-        if (current_protocol != 'https') {
+        if (current_protocol != 'https:') {
           let msg = this.$t('To connect https server, visit https://lpsim.zyr17.cn. Currently you are visiting http page.');
-          alert(msg);
+          this.make_alert(msg, msg);
           throw new Error(msg);
         }
         return;
       }
       if (target.includes('localhost') || target.includes('127.0.0.1')) {
-        if (current_protocol == 'https') return;
+        if (current_protocol == 'https:') return;
         let msg = this.$t('To connect localhost server, visit https://lpsim.zyr17.cn. Currently you are visiting http page.');
-        alert(msg);
+        this.make_alert(msg, msg);
         throw new Error(msg);
       }
       else {
-        if (current_protocol == 'http') return;
+        if (current_protocol == 'http:') return;
         let msg = this.$t('To connect LAN server, visit http://lpsim.zyr17.cn. Currently you are visiting https page.');
-        alert(msg);
+        this.make_alert(msg, msg);
         throw new Error(msg);
       }
     },
