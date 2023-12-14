@@ -53,8 +53,9 @@ function postRespond(serverURL, data, successFunc, checkFunc, failFunc) {
   postBaseFunc(respond_url, data, successFunc, checkFunc, failFunc);
 }
 
-function getState(serverURL, mode, nextIdx, playerIdx, successFunc, checkFunc, failFunc) {
+function getState(serverURL, mode, nextIdx, playerIdx, uuid, successFunc, checkFunc, failFunc) {
   let state_url = serverURL + '/state/' + mode + '/' + nextIdx + '/' + playerIdx;
+  if (uuid) state_url += '?uuid=' + uuid;
   getBaseFunc(state_url, successFunc, checkFunc, failFunc)
 }
 

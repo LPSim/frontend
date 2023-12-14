@@ -276,8 +276,9 @@ export default {
         this.$store.commit('resetDeckModifyCounter', null);
         if (callback) callback();
       }
+      let err_msg = 'Error in uploading deck. ';
       function failFunc(err) {
-        this.make_alert(this.$t(msg) + err, err);
+        this.make_alert(this.$t(err_msg) + err, err);
       }
       function checkFunc(response) {
         // receive response from fetch, return message json if ok, else throw

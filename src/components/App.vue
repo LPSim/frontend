@@ -251,6 +251,7 @@ export default {
       displayInJudgeMode: false,
       currentLanguage: null,
       refreshTimeout: null,
+      matchUUID: null,
     }
   },
   created() {
@@ -309,10 +310,10 @@ export default {
         // error.
         if (!response.ok) {
           response.json().then(data => {
-            throw new Error(this.$t('Network response is not ok with detail ') + data.detail);
+            throw new Error(this.$t('Network response is not ok with detail ') + JSON.stringify(data.detail));
           })
           .catch(error => {
-            this.make_alert(this.$t(err_msg) + error, error)
+            this.make_alert(this.$t(err_msg) + JSON.stringify(error), error)
             if (stopServerConnection) this.stopServerByError();
           });
         }
@@ -364,11 +365,11 @@ export default {
       this.refreshTimeout = null;
       this.serverConnected = false;
       if (confirm(this.$t('Stop server connection by error, clear all data?'))) {
-        this.clearAllData();
+        this.clearAllData(false);
         this.connectServer();
       }
     },
-    clearAllData() {
+    clearAllData(make_alert = true) {
         document.activeElement.blur();
         this.$store.commit('setShowDeckDiv', false);
         clearTimeout(this.refreshTimeout);
@@ -381,7 +382,8 @@ export default {
         this.commandHistory = [[], []];
         this.requestData = [];
         this.processing = false;
-        alert(this.$t('Game reset successfully!'));
+        this.matchUUID = null;
+        if (make_alert) alert(this.$t('Game reset successfully!'));
     },
     checkVersion(callback = undefined) {
       function versionSuccess(obj) {
@@ -665,7 +667,12 @@ export default {
         if (test_appear) this.interactionInput = '';
         return;
       }
-      const data = { player_idx: this.currentRequestPlayerId, command: this.interactionCommands[cid][0] };
+      const data = {
+        player_idx: this.currentRequestPlayerId,
+        command: this.interactionCommands[cid][0],
+      };
+      if (this.matchUUID) data.uuid = this.matchUUID;
+      console.log(data)
       this.commandPOSTData = data;
       this.interactionCommands[cid] = this.interactionCommands[cid].slice(1);
       if (this.refreshTimeout != null) {
@@ -682,7 +689,6 @@ export default {
           this.updateRequestData();
         }
         this.updateMatchData(data);
-        this.refreshTimeout = setTimeout(() => this.refreshData(), this.refreshInterval);
         if (this.match.requests.length > 0)
           this.selectedRequest = this.match.requests[0];
         setTimeout(() => this.realSendInteraction(), this.multiCommandTimeout);
@@ -692,7 +698,7 @@ export default {
         this.serverURL,
         data,
         postSuccess.bind(this),
-        this.getCheckFunc(err_msg),
+        this.getCheckFunc(err_msg, false),
         this.getFailFunc(err_msg).bind(this)
       );
       return;
@@ -754,7 +760,26 @@ export default {
       }
       return res;
     },
-    updateMatchData(data) {
+    UUIDDifferent(uuid) {
+      this.matchUUID = uuid;
+      if (this.refreshTimeout != null) {
+        clearTimeout(this.refreshTimeout);
+        this.refreshTimeout = null;
+      }
+      let clean = confirm(this.$t('UUID not match! refresh stopped. Clear all data and continue refreshing?'));
+      if (clean) {
+        this.clearAllData(false);
+        this.refreshData();
+      }
+    },
+    updateMatchData(data, refresh = true) {
+      if (refresh) {
+        if (this.refreshTimeout != null) {
+          clearTimeout(this.refreshTimeout);
+          this.refreshTimeout = null;
+        }
+        this.refreshTimeout = setTimeout(() => this.refreshData(), this.refreshInterval);
+      }
       if (data.length == 0) {
         if (this.matchData.length > this.maxPlayedDataIndex + 1) {
           this.maxPlayedDataIndex += 1;
@@ -763,6 +788,12 @@ export default {
         }
         return;
       }
+      let uuid = data[0].uuid;
+      if (this.matchUUID && uuid && uuid != this.matchUUID) {
+        this.UUIDDifferent(uuid);
+        return;
+      }
+      this.matchUUID = uuid;
       data = this.decodeDiffMatchData(data);
       for (let i = 0; i < data.length; i ++ ) {
         let d = data[i];
@@ -787,28 +818,46 @@ export default {
       this.updateMatch(this.matchData[this.currentDataIndex]);
     },
     refreshData() {
+      console.log('refresh', this.refreshTimeout)
       this.wrongProtocol();
       if (this.refreshTimeout != null)
         clearTimeout(this.refreshTimeout);
       if (this.matchData.length > this.maxPlayedDataIndex + 1) {
         // in auto play, no need to refresh data
         this.updateMatchData([]);
-        this.refreshTimeout = setTimeout(() => this.refreshData(), this.refreshInterval);
         return;
       }
       let next_idx = this.matchData.length;
       function successFunc(data) {
         if (!data) return; // error on previous or empty data, no need to update
         this.updateMatchData(data);
-        this.refreshTimeout = setTimeout(() => this.refreshData(), this.refreshInterval);
+      }
+      function checkFunc(response) {
+        let err_msg = 'Error in refreshing data. ';
+        if (!response.ok) {
+          response.json().then(data => {
+            if (data.detail == 'UUID not match') {
+              // UUID not match, stop refreshing
+              this.UUIDDifferent(null);
+              return;
+            }
+            throw new Error(this.$t('Network response is not ok with detail ') + JSON.stringify(data.detail));
+          })
+          .catch(error => {
+            this.make_alert(this.$t(err_msg) + JSON.stringify(error), error)
+            if (stopServerConnection) this.stopServerByError();
+          });
+        }
+        else return response.json();
       }
       HTTP.getState(
         this.serverURL,
         'after',
         next_idx,
         -1,
+        this.matchUUID,
         successFunc.bind(this),
-        this.getCheckFunc('Error in refreshing data. ', true).bind(this),
+        checkFunc.bind(this),
         this.getFailFunc('Error in refreshing data. ', true).bind(this)
       );
       return;

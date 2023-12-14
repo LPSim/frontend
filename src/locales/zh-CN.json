@@ -114,6 +114,7 @@
   "Error in getting deck. If this error occurs frequently, please try refreshing the page. Detail: ": "获取卡组时发生错误。如果这个错误经常发生，请尝试刷新页面。详情：",
   "Error in starting new match. ": "开始新对局时发生错误。",
   "Error in reset game. ": "重置对局时发生错误。",
+  "UUID not match! refresh stopped. Clear all data and continue refreshing?": "UUID 不匹配！可能是对局被重置，自动刷新已停止。你想清空所有数据并继续自动刷新吗？",
 
   "SKILL_TYPE/NORMAL_ATTACK": "普通攻击",
   "SKILL_TYPE/ELEMENTAL_SKILL": "元素战技",

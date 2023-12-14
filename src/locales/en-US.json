@@ -114,6 +114,7 @@
   "Error in getting deck. If this error occurs frequently, please try refreshing the page. Detail: ": "Error in getting deck. If this error occurs frequently, please try refreshing the page. Detail: ",
   "Error in starting new match. ": "Error in starting new match. ",
   "Error in reset game. ": "Error in reset game. ",
+  "UUID not match! refresh stopped. Clear all data and continue refreshing?": "UUID not match! refresh stopped. Clear all data and continue refreshing?",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",
