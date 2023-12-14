@@ -818,7 +818,6 @@ export default {
       this.updateMatch(this.matchData[this.currentDataIndex]);
     },
     refreshData() {
-      console.log('refresh', this.refreshTimeout)
       this.wrongProtocol();
       if (this.refreshTimeout != null)
         clearTimeout(this.refreshTimeout);
