@@ -1355,8 +1355,9 @@ export default {
       },
       set (value) {
         // if URL changes, stop refreshing.
-        clearTimeout(self.refreshTimeout);
-        self.refreshTimeout = null;
+        clearTimeout(this.refreshTimeout);
+        this.refreshTimeout = null;
+        this.serverConnected = false;
         localStorage.setItem('serverURL', value);
         this.$store.commit('setServerURL', value);
       }
