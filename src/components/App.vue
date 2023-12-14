@@ -830,6 +830,7 @@ export default {
       function successFunc(data) {
         if (!data) return; // error on previous or empty data, no need to update
         this.updateMatchData(data);
+        this.updateRequestData();
       }
       function checkFunc(response) {
         let err_msg = 'Error in refreshing data. ';
