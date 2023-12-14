@@ -212,7 +212,12 @@
 
 <script>
 // to disable existing service workers
-navigator.serviceWorker.getRegistrations().then( function(registrations) { for(let registration of registrations) { registration.unregister(); } });
+try {
+  navigator.serviceWorker.getRegistrations().then( function(registrations) { for(let registration of registrations) { registration.unregister(); } });
+}
+catch (err) {
+
+}
 
 import PlayerTable from './PlayerTable.vue'
 import RequestDetails from './RequestDetails.vue';
@@ -325,6 +330,7 @@ export default {
       return notOK.bind(this);
     },
     connectServer() {
+      this.wrongProtocol();
       if (this.serverConnected) return;
       // try to connect server. will first check version, and send callback
       // that will request patch data.
