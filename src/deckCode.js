@@ -39,7 +39,6 @@ class Trie {
 
     search(word) {
         // test if word contains any word in trie
-        word = word.toLowerCase();
         for (let i = 0; i < word.length; i++) {
             if (this.match(word.slice(i))) {
                 return true;
@@ -205,7 +204,8 @@ function deckStrToDeckCode(deckStr, maxRetryTime = 10000) {
         }
         let nameList = charactorStr.concat(Array(3 - charactorStr.length).fill('')).concat(cardStr).concat(Array(30 - cardStr.length).fill(''));
         let deckCode = deckStrToDeckCodeOne(nameList, checksum);
-        if (!forbiddenTrie.search(deckCode)) {
+        let deckCodeLower = deckCode.toLowerCase().replace('+', '');
+        if (!forbiddenTrie.search(deckCodeLower)) {
             return deckCode;
         }
     }
