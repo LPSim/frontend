@@ -119,7 +119,7 @@
           <div class="freq-div">
               <label :class="refreshInterval < 300 ? 'freq-label-warning' : ''" for="refresh-frequency">{{ $t('Auto Refresh frequency (ms):') }}</label>
               <input id="refresh-frequency" type="number" v-model="refreshInterval" min="1">
-              <button @click="refreshTimeout ? stopRefresh() : refreshData()" :disabled="processing || playerTableOrder == -1" :style="refreshTimeout ? 'background-color: #ffa500' : ''">{{ $t(refreshTimeout ? 'Stop Refresh' : 'Start Refresh') }}</button>
+              <button @click="refreshTimeout ? stopRefresh() : refreshData()" :disabled="!serverConnected || playerTableOrder == -1" :style="refreshTimeout ? 'background-color: #ffa500' : ''">{{ $t(refreshTimeout ? 'Stop Refresh' : 'Start Refresh') }}</button>
           </div>
           <div class="refresh-debug-div">
             <button @click="changeLanguage()">Language</button>
