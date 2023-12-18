@@ -81,7 +81,23 @@
           <Card :card="card" />
         </div>
       </div>
-      <div class="table-deck" v-else>{{ $tc('Table Deck: ', playerTable.table_deck.length) }}</div>
+      <div class="table-deck" v-else>
+        <div class="table-deck-back" :style="is_reverse ? 'transform: rotate(180deg)' : ''">
+          <div v-if="playerTable.table_deck.length > 10" class="table-deck-back-1">
+            <img :src="image_path('CARD', 'Unknown')"/>
+          </div>
+          <div v-if="playerTable.table_deck.length > 0" class="table-deck-back-2">
+            <img :src="image_path('CARD', 'Unknown')"/>
+          </div>
+          <div v-if="playerTable.table_deck.length > 20" class="table-deck-back-3">
+            <img :src="image_path('CARD', 'Unknown')"/>
+          </div>
+        </div>
+        <!-- {{ $tc('Table Deck: ', playerTable.table_deck.length) }} -->
+        <div :class="'table-deck-pdiv' + (is_reverse ? '-reverse' : '')">
+          <p>{{ playerTable.table_deck.length }}</p>
+        </div>
+      </div>
 
       <div class="hands">
         <!-- <h3>Hands</h3> -->
@@ -646,10 +662,62 @@ export default {
 }
 
 .table-deck {
-  display: flex;
+  position: relative;
   flex-direction: row;
   align-items: center;
-  width: 10%;
+  height: 100%;
+}
+
+.table-deck-back {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.table-deck-back > div {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+}
+
+.table-deck-back-1 > img {
+  transform: rotate(10deg);
+}
+.table-deck-back-2 > img {
+  transform: rotate(0deg);
+}
+.table-deck-back-3 > img {
+  transform: rotate(-10deg);
+}
+
+.table-deck-back > div > img {
+  height: 100%;
+  top: 20%;
+  left: 20%;
+  position: relative;
+  transform-origin: 50% 100%;
+}
+
+.table-deck-pdiv, .table-deck-pdiv-reverse {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  top: 20%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2vw;
+  color: white;
+  font-weight: bolder;
+  -webkit-text-stroke-width: 1.25px;
+  -webkit-text-stroke-color: black;
+}
+
+.table-deck-pdiv-reverse {
+  top: 0;
 }
 
 .hands {
