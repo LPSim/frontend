@@ -119,7 +119,7 @@
           <div class="freq-div">
               <label :class="refreshInterval < 300 ? 'freq-label-warning' : ''" for="refresh-frequency">{{ $t('Auto Refresh frequency (ms):') }}</label>
               <input id="refresh-frequency" type="number" v-model="refreshInterval" min="1">
-              <button @click="refreshTimeout ? stopRefresh() : refreshData()" :disabled="!serverConnected || playerTableOrder == -1" :style="refreshTimeout ? 'background-color: #ffa500' : ''">{{ $t(refreshTimeout ? 'Stop Refresh' : 'Start Refresh') }}</button>
+              <button :class="refreshTimeout ? '' : 'blink-refresh-button'" @click="refreshTimeout ? stopRefresh() : refreshData()" :disabled="!serverConnected || playerTableOrder == -1">{{ $t(refreshTimeout ? 'Stop Refresh' : 'Start Refresh') }}</button>
           </div>
           <div class="refresh-debug-div">
             <button @click="changeLanguage()">Language</button>
@@ -1902,6 +1902,18 @@ button:hover {
   40% { color: red; }
   60% { color: red; }
   100% { color: black; }
+}
+
+.blink-refresh-button {
+  /* animation: blink-not-refresh 2s linear infinite; */
+  background-color: #ffa500;
+}
+
+@keyframes blink-not-refresh {
+  0% { background-color: #4caf50; }
+  40% { background-color: rgb(255, 92, 38); }
+  60% { background-color: rgb(255, 92, 38); }
+  100% { background-color: #4caf50; }
 }
 
 </style>
