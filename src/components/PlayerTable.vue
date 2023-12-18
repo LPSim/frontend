@@ -702,10 +702,10 @@ export default {
 
 .table-deck-pdiv, .table-deck-pdiv-reverse {
   position: absolute;
-  width: 100%;
-  height: 80%;
-  top: 20%;
-  left: 0;
+  width: 60%;
+  height: 60%;
+  top: 30%;
+  left: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -714,6 +714,9 @@ export default {
   font-weight: bolder;
   -webkit-text-stroke-width: 1.25px;
   -webkit-text-stroke-color: black;
+  background: radial-gradient(circle, #FFF8, #FFF0);
+  border-width: 20%;
+  border-radius: 50%;
 }
 
 .table-deck-pdiv-reverse {
