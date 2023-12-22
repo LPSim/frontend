@@ -29,7 +29,6 @@
       <button id="add-charactor-button" v-if="cardModifiable" @click="selectionMode = 'CHARACTOR'">{{ $t('Add Charactor') }}</button>
       <button id="add-card-button" v-if="cardModifiable" @click="selectionMode = 'CARD'">{{ $t('Add Card') }}</button>
       <button id="cancel-button" v-if="cardModifiable" @click="selectionMode = null" :disabled="!selectionMode">{{ $t('Back') }}</button>
-      <!-- TODO when selecting charactor or card, only clear them, not others. -->
       <button id="clear-button" v-if="cardModifiable && selectionMode == null" @click="clearCards">{{ $t('Clear') }}</button>
       <button id="clear-card-button" v-if="cardModifiable && selectionMode == 'CARD'" @click="clearCards">{{ $t('Clear') }}</button>
       <button id="clear-charactor-button" v-if="cardModifiable && selectionMode == 'CHARACTOR'" @click="clearCards">{{ $t('Clear') }}</button>
@@ -41,19 +40,19 @@
           <div class="select-splitter-div">{{  $t('Current') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Charactors') }} * {{ selectionMode == 'CARD' ? cardRealLength : charactors.length }}</div>
           <div v-if="selectionMode == 'CHARACTOR'" class="images-div images-select-div-left" style="width: 15%">
             <div class="one-image-div" v-for="charactor, cid in charactors">
-              <img @click="removeCard(charactor)" :src="getCardImageUrl(charactor)" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="$t(getFullName(charactor))" />
+              <img @click="removeCard(charactor)" :src="getCardImageUrl({ ...charactor, scale: '140x' })" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="$t(getFullName(charactor))" />
               <span>{{ charactor.version }}</span>
             </div>
           </div>
           <div v-else class="images-div images-select-div-left" style="width: 40%">
             <div class="one-image-div one-small-image-div" v-for="card, cid in cards">
-              <img @click="removeCard(card)" :src="getCardImageUrl(card)" @mousemove="showDetail(card.type, card.name, card.version, card)" :alt="$t(getFullName(card))" />
+              <img @click="removeCard(card)" :src="getCardImageUrl({ ...card, scale: '140x' })" @mousemove="showDetail(card.type, card.name, card.version, card)" :alt="$t(getFullName(card))" />
               <span>{{ card.version }}</span>
             </div>
           </div>
           <div class="select-splitter-div">{{  $t('Available') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Charactors') }}</div>
           <div class="images-div images-select-div-right" :style="'width: ' + (selectionMode == 'CARD' ? '50%' : '75%')">
-            <img v-for="name, cid in selectCards" @click="selectCard(name)" @mousemove="showDetail(name.split('/')[0], name.split('/')[1])" :src="getCardImageUrl({ type: name.split('/')[0], name: name.split('/')[1] })" :alt="$t(name)" />
+            <img v-for="name, cid in selectCards" @click="selectCard(name)" @mousemove="showDetail(name.split('/')[0], name.split('/')[1])" :src="getCardImageUrl({ type: name.split('/')[0], name: name.split('/')[1], scale: '140x' })" :alt="$t(name)" />
           </div>
       </div>
       <div v-else class="images-div">

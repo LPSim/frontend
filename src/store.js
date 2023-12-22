@@ -457,6 +457,8 @@ export default new Vuex.Store({
       let type = payload.type;
       let name = payload.name;
       let desc = payload.desc;
+      let suffix = '';
+      if (payload.scale) suffix = '?imageMogr2/thumbnail/' + payload.scale;
       if (type == 'TALENT') {
         type = type + '_' + payload.charactor_name;
       }
@@ -480,7 +482,7 @@ export default new Vuex.Store({
           // for custom cards
           res = res.replace(/cardface\//, 'avatar/')
         }
-        return prefix + res;
+        return prefix + res + suffix;
       }
 
       if ((type == 'CHARACTOR_STATUS' || type == 'TEAM_STATUS') && res == undefined) {
@@ -492,7 +494,7 @@ export default new Vuex.Store({
         res_name = res_name.join('_');
         if (res_name.slice(0, 7) != 'Element')
           res_name = 'Common_' + res_name;
-        return prefix + 'status/' + res_name + '.png';
+        return prefix + 'status/' + res_name + '.png' + suffix;
       }
 
       if ((type == 'SUMMON' || type == 'SUPPORT') && payload.small_card && res) {
@@ -500,7 +502,7 @@ export default new Vuex.Store({
       }
 
       if (res == undefined) return;
-      return prefix + res;
+      return prefix + res + suffix;
     },
     getNamesWithType: (state) => (type) => {
       let result = [];
