@@ -27,6 +27,8 @@ jobs:
 
       - name: Build
         run: yarn build
+        env:
+          GITHUB_BUILD: '1'
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
