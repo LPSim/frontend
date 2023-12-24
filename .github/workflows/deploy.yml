@@ -26,9 +26,10 @@ jobs:
         run: yarn install
 
       - name: Build
-        run: yarn build
-        env:
-          GITHUB_BUILD: '1'
+        run: |
+          yarn build
+          sed -i 's/href="\//href="/g' dist/index.html
+          sed -i 's/src="\//src="/g' dist/index.html
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2

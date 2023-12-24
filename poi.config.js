@@ -19,9 +19,4 @@ module.exports = {
   presets: [
     require('poi-preset-bundle-report')(),
   ],
-  output: {
-    publicPath: (process.env.GITHUB_BUILD && process.env.GITHUB_BUILD === '1')
-    ? '/frontend/'
-    : '/'
-  }
 }
