@@ -1,7 +1,14 @@
+let room_name = '';
+
+function updateRoomName(name) {
+  room_name = name;
+}
+
 function getBaseFunc(getURL, successFunc, checkFunc, failFunc) {
   // success: receives a parsed JSON object.
   // check: receives a response object, if check passed, return object.
   // fail: receives an error object.
+  if (room_name) getURL += '?room=' + room_name;
   fetch(getURL)
   .then(response => {
     return checkFunc(response);
@@ -15,22 +22,23 @@ function getBaseFunc(getURL, successFunc, checkFunc, failFunc) {
 }
 
 function postBaseFunc(postURL, data, successFunc, checkFunc, failFunc) {
-      fetch(postURL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-      })
-      .then(response => {
-        return checkFunc(response);
-      })
-      .then(data => {
-        successFunc(data);
-      })
-      .catch(error => {
-        failFunc(error);
-      });
+  if (room_name) postURL += '?room=' + room_name;
+  fetch(postURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  })
+  .then(response => {
+    return checkFunc(response);
+  })
+  .then(data => {
+    successFunc(data);
+  })
+  .catch(error => {
+    failFunc(error);
+  });
 }
 
 function getPatch(serverURL, successFunc, checkFunc, failFunc) {
@@ -74,7 +82,13 @@ function postReset(serverURL, data, successFunc, checkFunc, failFunc) {
   postBaseFunc(respond_url, data, successFunc, checkFunc, failFunc);
 }
 
+function postRoomName(serverURL, roomName, successFunc, checkFunc, failFunc) {
+  let respond_url = serverURL + '/room/' + roomName;
+  postBaseFunc(respond_url, {}, successFunc, checkFunc, failFunc);
+}
+
 export default {
+  updateRoomName,
   getBaseFunc,
   postBaseFunc,
   getPatch,
@@ -85,4 +99,5 @@ export default {
   getRequest,
   getDecks,
   postReset,
+  postRoomName,
 }

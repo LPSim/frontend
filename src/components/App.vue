@@ -207,6 +207,52 @@
         </div>
       </div>
     </div>
+    <div class="empty-container" v-if="match == null && !showDeckDiv">
+    </div>
+    <div id="overlay" v-if="showOverlay">
+      <div id="overlay-content" style="background-color: white; padding: 20px;">
+        <h2>{{ $t('LPSim frontend') }}</h2>
+        <div class="overlay-content-div">
+          <label for="server-url-overlay">{{ $t('Server URL:') }}</label>
+          <input id="server-url-overlay" type="text" v-model="roomServerURL">
+        </div>
+        <div class="overlay-content-div">
+          <label for="room-name-overlay">{{ $t('Room name:') }}</label>
+          <input id="room-name-overlay" type="text" v-model="roomName">
+        </div>
+        <div class="player-table-order">
+          <p>{{ $t('View point:') }}</p>
+          <label v-for="tnum in [0, 1]">
+            <input type="radio" v-model="playerTableOrder" :value="tnum">
+            {{ $tc('Player', tnum) }}{{ match ? match.player_tables[tnum].player_name : '' }}
+          </label>
+        </div>
+        <div class="overlay-button-div">
+          <button @click="overlayConnectServer" :disabled="playerTableOrder == -1">{{  $t('Connect') }}</button>
+          <button @click="changeLanguage()">Language</button>
+        </div>
+        <div class="overlay-desc-div">
+          <h3>{{ $t('Note') }}</h3>
+          <p><strong>{{ $t('Frontend cannot run independently') }}</strong>{{ $t('Frontend cannot run independently description') }}</p>
+          <p><strong>{{ $t('Server URL:') }}</strong>{{ $t('Server URL Hint') }}</p>
+          <p><strong>{{ $t('Room name:') }}</strong>{{ $t('Room Name Hint') }}</p>
+          <div class="room-name-desc">
+            <p><strong>{{ $t('Room Server title') }}</strong>{{ $t('Room Server description') }}</p>
+            <p><strong>{{ $t('Match Server title') }}</strong>{{ $t('Match Server description') }}</p>
+          </div>
+          <p><strong>{{ $t('View point:') }}</strong>{{ $t('View point Hint') }}</p>
+        </div>
+        <div id="footer">
+          <h5>{{ $t('Disclaimer') }}</h5>
+          <p id="disclaimer">{{  $t('Disclaimer description') }}</p>
+          <h5>{{ $t('Links') }}</h5>
+          <a href="https://github.com/LPSim/backend">{{  $t('Backend GitHub Link') }}</a>
+          <a href="https://github.com/LPSim/frontend">{{  $t('Frontend GitHub Link') }}</a>
+          <a href="https://www.bilibili.com/video/BV1ay4y1w7qU/">{{  $t('Bilibili') }}</a>
+          <a href="https://beian.miit.gov.cn/" v-if="!isGithubioPage">浙ICP备17027553号-1</a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -260,15 +306,21 @@ export default {
       currentLanguage: null,
       refreshTimeout: null,
       matchUUID: null,
+      showOverlay: true,
+      roomServerURLValue: '',
     }
   },
   created() {
-    // if localstorage is empty, save server url to localstorage
-    if (localStorage.getItem('serverURL') == null) {
-      localStorage.setItem('serverURL', this.$store.state.serverURL);
+    // if localstorage is empty, save server url and room name to localstorage
+    if (localStorage.getItem('roomServerURL') == null) {
+      localStorage.setItem('roomServerURL', this.roomServerURL);
     }
-    // read server url from localstorage
-    this.serverURL = localStorage.getItem('serverURL');
+    if (localStorage.getItem('roomName') == null) {
+      localStorage.setItem('roomName', this.roomName);
+    }
+    // read server url and room name from localstorage
+    this.roomServerURL = localStorage.getItem('roomServerURL');
+    this.roomName = localStorage.getItem('roomName');
 
     // log data when created
     console.log('APP', this);
@@ -352,6 +404,7 @@ export default {
 
       let err_msg = 'Error in connecting server. ';
       function connectedCallback() {
+        this.showOverlay = false;
         HTTP.getPatch(
           this.serverURL,
           patchSuccess.bind(this),
@@ -365,7 +418,92 @@ export default {
           this.getFailFunc(err_msg).bind(this)
         );
       }
-      this.checkVersion(connectedCallback.bind(this));
+      this.checkVersion(this.serverURL, connectedCallback.bind(this));
+    },
+    checkRoomName(){
+      if (this.roomName == '') return true;
+      if (this.roomName.length < 4 || this.roomName.length > 12) return false;
+      for (let char of this.roomName) {
+        if (char < '0' || char > '9')
+          if (char < 'a' || char > 'z')
+            if (char < 'A' || char > 'Z')
+              if (char != '_') return false;
+      }
+      return true;
+    },
+    overlayConnectServer() {
+      // before old connect server, this will check room name, and
+      // update room name if it is valid.
+      if (!this.checkRoomName()) {
+        alert(this.$t('Room name must be 4-12 characters, only contains alphabets, numbers or underscore(_).'));
+        return;
+      }
+      function postRoomNameSuccess(data) {
+        let port = data.port;
+        let status = data.status;
+        console.log(port, status);
+        if (status == 'failed') {
+          alert(this.$t('Create room failed. Please check backend output.'));
+          return;
+        }
+        if (status == 'full') {
+          alert(this.$t('Room is full. Please try to create new room later or enter existing rooms.'));
+          return;
+        }
+        if (status == 'exist') {
+          alert(this.$t('Successfully enter room ') + this.roomName);
+        }
+        if (status == 'created') {
+          alert(this.$t('Successfully create room ') + this.roomName);
+        }
+        let url = new URL(this.roomServerURL);
+        url.port = port;
+        let serverURL = url.toString();
+        while (serverURL.endsWith('/')) serverURL = serverURL.slice(0, -1);
+        this.serverURL = serverURL;
+        HTTP.updateRoomName(this.roomName);
+        localStorage.setItem('roomName', this.roomName);
+        this.showOverlay = false;
+        this.connectServer();
+      }
+      function checkVersionCallback(obj) {
+        // check server type is right
+        let target_class = 'HTTPServer';
+        if (obj.info) {
+          // if contains info, get target class name
+          target_class = obj.info.class;
+        }
+        if (target_class == 'HTTPRoomServer' && this.roomName == '') {
+          // if is room server, but room name is empty, raise alert.
+          let msg = this.$t('Server is room server, but room name is empty. Please input room name.');
+          alert(msg);
+          return;
+        }
+        else if (target_class == 'HTTPServer' && this.roomName != '') {
+          // if is match server, but room name is not empty, raise alert.
+          let msg = this.$t('Server is match server, but room name is not empty. Please clear room name.');
+          alert(msg);
+          return;
+        }
+        if (!obj.info || obj.info.class == 'HTTPServer') {
+          // is match server, no need to post room name.
+          this.serverURL = this.roomServerURL;
+          this.connectServer();
+        }
+        else {
+          // is room server, need to post room name.
+          let err_msg = 'Error in posting room name. ';
+          HTTP.postRoomName(
+            this.roomServerURL,
+            this.roomName,
+            postRoomNameSuccess.bind(this),
+            this.getCheckFunc(err_msg).bind(this),
+            this.getFailFunc(err_msg).bind(this)
+          );
+        }
+      }
+      console.log(this.roomServerURL, this.serverURL);
+      this.checkVersion(this.roomServerURL, checkVersionCallback.bind(this));
     },
     stopServerByError() {
       // error occured, stop connect to server and stop auto refresh.
@@ -394,7 +532,7 @@ export default {
         this.matchUUID = null;
         if (make_alert) alert(this.$t('Game reset successfully!'));
     },
-    checkVersion(callback = undefined) {
+    checkVersion(serverURL, callback = undefined) {
       function versionSuccess(obj) {
         let version = obj.version;
         console.log('SERVER VERSION', version);
@@ -408,11 +546,11 @@ export default {
             alert(msg);
           }
         }
-        if (callback) callback();
+        if (callback) callback(obj);
       }
       let err_msg = 'Error in checking server version. ';
       HTTP.getVersion(
-        this.serverURL,
+        serverURL,
         versionSuccess.bind(this),
         this.getCheckFunc(err_msg).bind(this),
         this.getFailFunc(err_msg).bind(this)
@@ -1053,6 +1191,9 @@ export default {
     },
   },
   computed: {
+    isGithubioPage() {
+      return window.location.href.includes('github.io');
+    },
     match () {
       if (!this.fullMatch || this.displayInJudgeMode || this.playerTableOrder == -1) return this.fullMatch;
       let match = JSON.parse(JSON.stringify(this.fullMatch));
@@ -1358,6 +1499,32 @@ export default {
     showDeckDiv() {
       return this.$store.state.showDeckDiv;
     },
+    roomName: {
+      get () {
+        return this.$store.state.roomName;
+      },
+      set (value) {
+        // if room name changes, stop refreshing.
+        clearTimeout(this.refreshTimeout);
+        this.refreshTimeout = null;
+        this.serverConnected = false;
+        localStorage.setItem('roomName', value);
+        this.$store.commit('setRoomName', value);
+      }
+    },
+    roomServerURL: {
+      get () {
+        return this.roomServerURLValue
+      },
+      set (value) {
+        // if URL changes, stop refreshing.
+        clearTimeout(this.refreshTimeout);
+        this.refreshTimeout = null;
+        this.serverConnected = false;
+        this.roomServerURLValue = value;
+        localStorage.setItem('roomServerURL', value);
+      }
+    },
     serverURL: {
       get () {
         return this.$store.state.serverURL;
@@ -1495,7 +1662,7 @@ button:hover {
   background-color: #3e8e41;
 }
 
-.match-container {
+.match-container, .empty-container {
   position: relative;
   width: 90%;
   height: 0;
@@ -1914,6 +2081,100 @@ button:hover {
   40% { background-color: rgb(255, 92, 38); }
   60% { background-color: rgb(255, 92, 38); }
   100% { background-color: #4caf50; }
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent black */
+
+  /* Add these lines to center the content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#overlay-content {
+  width: 30%;
+  font-size: 1vw;
+  background-color: white;
+  padding: 20px;
+  border-radius: 1vw;
+  box-shadow: 0 0 0.7vw 0.7vw rgb(255, 174, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay-content-div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.overlay-content-div > input {
+  width: 75%;
+}
+
+.overlay-content-div > label {
+  width: 25%;
+}
+
+#overlay-content > h2 {
+  margin-top: 0;
+}
+
+.overlay-desc-div {
+  font-size: 1vw;
+}
+
+.overlay-desc-div p {
+  margin: 0.2vw 0;
+}
+
+.overlay-desc-div .room-name-desc {
+  padding-left: 2em;
+}
+
+#overlay-content .player-table-order {
+  width: 70%;
+  justify-content: space-around;
+}
+
+#footer {
+  margin-top: 1vw;
+  width: 100%;
+}
+
+#footer > * {
+  margin: 0;
+}
+
+#footer > h5 {
+  margin-top: 0.5vw;
+}
+
+#footer a {
+  text-decoration: none;
+  color: gray;
+  font-size: 0.75vw;
+}
+
+#disclaimer {
+  font-size: 0.75vw;
+}
+
+.overlay-button-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
 }
 
 </style>

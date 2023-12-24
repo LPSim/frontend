@@ -22,12 +22,13 @@ export default new Vuex.Store({
     deckModifyCounter: 0,
     showDeckDiv: false,
     serverURL: 'http://localhost:8000',
+    roomName: '',
     serverConnected: false,
     deckCodeData: {},
     imagePath: imagePath,
     nameToId: {},
     availableVersions: [],
-    descKeyToCost: {}
+    descKeyToCost: {},
   },
   mutations: {
     setDeckCodeData(state, data) {
@@ -439,6 +440,9 @@ export default new Vuex.Store({
     },
     setServerURL(state, data) {
       state.serverURL = data;
+    },
+    setRoomName(state, data) {
+      state.roomName = data;
     },
     setServerConnected(state, data) {
       state.serverConnected = data;
