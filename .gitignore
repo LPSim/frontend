@@ -8,6 +8,7 @@ dist
 logs*
 
 collector/*/*/*.png
+collector/favicon.png
 static/images
 collector/images
 collector/sprite/*.json
