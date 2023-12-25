@@ -4,6 +4,7 @@ import imagePath from './imagePath.json';
 import { init as deckCodeInit, deckStrToDeckCode, deckCodeToDeckStr } from './deckCode';
 
 Vue.use(Vuex);
+const localStoragePrefix = 'store.state.';
 
 export default new Vuex.Store({
   state: {
@@ -21,7 +22,9 @@ export default new Vuex.Store({
     deck: [],
     deckModifyCounter: 0,
     showDeckDiv: false,
-    serverURL: 'http://localhost:8000',
+    serverURL: '',
+    roomServerURL: 'http://localhost:8000',
+    imageResourceURL: 'static/images/',
     roomName: '',
     serverConnected: false,
     deckCodeData: {},
@@ -438,11 +441,21 @@ export default new Vuex.Store({
     setShowDeckDiv(state, data) {
       state.showDeckDiv = data;
     },
+    setRoomServerURL(state, data) {
+      state.roomServerURL = data;
+      localStorage.setItem(localStoragePrefix + 'roomServerURL', data);
+    },
+    setImageResourceURL(state, data) {
+      state.imageResourceURL = data;
+      localStorage.setItem(localStoragePrefix + 'imageResourceURL', data);
+    },
     setServerURL(state, data) {
       state.serverURL = data;
+      localStorage.setItem(localStoragePrefix + 'serverURL', data);
     },
     setRoomName(state, data) {
       state.roomName = data;
+      localStorage.setItem(localStoragePrefix + 'roomName', data);
     },
     setServerConnected(state, data) {
       state.serverConnected = data;
@@ -452,12 +465,27 @@ export default new Vuex.Store({
     },
     resetDeckModifyCounter(state) {
       state.deckModifyCounter = 0;
+    },
+    readFromLocalStorage(state) {
+      let targets = [
+        'roomServerURL',
+        'roomName',
+        'imageResourceURL',
+        'serverURL',
+      ];
+      let prefix = localStoragePrefix;
+      for (let i of targets) {
+        if (localStorage.getItem(prefix + i) == null) {
+          localStorage.setItem(prefix + i, state[i]);
+        }
+        state[i] = localStorage.getItem(prefix + i);
+      }
     }
   },
   getters: {
     getImagePath: (state) => (payload) => {
-      // let prefix = 'static/images/';
-      let prefix = 'https://static.zyr17.cn/GITCG-frontend/images/';
+      let prefix = state.imageResourceURL;
+      if (prefix.slice(-1) != '/') prefix += '/';
       let type = payload.type;
       let name = payload.name;
       let desc = payload.desc;

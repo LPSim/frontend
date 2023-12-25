@@ -2,6 +2,15 @@
 
 > Simple frontend for [LPSim](https://github.com/LPSim/backend).
 
+[Github.io](https://lpsim.github.io/frontend/) Update when new commits is push
+to the master, sometimes may have trouble loading.
+
+[Self hosted page](https://lpsim.zyr17.cn/) Update manually, usually more stable but may not be latest version. Server on China.
+
+## Disclaimer
+
+This project is for learning and communication only. Code of this project is open-sourced with APGLv3 license. This project IS NOT affiliated with miHoYo. All game text and image materials are owned by miHoYo. This project and its repositories DO NOT contain any materials owned by miHoYo.
+
 ## usage
 
 ### replay
