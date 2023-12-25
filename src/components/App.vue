@@ -153,7 +153,7 @@
       </div>
       <div v-if="switchNotify" :class="{ 'switch-notify-container': true, 'notify-right-part': switchNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': switchNotify.player_id != playerTableOrder }">
-          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })">
+          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })" @error="$event.target.style.display='none'"/>
           <div>
             <p>{{ $t('Switch to') }} {{ $t('CHARACTOR/' + $store.getters.getNameWithDesc({ name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })) }}</p>
           </div>
@@ -161,7 +161,7 @@
       </div>
       <div v-if="skillNotify" :class="{ 'skill-notify-container': true, 'notify-right-part': skillNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': skillNotify.player_id != playerTableOrder }">
-          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })">
+          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })" @error="$event.target.style.display='none'"/>
           <div>
             <p>{{ $t('CHARACTOR/' + $store.getters.getNameWithDesc({ name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })) }} {{ $t('used') }} {{ $t('SKILL_TYPE/' + skillNotify.skill_type) }}</p>
             <p>{{ $t('SKILL_' + skillNotify.charactor_name + '_' + skillNotify.skill_type + '/' + skillNotify.skill_name) }}</p>
@@ -169,7 +169,10 @@
         </div>
       </div>
       <div v-if="cardNotify" :class="{ 'card-notify-container': true, 'notify-right-part': cardNotify.player_id != playerTableOrder }">
-        <img :src="$store.getters.getImagePath(cardNotify)" :class="{ 'opponent-shadow-color': cardNotify.player_id != playerTableOrder }">
+        <img :src="$store.getters.getImagePath(cardNotify)" :class="{ 'opponent-shadow-color': cardNotify.player_id != playerTableOrder }" @error="imgSrcError($event)"/>
+        <div class="card-notify-text">
+          <span>{{ imageAlt(cardNotify) }}</span>
+        </div>
       </div>
       <div v-if="roundEndNotify" :class="{ 'center-text-notify-container': true, 'opponent-shadow-color': roundEndNotify.player_id != playerTableOrder }">
         <span>{{ $t((roundEndNotify.player_id != playerTableOrder ? 'Opponent' : 'You') + ' declare round end', ) }}</span>
@@ -1183,6 +1186,22 @@ export default {
       clearTimeout(this.refreshTimeout);
       this.refreshTimeout = null;
     },
+    imgSrcError(event) {
+      event.target.style.display = 'none';
+
+      let nextElement = event.target.nextElementSibling;
+      if (nextElement) {
+        nextElement.style.display = 'flex';
+      }
+    },
+    imageAlt(card) {
+      let type = card.type;
+      if (type == 'TALENT') {
+        type = type + '_' + this.card.charactor_name;
+      }
+      if (card.name == 'Unknown') type = 'CARD'
+      return this.$t(type + '/' + this.$store.getters.getNameWithDesc(card));
+    }
   },
   computed: {
     isSelfPage() {
@@ -2020,7 +2039,7 @@ button:hover {
   width: 19%;
 }
 
-.card-notify-container > img {
+.card-notify-container > * {
   height: 50%;
   box-shadow: 0 0 0.7vw 0.7vw rgb(255, 174, 0);
   border-radius: 1.3vw;
@@ -2180,6 +2199,20 @@ button:hover {
 
 .important-strong {
   color: rgb(207, 0, 0);
+}
+
+.card-notify-text {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  width: 33%;
+  font-size: 3vw;
+  border: 0.1vw;
+  border-color: #6B5531;
+  border-style: solid;
+  border-radius: 0.5vw;
+  background: white;
 }
 
 </style>

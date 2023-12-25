@@ -31,7 +31,11 @@
           <div class="team-status-div" v-if="playerTable.active_charactor_idx == cid">
             <!-- <h3>Team Status</h3> -->
             <div v-for="(status, sid) in playerTable.team_status" :key="sid" @mouseover="showDetails(status)" @mouseout="hideDetails(status)" @click="log_status(sid)">
-              <img :src="status_path(status)" width="100%" height="100%" />
+              <img :src="status_path(status)" width="100%" height="100%" @error="imgSrcError($event)"/>
+              <div class="status-text">
+                <!-- TODO more class to specify colors -->
+                <span>●</span>
+              </div>
               <div class="usage-span-div">
                 <span v-if="status.usage && status.usage > 0">{{ status.usage }}</span>
               </div>
@@ -56,14 +60,17 @@
       <div class="dice" @click="log_dice()">
         <div v-for="data in sortedColors" :class="disableDice(data.idx)" :key="data.idx" @click="selectDice(data.idx)">
           <div :class="'dice-select-border ' + selectDiceClass(data.idx)"></div>
-          <img class="cost-img" :src="image_path('DICE', data.color)" :alt="data.color" />
-          <img class="element-img" :src="image_path('ELEMENT', data.color)" :alt="data.color" />
+          <img class="cost-img" :src="image_path('DICE', data.color)" :alt="data.color" @error="imgSrcError($event)" />
+          <div :class="'cost-text cost-text-' + data.color.toLowerCase()">
+            <span>●</span>
+          </div>
+          <img class="element-img" :src="image_path('ELEMENT', data.color)" :alt="data.color" @error="$event.target.style.display='none'" />
         </div>
       </div>
     </div>
     <div class="player-info">
       <div class="player-name">
-        <img class="player-icon" :src="image_path('AVATAR', playerTable.player_name)">
+        <img class="player-icon" :src="image_path('AVATAR', playerTable.player_name)" @error="$event.target.style.display='none'" />
       </div>
 
       <div class="round-ended-and-arcane">
@@ -72,7 +79,10 @@
           <p v-else>{{ $t('Round has not ended') }}</p>
         </div>
         <div class="arcane-legend">
-          <img :src="image_path('DICE', 'ARCANE_' + (playerTable.arcane_legend ? 'FULL' : 'EMPTY'))" height="100%" />
+          <img :src="image_path('DICE', 'ARCANE_' + (playerTable.arcane_legend ? 'FULL' : 'EMPTY'))" height="100%" @error="imgSrcError($event)" />
+          <div :class="'text-arcane-' + (playerTable.arcane_legend ? 'full' : 'empty')">
+            <span>●</span>
+          </div>
         </div>
       </div>
       <div class="table-deck" v-if="show_table_deck">
@@ -84,13 +94,13 @@
       <div class="table-deck" v-else>
         <div class="table-deck-back" :style="is_reverse ? 'transform: rotate(180deg)' : ''">
           <div v-if="playerTable.table_deck.length > 10" class="table-deck-back-1">
-            <img :src="image_path('CARD', 'Unknown')"/>
+            <img :src="image_path('CARD', 'Unknown')" @error="$event.target.style.display='none'"/>
           </div>
           <div v-if="playerTable.table_deck.length > 0" class="table-deck-back-2">
-            <img :src="image_path('CARD', 'Unknown')"/>
+            <img :src="image_path('CARD', 'Unknown')" @error="$event.target.style.display='none'"/>
           </div>
           <div v-if="playerTable.table_deck.length > 20" class="table-deck-back-3">
-            <img :src="image_path('CARD', 'Unknown')"/>
+            <img :src="image_path('CARD', 'Unknown')" @error="$event.target.style.display='none'"/>
           </div>
         </div>
         <!-- {{ $tc('Table Deck: ', playerTable.table_deck.length) }} -->
@@ -142,6 +152,7 @@ export default {
     return {
       showDetailsFlag: false,
       detailTextWidth: 150,
+      dataAttribute: '',
     }
   },
   components: {
@@ -150,7 +161,18 @@ export default {
     Card,
     Support
   },
+  mounted() {
+    this.dataAttribute = this.$el.dataset;
+  },
   methods: {
+    imgSrcError(event) {
+      event.target.style.display = 'none';
+
+      let nextElement = event.target.nextElementSibling;
+      if (nextElement) {
+        nextElement.style.display = 'flex';
+      }
+    },
     log_data() {
       console.log('TABLE', JSON.parse(JSON.stringify(this.playerTable)));
     },
@@ -961,6 +983,99 @@ export default {
 
 .p-div > h4 {
   margin: 0;
+}
+
+.cost-text {
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.75vw;
+}
+
+.cost-text > span {
+  transform: translateY(-0.15vw);
+}
+
+.cost-text-anemo {
+  color: #54F0C0;
+  -webkit-text-stroke-width: 0.25vw;
+  -webkit-text-stroke-color: #30776E;
+}
+
+.cost-text-hydro {
+  color: #52D3FF;
+  -webkit-text-stroke-width: 0.25vw;
+  -webkit-text-stroke-color: #4161A6;
+}
+
+.cost-text-pyro {
+  color: #FF955F;
+  -webkit-text-stroke-width: 0.25vw;
+  -webkit-text-stroke-color: #9B4838;
+}
+
+.cost-text-cryo {
+  color: #98E4E4;
+  -webkit-text-stroke-width: 0.25vw;
+  -webkit-text-stroke-color: #337683;
+}
+
+.cost-text-electro {
+  color: #D19AFF;
+  -webkit-text-stroke-width: 0.25vw;
+  -webkit-text-stroke-color: #6A3EB3;
+}
+
+.cost-text-geo {
+  color: #EACE5B;
+  -webkit-text-stroke-width: 0.25vw;
+  -webkit-text-stroke-color: #7C5D2F;
+}
+
+.cost-text-dendro {
+  color: #BEDD76;
+  -webkit-text-stroke-width: 0.25vw;
+  -webkit-text-stroke-color: #647E31;
+}
+
+.cost-text-omni {
+  color: #DDD5C4;
+  -webkit-text-stroke-width: 0.25vw;
+  -webkit-text-stroke-color: #9C917C;
+}
+
+.cost-text-unknown {
+  color: #654F37;
+  -webkit-text-stroke-width: 0.25vw;
+  -webkit-text-stroke-color: #4E3D2C;
+}
+
+.text-arcane-full {
+  font-size: 5vw;
+  transform: translateY(-2vw);
+  color: #E4ACF0;
+  -webkit-text-stroke-width: 0.25vw;
+  -webkit-text-stroke-color: #957D65;
+}
+
+.text-arcane-full, .text-arcane-empty {
+  display: none;
+}
+
+.status-text {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 2vw;
+  font-weight: bold;
+  -webkit-text-stroke-width: 0.15vw;
+  -webkit-text-stroke-color: #B87A53;
+  color: #FFBD84;
+  transform: translate(-.0vw, -.1vw);
 }
 
 </style>

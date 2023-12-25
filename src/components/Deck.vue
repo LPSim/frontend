@@ -40,33 +40,50 @@
           <div class="select-splitter-div">{{  $t('Current') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Charactors') }} * {{ selectionMode == 'CARD' ? cardRealLength : charactors.length }}</div>
           <div v-if="selectionMode == 'CHARACTOR'" class="images-div images-select-div-left" style="width: 15%">
             <div class="one-image-div" v-for="charactor, cid in charactors">
-              <img @click="removeCard(charactor)" :src="getCardImageUrl({ ...charactor, scale: '140x' })" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="$t(getFullName(charactor))" />
+              <img @click="removeCard(charactor)" :src="getCardImageUrl({ ...charactor, scale: '140x' })" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="$t(getFullName(charactor))" @error="imgSrcError($event)"/>
+              <div class="card-text" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)">
+                <span>{{ $t(getFullName(charactor)) }}</span>
+              </div>
               <span>{{ charactor.version }}</span>
             </div>
           </div>
           <div v-else class="images-div images-select-div-left" style="width: 40%">
             <div class="one-image-div one-small-image-div" v-for="card, cid in cards">
-              <img @click="removeCard(card)" :src="getCardImageUrl({ ...card, scale: '140x' })" @mousemove="showDetail(card.type, card.name, card.version, card)" :alt="$t(getFullName(card))" />
+              <img @click="removeCard(card)" :src="getCardImageUrl({ ...card, scale: '140x' })" @mousemove="showDetail(card.type, card.name, card.version, card)" :alt="$t(getFullName(card))" @error="imgSrcError($event)"/>
+              <div class="card-text" @mousemove="showDetail(card.type, card.name, card.version, card)">
+                <span>{{ $t(getFullName(card)) }}</span>
+              </div>
               <span>{{ card.version }}</span>
             </div>
           </div>
           <div class="select-splitter-div">{{  $t('Available') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Charactors') }}</div>
           <div class="images-div images-select-div-right" :style="'width: ' + (selectionMode == 'CARD' ? '50%' : '75%')">
-            <img v-for="name, cid in selectCards" @click="selectCard(name)" @mousemove="showDetail(name.split('/')[0], name.split('/')[1])" :src="getCardImageUrl({ type: name.split('/')[0], name: name.split('/')[1], scale: '140x' })" :alt="$t(name)" />
+            <div class="one-image-div one-small-image-div" v-for="name, cid in selectCards">
+              <img @click="selectCard(name)" @mousemove="showDetail(name.split('/')[0], name.split('/')[1])" :src="getCardImageUrl({ type: name.split('/')[0], name: name.split('/')[1], scale: '140x' })" :alt="$t(name)" @error="imgSrcError($event)"/>
+              <div class="card-text" @mousemove="showDetail(name.split('/')[0], name.split('/')[1])">
+                <span>{{ $t(name) }}</span>
+              </div>
+            </div>
           </div>
       </div>
       <div v-else class="images-div">
         <!-- <div class="charactors-div"> -->
           <div class="splitter-div">{{  $t('Charactors') }} * {{ charactors.length }}</div>
           <div class="one-image-div" v-for="charactor, cid in charactors">
-            <img @click="removeCard(charactor)" :src="getCardImageUrl(charactor)" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="$t(getFullName(charactor))" />
+            <img @click="removeCard(charactor)" :src="getCardImageUrl(charactor)" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="$t(getFullName(charactor))" @error="imgSrcError($event)"/>
+            <div class="card-text" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)">
+              <span>{{ $t(getFullName(charactor)) }}</span>
+            </div>
             <span>{{ charactor.version }}</span>
           </div>
         <!-- </div> -->
         <!-- <div class="cards-div"> -->
           <div class="splitter-div">{{  $t('Cards') }} * {{ cardRealLength }}</div>
           <div class="one-image-div" v-for="card, cid in cards">
-            <img @click="removeCard(card)" :src="getCardImageUrl(card)" @mousemove="showDetail(card.type, card.name, card.version, card)" :alt="$t(getFullName(card))" />
+            <img @click="removeCard(card)" :src="getCardImageUrl(card)" @mousemove="showDetail(card.type, card.name, card.version, card)" :alt="$t(getFullName(card))" @error="imgSrcError($event)"/>
+            <div class="card-text" @mousemove="showDetail(card.type, card.name, card.version, card)">
+              <span>{{ $t(getFullName(card)) }}</span>
+            </div>
             <span>{{ card.version }}</span>
           </div>
         <!-- </div> -->
@@ -101,6 +118,14 @@ export default {
     this.selectedVersion = this.availableVersions[this.availableVersions.length - 1];
   },
   methods: {
+    imgSrcError(event) {
+      event.target.style.display = 'none';
+
+      let nextElement = event.target.nextElementSibling;
+      if (nextElement) {
+        nextElement.style.display = 'flex';
+      }
+    },
     getCardImageUrl(obj) {
       return this.$store.getters.getImagePath(obj)
     },
@@ -645,6 +670,27 @@ button:disabled {
 
 button:hover {
   background-color: #3e8e41;
+}
+
+.card-text {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: 0.1vw;
+  border-color: #6B5531;
+  border-style: solid;
+  border-radius: 0.5vw;
+}
+
+.card-text > span {
+  background: #0000;
+}
+
+.one-image-div > span {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 </style>

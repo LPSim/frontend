@@ -145,6 +145,9 @@
   "Successfully create room ": "Successfully create room ",
   "No Image Title": "Initially no image is available with the frontend. ",
   "No Image Title description": "If you want to show images, you should collect images by yourself, then input the image path URL in the following input. If leaves empty or wrong URL, no image will be shown.",
+  "Equip Talent Text": "T",
+  "Equip Weapon Text": "W",
+  "Equip Artifact Text": "A",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",

@@ -7,7 +7,11 @@
           :alt="c.type"
           width="100%"
           height="100%"
+          @error="imgSrcError($event)"
         />
+        <div :class="'cost-text cost-text-' + c.type.toLowerCase()">
+          <span>●</span>
+        </div>
       </div>
       <div class="cost-span-div" :style="spanDivStyle()">
         <span
@@ -52,7 +56,42 @@ export default {
       default: 1.25
     }
   },
+  data() {
+    return {
+      imgError: new Array(4).fill(0),
+      dataAttribute: null,
+      firstTime: true,
+    };
+  },
+  mounted() {
+    this.dataAttribute = this.$el.dataset;
+  },
   methods: {
+    imgSrcError(event) {
+      event.target.style.display = 'none';
+
+      let nextElement = event.target.nextElementSibling;
+      if (nextElement) {
+        nextElement.style.display = 'flex';
+      }
+      setTimeout(() => {
+        this.updateFontSize();
+      }, 0);
+    },
+    updateFontSize() {
+      let font_size = this.cost_font_size / 1.25 * 3;
+      let stroke = font_size / 3 * 0.25;
+      let offset = font_size / 10;
+      let divElements = this.$el.querySelectorAll('.cost-text');
+      let spanElements = this.$el.querySelectorAll('.cost-text > span');
+      for (let i = 0; i < divElements.length; i++) {
+        let divElement = divElements[i];
+        let spanElement = spanElements[i];
+        divElement.style.fontSize = font_size + 'vw';
+        divElement.style.webkitTextStrokeWidth = stroke + 'vw';
+        spanElement.style.transform = `translateY(-${offset}vw)`;
+      }
+    },
     costDivStyle () {
       let style = {
         width: `${100 / this.max_number}%`,
@@ -182,4 +221,74 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
+.cost-text {
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  /* font-size: 3vw; */
+  -webkit-text-stroke-color: #000;
+}
+
+/* .cost-text > span {
+  transform: translateY(-0.3vw);
+} */
+
+.cost-text-anemo {
+  color: #54F0C0;
+  -webkit-text-stroke-color: #30776E;
+}
+
+.cost-text-hydro {
+  color: #52D3FF;
+  -webkit-text-stroke-color: #4161A6;
+}
+
+.cost-text-pyro {
+  color: #FF955F;
+  -webkit-text-stroke-color: #9B4838;
+}
+
+.cost-text-cryo {
+  color: #98E4E4;
+  -webkit-text-stroke-color: #337683;
+}
+
+.cost-text-electro {
+  color: #D19AFF;
+  -webkit-text-stroke-color: #6A3EB3;
+}
+
+.cost-text-geo {
+  color: #EACE5B;
+  -webkit-text-stroke-color: #7C5D2F;
+}
+
+.cost-text-dendro {
+  color: #BEDD76;
+  -webkit-text-stroke-color: #647E31;
+}
+
+.cost-text-matching {
+  color: #DDD5C4;
+  -webkit-text-stroke-color: #9C917C;
+}
+
+.cost-text-charge {
+  color: #E69E3A;
+  -webkit-text-stroke-color: #B66514;
+}
+
+.cost-text-unaligned {
+  color: #626262;
+  -webkit-text-stroke-color: #3B3B3B;
+}
+
+.cost-text-arcane_full {
+  color: #E4ACF0;
+  -webkit-text-stroke-color: #957D65;
+}
+
 </style>
