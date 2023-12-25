@@ -153,7 +153,7 @@
       </div>
       <div v-if="switchNotify" :class="{ 'switch-notify-container': true, 'notify-right-part': switchNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': switchNotify.player_id != playerTableOrder }">
-          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })">
+          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })" @error="$event.target.style.display='none'"/>
           <div>
             <p>{{ $t('Switch to') }} {{ $t('CHARACTOR/' + $store.getters.getNameWithDesc({ name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })) }}</p>
           </div>
@@ -161,7 +161,7 @@
       </div>
       <div v-if="skillNotify" :class="{ 'skill-notify-container': true, 'notify-right-part': skillNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': skillNotify.player_id != playerTableOrder }">
-          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })">
+          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })" @error="$event.target.style.display='none'"/>
           <div>
             <p>{{ $t('CHARACTOR/' + $store.getters.getNameWithDesc({ name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })) }} {{ $t('used') }} {{ $t('SKILL_TYPE/' + skillNotify.skill_type) }}</p>
             <p>{{ $t('SKILL_' + skillNotify.charactor_name + '_' + skillNotify.skill_type + '/' + skillNotify.skill_name) }}</p>
@@ -169,7 +169,10 @@
         </div>
       </div>
       <div v-if="cardNotify" :class="{ 'card-notify-container': true, 'notify-right-part': cardNotify.player_id != playerTableOrder }">
-        <img :src="$store.getters.getImagePath(cardNotify)" :class="{ 'opponent-shadow-color': cardNotify.player_id != playerTableOrder }">
+        <img :src="$store.getters.getImagePath(cardNotify)" :class="{ 'opponent-shadow-color': cardNotify.player_id != playerTableOrder }" @error="imgSrcError($event)"/>
+        <div class="card-notify-text">
+          <span>{{ imageAlt(cardNotify) }}</span>
+        </div>
       </div>
       <div v-if="roundEndNotify" :class="{ 'center-text-notify-container': true, 'opponent-shadow-color': roundEndNotify.player_id != playerTableOrder }">
         <span>{{ $t((roundEndNotify.player_id != playerTableOrder ? 'Opponent' : 'You') + ' declare round end', ) }}</span>
@@ -233,7 +236,7 @@
         </div>
         <div class="overlay-desc-div">
           <h3>{{ $t('Note') }}</h3>
-          <p><strong>{{ $t('Frontend cannot run independently') }}</strong>{{ $t('Frontend cannot run independently description') }}</p>
+          <p><strong class="important-strong">{{ $t('Frontend cannot run independently') }}</strong>{{ $t('Frontend cannot run independently description') }}</p>
           <p><strong>{{ $t('Server URL:') }}</strong>{{ $t('Server URL Hint') }}</p>
           <p><strong>{{ $t('Room name:') }}</strong>{{ $t('Room Name Hint') }}</p>
           <div class="room-name-desc">
@@ -241,6 +244,10 @@
             <p><strong>{{ $t('Match Server title') }}</strong>{{ $t('Match Server description') }}</p>
           </div>
           <p><strong>{{ $t('View point:') }}</strong>{{ $t('View point Hint') }}</p>
+          <p><strong class="important-strong">{{ $t('No Image Title') }}</strong>{{ $t('No Image Title description') }}</p>
+        </div>
+        <div class="overlay-content-div">
+          <input id="room-name-overlay" type="text" v-model="imageResourceURL">
         </div>
         <div id="footer">
           <h5>{{ $t('Disclaimer') }}</h5>
@@ -249,7 +256,7 @@
           <a href="https://github.com/LPSim/backend">{{  $t('Backend GitHub Link') }}</a>
           <a href="https://github.com/LPSim/frontend">{{  $t('Frontend GitHub Link') }}</a>
           <a href="https://www.bilibili.com/video/BV1ay4y1w7qU/">{{  $t('Bilibili') }}</a>
-          <a href="https://beian.miit.gov.cn/" v-if="!isGithubioPage">浙ICP备17027553号-1</a>
+          <a href="https://beian.miit.gov.cn/" v-if="isSelfPage">浙ICP备17027553号-1</a>
         </div>
       </div>
     </div>
@@ -307,20 +314,10 @@ export default {
       refreshTimeout: null,
       matchUUID: null,
       showOverlay: true,
-      roomServerURLValue: '',
     }
   },
   created() {
-    // if localstorage is empty, save server url and room name to localstorage
-    if (localStorage.getItem('roomServerURL') == null) {
-      localStorage.setItem('roomServerURL', this.roomServerURL);
-    }
-    if (localStorage.getItem('roomName') == null) {
-      localStorage.setItem('roomName', this.roomName);
-    }
-    // read server url and room name from localstorage
-    this.roomServerURL = localStorage.getItem('roomServerURL');
-    this.roomName = localStorage.getItem('roomName');
+    this.$store.commit('readFromLocalStorage');
 
     // log data when created
     console.log('APP', this);
@@ -1189,10 +1186,26 @@ export default {
       clearTimeout(this.refreshTimeout);
       this.refreshTimeout = null;
     },
+    imgSrcError(event) {
+      event.target.style.display = 'none';
+
+      let nextElement = event.target.nextElementSibling;
+      if (nextElement) {
+        nextElement.style.display = 'flex';
+      }
+    },
+    imageAlt(card) {
+      let type = card.type;
+      if (type == 'TALENT') {
+        type = type + '_' + this.card.charactor_name;
+      }
+      if (card.name == 'Unknown') type = 'CARD'
+      return this.$t(type + '/' + this.$store.getters.getNameWithDesc(card));
+    }
   },
   computed: {
-    isGithubioPage() {
-      return window.location.href.includes('github.io');
+    isSelfPage() {
+      return window.location.href.includes('zyr17.cn');
     },
     match () {
       if (!this.fullMatch || this.displayInJudgeMode || this.playerTableOrder == -1) return this.fullMatch;
@@ -1508,13 +1521,12 @@ export default {
         clearTimeout(this.refreshTimeout);
         this.refreshTimeout = null;
         this.serverConnected = false;
-        localStorage.setItem('roomName', value);
         this.$store.commit('setRoomName', value);
       }
     },
     roomServerURL: {
       get () {
-        return this.roomServerURLValue
+        return this.$store.state.roomServerURL;
       },
       set (value) {
         // if URL changes, stop refreshing.
@@ -1522,7 +1534,7 @@ export default {
         this.refreshTimeout = null;
         this.serverConnected = false;
         this.roomServerURLValue = value;
-        localStorage.setItem('roomServerURL', value);
+        this.$store.commit('setRoomServerURL', value);
       }
     },
     serverURL: {
@@ -1534,8 +1546,15 @@ export default {
         clearTimeout(this.refreshTimeout);
         this.refreshTimeout = null;
         this.serverConnected = false;
-        localStorage.setItem('serverURL', value);
         this.$store.commit('setServerURL', value);
+      }
+    },
+    imageResourceURL: {
+      get () {
+        return this.$store.state.imageResourceURL;
+      },
+      set (value) {
+        this.$store.commit('setImageResourceURL', value);
       }
     },
     serverConnected: {
@@ -2020,7 +2039,7 @@ button:hover {
   width: 19%;
 }
 
-.card-notify-container > img {
+.card-notify-container > * {
   height: 50%;
   box-shadow: 0 0 0.7vw 0.7vw rgb(255, 174, 0);
   border-radius: 1.3vw;
@@ -2116,6 +2135,7 @@ button:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 .overlay-content-div > input {
@@ -2175,6 +2195,24 @@ button:hover {
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
+}
+
+.important-strong {
+  color: rgb(207, 0, 0);
+}
+
+.card-notify-text {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  width: 33%;
+  font-size: 3vw;
+  border: 0.1vw;
+  border-color: #6B5531;
+  border-style: solid;
+  border-radius: 0.5vw;
+  background: white;
 }
 
 </style>

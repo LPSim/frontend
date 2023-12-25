@@ -2,14 +2,25 @@
   <div @click="log_data">
     <div class="elements">
       <div class="element" v-for="(element, eid) in charactor.element_application" :key="eid">
-        <img :src="image_path('ELEMENT', element)" width="100%" height="100%">
+        <img :src="image_path('ELEMENT', element)" width="100%" height="100%" @error="imgSrcError($event)">
+        <div :class="'element-text element-text-' + element.toLowerCase()">
+          <span>●</span>
+        </div>
       </div>
     </div>
     <div :class="(charactor.is_alive ? 'charactor ' : 'charactor-died ') + selectClass">
-      <img class="charactor-image" :src="image_path('CHARACTOR', charactor.name, charactor.desc)" :alt="$t('CHARACTOR/' + charactor.name + (charactor.desc.length > 0 ? '_' : '') + charactor.desc)">
+      <img
+        class="charactor-image"
+        :src="image_path('CHARACTOR', charactor.name, charactor.desc)"
+        :alt="$t('CHARACTOR/' + charactor.name + (charactor.desc.length > 0 ? '_' : '') + charactor.desc)"
+        @error="imgSrcError($event)"
+      />
+      <div class="charactor-text">
+        <span>{{ $t('CHARACTOR/' + charactor.name + (charactor.desc.length > 0 ? '_' : '') + charactor.desc) }}</span>
+      </div>
       <div class="charactor-hp">
         <div>
-          <img :src="image_path('ICON', 'HP')" width="100%" heright="100%"/>
+          <img :src="image_path('ICON', 'HP')" width="100%" heright="100%" @error="$event.target.style.display='none'"/>
           <div class="hp-span-div">
             <span :style="charactor.hp > 9 ? 'padding-right: 0.2vw;' : ''">{{ charactor.hp }}</span>
           </div>
@@ -17,22 +28,37 @@
       </div>
       <div class="charactor-charge-back">
         <div v-for="i in charactor.max_charge" :key="i">
-          <img :src="image_path('ICON', 'CHARGE_BACK')" width="100%" height="100%" />
+          <img :src="image_path('ICON', 'CHARGE_BACK')" width="100%" height="100%" @error="imgSrcError($event)" />
+          <div class="charge-text-back">
+            <span>●</span>
+          </div>
         </div>
       </div>
       <div class="charactor-charge-front">
         <div v-for="i in charactor.charge" :key="i">
-          <img :src="image_path('ICON', 'CHARGE_FRONT')" width="100%" height="100%" />
+          <img :src="image_path('ICON', 'CHARGE_FRONT')" width="100%" height="100%" @error="imgSrcError($event)" />
+          <div class="charge-text-front">
+            <span>●</span>
+          </div>
         </div>
       </div>
       <div v-if="charactor.weapon" @click="log_object(charactor.weapon)" @mouseover="showDetails(charactor.weapon)" @mouseout="hideDetails()" class="charactor-weapon">
-        <img :src="image_path('ICON', 'EQUIP_WEAPON')" width="100%" height="100%" />
+        <img :src="image_path('ICON', 'EQUIP_WEAPON')" width="100%" height="100%" @error="imgSrcError($event)"/>
+        <div class="equip-text">
+          <span>{{ $t('Equip Weapon Text') }}</span>
+        </div>
       </div>
       <div v-if="charactor.artifact" @click="log_object(charactor.artifact)" @mouseover="showDetails(charactor.artifact)" @mouseout="hideDetails()" class="charactor-artifact">
-        <img :src="image_path('ICON', 'EQUIP_ARTIFACT')" width="100%" height="100%" />
+        <img :src="image_path('ICON', 'EQUIP_ARTIFACT')" width="100%" height="100%" @error="imgSrcError($event)"/>
+        <div class="equip-text">
+          <span>{{ $t('Equip Artifact Text') }}</span>
+        </div>
       </div>
       <div v-if="charactor.talent" @click="log_object(charactor.talent)" @mouseover="showDetails(charactor.talent)" @mouseout="hideDetails()" class="charactor-talent">
-        <img :src="image_path('ICON', 'EQUIP_TALENT')" width="100%" height="100%" />
+        <img :src="image_path('ICON', 'EQUIP_TALENT')" width="100%" height="100%" @error="imgSrcError($event)"/>
+        <div class="equip-text">
+          <span>{{ $t('Equip Talent Text') }}</span>
+        </div>
       </div>
       <div v-if="showDetailsFlag" class="charactor-details" :style="detailDivStyle(detailData)">
         <div class="p-div" :style="'width: ' + detailTextWidth + '%'">
@@ -42,7 +68,7 @@
           <!-- <p>Usage: {{ detailData.usage }}</p> -->
         </div>
         <div class="detail-img-div" v-if="detailData.img_name" :style="'width: ' + detailImgWidth + '%'">
-          <img :src="image_path(detailData.type, detailData.img_name, detailData.desc)" width="100%" height="100%" />
+          <img :src="image_path(detailData.type, detailData.img_name, detailData.desc)" width="100%" height="100%" @error="$event.target.style.display='none'"/>
         </div>
       </div>
       <div class="damage-notify-div" v-if="damage_notify.length > 0">
@@ -50,7 +76,11 @@
       </div>
       <div class="charactor-status-div">
         <div v-for="(status, sid) in charactor.status" :key="sid" @click="log_object(status)" @mouseover="showDetails(status, false)" @mouseout="hideDetails()" >
-          <img :src="status_path(status)" width="100%" height="100%" />
+          <img :src="status_path(status)" width="100%" height="100%" @error="imgSrcError($event)" />
+          <div class="status-text">
+            <!-- TODO more class to specify colors -->
+            <span>●</span>
+          </div>
           <div class="usage-span-div">
             <span v-if="status.usage && status.usage > 0">{{ status.usage }}</span>
           </div>
@@ -85,7 +115,33 @@ export default {
       detailOffset: 15,
     }
   },
+  mounted() {
+    this.dataAttribute = this.$el.dataset;
+  },
   methods: {
+    imgSrcError(event) {
+      event.target.style.display = 'none';
+
+      let nextElement = event.target.nextElementSibling;
+      if (nextElement) {
+        nextElement.style.display = 'flex';
+      }
+    },
+    replaceImgWithText(event, text, cls) {
+      // replace obj with text, text will be wrapped in p in a div with class
+      // cls, obj will be hidden.
+      const newTextElement = document.createTextNode(text);
+      const newSpanElement = document.createElement('span');
+      newSpanElement.appendChild(newTextElement);
+      const newDivElement = document.createElement('div');
+      newDivElement.className = cls;
+      newDivElement.appendChild(newSpanElement);
+      for (let key in this.dataAttribute) {
+        newDivElement.setAttribute(`data-${key}`, '');
+        newSpanElement.setAttribute(`data-${key}`, '');
+      }
+      event.target.parentNode.replaceChild(newDivElement, event.target);
+    },
     log_data() {
       console.log('CHARACTOR', JSON.parse(JSON.stringify(this.charactor)));
       this.$store.commit('setSelectedObject', this.charactor)
@@ -201,9 +257,6 @@ export default {
   /* top: 10.44%; */
   /* text-shadow: 2px 2px 0px  #fff, -2px -2px 0px  #fff, 2px -2px 0px  #fff, -2px 2px 0px  #fff; */
   color: black;
-  font-weight: bolder;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: white;
   font-size: 2vw;
 }
 
@@ -249,6 +302,8 @@ export default {
   height: 30%;
   width: 41.856%;
   opacity: 1;
+  font-weight: bolder;
+  -webkit-text-stroke-width: 1px;
 }
 
 .charactor-hp > div {
@@ -471,5 +526,113 @@ export default {
   padding: 0.25vw;
   -webkit-text-stroke-width: 0.5px;
 }
+
+.charge-text-back, .charge-text-front {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 2vw;
+  -webkit-text-stroke-width: 0.3vw;
+}
+
+.charge-text-front {
+  color: #FFFFDF;
+  -webkit-text-stroke-color: #EEA13B;
+  transform: translateX(0.3vw);
+}
+.charge-text-back {
+  color: #A68C73;
+  -webkit-text-stroke-color: #917657;
+  transform: translateX(0.3vw);
+}
+
+.charactor-text {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 2vw;
+  font-weight: bold;
+  height: 100%;
+  width: 100%;
+  border: 0.1vw;
+  border-color: #6B5531;
+  border-style: solid;
+  border-radius: 0.5vw;
+}
+
+.charactor-text > span {
+  word-break: break-all;
+}
+
+.equip-text {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #FFFF, #FFF0);
+  font-size: 2vw;
+  font-weight: bold;
+  height: 100%;
+  width: 100%;
+  border: 0.1vw;
+}
+
+.element-text {
+  display: none;
+  width: 100%;
+  height: 100%;
+  font-size: 2vw;
+  transform: translate(-.0vw, -.75vw);
+  -webkit-text-stroke-width: 0.25vw;
+}
+
+.element-text-anemo {
+  color: #54F0C0;
+  -webkit-text-stroke-color: #30776E;
+}
+
+.element-text-hydro {
+  color: #52D3FF;
+  -webkit-text-stroke-color: #4161A6;
+}
+
+.element-text-pyro {
+  color: #FF955F;
+  -webkit-text-stroke-color: #9B4838;
+}
+
+.element-text-cryo {
+  color: #98E4E4;
+  -webkit-text-stroke-color: #337683;
+}
+
+.element-text-electro {
+  color: #D19AFF;
+  -webkit-text-stroke-color: #6A3EB3;
+}
+
+.element-text-geo {
+  color: #EACE5B;
+  -webkit-text-stroke-color: #7C5D2F;
+}
+
+.element-text-dendro {
+  color: #BEDD76;
+  -webkit-text-stroke-color: #647E31;
+}
+
+.status-text {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 2vw;
+  font-weight: bold;
+  -webkit-text-stroke-width: 0.15vw;
+  -webkit-text-stroke-color: #B87A53;
+  color: #FFBD84;
+  transform: translate(-.0vw, -.1vw);
+}
+
 
 </style>

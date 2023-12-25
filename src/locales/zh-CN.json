@@ -143,6 +143,11 @@
   "Room is full. Please try to create new room later or enter existing rooms.": "房间已满。请稍后尝试创建或进入已有房间。",
   "Successfully enter room ": "成功进入房间 ",
   "Successfully create room ": "成功创建房间 ",
+  "No Image Title": "初始时前端没有图像。",
+  "No Image Title description": "如果你想显示图像，你应该自己收集图像，然后在下方输入图像路径URL。如果留空或者URL错误，前端将不会显示图像。",
+  "Equip Talent Text": "命",
+  "Equip Weapon Text": "武",
+  "Equip Artifact Text": "帽",
 
   "SKILL_TYPE/NORMAL_ATTACK": "普通攻击",
   "SKILL_TYPE/ELEMENTAL_SKILL": "元素战技",

@@ -1,6 +1,9 @@
 <template>
   <div :class="{ 'card': true, 'active-card': card.is_active }" @click="log_data">
-    <img class="main-img" :src="image_link" :alt="image_alt" width="100%" height="100%" />
+    <img class="main-img" :src="image_link" :alt="image_alt" width="100%" height="100%" @error="imgSrcError($event)" />
+    <div class="card-text">
+      <span>{{ image_alt }}</span>
+    </div>
     <!-- <p>{{ card.name }}</p> -->
     <!-- <p>Cost: {{ card.cost }}</p> -->
     <div class="cost-outer-div" v-if="card.name != 'Unknown'">
@@ -15,6 +18,11 @@ export default {
   name: 'Card',
   components: {
     Cost
+  },
+  data () {
+    return {
+      dataAttribute: null
+    }
   },
   computed: {
     image_link() {
@@ -40,7 +48,18 @@ export default {
       }
     }
   },
+  mounted() {
+    this.dataAttribute = this.$el.dataset;
+  },
   methods: {
+    imgSrcError(event) {
+      event.target.style.display = 'none';
+
+      let nextElement = event.target.nextElementSibling;
+      if (nextElement) {
+        nextElement.style.display = 'flex';
+      }
+    },
     log_data() {
       console.log('CARD', JSON.parse(JSON.stringify(this.card)))
       this.$store.commit('setSelectedObject', this.card);
@@ -72,10 +91,26 @@ img {
   flex-direction: column;
   width: 36.615%;
   height: 100%;
+  top: -100%;
 }
 
 .main-img {
   font-size: 1vw;
+}
+
+.card-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: 0.1vw;
+  border-color: #6B5531;
+  border-style: solid;
+  border-radius: 0.5vw;
+}
+
+.card-text > span {
+  word-break: break-all;
 }
 
 </style>

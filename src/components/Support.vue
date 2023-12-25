@@ -1,9 +1,12 @@
 <template>
   <div :class="'support ' + selectClass" @click="log_data">
-    <img class="main-img" :src="image_path('SUPPORT', support.name, support.desc)" :alt="$t('SUPPORT/' + support.name)"/>
+    <img class="main-img" :src="image_path('SUPPORT', support.name, support.desc)" :alt="$t('SUPPORT/' + support.name)" @error="imgSrcError($event)"/>
+    <div class="support-text">
+      <span>{{ $t('SUPPORT/' + support.name) }}</span>
+    </div>
     <div class="support-usage-div">
       <div>
-        <img v-if="support.icon_type != 'NONE'" :src="image_path('ICON', support.icon_type)" :alt="support.icon_type" width="100%" height="100%" />
+        <img v-if="support.icon_type != 'NONE'" :src="image_path('ICON', support.icon_type)" :alt="support.icon_type" width="100%" height="100%" @error="$event.target.style.display='none'"/>
         <div class="span-div">
           <span>{{ support.usage }}</span>
         </div>
@@ -30,6 +33,14 @@ export default {
     }
   },
   methods: {
+    imgSrcError(event) {
+      event.target.style.display = 'none';
+
+      let nextElement = event.target.nextElementSibling;
+      if (nextElement) {
+        nextElement.style.display = 'flex';
+      }
+    },
     log_data() {
       console.log('SUPPORT', JSON.parse(JSON.stringify(this.support)))
       this.$store.commit('setSelectedObject', this.support);
@@ -116,4 +127,23 @@ export default {
   font-size: 50%;
   -webkit-text-stroke-width: 0;
 }
+
+.support-text {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  border: 0.1vw;
+  border-color: #6B5531;
+  border-style: solid;
+  border-radius: 0.5vw;
+  font-size: 1vw;
+}
+
+.support-text > span {
+  word-break: break-all;
+  -webkit-text-stroke-width: 0vw;
+}
+
 </style>
