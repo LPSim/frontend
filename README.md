@@ -17,7 +17,7 @@ to the master, sometimes may have trouble loading.
 
 ## Disclaimer
 
-This project is for learning and communication only. Code of this project is open-sourced with APGLv3 license. This project IS NOT affiliated with miHoYo. All game text and image materials are owned by miHoYo. This project and its reposi
+This project is for learning and communication only. Code of this project is open-sourced with APGLv3 license. This project IS NOT affiliated with miHoYo. All game text and image materials are owned by miHoYo. This project and its repository DO NOT contain any materials owned by miHoYo.
 
 ## usage
 

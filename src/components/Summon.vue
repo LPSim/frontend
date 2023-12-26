@@ -253,4 +253,9 @@ export default {
   -webkit-text-stroke-color: #527C2F;
 }
 
+.element-text-physical {
+  color: #C4C4C4;
+  -webkit-text-stroke-color: #7E633A;
+}
+
 </style>

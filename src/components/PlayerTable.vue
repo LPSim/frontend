@@ -32,9 +32,8 @@
             <!-- <h3>Team Status</h3> -->
             <div v-for="(status, sid) in playerTable.team_status" :key="sid" @mouseover="showDetails(status)" @mouseout="hideDetails(status)" @click="log_status(sid)">
               <img :src="status_path(status)" width="100%" height="100%" @error="imgSrcError($event)"/>
-              <div class="status-text">
-                <!-- TODO more class to specify colors -->
-                <span>●</span>
+              <div :class="'status-text status-text-' + status.icon_type.toLowerCase()">
+                <span>{{ status.icon_type == 'OTHERS' ? '?' : '●' }}</span>
               </div>
               <div class="usage-span-div">
                 <span v-if="status.usage && status.usage > 0">{{ status.usage }}</span>
@@ -1073,9 +1072,76 @@ export default {
   font-size: 2vw;
   font-weight: bold;
   -webkit-text-stroke-width: 0.15vw;
-  -webkit-text-stroke-color: #B87A53;
-  color: #FFBD84;
   transform: translate(-.0vw, -.1vw);
+}
+
+.status-text-debuff, .status-text-frozen, .status-text-daze, .status-text-dot,
+.status-text-debuff_element_fire, .status-text-debuff_element_elec, .status-text-debuff_element_ice,
+.status-text-debuff_element_water, .status-text-debuff_element_wind, .status-text-debuff_element_rock,
+.status-text-debuff_element_grass, .status-text-debuff_element_physics, .status-text-food {
+  color: #F28282;
+  -webkit-text-stroke-color: #C26363;
+}
+
+.status-text-buff, .status-text-special, .status-text-atk_self, .status-text-atk_up {
+  color: #B87A53;
+  -webkit-text-stroke-color: #FFBD84;
+}
+
+.status-text-atk_up_wind, .status-text-element_enchant_wind {
+  color: #54F0C0;
+  -webkit-text-stroke-color: #30776E;
+}
+
+.status-text-atk_up_water, .status-text-element_enchant_water {
+  color: #52D3FF;
+  -webkit-text-stroke-color: #4161A6;
+}
+
+.status-text-atk_up_fire, .status-text-element_enchant_fire {
+  color: #FF955F;
+  -webkit-text-stroke-color: #9B4838;
+}
+
+.status-text-atk_up_ice, .status-text-element_enchant_ice {
+  color: #98E4E4;
+  -webkit-text-stroke-color: #337683;
+}
+
+.status-text-atk_up_elec, .status-text-element_enchant_elec {
+  color: #D19AFF;
+  -webkit-text-stroke-color: #6A3EB3;
+}
+
+.status-text-atk_up_rock, .status-text-element_enchant_rock {
+  color: #EACE5B;
+  -webkit-text-stroke-color: #7C5D2F;
+}
+
+.status-text-atk_up_grass, .status-text-element_enchant_grass {
+  color: #BEDD76;
+  -webkit-text-stroke-color: #647E31;
+}
+
+.status-text-barrier {
+  color: #965CDD;
+  -webkit-text-stroke-color: #B490E0;
+}
+
+.status-text-shield {
+  color: #E5C58B;
+  -webkit-text-stroke-color: #AD9055;
+}
+
+.status-text-heal, .status-text-revive {
+  color: #A4F482;
+  -webkit-text-stroke-color: #527C2F;
+}
+
+.status-text-others {
+  color: #888;
+  -webkit-text-stroke-width: 0;
+  font-size: 1.5vw;
 }
 
 </style>
