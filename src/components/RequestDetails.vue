@@ -4,7 +4,7 @@
       <span>Player {{ selectedRequest.player_idx }}: </span>
       <span>{{ selectedRequest.name.replace("Request", "") }}</span>
       <div class="cost-div">
-        <Cost :cost="selectedRequest.cost" :max_number="4" direction="row" />
+        <Cost :cost="selectedRequest.cost" :max_number="4" direction="row" justify="center" :cost_font_size="1"/>
       </div>
     </div>
     <!-- <p>{{ selectedRequest }}</p> -->
@@ -54,15 +54,12 @@ export default {
 }
 
 .request-details-root > div {
-  font-size: large;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
   align-items: center;
-  justify-content: center;
-  height: 25px;
 }
 
 .request-details-root > div > .cost-div {

@@ -25,8 +25,10 @@
           <h4>{{ $t('Upload replay file:') }}</h4>
           <input type="file" ref="fileInput" @change="handleFileSelect" :disabled="processing" style="font-size: 0.8vw">
         </div>
-        <div>
-          <!-- <button @click="stopRefresh()">stopRefresh</button> -->
+        <div class="server-url-div">
+          <label for="server-url">{{ $t('Server URL:') }}</label>
+          <input id="server-url" type="text" v-model="serverURL">
+          <button id="connect-server-button" @click="connectServer" :disabled="playerTableOrder == -1" :style="serverConnected ? '' : 'background-color: #ffa500'">{{ $t(serverConnected ? 'Connected' : 'Connect') }}</button>
         </div>
       </div>
       <div class="header-div" :style="showDebug ? 'top: 8rem;' : ''">
@@ -92,7 +94,7 @@
         </div>
         <div class="buttons-div">
           <div class="data-navigation">
-            <div>
+            <div class="data-navigation-first">
               <div class="step-count">
                 <label for="step-count-input">{{ $t('Step count:') }}</label>
                 <input id="step-count-input" type="number" v-model="stepCount" min="1" max="1000">
@@ -100,7 +102,7 @@
               <button @click="showPrevData" :disabled="currentDataIndex === 0 || matchData.length === 0">{{ $t('Prev') }}</button>
               <button @click="showNextData" :disabled="currentDataIndex === matchData.length - 1 || matchData.length === 0">{{ $t('Next') }}</button>
             </div>
-            <div>
+            <div class="data-navigation-second">
               <div class="current-step">
                 <label for="current-step-input">{{ $t('Current step:') }}</label>
                 <input id="current-step-input" type="number" v-model="currentDataIndex" @keydown.enter="jumpToData" min="0" :max="matchData.length - 1">
@@ -111,11 +113,6 @@
           </div>
         </div>
         <div class="debug-refresh-freq-div">
-          <div class="server-url-div">
-            <label for="server-url">{{ $t('Server URL:') }}</label>
-            <input id="server-url" type="text" v-model="serverURL">
-            <button id="connect-server-button" @click="connectServer" :disabled="playerTableOrder == -1" :style="serverConnected ? '' : 'background-color: #ffa500'">{{ $t(serverConnected ? 'Connected' : 'Connect') }}</button>
-          </div>
           <div class="freq-div">
               <label :class="refreshInterval < 300 ? 'freq-label-warning' : ''" for="refresh-frequency">{{ $t('Auto Refresh frequency (ms):') }}</label>
               <input id="refresh-frequency" type="number" v-model="refreshInterval" min="1">
@@ -153,7 +150,7 @@
       </div>
       <div v-if="switchNotify" :class="{ 'switch-notify-container': true, 'notify-right-part': switchNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': switchNotify.player_id != playerTableOrder }">
-          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })" @error="$event.target.style.display='none'"/>
+          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })" @load="updateImageWidth($event)" @error="$event.target.style.display='none'"/>
           <div>
             <p>{{ $t('Switch to') }} {{ $t('CHARACTOR/' + $store.getters.getNameWithDesc({ name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })) }}</p>
           </div>
@@ -161,7 +158,7 @@
       </div>
       <div v-if="skillNotify" :class="{ 'skill-notify-container': true, 'notify-right-part': skillNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': skillNotify.player_id != playerTableOrder }">
-          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })" @error="$event.target.style.display='none'"/>
+          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })" @load="updateImageWidth($event)" @error="$event.target.style.display='none'"/>
           <div>
             <p>{{ $t('CHARACTOR/' + $store.getters.getNameWithDesc({ name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })) }} {{ $t('used') }} {{ $t('SKILL_TYPE/' + skillNotify.skill_type) }}</p>
             <p>{{ $t('SKILL_' + skillNotify.charactor_name + '_' + skillNotify.skill_type + '/' + skillNotify.skill_name) }}</p>
@@ -310,7 +307,6 @@ export default {
       refreshInterval: 1000,
       showDebug: false,
       displayInJudgeMode: false,
-      currentLanguage: null,
       refreshTimeout: null,
       matchUUID: null,
       showOverlay: true,
@@ -325,7 +321,7 @@ export default {
     // console.log('I18N', this.$root.$i18n, this.$i18n);
 
     // set current language
-    this.currentLanguage = this.$root.$i18n.locale;
+    this.$root.$i18n.locale = this.currentLanguage;
 
     // auto load logs.txt. when debug, it avoids manually loading data.
     // const logFilePath = 'logs.txt';
@@ -1201,6 +1197,15 @@ export default {
       }
       if (card.name == 'Unknown') type = 'CARD'
       return this.$t(type + '/' + this.$store.getters.getNameWithDesc(card));
+    },
+    updateImageWidth(event) {
+      if (!navigator.userAgent.includes('Firefox')) return;
+      // only firefox needs to set fixed width and height
+      let target = event.target;
+      let width = target.offsetWidth;
+      let height = target.offsetHeight;
+      target.style.width = width + 'px';
+      target.style.height = height + 'px';
     }
   },
   computed: {
@@ -1565,6 +1570,14 @@ export default {
         this.$store.commit('setServerConnected', value);
       }
     },
+    currentLanguage: {
+      get () {
+        return this.$store.state.frontendLanguage;
+      },
+      set (value) {
+        this.$store.commit('setFrontendLanguage', value);
+      }
+    },
     // match: {
     //   get() {
     //     console.log('get', this._match);
@@ -1654,7 +1667,7 @@ textarea {
 }
 
 .buttons-div {
-  width: 13%;
+  width: 15%;
 }
 
 .parse-button-container {
@@ -1800,6 +1813,18 @@ button:hover {
   background-color: #3e8e41;
 }
 
+.data-navigation input {
+  width: 80%;
+}
+
+.data-navigation > div > div {
+  width: 40%;
+}
+
+.data-navigation > div > button {
+  width: 30%;
+}
+
 .requests-div {
   position: relative;
   width: 150px;
@@ -1827,7 +1852,7 @@ button:hover {
   top: 0;
   left: -300%;
   width: 300%; */
-  width: 40%;
+  width: 10%;
   /* padding: 10px; */
   z-index: 9999;
 }
@@ -1904,7 +1929,7 @@ button:hover {
 }
 
 .debug-refresh-freq-div {
-  width: 17%;
+  width: 15%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

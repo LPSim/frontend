@@ -32,6 +32,7 @@ export default new Vuex.Store({
     nameToId: {},
     availableVersions: [],
     descKeyToCost: {},
+    frontendLanguage: 'zh-CN',
   },
   mutations: {
     setDeckCodeData(state, data) {
@@ -457,6 +458,10 @@ export default new Vuex.Store({
       state.roomName = data;
       localStorage.setItem(localStoragePrefix + 'roomName', data);
     },
+    setFrontendLanguage(state, data) {
+      state.frontendLanguage = data;
+      localStorage.setItem(localStoragePrefix + 'frontendLanguage', data);
+    },
     setServerConnected(state, data) {
       state.serverConnected = data;
     },
@@ -472,6 +477,7 @@ export default new Vuex.Store({
         'roomName',
         'imageResourceURL',
         'serverURL',
+        'frontendLanguage',
       ];
       let prefix = localStoragePrefix;
       for (let i of targets) {

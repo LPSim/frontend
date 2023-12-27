@@ -247,6 +247,7 @@ export default {
 
 .element {
   height: 100%;
+  width: 20%;
 }
 
 .charactor, .charactor-died {
