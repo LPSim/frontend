@@ -39,7 +39,7 @@
       <div class="select-divs" v-if="selectionMode">
           <div class="select-splitter-div">{{  $t('Current') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Charactors') }} * {{ selectionMode == 'CARD' ? cardRealLength : charactors.length }}</div>
           <div v-if="selectionMode == 'CHARACTOR'" class="images-div images-select-div-left" style="width: 15%">
-            <div class="one-image-div" v-for="charactor, cid in charactors" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="$t(getFullName(charactor))" @click="removeCard(charactor)">
+            <div class="one-image-div" v-for="charactor, cid in charactors" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="$t(getFullName(charactor))" @click="removeCard(charactor)" @contextmenu.prevent="rightClick(charactor)">
               <img :src="getCardImageUrl({ ...charactor, scale: '140x' })" @error="imgSrcError($event)"/>
               <div class="card-text">
                 <span>{{ $t(getFullName(charactor)) }}</span>
@@ -48,8 +48,8 @@
             </div>
           </div>
           <div v-else class="images-div images-select-div-left" style="width: 40%">
-            <div class="one-image-div one-small-image-div" v-for="card, cid in cards" @click="removeCard(card)" @mousemove="showDetail(card.type, card.name, card.version, card)">
-              <img :src="getCardImageUrl({ ...card, scale: '140x' })" :alt="$t(getFullName(card))" @error="imgSrcError($event)"/>
+            <div class="one-image-div one-small-image-div" v-for="card, cid in cards" @click="removeCard(card)" @contextmenu.prevent="rightClick(card)" @mousemove="showDetail(card.type, card.name, card.version, card)">
+              <img :src="getCardImageUrl({ ...card, scale: '140x' })" :alt="$t(getFullName(card))" @error="imgSrcError($event)" @load="imgLoadSuccess($event)"/>
               <div class="card-text">
                 <span>{{ $t(getFullName(card)) }}</span>
               </div>
@@ -69,7 +69,7 @@
       <div v-else class="images-div">
         <!-- <div class="charactors-div"> -->
           <div class="splitter-div">{{  $t('Charactors') }} * {{ charactors.length }}</div>
-          <div class="one-image-div" v-for="charactor, cid in charactors" @click="removeCard(charactor)" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)">
+          <div class="one-image-div" v-for="charactor, cid in charactors" @click="removeCard(charactor)" @contextmenu.prevent="rightClick(charactor)" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)">
             <img :src="getCardImageUrl(charactor)" :alt="$t(getFullName(charactor))" @error="imgSrcError($event)"/>
             <div class="card-text">
               <span>{{ $t(getFullName(charactor)) }}</span>
@@ -79,8 +79,8 @@
         <!-- </div> -->
         <!-- <div class="cards-div"> -->
           <div class="splitter-div">{{  $t('Cards') }} * {{ cardRealLength }}</div>
-          <div class="one-image-div" v-for="card, cid in cards" @mousemove="showDetail(card.type, card.name, card.version, card)" @click="removeCard(card)">
-            <img :src="getCardImageUrl(card)" :alt="$t(getFullName(card))" @error="imgSrcError($event)"/>
+          <div class="one-image-div" v-for="card, cid in cards" @mousemove="showDetail(card.type, card.name, card.version, card)" @click="removeCard(card)" @contextmenu.prevent="rightClick(card)">
+            <img :src="getCardImageUrl(card)" :alt="$t(getFullName(card))" @error="imgSrcError($event)" @load="imgLoadSuccess($event)"/>
             <div class="card-text">
               <span>{{ $t(getFullName(card)) }}</span>
             </div>
@@ -126,6 +126,14 @@ export default {
         nextElement.style.display = 'flex';
       }
     },
+    imgLoadSuccess(event) {
+      event.target.style.display = 'block';
+
+      let nextElement = event.target.nextElementSibling;
+      if (nextElement) {
+        nextElement.style.display = 'none';
+      }
+    },
     getCardImageUrl(obj) {
       return this.$store.getters.getImagePath(obj)
     },
@@ -136,20 +144,25 @@ export default {
         type = type + '_' + obj.charactor_name;
       return type + '/' + name;
     },
-    removeCard(obj) {
+    rightClick(obj) {
+      this.removeCard(obj, false);
+    },
+    removeCard(obj, showWarning = true) {
       if (obj.name == 'Empty' && obj.type == 'CARD') return;
       if (!this.cardModifiable) return;
       let type = obj.type;
       let name = this.$store.getters.getNameWithDesc(obj);
       if (type == 'TALENT')
         type = type + '_' + obj.charactor_name;
-      let userConfirmation = confirm(
-        this.$t('Are you sure to remove ')
-        + this.$t(type == 'CHARACTOR' ? 'charactor: ' : 'card: ')
-        + this.$t(type + '/' + name)
-        + this.$t('?')
-      );
-      if (!userConfirmation) return;
+      if (showWarning) {
+        let userConfirmation = confirm(
+          this.$t('Are you sure to remove ')
+          + this.$t(type == 'CHARACTOR' ? 'charactor: ' : 'card: ')
+          + this.$t(type + '/' + name)
+          + this.$t('?')
+        );
+        if (!userConfirmation) return;
+      }
       if (type != 'CHARACTOR') type = 'CARD';
       this.$store.commit('addDeckModifyCounter', null);
       this.$store.commit('removeDeckCard', {
