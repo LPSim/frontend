@@ -39,30 +39,33 @@
         </div>
       </div>
       <div class="header-div" :style="showDebug ? 'top: 5vw;' : ''">
+        <div class="refresh-debug-div">
+          <button @click="changeLanguage()">Language</button>
+          <button @click="showDebug = !showDebug">{{ $t('Toggle Debug') }}</button>
+        </div>
         <div class="deck-start-div">
           <button id="check-show-deck" @click="clickCheckShowDeck" :disabled="playerTableOrder == -1 || !serverConnected">{{ $t('Check/Set Deck') }}</button>
           <button id="start-new-match" @click="clickStartNewMatch" :disabled="playerTableOrder == -1 || !serverConnected">{{ $t('Start New Match') }}</button>
-          <button @click="resetByIndex()" :disabled="playerTableOrder == -1 || matchData.length === 0 || !serverConnected">{{ $t('Reset Match to This Index') }}</button>
         </div>
         <div class="radios-div">
           <p>{{ $t('Display Mode:') }}</p>
-          <div class="judge-mode-div">
-            <label>
-              <input type="radio" v-model="displayInJudgeMode" :value="true" @click="updateMatch(undefined,true, null)">
-              {{ $t('Judge Mode (show information of all players)') }}
-            </label>
-            <label>
-              <input type="radio" v-model="displayInJudgeMode" :value="false" @click="updateMatch(undefined, false, null)">
-              {{ $t('Play Mode (show information only current player)') }}
-            </label>
-          </div>
+          <label>
+            <input type="radio" v-model="displayInJudgeMode" :value="true" @click="updateMatch(undefined,true, null)">
+            {{ $t('Judge Mode (show information of all players)') }}
+          </label>
+          <label>
+            <input type="radio" v-model="displayInJudgeMode" :value="false" @click="updateMatch(undefined, false, null)">
+            {{ $t('Play Mode (show information only current player)') }}
+          </label>
+        </div>
+        <div class="order-div">
           <p :style="playerTableOrder == -1 ? 'color: red' : ''">{{ $t('View point:') }}</p>
-          <div class="player-table-order" :style="playerTableOrder == -1 ? 'color: red' : ''">
-            <label v-for="tnum in [0, 1]">
-              <input type="radio" v-model="playerTableOrder" :value="tnum" @click="updateMatch(undefined, null, tnum)">
-              {{ $tc('Player :', tnum) }}{{ match ? match.player_tables[tnum].player_name : '' }}
-            </label>
-          </div>
+          <!-- <div class="player-table-order" :style="playerTableOrder == -1 ? 'color: red' : ''"> -->
+          <label v-for="tnum in [0, 1]">
+            <input type="radio" v-model="playerTableOrder" :value="tnum" @click="updateMatch(undefined, null, tnum)">
+            {{ $tc('Player :', tnum) }}{{ match ? match.player_tables[tnum].player_name : '' }}
+          </label>
+          <!-- </div> -->
         </div>
         <div class="main-info-div">
           <div v-if="playerTableOrder == -1">
@@ -81,11 +84,6 @@
             </div>
           </div>
           <div v-if="match != null && playerTableOrder != -1">
-            <div class="round-div" style="font-weight: bold; font-size: 2vw;">
-              {{ $tc('Round ', match.round_number) }}
-            </div>
-          </div>
-          <div v-if="match != null && playerTableOrder != -1">
             <div class="match-state-div">
               {{ $t('Current Match State: ') }}{{ $t('MATCHSTATE/' + match.state) }}
             </div>
@@ -96,6 +94,11 @@
             </div>
             <div class="your-turn-div" v-else>
               {{ $t('Current is Not Your Turn') }}
+            </div>
+          </div>
+          <div v-if="match != null && playerTableOrder != -1">
+            <div class="round-div" style="font-weight: bold; font-size: 2vw;">
+              {{ $tc('Round ', match.round_number) }}
             </div>
           </div>
         </div>
@@ -120,17 +123,14 @@
           </div>
         </div>
         <div class="debug-refresh-freq-div">
-          <div class="freq-div">
+          <div class="animation-freq-div">
               <label for="animation-frequency">{{ $t('Animation frequency (ms):') }}</label>
               <input id="animation-frequency" type="number" v-model="animationInterval" min="1">
           </div>
-          <div class="freq-div">
-              <span>{{  $t(refreshTimeout ? 'Auto refreshing' : 'Refresh stopped') }}</span>
+          <div class="reset-refresh-div">
+              <button class="reset-button" @click="resetByIndex()" :disabled="playerTableOrder == -1 || matchData.length === 0 || !serverConnected">{{ $t('Reset Match to This Index') }}</button>
+              <span :style="refreshTimeout ? '' : 'color: red; font-weight: bold'">{{  $t(refreshTimeout ? 'Auto refreshing' : 'Refresh stopped') }}</span>
               <button :class="refreshTimeout ? '' : 'blink-refresh-button'" @click="refreshTimeout ? stopRefresh() : refreshData()" :disabled="!serverConnected || playerTableOrder == -1">{{ $t(refreshTimeout ? 'Stop Refresh' : 'Start Refresh') }}</button>
-          </div>
-          <div class="refresh-debug-div">
-            <button @click="changeLanguage()">Language</button>
-            <button @click="showDebug = !showDebug">{{ $t('Toggle Debug') }}</button>
           </div>
         </div>
       </div>
@@ -219,7 +219,7 @@
     </div>
     <div class="empty-container" v-if="match == null && !showDeckDiv">
     </div>
-    <div id="overlay" v-if="showOverlay">
+    <div id="overlay" v-if="showOverlay && !serverConnected">
       <div id="overlay-content" style="background-color: white; padding: 20px;">
         <h2>{{ $t('LPSim frontend') }}</h2>
         <div class="overlay-content-div">
@@ -315,7 +315,6 @@ export default {
       commandHistory: [[], []],
       multiCommandTimeout: 100,
       refreshInterval: 1000,
-      animationInterval: 1000,
       showDebug: false,
       displayInJudgeMode: false,
       refreshTimeout: null,
@@ -510,7 +509,7 @@ export default {
       this.checkVersion(this.roomServerURL, checkVersionCallback.bind(this));
     },
     stopServerByError() {
-      // error occured, stop connect to server and stop auto refresh.
+      // error occured, stop auto refresh.
       // Make confirmation that whether user want to clear all data.
       clearTimeout(this.refreshTimeout);
       this.refreshTimeout = null;
@@ -1588,6 +1587,14 @@ export default {
         this.$store.commit('setFrontendLanguage', value);
       }
     },
+    animationInterval: {
+      get () {
+        return this.$store.state.animationInterval;
+      },
+      set (value) {
+        this.$store.commit('setAnimationInterval', value);
+      }
+    },
     // match: {
     //   get() {
     //     console.log('get', this._match);
@@ -1641,7 +1648,7 @@ div {
   position: absolute;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   top: 0;
   left: 0;
   width: 100%;
@@ -1690,7 +1697,7 @@ button {
   color: #fff;
   border: none;
   border-radius: 3px;
-  padding: 0.25vw 1vw;
+  padding: 0.25vw 0.5vw;
   font-size: 1em;
   cursor: pointer;
 }
@@ -1806,14 +1813,7 @@ button:hover {
 }
 
 .data-navigation button, .interaction-button-group button {
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  padding: 0.25vw 0.5vw;
-  font-size: 1em;
-  cursor: pointer;
-  margin: 0 0.25vw;
+  margin: 0 0.1vw;
 }
 
 .data-navigation button {
@@ -1872,7 +1872,6 @@ button:hover {
   z-index: 9999;
 }
 
-/* styles for the player table order input */
 .player-table-order {
   display: flex;
   justify-content: center;
@@ -1880,13 +1879,13 @@ button:hover {
   align-items: center;
 }
 
-.player-table-order > label {
+.order-div > label {
   display: flex;
   align-items: center;
   margin: 0vw 0vw;
 }
 
-.player-table-order input[type="radio"] {
+.order-div input[type="radio"] {
   margin: 0 0.5vw;
 }
 
@@ -1914,7 +1913,7 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 10%;
+  width: 5%;
 }
 
 .radios-div {
@@ -1922,16 +1921,26 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 20%;
+  width: 11%;
 }
 
-.radios-div > p {
+.order-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 9%;
+}
+
+.radios-div > p, .order-div > p {
   margin: 0.0vw 0 0 0;
   font-weight: bold;
 }
 
 .radios-div label {
   margin-bottom: 0.00vw;
+  display: flex;
+  align-items: center;
 }
 
 .main-info-div {
@@ -1940,7 +1949,7 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 40%;
+  width: 30%;
 }
 
 .debug-refresh-freq-div {
@@ -1962,16 +1971,8 @@ button:hover {
   justify-content: space-around;
 }
 
-.debug-refresh-freq-div > div {
-  display: flex;
-  justify-content: space-around;
-  height: 27.5%;
-}
 .server-url-div {
   height: 45%;
-}
-.debug-refresh-freq-div input {
-  margin: 0.2vw;
 }
 
 .server-url-div > label {
@@ -1988,21 +1989,51 @@ button:hover {
   padding: 0 0.05vw;
 }
 
-.freq-div > label {
-  width: 62%;
+.animation-freq-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35%;
 }
 
-.freq-div > input {
-  width: 20%;
+.animation-freq-div > label {
+  width: 65%;
+  margin: 0;
 }
 
-.freq-div > button {
-  width: 18%;
+.animation-freq-div > input {
+  width: 30%;
+  margin-right: 5%;
 }
 
-.refresh-debug-div > *, .freq-div > button {
-  margin: 0.2vw;
-  padding: 0 0.25vw;
+.freq-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reset-refresh-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65%;
+}
+
+.reset-refresh-div > .reset-button {
+  width: 40%;
+}
+
+.reset-refresh-div > span {
+  width: 30%;
+  margin: 0 2.5%;
+  text-align: center;
+}
+
+.refresh-debug-div {
+  width: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .header-div {
@@ -2167,10 +2198,11 @@ button:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 1000;
 }
 
 #overlay-content {
-  width: 30%;
+  width: 40%;
   font-size: 1vw;
   background-color: white;
   padding: 20px;
@@ -2180,6 +2212,12 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  #overlay-content {
+    width: 80%;
+  }
 }
 
 .overlay-content-div {
@@ -2216,7 +2254,14 @@ button:hover {
 
 #overlay-content .player-table-order {
   width: 70%;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+#overlay-content .player-table-order label {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin: 0 2vw;
 }
 
 #footer {

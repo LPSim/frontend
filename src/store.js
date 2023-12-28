@@ -33,6 +33,7 @@ export default new Vuex.Store({
     availableVersions: [],
     descKeyToCost: {},
     frontendLanguage: 'zh-CN',
+    animationInterval: 1000,
   },
   mutations: {
     setDeckCodeData(state, data) {
@@ -462,6 +463,10 @@ export default new Vuex.Store({
       state.frontendLanguage = data;
       localStorage.setItem(localStoragePrefix + 'frontendLanguage', data);
     },
+    setAnimationInterval(state, data) {
+      state.animationInterval = data;
+      localStorage.setItem(localStoragePrefix + 'animationInterval', data);
+    },
     setServerConnected(state, data) {
       state.serverConnected = data;
     },
@@ -478,6 +483,7 @@ export default new Vuex.Store({
         'imageResourceURL',
         'serverURL',
         'frontendLanguage',
+        'animationInterval',
       ];
       let prefix = localStoragePrefix;
       for (let i of targets) {

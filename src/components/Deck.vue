@@ -670,9 +670,15 @@ button {
   color: #fff;
   border: none;
   border-radius: 3px;
-  padding: 0.1rem 1rem;
+  padding: 0.1vw 1vw;
   font-size: 1em;
   cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  button {
+    padding: 0.1vw 0.1vw;
+  }
 }
 
 button:disabled {
@@ -698,6 +704,7 @@ button:hover {
 
 .card-text > span {
   background: #0000;
+  word-break: break-all;
 }
 
 .one-image-div > span {
