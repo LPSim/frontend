@@ -74,8 +74,8 @@
 
       <div class="round-ended-and-arcane">
         <div class="round-ended">
-          <p v-if="playerTable.has_round_ended" style="font-weight: bolder; color:rgb(238, 105, 22)">{{ $t('Round has ended') }}</p>
-          <p v-else>{{ $t('Round has not ended') }}</p>
+          <span v-if="playerTable.has_round_ended" style="font-weight: bolder; color:rgb(238, 105, 22)">{{ $t('Round has ended') }}</span>
+          <span v-else>{{ $t('Round has not ended') }}</span>
         </div>
         <div class="arcane-legend">
           <img :src="image_path('DICE', 'ARCANE_' + (playerTable.arcane_legend ? 'FULL' : 'EMPTY'))" height="100%" @error="imgSrcError($event)" />
@@ -104,7 +104,7 @@
         </div>
         <!-- {{ $tc('Table Deck: ', playerTable.table_deck.length) }} -->
         <div :class="'table-deck-pdiv' + (is_reverse ? '-reverse' : '')">
-          <p>{{ playerTable.table_deck.length }}</p>
+          <span>{{ playerTable.table_deck.length }}</span>
         </div>
       </div>
 
@@ -673,6 +673,7 @@ export default {
 
 .round-ended {
   height: 50%;
+  padding: 1vw 0;
 }
 
 .arcane-legend {

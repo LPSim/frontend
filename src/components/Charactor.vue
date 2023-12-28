@@ -558,6 +558,7 @@ export default {
   border-color: #6B5531;
   border-style: solid;
   border-radius: 0.5vw;
+  background-color: white;
 }
 
 .charactor-text > span {

@@ -1,7 +1,7 @@
 <template>
   <div class="request-button-root">
     <div :class="select_class">
-      {{ title }}
+      <span v-html="title"></span>
       <div class="cost-div" v-if="cost != null">
         <Cost :cost="cost" :max_number="3" direction="row" justify="center" />
       </div>

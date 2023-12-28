@@ -148,6 +148,11 @@
   "Equip Talent Text": "命",
   "Equip Weapon Text": "武",
   "Equip Artifact Text": "帽",
+  "(Space key)": "(空格键)",
+  "(ESC key)": "(ESC键)",
+  "Auto refreshing": "正在自动刷新",
+  "Refresh stopped": "自动刷新停止",
+  "Animation frequency (ms):": "动画速度（毫秒）：",
 
   "SKILL_TYPE/NORMAL_ATTACK": "普通攻击",
   "SKILL_TYPE/ELEMENTAL_SKILL": "元素战技",

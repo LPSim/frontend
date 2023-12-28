@@ -148,6 +148,11 @@
   "Equip Talent Text": "T",
   "Equip Weapon Text": "W",
   "Equip Artifact Text": "A",
+  "(Space key)": "(Space key)",
+  "(ESC key)": "(ESC key)",
+  "Auto refreshing": "Auto refreshing",
+  "Refresh stopped": "Refresh stopped",
+  "Animation frequency (ms):": "Animation speed (ms):",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",

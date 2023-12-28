@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="header-div-container" :style="showDebug ? 'padding-bottom: 16rem' : ''">
+    <div class="header-div-container" :style="showDebug ? 'padding-bottom: 10vw' : ''">
       <div class="header-div" v-if="showDebug">
         <div class="interaction-div">
           <div style="height: 60%; padding: 5%;">
@@ -25,13 +25,20 @@
           <h4>{{ $t('Upload replay file:') }}</h4>
           <input type="file" ref="fileInput" @change="handleFileSelect" :disabled="processing" style="font-size: 0.8vw">
         </div>
-        <div class="server-url-div">
-          <label for="server-url">{{ $t('Server URL:') }}</label>
-          <input id="server-url" type="text" v-model="serverURL">
-          <button id="connect-server-button" @click="connectServer" :disabled="playerTableOrder == -1" :style="serverConnected ? '' : 'background-color: #ffa500'">{{ $t(serverConnected ? 'Connected' : 'Connect') }}</button>
+        <div class="server-refresh-div">
+          <div class="server-url-div">
+            <label for="server-url">{{ $t('Server URL:') }}</label>
+            <input id="server-url" type="text" v-model="serverURL">
+            <button id="connect-server-button" @click="connectServer" :disabled="playerTableOrder == -1" :style="serverConnected ? '' : 'background-color: #ffa500'">{{ $t(serverConnected ? 'Connected' : 'Connect') }}</button>
+          </div>
+          <div class="freq-div">
+              <label :class="refreshInterval < 300 ? 'freq-label-warning' : ''" for="refresh-frequency">{{ $t('Auto Refresh frequency (ms):') }}</label>
+              <input id="refresh-frequency" type="number" v-model="refreshInterval" min="1">
+              <button :class="refreshTimeout ? '' : 'blink-refresh-button'" @click="refreshTimeout ? stopRefresh() : refreshData()" :disabled="!serverConnected || playerTableOrder == -1">{{ $t(refreshTimeout ? 'Stop Refresh' : 'Start Refresh') }}</button>
+          </div>
         </div>
       </div>
-      <div class="header-div" :style="showDebug ? 'top: 8rem;' : ''">
+      <div class="header-div" :style="showDebug ? 'top: 5vw;' : ''">
         <div class="deck-start-div">
           <button id="check-show-deck" @click="clickCheckShowDeck" :disabled="playerTableOrder == -1 || !serverConnected">{{ $t('Check/Set Deck') }}</button>
           <button id="start-new-match" @click="clickStartNewMatch" :disabled="playerTableOrder == -1 || !serverConnected">{{ $t('Start New Match') }}</button>
@@ -114,8 +121,11 @@
         </div>
         <div class="debug-refresh-freq-div">
           <div class="freq-div">
-              <label :class="refreshInterval < 300 ? 'freq-label-warning' : ''" for="refresh-frequency">{{ $t('Auto Refresh frequency (ms):') }}</label>
-              <input id="refresh-frequency" type="number" v-model="refreshInterval" min="1">
+              <label for="animation-frequency">{{ $t('Animation frequency (ms):') }}</label>
+              <input id="animation-frequency" type="number" v-model="animationInterval" min="1">
+          </div>
+          <div class="freq-div">
+              <span>{{  $t(refreshTimeout ? 'Auto refreshing' : 'Refresh stopped') }}</span>
               <button :class="refreshTimeout ? '' : 'blink-refresh-button'" @click="refreshTimeout ? stopRefresh() : refreshData()" :disabled="!serverConnected || playerTableOrder == -1">{{ $t(refreshTimeout ? 'Stop Refresh' : 'Start Refresh') }}</button>
           </div>
           <div class="refresh-debug-div">
@@ -199,10 +209,10 @@
             <RequestButton :title="$t('Declare Round End')" :select_class="selectClass('Declare Round End', buttonRequests.DeclareRoundEnd.idx)" />
           </div>
           <div @click="confirmSelection">
-            <RequestButton :title="$t('Confirm')" :select_class="selectClass('Confirm')" />
+            <RequestButton :title="$t('Confirm') + '<br>' + $t('(Space key)')" :select_class="selectClass('Confirm')" />
           </div>
           <div @click="cancelSelection">
-            <RequestButton :title="$t('Cancel')" :select_class="selectClass('Cancel')" />
+            <RequestButton :title="$t('Cancel') + '<br>' + $t('(ESC key)')" :select_class="selectClass('Cancel')" />
           </div>
         </div>
       </div>
@@ -305,6 +315,7 @@ export default {
       commandHistory: [[], []],
       multiCommandTimeout: 100,
       refreshInterval: 1000,
+      animationInterval: 1000,
       showDebug: false,
       displayInJudgeMode: false,
       refreshTimeout: null,
@@ -503,7 +514,6 @@ export default {
       // Make confirmation that whether user want to clear all data.
       clearTimeout(this.refreshTimeout);
       this.refreshTimeout = null;
-      this.serverConnected = false;
       if (confirm(this.$t('Stop server connection by error, clear all data?'))) {
         this.clearAllData(false);
         this.connectServer();
@@ -828,7 +838,7 @@ export default {
           // send response successfully, but no updated data. update request data.
           this.updateRequestData();
         }
-        this.updateMatchData(data);
+        this.updateMatchData(data, this.animationInterval);
         if (this.match.requests.length > 0)
           this.selectedRequest = this.match.requests[0];
         setTimeout(() => this.realSendInteraction(), this.multiCommandTimeout);
@@ -912,13 +922,13 @@ export default {
         this.refreshData();
       }
     },
-    updateMatchData(data, refresh = true) {
+    updateMatchData(data, refresh = 0) {
       if (refresh) {
         if (this.refreshTimeout != null) {
           clearTimeout(this.refreshTimeout);
           this.refreshTimeout = null;
         }
-        this.refreshTimeout = setTimeout(() => this.refreshData(), this.refreshInterval);
+        this.refreshTimeout = setTimeout(() => this.refreshData(), refresh);
       }
       if (data.length == 0) {
         if (this.matchData.length > this.maxPlayedDataIndex + 1) {
@@ -963,13 +973,16 @@ export default {
         clearTimeout(this.refreshTimeout);
       if (this.matchData.length > this.maxPlayedDataIndex + 1) {
         // in auto play, no need to refresh data
-        this.updateMatchData([]);
+        this.updateMatchData([], this.animationInterval);
         return;
       }
       let next_idx = this.matchData.length;
       function successFunc(data) {
         if (!data) return; // error on previous or empty data, no need to update
-        this.updateMatchData(data);
+        let interval = 0;
+        if (data.length == 0) interval = this.refreshInterval; // no data received, refresh later
+        else interval = this.animationInterval; // valid data received, refresh immediately
+        this.updateMatchData(data, interval);
         this.updateRequestData();
       }
       function checkFunc(response) {
@@ -1525,7 +1538,6 @@ export default {
         // if room name changes, stop refreshing.
         clearTimeout(this.refreshTimeout);
         this.refreshTimeout = null;
-        this.serverConnected = false;
         this.$store.commit('setRoomName', value);
       }
     },
@@ -1537,7 +1549,6 @@ export default {
         // if URL changes, stop refreshing.
         clearTimeout(this.refreshTimeout);
         this.refreshTimeout = null;
-        this.serverConnected = false;
         this.roomServerURLValue = value;
         this.$store.commit('setRoomServerURL', value);
       }
@@ -1550,7 +1561,6 @@ export default {
         // if URL changes, stop refreshing.
         clearTimeout(this.refreshTimeout);
         this.refreshTimeout = null;
-        this.serverConnected = false;
         this.$store.commit('setServerURL', value);
       }
     },
@@ -1624,6 +1634,7 @@ div {
   position: relative;
   width: 100%;
   padding-bottom: 5vw;
+  z-index: 999;
 }
 
 .header-div {
@@ -1639,12 +1650,12 @@ div {
 
 label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5vw;
 }
 
 .text-div {
   display: block;
-  width: 20%;
+  width: 10%;
   height: 100%;
   font-size: 1vw;
   /* margin-bottom: 1rem; */
@@ -1679,7 +1690,7 @@ button {
   color: #fff;
   border: none;
   border-radius: 3px;
-  padding: 0.25rem 1rem;
+  padding: 0.25vw 1vw;
   font-size: 1em;
   cursor: pointer;
 }
@@ -1817,6 +1828,10 @@ button:hover {
   width: 80%;
 }
 
+.data-navigation > div {
+  width: 100%;
+}
+
 .data-navigation > div > div {
   width: 40%;
 }
@@ -1935,12 +1950,24 @@ button:hover {
   justify-content: space-around;
 }
 
+.server-refresh-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 20%;
+}
+
+.server-refresh-div > div {
+  display: flex;
+  justify-content: space-around;
+}
+
 .debug-refresh-freq-div > div {
   display: flex;
   justify-content: space-around;
   height: 27.5%;
 }
-.debug-refresh-freq-div > .server-url-div {
+.server-url-div {
   height: 45%;
 }
 .debug-refresh-freq-div input {
@@ -2238,6 +2265,15 @@ button:hover {
   border-style: solid;
   border-radius: 0.5vw;
   background: white;
+}
+
+</style>
+
+<style>
+
+span {
+  user-select: none;
+  cursor: default;
 }
 
 </style>
