@@ -1,11 +1,10 @@
+import zhCN from './locales/zh-CN.json';
+import enUS from './locales/zh-CN.json';
 const languages = ['zh-CN', 'en-US'];
-const messages = {};
-for (let i = 0; i < languages.length; i++) {
-  let lang = languages[i];
-  import(`./locales/${lang}.json`).then((json) => {
-    messages[lang] = json;
-  });
-}
+const messages = {
+  'zh-CN': zhCN,
+  'en-US': enUS,
+};
 
 export default {
   locale: languages[0],
