@@ -1,12 +1,10 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import { createStore } from 'vuex';
 import imagePath from './imagePath.json';
 import { init as deckCodeInit, deckStrToDeckCode, deckCodeToDeckStr } from './deckCode';
 
-Vue.use(Vuex);
 const localStoragePrefix = 'store.state.';
 
-export default new Vuex.Store({
+export default createStore({
   state: {
     /* data selection variables */
     match: null,

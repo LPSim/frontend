@@ -1,18 +1,13 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import { createApp } from 'vue';
+import { createI18n } from 'vue-i18n'
 import App from './components/App.vue';
 import store from './store';
-import VueI18n from 'vue-i18n'
 import i18n_data from './i18n';
 
-Vue.config.productionTip = false;
-Vue.use(VueI18n);
+const i18n = createI18n(i18n_data);
 
-let i18n = new VueI18n(i18n_data);
-
-new Vue({
-  el: '#app',
-  store,
-  i18n,
-  render: h => h(App),
-});
+const app = createApp(App)
+app.config.productionTip = false;
+app.use(store);
+app.use(i18n);
+app.mount('#app')
