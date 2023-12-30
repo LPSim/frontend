@@ -377,7 +377,7 @@ export default {
             throw new Error(this.$t('Network response is not ok with detail ') + JSON.stringify(data.detail));
           })
           .catch(error => {
-            this.make_alert(this.$t(err_msg) + JSON.stringify(error), error)
+            this.make_alert(this.$t(err_msg) + error.message, error)
             if (stopServerConnection) this.stopServerByError();
           });
         }
@@ -820,6 +820,7 @@ export default {
       const data = {
         player_idx: this.currentRequestPlayerId,
         command: this.interactionCommands[cid][0],
+        frame_number: this.currentDataIndex,
       };
       if (this.matchUUID) data.uuid = this.matchUUID;
       console.log(data)
@@ -997,7 +998,7 @@ export default {
             throw new Error(this.$t('Network response is not ok with detail ') + JSON.stringify(data.detail));
           })
           .catch(error => {
-            this.make_alert(this.$t(err_msg) + JSON.stringify(error), error)
+            this.make_alert(this.$t(err_msg) + error.message, error)
             if (stopServerConnection) this.stopServerByError();
           });
         }
