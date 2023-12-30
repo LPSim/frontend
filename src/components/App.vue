@@ -864,7 +864,19 @@ export default {
         else {
           // type is diff
           let diffs = data[i].match_diff;
-          let recover_match = JSON.parse(JSON.stringify(data[i - 1].match));
+          let recover_match;
+          if (i > 0)
+            recover_match = JSON.parse(JSON.stringify(data[i - 1].match));
+          else {
+            // first is diff, get full from matchData
+            if (data[i].idx != this.matchData.length) {
+              this.make_alert(
+                $t('Error in update match data. ') + data[i].idx
+                + $tc(' is not equal to current match length ', this.matchData.length),
+              data);
+            }
+            recover_match = JSON.parse(JSON.stringify(this.matchData[this.matchData.length - 1]));
+          }
           for (let i = 0; i < diffs.length; i ++ ) {
             let diff = diffs[i];
             let key = diff[1];
