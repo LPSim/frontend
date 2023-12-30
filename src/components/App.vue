@@ -197,7 +197,7 @@
       </div>
       <div class="requests-button-container">
         <div class="prev-buttons">
-          <div v-if="key != 'DeclareRoundEnd' && key != 'SwitchCharactor'" v-for="data, key in buttonRequests" :key="key" @click="selectRequest(data)" >
+          <div v-for="data, key in prevButtonRequests" :key="key" @click="selectRequest(data)" >
             <RequestButton :title="data.title" :cost="data.cost" :select_class="selectClass(data.title, data.idx)" />
           </div>
         </div>
@@ -1393,6 +1393,17 @@ export default {
       }
       return finalres;
     },
+    prevButtonRequests() {
+      // filter out DeclareRoundEnd and SwitchCharactor
+      let br = this.buttonRequests;
+      let res = {}
+      for (let key in br) {
+        if (key != 'DeclareRoundEnd' && key != 'SwitchCharactor') {
+          res[key] = br[key];
+        }
+      }
+      return res;
+    },
     descData() {
       let data = this.$store.state.selectedObject;
       if (data === null)
@@ -1673,7 +1684,7 @@ label {
 textarea {
   font-family: monospace;
   font-size: 0.9em;
-  border-radius: 3px;
+  border-radius: 0.02vw;
   border: 1px solid #ccc;
   width: 95%;
   height: 100%;
@@ -1697,7 +1708,7 @@ button {
   background-color: #4caf50;
   color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 0.3vw;
   padding: 0.25vw 0.5vw;
   font-size: 1em;
   cursor: pointer;

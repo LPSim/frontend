@@ -303,7 +303,7 @@ export default {
   width: 41.856%;
   opacity: 1;
   font-weight: bolder;
-  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-width: 0.05vw;
 }
 
 .charactor-hp > div {
@@ -313,7 +313,6 @@ export default {
   text-align: center;
   width: 100%;
   height: 100%;
-  /* -webkit-text-stroke-width: 1px; */
   -webkit-text-stroke-color: black;
   /* line-height: 130%; */
   color: white;
@@ -476,13 +475,13 @@ export default {
 
 .usage-span-div {
   position: absolute;
-  font-size: 0.5vw;
+  font-size: 0.75vw;
   font-weight: bolder;
   text-align: center;
   height: 50%;
   top: 50%;
   left: 50%;
-  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-width: 0.05vw;
   -webkit-text-stroke-color: black;
   /* line-height: 130%; */
   color: white;
@@ -524,7 +523,6 @@ export default {
   box-shadow: 0 0 0.25vw 0.25vw rgb(211, 179, 138);
   margin: 0.25vw;
   padding: 0.25vw;
-  -webkit-text-stroke-width: 0.5px;
 }
 
 .charge-text-back, .charge-text-front {

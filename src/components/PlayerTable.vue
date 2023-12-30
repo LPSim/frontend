@@ -734,7 +734,7 @@ export default {
   font-size: 2vw;
   color: white;
   font-weight: bolder;
-  -webkit-text-stroke-width: 1.25px;
+  -webkit-text-stroke-width: 0.0625vw;
   -webkit-text-stroke-color: black;
   background: radial-gradient(circle, #FFF8, #FFF0);
   border-width: 20%;
@@ -854,14 +854,14 @@ export default {
 
 .usage-span-div {
   position: absolute;
-  font-size: 0.5vw;
+  font-size: 0.75vw;
   font-weight: bolder;
   text-align: center;
   width: 50%;
   height: 50%;
   top: 50%;
   left: 50%;
-  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-width: 0.05vw;
   -webkit-text-stroke-color: black;
   /* line-height: 130%; */
   color: white;
