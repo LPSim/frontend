@@ -153,6 +153,8 @@
   "Auto refreshing": "Auto refreshing",
   "Refresh stopped": "Refresh stopped",
   "Animation frequency (ms):": "Animation speed (ms):",
+  "Error in update match data. ": "Error in update match data. ",
+  " is not equal to current match length ": " is not equal to current match length {n}. ",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",

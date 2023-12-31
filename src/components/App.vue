@@ -197,7 +197,7 @@
       </div>
       <div class="requests-button-container">
         <div class="prev-buttons">
-          <div v-if="key != 'DeclareRoundEnd' && key != 'SwitchCharactor'" v-for="data, key in buttonRequests" :key="key" @click="selectRequest(data)" >
+          <div v-for="data, key in prevButtonRequests" :key="key" @click="selectRequest(data)" >
             <RequestButton :title="data.title" :cost="data.cost" :select_class="selectClass(data.title, data.idx)" />
           </div>
         </div>
@@ -377,7 +377,7 @@ export default {
             throw new Error(this.$t('Network response is not ok with detail ') + JSON.stringify(data.detail));
           })
           .catch(error => {
-            this.make_alert(this.$t(err_msg) + JSON.stringify(error), error)
+            this.make_alert(this.$t(err_msg) + error.message, error)
             if (stopServerConnection) this.stopServerByError();
           });
         }
@@ -820,6 +820,7 @@ export default {
       const data = {
         player_idx: this.currentRequestPlayerId,
         command: this.interactionCommands[cid][0],
+        frame_number: this.currentDataIndex,
       };
       if (this.matchUUID) data.uuid = this.matchUUID;
       console.log(data)
@@ -863,7 +864,19 @@ export default {
         else {
           // type is diff
           let diffs = data[i].match_diff;
-          let recover_match = JSON.parse(JSON.stringify(data[i - 1].match));
+          let recover_match;
+          if (i > 0)
+            recover_match = JSON.parse(JSON.stringify(data[i - 1].match));
+          else {
+            // first is diff, get full from matchData
+            if (data[i].idx != this.matchData.length) {
+              this.make_alert(
+                $t('Error in update match data. ') + data[i].idx
+                + $tc(' is not equal to current match length ', this.matchData.length),
+              data);
+            }
+            recover_match = JSON.parse(JSON.stringify(this.matchData[this.matchData.length - 1]));
+          }
           for (let i = 0; i < diffs.length; i ++ ) {
             let diff = diffs[i];
             let key = diff[1];
@@ -997,7 +1010,7 @@ export default {
             throw new Error(this.$t('Network response is not ok with detail ') + JSON.stringify(data.detail));
           })
           .catch(error => {
-            this.make_alert(this.$t(err_msg) + JSON.stringify(error), error)
+            this.make_alert(this.$t(err_msg) + error.message, error)
             if (stopServerConnection) this.stopServerByError();
           });
         }
@@ -1393,6 +1406,17 @@ export default {
       }
       return finalres;
     },
+    prevButtonRequests() {
+      // filter out DeclareRoundEnd and SwitchCharactor
+      let br = this.buttonRequests;
+      let res = {}
+      for (let key in br) {
+        if (key != 'DeclareRoundEnd' && key != 'SwitchCharactor') {
+          res[key] = br[key];
+        }
+      }
+      return res;
+    },
     descData() {
       let data = this.$store.state.selectedObject;
       if (data === null)
@@ -1673,7 +1697,7 @@ label {
 textarea {
   font-family: monospace;
   font-size: 0.9em;
-  border-radius: 3px;
+  border-radius: 0.02vw;
   border: 1px solid #ccc;
   width: 95%;
   height: 100%;
@@ -1697,7 +1721,7 @@ button {
   background-color: #4caf50;
   color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 0.3vw;
   padding: 0.25vw 0.5vw;
   font-size: 1em;
   cursor: pointer;

@@ -93,7 +93,7 @@ export default {
   /* text-shadow: 2px 2px 0px  #fff, -2px -2px 0px  #fff, 2px -2px 0px  #fff, -2px 2px 0px  #fff; */
   color: black;
   font-weight: bolder;
-  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-width: 0.05vw;
   -webkit-text-stroke-color: white;
   font-size: 2vw;
 }
@@ -139,7 +139,7 @@ export default {
   text-align: center;
   width: 100%;
   height: 100%;
-  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-width: 0.05vw;
   -webkit-text-stroke-color: black;
   /* line-height: 130%; */
   color: white;
