@@ -3,7 +3,7 @@
   "name": "lpsim-frontend",
   "productName": "lpsim-frontend",
   "description": "Simple frontend for LPSim",
-  "version": "0.4.3.1",
+  "version": "0.4.3.2",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
