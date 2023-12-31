@@ -86,7 +86,11 @@ function init(data, nti) {
 
 function deckCodeToDeckStr(deckCode, version = null, sort = true) {
     // Convert the base64 deck code to deck str. If version is set, add default_version.
-    let binary = Buffer.from(deckCode, 'base64');
+    let binaryStr = atob(deckCode);
+    let binary = new Uint8Array(binaryStr.length);
+    for (let i = 0; i < binaryStr.length; i++) {
+        binary[i] = binaryStr.charCodeAt(i);
+    }
     let bb = [];
     for (let b of binary) {
         bb.push((256 + b - binary[binary.length - 1]) % 256);
@@ -152,7 +156,7 @@ function deckStrToDeckCodeOne(nameList, checksum) {
     uint = uint.flat();
     uint.push(0);
     uint = uint.map(x => (x + checksum) % 256);
-    let res = Buffer.from(uint).toString('base64');
+    let res = btoa(String.fromCharCode.apply(null, uint));
     return res;
 }
 
