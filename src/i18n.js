@@ -1,9 +1,10 @@
-let languages = ['zh-CN', 'en-US'];
-let messages = {};
-for (let i = 0; i < languages.length; i++) {
-  let lang = languages[i];
-  messages[lang] = require(`./locales/${lang}.json`);
-}
+import zhCN from './locales/zh-CN.json';
+import enUS from './locales/en-US.json';
+const languages = ['zh-CN', 'en-US'];
+const messages = {
+  'zh-CN': zhCN,
+  'en-US': enUS,
+};
 
 export default {
   locale: languages[0],

@@ -285,6 +285,7 @@ import RequestButton from './RequestButton.vue';
 import Deck from './Deck.vue';
 import DescBlock from './DescBlock.vue';
 import HTTP from '../http';
+import packageJSON from '../../package.json';
 
 export default {
   name: 'App',
@@ -538,7 +539,7 @@ export default {
       function versionSuccess(obj) {
         let version = obj.version;
         console.log('SERVER VERSION', version);
-        let self_version = require('../../package.json').version;
+        let self_version = packageJSON.version;
         if (!(version == undefined || version == 'unknown')) {
           // undefined, old server, no error message.
           // or unknown, debug server, no error message.

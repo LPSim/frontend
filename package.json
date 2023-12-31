@@ -6,30 +6,21 @@
   "version": "0.4.3.1",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_OPTIONS=--openssl-legacy-provider poi",
-    "windev": "poi",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider poi build",
-    "winbuild": "poi build",
-    "report": "NODE_OPTIONS=--openssl-legacy-provider poi build --bundle-report",
-    "serve": "NODE_OPTIONS=--openssl-legacy-provider serve dist --single",
-    "test": "NODE_OPTIONS=--openssl-legacy-provider tyu"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "author": {
     "name": "zyr17",
     "email": "jzjqz17@gmail.com"
   },
   "dependencies": {
-    "normalize.css": "^7.0.0",
-    "object-assign": "^4.1.1",
-    "promise-polyfill": "^6.0.2",
-    "vue-i18n": "8",
-    "vuex": "3"
+    "normalize.css": "^8.0.1",
+    "vue": "^2.7.16",
+    "vue-i18n": "^8.28.2",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "lodash": "^4.17.21",
-    "poi": "^9.0.0",
-    "poi-preset-bundle-report": "^2.0.0",
-    "serve": "^6.1.0",
-    "tyu": "^1.0.4"
+    "@vitejs/plugin-vue2": "^2.3.1"
   }
 }
