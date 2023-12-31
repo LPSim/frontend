@@ -545,7 +545,7 @@ export default new Vuex.Store({
         res = res.replace('cardface', 'small_card')
       }
 
-      if (res == undefined) return;
+      if (res == undefined) return 'data:,';
       return prefix + res + suffix;
     },
     getNamesWithType: (state) => (type) => {

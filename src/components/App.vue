@@ -387,7 +387,10 @@ export default {
     },
     connectServer() {
       this.wrongProtocol();
-      if (this.serverConnected) return;
+      if (this.serverConnected) {
+        if (!this.refreshTimeout) this.refreshTimeout = setTimeout(() => this.refreshData(), 0);
+        return;
+      }
       // try to connect server. will first check version, and send callback
       // that will request patch data.
 
@@ -1219,7 +1222,7 @@ export default {
     imageAlt(card) {
       let type = card.type;
       if (type == 'TALENT') {
-        type = type + '_' + this.card.charactor_name;
+        type = type + '_' + card.charactor_name;
       }
       if (card.name == 'Unknown') type = 'CARD'
       return this.$t(type + '/' + this.$store.getters.getNameWithDesc(card));
