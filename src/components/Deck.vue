@@ -622,7 +622,7 @@ export default {
 }
 
 .one-image-div img {
-  width: 100%;
+  width: auto;
   height: 100%;
 }
 

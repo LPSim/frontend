@@ -755,7 +755,7 @@ export default {
 }
 
 .hands > * {
-  width: 7.7%;
+  width: 7.34531%;
   height: 100%;
 }
 

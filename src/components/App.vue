@@ -2411,6 +2411,10 @@ button:hover {
 
 <style>
 
+body {
+  font-family: "Microsoft YaHei", sans-serif;
+}
+
 span {
   user-select: none;
   cursor: default;
