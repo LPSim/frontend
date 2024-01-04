@@ -168,6 +168,7 @@ export default {
           + this.$t(type == 'CHARACTOR' ? 'charactor: ' : 'card: ')
           + this.$t(type + '/' + name)
           + this.$t('?')
+          + this.$t('Hint: right click can remove')
         );
         if (!userConfirmation) return;
       }
