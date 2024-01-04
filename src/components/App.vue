@@ -326,6 +326,7 @@ export default {
   },
   created() {
     this.$store.commit('readFromLocalStorage');
+    // set language to update title
 
     // log data when created
     console.log('APP', this);
@@ -334,6 +335,7 @@ export default {
 
     // set current language
     this.$root.$i18n.locale = this.currentLanguage;
+    this.currentLanguage = this.currentLanguage;
 
     // auto load logs.txt. when debug, it avoids manually loading data.
     // const logFilePath = 'logs.txt';
@@ -675,8 +677,8 @@ export default {
         // select next language
         let keys = Object.keys(this.$i18n.messages).sort();
         let position = keys.indexOf(this.currentLanguage);
+        this.$root.$i18n.locale = keys[(position + 1) % keys.length];
         this.currentLanguage = keys[(position + 1) % keys.length];
-        this.$root.$i18n.locale = this.currentLanguage;
         console.log('Change language to ' + this.currentLanguage);
       }
     },
@@ -1658,6 +1660,7 @@ export default {
       },
       set (value) {
         this.$store.commit('setFrontendLanguage', value);
+        document.title = this.$t('LPSim: Title');
       }
     },
     animationInterval: {

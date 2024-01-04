@@ -157,6 +157,7 @@
   "Error in update match data. ": "更新对战数据时发生错误。",
   " is not equal to current match length ": " 与当前对战帧数长度 {n} 不相等。",
   "Background message, click to hide": "后台发送消息，点击隐藏",
+  "LPSim: Title": "LPSim：水皇模拟器",
 
   "SKILL_TYPE/NORMAL_ATTACK": "普通攻击",
   "SKILL_TYPE/ELEMENTAL_SKILL": "元素战技",
