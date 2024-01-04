@@ -267,6 +267,7 @@
         </div>
       </div>
     </div>
+    <notifications :position="showOverlay || showDeckDiv ? 'top center' : 'bottom right'" :duration="3000" width="20%" :ignoreDuplicates="true"/>
   </div>
 </template>
 
@@ -361,6 +362,14 @@ export default {
     window.addEventListener('keydown', this.handleKeyDown);
   },
   methods: {
+    sendNotify(data) {
+      // send notify with unlimited time when in backend
+      if (document.hidden) {
+        data.duration = -1;
+        data.title = this.$t('Background message, click to hide')
+      }
+      this.$notify(data);
+    },
     getFailFunc(msg, stopServerConnection = false) {
       function failFunc(err) {
         this.make_alert(this.$t(msg) + err, err);
@@ -399,7 +408,10 @@ export default {
         console.log('PATCH', patch_message, Object.keys(patch_message.patch).length, 'KEYS');
         this.updateLocales(patch_message);
         this.$store.commit('updateDataByPatch', patch_message);
-        alert(this.$t('Connected to server.'));
+        this.sendNotify({
+          text: this.$t('Connected to server.'),
+          type: 'success'
+        });
         this.serverConnected = true;
         // when successfully connected, start auto refreshing immediately.
         this.refreshTimeout = setTimeout(() => this.refreshData(), 0);
@@ -442,7 +454,10 @@ export default {
       // before old connect server, this will check room name, and
       // update room name if it is valid.
       if (!this.checkRoomName()) {
-        alert(this.$t('Room name must be 4-12 characters, only contains alphabets, numbers or underscore(_).'));
+        this.sendNotify({
+          text: this.$t('Room name must be 4-12 characters, only contains alphabets, numbers or underscore(_).'),
+          type: 'error'
+        });
         return;
       }
       function postRoomNameSuccess(data) {
@@ -450,18 +465,30 @@ export default {
         let status = data.status;
         console.log(port, status);
         if (status == 'failed') {
-          alert(this.$t('Create room failed. Please check backend output.'));
+          this.sendNotify({
+            text: this.$t('Create room failed. Please check backend output.'),
+            type: 'error'
+          });
           return;
         }
         if (status == 'full') {
-          alert(this.$t('Room is full. Please try to create new room later or enter existing rooms.'));
+          this.sendNotify({
+            text: this.$t('Room is full. Please try to create new room later or enter existing rooms.'),
+            type: 'error'
+          });
           return;
         }
         if (status == 'exist') {
-          alert(this.$t('Successfully enter room ') + this.roomName);
+          this.sendNotify({
+            text: this.$t('Successfully enter room ') + this.roomName,
+            type: 'success'
+          });
         }
         if (status == 'created') {
-          alert(this.$t('Successfully create room ') + this.roomName);
+          this.sendNotify({
+            text: this.$t('Successfully create room ') + this.roomName,
+            type: 'success'
+          });
         }
         let url = new URL(this.roomServerURL);
         url.port = port;
@@ -483,13 +510,19 @@ export default {
         if (target_class == 'HTTPRoomServer' && this.roomName == '') {
           // if is room server, but room name is empty, raise alert.
           let msg = this.$t('Server is room server, but room name is empty. Please input room name.');
-          alert(msg);
+          this.sendNotify({
+            text: msg,
+            type: 'error'
+          });
           return;
         }
         else if (target_class == 'HTTPServer' && this.roomName != '') {
           // if is match server, but room name is not empty, raise alert.
           let msg = this.$t('Server is match server, but room name is not empty. Please clear room name.');
-          alert(msg);
+          this.sendNotify({
+            text: msg,
+            type: 'error'
+          });
           return;
         }
         if (!obj.info || obj.info.class == 'HTTPServer') {
@@ -536,7 +569,10 @@ export default {
         this.requestData = [];
         this.processing = false;
         this.matchUUID = null;
-        if (make_alert) alert(this.$t('Game reset successfully!'));
+        if (make_alert) this.sendNotify({
+          text: this.$t('Game reset successfully!'),
+          type: 'success'
+        });
     },
     checkVersion(serverURL, callback = undefined) {
       function versionSuccess(obj) {
@@ -549,7 +585,10 @@ export default {
           version = version.replace(/\.post\d+$/, '');  // ignore post versions
           if (version != self_version) {
             let msg = this.$t('Server version is ') + version + this.$t(', but client version is ') + self_version + this.$t('. Client may not work properly.');
-            alert(msg);
+            this.sendNotify({
+              text: msg,
+              type: 'warn'
+            });
           }
         }
         if (callback) callback(obj);
@@ -643,7 +682,10 @@ export default {
     },
     make_alert(title, data) {
       console.error(data);
-      alert(title + this.$t('\nFind detail in console.'));
+      this.sendNotify({
+        text: title + this.$t('\nFind detail in console.'),
+        type: 'error'
+      });
       clearTimeout(this.refreshTimeout);
       this.refreshTimeout = null;
     },
@@ -1184,7 +1226,10 @@ export default {
       let current_index = this.currentDataIndex;
       let match = this.matchData[current_index];
       if (match.requests.length == 0) {
-        alert(this.$t('No available action at current index! cannot reset to this index.'));
+        this.sendNotify({
+          text: this.$t('No available action at current index! cannot reset to this index.'),
+          type: 'error'
+        });
         return;
       }
       let userConfirmation = confirm(
@@ -2347,6 +2392,12 @@ button:hover {
 span {
   user-select: none;
   cursor: default;
+}
+
+#app .vue-notification {
+  font-size: 1.25vw;
+  padding: 0.5vw;
+  margin: 0.3vw;
 }
 
 </style>

@@ -118,6 +118,14 @@ export default {
     this.selectedVersion = this.availableVersions[this.availableVersions.length - 1];
   },
   methods: {
+    sendNotify(data) {
+      // send notify with unlimited time when in backend
+      if (document.hidden) {
+        data.duration = -1;
+        data.title = this.$t('Background message, click to hide')
+      }
+      this.$notify(data);
+    },
     imgSrcError(event) {
       event.target.style.display = 'none';
 
@@ -175,12 +183,15 @@ export default {
       let nearestVersion = this.$store.getters.findNearestVersion(name, this.selectedVersion, this.$i18n.messages['en-US']);
       if (nearestVersion == null) {
         let type = name.split('/')[0];
-        alert(
-          this.$t('Version for ', { version: this.selectedVersion })
-          + this.$t(type == 'CHARACTOR' ? 'charactor: ' : 'card: ')
-          + this.$t(name)
-          + this.$t(' not exist!')
-        );
+        this.sendNotify({
+          text: (
+            this.$t('Version for ', { version: this.selectedVersion })
+            + this.$t(type == 'CHARACTOR' ? 'charactor: ' : 'card: ')
+            + this.$t(name)
+            + this.$t(' not exist!')
+          ),
+          type: 'error'
+        });
         return;
       }
       this.$store.commit('addDeckCard', {
@@ -279,7 +290,10 @@ export default {
     useDeckCode() {
       // Use the deck code
       if (this.inputDeckCode.length != 68) {
-        alert(this.$t('Deck code length should be 68!'));
+        this.sendNotify({
+          text: this.$t('Deck code length should be 68!'),
+          type: 'error'
+        });
         return;
       }
       try {
@@ -294,9 +308,16 @@ export default {
         decks[this.playerIdx] = deckDict;
         this.$store.commit('setDeck', decks);
         let message = this.$t('Deck code parsed successfully! Currently not uploaded to server, please upload manually.');
-        if (no_version.length > 0)
-          message += this.$t('\n\nWarning: the following cards/charactors are not available in selected version, they will be ignored:\n') + no_version.map((item) => this.$t(item.type + '/' + item.name)).join(', ');
-        alert(message);
+        this.sendNotify({
+          text: message,
+          type: 'success'
+        });
+        if (no_version.length > 0) {
+          this.sendNotify({
+            text: this.$t('\n\nWarning: the following cards/charactors are not available in selected version, they will be ignored:\n') + no_version.map((item) => this.$t(item.type + '/' + item.name)).join(', '),
+            type: 'warn'
+          });
+        }
         this.showDeckCodeDiv = false;
         this.$store.commit('addDeckModifyCounter', null);
       }
@@ -308,7 +329,10 @@ export default {
       function successFunc(data) {
         // console.log(data);
         if (data == 'error') return;
-        alert(this.$t('Deck uploaded successfully!'));
+        this.sendNotify({
+          text: this.$t('Deck uploaded successfully!'),
+          type: 'success'
+        });
         // this.$store.commit('setShowDeckDiv', false);
         this.$store.commit('resetDeckModifyCounter', null);
         if (callback) callback();
@@ -344,7 +368,10 @@ export default {
     },
     make_alert(title, data) {
       console.error(data);
-      alert(title + this.$t('\n\nFind detail in console.'));
+      this.sendNotify({
+        text: title + this.$t('\n\nFind detail in console.'),
+        type: 'error'
+      });
     },
     clearCards() {
       if (!this.cardModifiable) return;
@@ -381,14 +408,20 @@ export default {
         this.inputDeckCode = '';
       }
       catch (error) {
-        alert(this.$t('Error in getting deck code. ') + error);
+        this.sendNotify({
+          text: this.$t('Error in getting deck code. ') + error,
+          type: 'error'
+        });
         throw error;
       }
     },
     receiveDeckCodeFromServer() {
       // receive deck code from server and show div
       if (this.$store.state.deckModifyCounter > 0) {
-        alert(this.$t('Current deck is modified and not uploaded, please upload the deck before getting the deck code!'));
+        this.sendNotify({
+          text: this.$t('Current deck is modified and not uploaded, please upload the deck before getting the deck code!'),
+          type: 'warn'
+        });
         return;
       }
       const xhr = new XMLHttpRequest();
@@ -400,7 +433,10 @@ export default {
             this.inputDeckCode = '';
           }
           else {
-            alert(this.$t('Error in getting deck code. ') + xhr.responseText);
+            this.sendNotify({
+              text: this.$t('Error in getting deck code. ') + xhr.responseText,
+              type: 'error'
+            });
           }
         }
       };
