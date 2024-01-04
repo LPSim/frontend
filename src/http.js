@@ -8,8 +8,11 @@ function getBaseFunc(getURL, successFunc, checkFunc, failFunc) {
   // success: receives a parsed JSON object.
   // check: receives a response object, if check passed, return object.
   // fail: receives an error object.
-  if (room_name) getURL += '?room=' + room_name;
-  fetch(getURL)
+  let url = new URL(getURL);
+  if (room_name) {
+    url.searchParams.append('room', room_name);
+  }
+  fetch(url.toString())
   .then(response => {
     return checkFunc(response);
   })
@@ -22,8 +25,11 @@ function getBaseFunc(getURL, successFunc, checkFunc, failFunc) {
 }
 
 function postBaseFunc(postURL, data, successFunc, checkFunc, failFunc) {
-  if (room_name) postURL += '?room=' + room_name;
-  fetch(postURL, {
+  let url = new URL(postURL);
+  if (room_name) {
+    url.searchParams.append('room', room_name);
+  }
+  fetch(url.toString(), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
