@@ -129,7 +129,7 @@
           </div>
           <div class="reset-refresh-div">
               <button class="reset-button" @click="resetByIndex()" :disabled="playerTableOrder == -1 || matchData.length === 0 || !serverConnected">{{ $t('Reset Match to This Index') }}</button>
-              <span :style="refreshTimeout ? '' : 'color: red; font-weight: bold'">{{  $t(refreshTimeout ? 'Auto refreshing' : 'Refresh stopped') }}</span>
+              <span :class="refreshTimeout ? '' : 'blink-refresh-span'">{{  $t(refreshTimeout ? 'Auto refreshing' : 'Refresh stopped') }}</span>
               <button :class="refreshTimeout ? '' : 'blink-refresh-button'" @click="refreshTimeout ? stopRefresh() : refreshData()" :disabled="!serverConnected || playerTableOrder == -1">{{ $t(refreshTimeout ? 'Stop Refresh' : 'Start Refresh') }}</button>
           </div>
         </div>
@@ -2109,6 +2109,15 @@ button:hover {
   justify-content: space-around;
 }
 
+.refresh-debug-div > button {
+  /* background-color: #76cc79; */
+  opacity: 0.5;
+}
+
+.refresh-debug-div > button:hover {
+  opacity: 1;
+}
+
 .header-div {
   font-size: 0.8vw;
 }
@@ -2383,6 +2392,19 @@ button:hover {
   border-style: solid;
   border-radius: 0.5vw;
   background: white;
+}
+
+.blink-refresh-span {
+  animation: blink-not-refresh-span 2s linear infinite;
+  /* color: red;
+  font-weight: bold; */
+}
+
+@keyframes blink-not-refresh-span {
+  0% { color: #000; font-weight: bold }
+  40% { color: rgb(255, 92, 38); font-weight: bold }
+  60% { color: rgb(255, 92, 38); font-weight: bold }
+  100% { color: #000; font-weight: bold }
 }
 
 </style>
