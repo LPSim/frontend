@@ -156,7 +156,7 @@
   "Animation frequency (ms):": "Animation speed (ms):",
   "Error in update match data. ": "Error in update match data. ",
   " is not equal to current match length ": " is not equal to current match length {n}. ",
-  "Background message, click to hide": "Background sent message, click to hide",
+  "Background message, click to hide": "Background notification, click to hide",
   "LPSim: Title": "LPSim: Lochfolk Prinzessin Simulator",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
