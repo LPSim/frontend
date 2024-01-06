@@ -536,7 +536,7 @@ export default new Vuex.Store({
           res_name.push(name_arr[i].charAt(0).toUpperCase() + name_arr[i].slice(1).toLowerCase());
         }
         res_name = res_name.join('_');
-        if (res_name.slice(0, 7) != 'Element')
+        if (res_name.slice(0, 8) != 'Element_' && res_name.slice(0, 15) != 'Debuff_Element_')
           res_name = 'Common_' + res_name;
         return prefix + 'status/' + res_name + '.png' + suffix;
       }
