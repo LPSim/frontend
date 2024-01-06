@@ -1289,8 +1289,26 @@ export default {
       return window.location.href.includes('zyr17.cn');
     },
     match () {
-      if (!this.fullMatch || this.displayInJudgeMode || this.playerTableOrder == -1) return this.fullMatch;
-      let match = JSON.parse(JSON.stringify(this.fullMatch));
+      let fullMatch = this.fullMatch;
+      if (fullMatch && fullMatch.player_tables) {
+        for (let pt of fullMatch.player_tables) {
+          if (pt.charactors) {
+            for (let c of pt.charactors) {
+              // check if use attachs in charactors
+              if (c.attachs) {
+                c.status = []
+                for (let obj of c.attachs)
+                  if (obj.type == 'WEAPON') c.weapon = obj;
+                  else if (obj.type == 'ARTIFACT') c.artifact = obj;
+                  else if (obj.type == 'TALENT') c.talent = obj;
+                  else c.status.push(obj);
+              }
+            }
+          }
+        }
+      }
+      if (!fullMatch || this.displayInJudgeMode || this.playerTableOrder == -1) return fullMatch;
+      let match = JSON.parse(JSON.stringify(fullMatch));
       let opponent_table = match.player_tables[1 - this.playerTableOrder];
       // console.log(match, this.fullMatch)
       for (let i = 0; i < opponent_table.hands.length; i++) {
