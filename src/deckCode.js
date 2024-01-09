@@ -218,5 +218,5 @@ function deckStrToDeckCode(deckStr, maxRetryTime = 10000) {
 }
 
 
-export {init, deckCodeToDeckStr, deckStrToDeckCode};
+export { init, deckCodeToDeckStr, deckStrToDeckCode };
 
