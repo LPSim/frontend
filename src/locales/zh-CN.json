@@ -85,7 +85,7 @@
   "Connected": "已连接",
   "Please connect server.": "请在右方连接服务器。",
   "Connected to server.": "成功连接服务器。",
-  "Stop server connection by error, clear all data?": "发生错误，已经停止自动刷新。你想清空所有数据吗？如果错误原因为开始了新对局，请点击确定。如果你想查看当前对局历史或其他错误原因，请点击取消。",
+  "Stop server connection by error, clear all data?": "发生错误，已经停止自动刷新。你想清空所有数据并重新开始刷新吗？如果你想查看当前对局历史，请点击取消。",
   "Network response is not ok with detail \n\n": "网络响应错误，详情：\n\n",
   "Error in uploading deck. ": "上传卡组时发生错误。 ",
   "\n\nFind detail in console.": "\n\n请在控制台查看详情。",
