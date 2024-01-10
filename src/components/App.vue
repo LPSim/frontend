@@ -905,6 +905,10 @@ export default {
       let res = [];
       if (data.length == 0) return res;
       for (let i = 0; i < data.length; i ++ ) {
+        if (data[i].idx < this.matchData.length) {
+          // idx is smaller than current data, ignore
+          continue;
+        }
         if (data[i].type == 'FULL') {
           res.push(data[i]);
         }
@@ -918,8 +922,8 @@ export default {
             // first is diff, get full from matchData
             if (data[i].idx != this.matchData.length) {
               this.make_alert(
-                $t('Error in update match data. ') + data[i].idx
-                + $tc(' is not equal to current match length ', this.matchData.length),
+                this.$t('Error in update match data. ') + data[i].idx
+                + this.$tc(' is not equal to current match length ', this.matchData.length),
               data);
             }
             recover_match = JSON.parse(JSON.stringify(this.matchData[this.matchData.length - 1]));
@@ -1078,6 +1082,7 @@ export default {
     updateRequestData() {
       function successFunc(data) {
         if (!data) return; // error on previous or empty data, no need to update
+        if (!this.match) return; // match has been cleared
         if (JSON.stringify(this.requestData) == JSON.stringify(data)) return;
         console.log('Request data', data);
         let old_req_data = this.requestData;
