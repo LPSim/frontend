@@ -187,8 +187,11 @@
       <div v-if="waitOpponentNotify" :class="{ 'center-text-notify-container': true, 'opponent-shadow-color': true }">
         <span style="font-size: 1.25vw">{{ $t('Waiting for opponent action. Current state is initial state, state will update until both players have done actions.') }}</span>
       </div>
-      <div v-if="match.winner != -1" :class="{ 'center-text-notify-container': true, 'opponent-shadow-color': match.winner != playerTableOrder }">
-        <span>{{ $t('Game End') }} {{ $t((match.winner != playerTableOrder ? 'Opponent' : 'You') + ' win', ) }}</span>
+      <div v-if="match.state == 'STARTING_CARD_SWITCH'" :class="{ 'center-text-notify-container': true, 'opponent-shadow-color': !isYourTurn }">
+        <span>{{ $t((isYourTurn ? 'You' : 'Opponent') + ' goes first. Choose cards to switch.') }}</span>
+      </div>
+      <div v-if="match.state == 'ENDED'" :class="{ 'center-text-notify-container': true, 'opponent-shadow-color': match.winner != playerTableOrder }">
+        <span>{{ match.winner == -1 ? $t('Maximum round exceeded, dual loss') : ($t('Game End') + $t((match.winner != playerTableOrder ? 'Opponent' : 'You') + ' win', )) }}</span>
       </div>
       <div v-if="predictFullMatch" class="prediction-notify-container">
         <div v-for="number in 15">
@@ -2389,6 +2392,7 @@ button:hover {
   text-decoration: none;
   color: gray;
   font-size: 0.75vw;
+  margin-right: 0.5vw;
 }
 
 #disclaimer {

@@ -79,6 +79,7 @@
   "Game End": "游戏结束",
   "You win": "你获胜了",
   "Opponent win": "对手获胜",
+  "Maximum round exceeded, dual loss": "回合数超过上限，双方判负",
   "No available action at current index! cannot reset to this index.": "当前帧没有可用行动！无法重置至该帧。",
   "Jump to End": "跳至末尾",
   "Connect": "连接",
@@ -158,6 +159,8 @@
   " is not equal to current match length ": " 与当前对战帧数长度 {n} 不相等。",
   "Background message, click to hide": "后台通知，点击隐藏",
   "LPSim: Title": "LPSim：水皇模拟器",
+  "You goes first. Choose cards to switch.": "你是先手。选择卡牌交换。",
+  "Opponent goes first. Choose cards to switch.": "对手先手。选择卡牌交换。",
 
   "SKILL_TYPE/NORMAL_ATTACK": "普通攻击",
   "SKILL_TYPE/ELEMENTAL_SKILL": "元素战技",

@@ -79,6 +79,7 @@
   "Game End": "Game End",
   "You win": "You win",
   "Opponent win": "Opponent win",
+  "Maximum round exceeded, dual loss": "Maximum round exceeded, dual loss",
   "No available action at current index! cannot reset to this index.": "No available action at current index! cannot reset to this index.",
   "Jump to End": "To End",
   "Connect": "Connect",
@@ -158,6 +159,8 @@
   " is not equal to current match length ": " is not equal to current match length {n}. ",
   "Background message, click to hide": "Background notification, click to hide",
   "LPSim: Title": "LPSim: Lochfolk Prinzessin Simulator",
+  "You goes first. Choose cards to switch.": "You goes first. Choose cards to switch.",
+  "Opponent goes first. Choose cards to switch.": "Opponent goes first. Choose cards to switch.",
 
   "SKILL_TYPE/NORMAL_ATTACK": "Normal Attack",
   "SKILL_TYPE/ELEMENTAL_SKILL": "Elemental Skill",
