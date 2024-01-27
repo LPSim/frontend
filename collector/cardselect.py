@@ -74,8 +74,8 @@ def combine(
 if __name__ == '__main__':
     save_files = os.listdir(save_folder)
     random.shuffle(save_files)
-    test_charactor_card = save_files[:3]
+    test_character_card = save_files[:3]
     random.shuffle(save_files)
     test_card = save_files[:30]
-    result = combine(save_folder, test_charactor_card, test_card)
+    result = combine(save_folder, test_character_card, test_card)
     result.show()

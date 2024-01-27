@@ -1,7 +1,7 @@
 [Card List](https://genshin-impact.fandom.com/wiki/Genius_Invokation_TCG/Card_List)
 
 ```javascript
-// crawl charactors (include unobtainable)
+// crawl characters (include unobtainable)
 function func(table_index = 0) {
     let tables = document.querySelectorAll('table');
     let table = tables[table_index];
@@ -28,12 +28,12 @@ function func(table_index = 0) {
     return data;
 }
 
-obtainable_charactors = func(0);
-unobtainable_charactors = func(1);
-console.log('obtainable:', obtainable_charactors.length);
-console.log('unobtainable:', unobtainable_charactors.length);
-console.log(obtainable_charactors);
-console.log(unobtainable_charactors);
+obtainable_characters = func(0);
+unobtainable_characters = func(1);
+console.log('obtainable:', obtainable_characters.length);
+console.log('unobtainable:', unobtainable_characters.length);
+console.log(obtainable_characters);
+console.log(unobtainable_characters);
 ```
 
 ```javascript
@@ -185,7 +185,7 @@ console.log(u_summons);
 ```
 
 ```javascript
-// crawl skills for one charactor page
+// crawl skills for one character page
 function get_cost(td) {
     let costs = td.querySelectorAll('.tcg-cost');
     let res = [];
@@ -235,13 +235,13 @@ console.log(talent_table(document.querySelectorAll('.talent-table')[0]));
 ```
 
 ```javascript
-// crawl skills for all charactors, based on above functions
-function func(charactors) {
+// crawl skills for all characters, based on above functions
+function func(characters) {
     let res = {}
-    for (let i = 0; i < charactors.length; i++) {
-        let charactor = charactors[i];
-        let url = charactor.url;
-        let name = charactor.name;
+    for (let i = 0; i < characters.length; i++) {
+        let character = characters[i];
+        let url = character.url;
+        let name = character.name;
         console.log(name);
         let xhr = new XMLHttpRequest();
         xhr.open('GET', url, false);

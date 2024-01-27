@@ -31,7 +31,7 @@ export default {
     image_alt() {
       let type = this.card.type;
       if (type == 'TALENT') {
-        type = type + '_' + this.card.charactor_name;
+        type = type + '_' + this.card.character_name;
       }
       if (this.card.name == 'Unknown') type = 'CARD'
       return this.$t(type + '/' + this.$store.getters.getNameWithDesc(this.card));

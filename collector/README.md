@@ -17,7 +17,7 @@ and download images into folder. If an image exists, it will skip.
 
 # Generate Mobs
 use `generate_mob.ipynb` to generate mob images, and they will be saved in 
-`custom/charactors` folder. If do not want to use mobs, just skip this step.
+`custom/characters` folder. If do not want to use mobs, just skip this step.
 
 # Collect all images
 use the following bash script to collect all images into 
@@ -30,5 +30,5 @@ mkdir ../static/images
 cp ./*/*.png ../static/images
 ```
 Currently all images are put together. Only four images are duplicated 
-(abyssal summons and unobtanalbe charactors), and their images are the same.
+(abyssal summons and unobtanalbe characters), and their images are the same.
 If images with same name are different, should change it.

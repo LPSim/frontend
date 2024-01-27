@@ -26,25 +26,25 @@
           <option v-for="version in availableVersions" :value="version">{{ version }}</option>
         </select>
       </div>
-      <button id="add-charactor-button" v-if="cardModifiable" @click="selectionMode = 'CHARACTOR'">{{ $t('Add Charactor') }}</button>
+      <button id="add-character-button" v-if="cardModifiable" @click="selectionMode = 'CHARACTER'">{{ $t('Add Character') }}</button>
       <button id="add-card-button" v-if="cardModifiable" @click="selectionMode = 'CARD'">{{ $t('Add Card') }}</button>
       <button id="cancel-button" v-if="cardModifiable" @click="selectionMode = null" :disabled="!selectionMode">{{ $t('Back') }}</button>
       <button id="clear-button" v-if="cardModifiable && selectionMode == null" @click="clearCards">{{ $t('Clear') }}</button>
       <button id="clear-card-button" v-if="cardModifiable && selectionMode == 'CARD'" @click="clearCards">{{ $t('Clear') }}</button>
-      <button id="clear-charactor-button" v-if="cardModifiable && selectionMode == 'CHARACTOR'" @click="clearCards">{{ $t('Clear') }}</button>
+      <button id="clear-character-button" v-if="cardModifiable && selectionMode == 'CHARACTER'" @click="clearCards">{{ $t('Clear') }}</button>
       <button id="upload-deck-button" v-if="cardModifiable" @click="uploadDeck">{{ $t('Upload Deck') }}</button>
       <button id="deck-code-button" @click="showDeckCodeDivFunc">{{ $t('Deck Code') }}</button>
     </div>
     <!-- <div class="images-container-div"> -->
       <div class="select-divs" v-if="selectionMode">
-          <div class="select-splitter-div">{{  $t('Current') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Charactors') }} * {{ selectionMode == 'CARD' ? cardRealLength : charactors.length }}</div>
-          <div v-if="selectionMode == 'CHARACTOR'" class="images-div images-select-div-left" style="width: 15%">
-            <div class="one-image-div" v-for="charactor, cid in charactors" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)" :alt="$t(getFullName(charactor))" @click="removeCard(charactor)" @contextmenu.prevent="rightClick(charactor)">
-              <img :src="getCardImageUrl({ ...charactor, scale: '140x' })" @error="imgSrcError($event)"/>
+          <div class="select-splitter-div">{{  $t('Current') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Characters') }} * {{ selectionMode == 'CARD' ? cardRealLength : characters.length }}</div>
+          <div v-if="selectionMode == 'CHARACTER'" class="images-div images-select-div-left" style="width: 15%">
+            <div class="one-image-div" v-for="character, cid in characters" @mousemove="showDetail(character.type, character.name, character.version, character)" :alt="$t(getFullName(character))" @click="removeCard(character)" @contextmenu.prevent="rightClick(character)">
+              <img :src="getCardImageUrl({ ...character, scale: '140x' })" @error="imgSrcError($event)"/>
               <div class="card-text">
-                <span>{{ $t(getFullName(charactor)) }}</span>
+                <span>{{ $t(getFullName(character)) }}</span>
               </div>
-              <span>{{ charactor.version }}</span>
+              <span>{{ character.version }}</span>
             </div>
           </div>
           <div v-else class="images-div images-select-div-left" style="width: 40%">
@@ -56,7 +56,7 @@
               <span>{{ card.version }}</span>
             </div>
           </div>
-          <div class="select-splitter-div">{{  $t('Available') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Charactors') }}</div>
+          <div class="select-splitter-div">{{  $t('Available') }} {{ $t(selectionMode == 'CARD' ? 'Cards' : 'Characters') }}</div>
           <div class="images-div images-select-div-right" :style="'width: ' + (selectionMode == 'CARD' ? '50%' : '75%')">
             <div class="one-image-div one-small-image-div" v-for="name, cid in selectCards" @click="selectCard(name)" @mousemove="showDetail(name.split('/')[0], name.split('/')[1])">
               <img :src="getCardImageUrl({ type: name.split('/')[0], name: name.split('/')[1], scale: '140x' })" :alt="$t(name)" @error="imgSrcError($event)"/>
@@ -67,14 +67,14 @@
           </div>
       </div>
       <div v-else class="images-div">
-        <!-- <div class="charactors-div"> -->
-          <div class="splitter-div">{{  $t('Charactors') }} * {{ charactors.length }}</div>
-          <div class="one-image-div" v-for="charactor, cid in charactors" @click="removeCard(charactor)" @contextmenu.prevent="rightClick(charactor)" @mousemove="showDetail(charactor.type, charactor.name, charactor.version, charactor)">
-            <img :src="getCardImageUrl(charactor)" :alt="$t(getFullName(charactor))" @error="imgSrcError($event)"/>
+        <!-- <div class="characters-div"> -->
+          <div class="splitter-div">{{  $t('Characters') }} * {{ characters.length }}</div>
+          <div class="one-image-div" v-for="character, cid in characters" @click="removeCard(character)" @contextmenu.prevent="rightClick(character)" @mousemove="showDetail(character.type, character.name, character.version, character)">
+            <img :src="getCardImageUrl(character)" :alt="$t(getFullName(character))" @error="imgSrcError($event)"/>
             <div class="card-text">
-              <span>{{ $t(getFullName(charactor)) }}</span>
+              <span>{{ $t(getFullName(character)) }}</span>
             </div>
-            <span>{{ charactor.version }}</span>
+            <span>{{ character.version }}</span>
           </div>
         <!-- </div> -->
         <!-- <div class="cards-div"> -->
@@ -149,7 +149,7 @@ export default {
       let type = obj.type;
       let name = this.$store.getters.getNameWithDesc(obj);
       if (type == 'TALENT')
-        type = type + '_' + obj.charactor_name;
+        type = type + '_' + obj.character_name;
       return type + '/' + name;
     },
     rightClick(obj) {
@@ -161,18 +161,18 @@ export default {
       let type = obj.type;
       let name = this.$store.getters.getNameWithDesc(obj);
       if (type == 'TALENT')
-        type = type + '_' + obj.charactor_name;
+        type = type + '_' + obj.character_name;
       if (showWarning) {
         let userConfirmation = confirm(
           this.$t('Are you sure to remove ')
-          + this.$t(type == 'CHARACTOR' ? 'charactor: ' : 'card: ')
+          + this.$t(type == 'CHARACTER' ? 'character: ' : 'card: ')
           + this.$t(type + '/' + name)
           + this.$t('?')
           + this.$t('Hint: right click can remove')
         );
         if (!userConfirmation) return;
       }
-      if (type != 'CHARACTOR') type = 'CARD';
+      if (type != 'CHARACTER') type = 'CARD';
       this.$store.commit('addDeckModifyCounter', null);
       this.$store.commit('removeDeckCard', {
         player_id: this.playerIdx,
@@ -187,7 +187,7 @@ export default {
         this.sendNotify({
           text: (
             this.$t('Version for ', { version: this.selectedVersion })
-            + this.$t(type == 'CHARACTOR' ? 'charactor: ' : 'card: ')
+            + this.$t(type == 'CHARACTER' ? 'character: ' : 'card: ')
             + this.$t(name)
             + this.$t(' not exist!')
           ),
@@ -224,7 +224,7 @@ export default {
       if (obj) {
         args = { ...args, ...obj };
       }
-      if (!args.skills && args.type == 'CHARACTOR') {
+      if (!args.skills && args.type == 'CHARACTER') {
         // find skill names from descs
         let msg = this.$i18n.messages['en-US'];
         let prefix = 'SKILL_' + args.name + '_';
@@ -261,8 +261,8 @@ export default {
     },
     getDeckString(compress = false) {
       let deck_arr = ['default_version:' + this.selectedVersion];
-      for (let charactor of this.deck.charactors) {
-        deck_arr.push('charactor:' + charactor.name + '@' + charactor.version);
+      for (let character of this.deck.characters) {
+        deck_arr.push('character:' + character.name + '@' + character.version);
       }
       for (let card of this.cards) {
         if (card.name == 'Empty' && card.type == 'CARD') continue;
@@ -302,8 +302,8 @@ export default {
           this.inputDeckCode, this.selectedVersion, true);
         let deckDict = this.$store.getters.deckStrToDeckDict(
           deckString, this.$i18n.messages['en-US'], true);
-        let no_version = deckDict.charactors.filter((item) => item.version == null).concat(deckDict.cards.filter((item) => item.version == null));
-        deckDict.charactors = deckDict.charactors.filter((item) => item.version != null);
+        let no_version = deckDict.characters.filter((item) => item.version == null).concat(deckDict.cards.filter((item) => item.version == null));
+        deckDict.characters = deckDict.characters.filter((item) => item.version != null);
         deckDict.cards = deckDict.cards.filter((item) => item.version != null);
         let decks = JSON.parse(JSON.stringify(this.$store.state.deck));
         decks[this.playerIdx] = deckDict;
@@ -315,7 +315,7 @@ export default {
         });
         if (no_version.length > 0) {
           this.sendNotify({
-            text: this.$t('\n\nWarning: the following cards/charactors are not available in selected version, they will be ignored:\n') + no_version.map((item) => this.$t(item.type + '/' + item.name)).join(', '),
+            text: this.$t('\n\nWarning: the following cards/characters are not available in selected version, they will be ignored:\n') + no_version.map((item) => this.$t(item.type + '/' + item.name)).join(', '),
             type: 'warn'
           });
         }
@@ -377,9 +377,9 @@ export default {
     clearCards() {
       if (!this.cardModifiable) return;
       let msg = 'Are you sure to remove all ';
-      if (this.selectionMode == 'CHARACTOR') msg += 'charactors?';
+      if (this.selectionMode == 'CHARACTER') msg += 'characters?';
       else if (this.selectionMode == 'CARD') msg += 'cards?';
-      else msg += 'charactors and cards?';
+      else msg += 'characters and cards?';
       let userConfirmation = confirm(this.$t(msg));
       if (!userConfirmation) return;
       this.$store.commit('removeDeckCards', {
@@ -449,10 +449,10 @@ export default {
     deck() {
       return this.$store.state.deck[this.playerIdx];
     },
-    charactors() {
+    characters() {
       let ret = [];
-      for (let i = 0; i < this.deck.charactors.length; i++) {
-        let c = JSON.parse(JSON.stringify(this.deck.charactors[i]));
+      for (let i = 0; i < this.deck.characters.length; i++) {
+        let c = JSON.parse(JSON.stringify(this.deck.characters[i]));
         c.idx = i;
         ret.push(c);
       }
@@ -499,15 +499,15 @@ export default {
       console.log(this.deck, this.$store.state.deck)
       return this.deck.name;
     },
-    allCharactors() {
-      return this.$store.getters.getNamesWithType('CHARACTOR');
+    allCharacters() {
+      return this.$store.getters.getNamesWithType('CHARACTER');
     },
     allCards() {
       let keys = ['WEAPON', 'ARTIFACT', 'SUPPORT', 'ARCANE', 'CARD'];
       // let talents = this.$store.getters.getNamesWithType('TALENT');
       let res = []
-      for (let charactor of this.deck.charactors) {
-        let talents = this.$store.getters.getNamesWithType('TALENT_' + charactor.name);
+      for (let character of this.deck.characters) {
+        let talents = this.$store.getters.getNamesWithType('TALENT_' + character.name);
         res = res.concat(talents);
       }
       for (let key of keys) {
@@ -516,17 +516,17 @@ export default {
       res = res.filter((item, index) => item != 'CARD/Unknown');
       // console.log('TALENTS', talents)
       // for (let talent of talents) {
-      //   console.log(talent, this.deck.charactors);
-      //   for (let charactor in this.deck.charactors)
-      //     if (talent.indexOf(charactor.name) != -1)
+      //   console.log(talent, this.deck.characters);
+      //   for (let character in this.deck.characters)
+      //     if (talent.indexOf(character.name) != -1)
       //       res.push(talent);
       // }
       return res;
     },
     selectCards() {
-      // console.log(this.allCharactors, this.allCards)
-      if (this.selectionMode == 'CHARACTOR') {
-        return this.allCharactors;
+      // console.log(this.allCharacters, this.allCards)
+      if (this.selectionMode == 'CHARACTER') {
+        return this.allCharacters;
       } else if (this.selectionMode == 'CARD') {
         return this.allCards;
       } else {
@@ -552,7 +552,7 @@ export default {
   padding: 0.5vw;
 }
 
-.command-div, .images-div, .charactors-div, .cards-div {
+.command-div, .images-div, .characters-div, .cards-div {
   height: 100%;
 }
 
@@ -587,7 +587,7 @@ export default {
   font-size: 2vw;
 }
 
-.charactors-div, .cards-div, .command-div {
+.characters-div, .cards-div, .command-div {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

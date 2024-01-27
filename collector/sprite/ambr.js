@@ -1,5 +1,5 @@
 /*
-used in https://ambr.top/en/changelog?v=xx, to find image path of new images, 
+used in https://ambr.top/en/changelog?v=xx, to find image path of new images,
 and their ids, and href target page URL.
 
 Save the result manually into new_cards.json.
@@ -46,7 +46,7 @@ if (document.URL.includes('/en/')) lang = 'en-US'
 else if (document.URL.includes('/chs/')) lang = 'zh-CN'
 else lang = undefined
 if (id < 100000) {
-    // is charactor
+    // is character
     for (i = 0; i < divs.length; i++) {
         div = divs[i]
         first_c = div.children[0]
@@ -71,7 +71,7 @@ if (id < 100000) {
     return JSON.stringify(res)
 }
 else {
-    // not charactor
+    // not character
     let key = ''
     if (id < 300000) key = 'TALENT'
     else if (id >= 311000 && id < 312000) key = 'WEAPON'
@@ -84,8 +84,8 @@ else {
     if (key == 'TALENT') {
         card_info_div = document.querySelector('div[name="Card Info"]')
         title_div = card_info_div.children[2].children[0].children[0]
-        charactor_name = title_div.innerText.split(':')[0].trim()
-        key = 'TALENT_' + charactor_name
+        character_name = title_div.innerText.split(':')[0].trim()
+        key = 'TALENT_' + character_name
     }
     res[key + '_' + cname] = {
         names: {

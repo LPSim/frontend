@@ -1,6 +1,6 @@
 <template>
   <div :class="tableClass" @click="log_data">
-    <div class="supports-charactors-summons">
+    <div class="supports-characters-summons">
       <div class="supports">
         <!-- <h3>Supports</h3> -->
         <div v-for="support in playerTable.supports" :key="support.id" @click="selectObject(support.position)">
@@ -10,25 +10,25 @@
 
       <div class="multi-position" v-if="multiplePositionList">
         <h4>This action has multiple positions, please select below.</h4>
-        <p>Charactor ID start from 0.</p>
+        <p>Character ID start from 0.</p>
         <div class="multi-position-choices">
           <label clsss="multi-position-one-choice" v-for="(plist, pidx) in multiplePositionList" :key="pidx">
             <input type="radio" :name="'multi-position-choice'" :value="pidx" @click="selectMultiplePosition(pidx)" />
             <br>
             <span class="multi-position-one-choice-title">From:</span><br>
-            {{ plist[0].charactor_name }}:{{ plist[0].charactor_idx }}<br>
+            {{ plist[0].character_name }}:{{ plist[0].character_idx }}<br>
             <span class="multi-position-one-choice-title">To:</span><br>
-            {{ plist[1].charactor_name }}:{{ plist[1].charactor_idx }}<br>
+            {{ plist[1].character_name }}:{{ plist[1].character_idx }}<br>
           </label>
         </div>
       </div>
 
-      <div v-else class="charactors">
+      <div v-else class="characters">
         <!-- <h3>Characters</h3> -->
-        <div :class="{'charactor-div': true, 'charactor-div-active': cid == playerTable.active_charactor_idx}" v-for="(charactor, cid) in playerTable.charactors" :key="charactor.id" @click="selectCharactor(charactor.position)">
-          <div class="active-div" v-if="(playerTable.active_charactor_idx != cid) != is_reverse" @click.stop=""></div>
-          <Charactor class="charactor-inner" :charactor="charactor" :select-class="selectCharactorClass(charactor)" :detail-text-width="detailTextWidth" />
-          <div class="team-status-div" v-if="playerTable.active_charactor_idx == cid">
+        <div :class="{'character-div': true, 'character-div-active': cid == playerTable.active_character_idx}" v-for="(character, cid) in playerTable.characters" :key="character.id" @click="selectCharacter(character.position)">
+          <div class="active-div" v-if="(playerTable.active_character_idx != cid) != is_reverse" @click.stop=""></div>
+          <Character class="character-inner" :character="character" :select-class="selectCharacterClass(character)" :detail-text-width="detailTextWidth" />
+          <div class="team-status-div" v-if="playerTable.active_character_idx == cid">
             <!-- <h3>Team Status</h3> -->
             <div v-for="(status, sid) in playerTable.team_status" :key="sid" @mouseover="showDetails(status)" @mouseout="hideDetails(status)" @click="log_status(sid)">
               <img :src="status_path(status)" width="100%" height="100%" @error="imgSrcError($event)"/>
@@ -40,7 +40,7 @@
               </div>
             </div>
           </div>
-          <div v-if="showDetailsFlag && (playerTable.active_charactor_idx == cid)" :class="'status-details' + (is_reverse ? ' status-details-reverse' : '')" :style="'width: ' + detailTextWidth + '%; left: -' + detailTextWidth + '%'">
+          <div v-if="showDetailsFlag && (playerTable.active_character_idx == cid)" :class="'status-details' + (is_reverse ? ' status-details-reverse' : '')" :style="'width: ' + detailTextWidth + '%; left: -' + detailTextWidth + '%'">
             <div class="p-div">
               <h4>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData)) }}</h4>
               <p style="color: #555; font-size: 0.65vw;">{{ $t('Version: ') }}{{ detailData.version }}</p>
@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import Charactor from './Charactor.vue'
+import Character from './Character.vue'
 import Summon from './Summon.vue'
 import Card from './Card.vue'
 import Support from './Support.vue'
@@ -132,9 +132,9 @@ export default {
       required: true,
       validator: (value) => {
         return ('name' in value && 'player_name' in value
-        && 'player_icon' in value && 'active_charactor_idx' in value
+        && 'player_icon' in value && 'active_character_idx' in value
         && 'has_round_ended' in value && 'dice' in value && 'team_status' in value
-        && 'charactors' in value && 'summons' in value && 'supports' in value
+        && 'characters' in value && 'summons' in value && 'supports' in value
         && 'hands' in value && 'table_deck' in value)
       }
     },
@@ -155,7 +155,7 @@ export default {
     }
   },
   components: {
-    Charactor,
+    Character,
     Summon,
     Card,
     Support
@@ -303,23 +303,23 @@ export default {
       }
       this.$store.commit('positionClick', position_idx);
     },
-    selectCharactorClass(object) {
+    selectCharacterClass(object) {
       let object_position = object.position;
-      let cidx = object_position.charactor_idx;
+      let cidx = object_position.character_idx;
       if (this.$store.state.damageNotify && this.$store.state.damageNotify.position) {
         // has damage notify, if this is the position, show it
         if (this.$store.state.damageNotify.position.player_idx == this.playerTable.player_idx
-            && this.$store.state.damageNotify.position.charactor_idx == cidx) {
+            && this.$store.state.damageNotify.position.character_idx == cidx) {
           return 'select-selected';
         }
       }
       if (this.$store.state.selectedRequest == null) {
-        // not selected, if contain switch charactor, can select
+        // not selected, if contain switch character, can select
         let requests = this.$store.state.requests;
         for (let rid = 0; rid < requests.length; rid++) {
           let request = requests[rid];
-          if (request.name != 'SwitchCharactorRequest') continue;
-          if (request.target_charactor_idx == cidx && request.player_idx == this.playerTable.player_idx)
+          if (request.name != 'SwitchCharacterRequest') continue;
+          if (request.target_character_idx == cidx && request.player_idx == this.playerTable.player_idx)
             return 'select-highlight';
         }
         return 'select-none';
@@ -330,24 +330,24 @@ export default {
       if (request.name == 'UseSkillRequest' || request.name == 'DeclareRoundEndRequest') {
         return 'select-none';
       }
-      // if is SwitchCharactorRequest, show target
-      if (request.name == 'SwitchCharactorRequest') {
-        if (request.target_charactor_idx == cidx && request.player_idx == this.playerTable.player_idx)
+      // if is SwitchCharacterRequest, show target
+      if (request.name == 'SwitchCharacterRequest') {
+        if (request.target_character_idx == cidx && request.player_idx == this.playerTable.player_idx)
           return 'select-selected';
         else
           return 'select-disabled';
       }
       return this.selectObjectClass(object);
     },
-    selectCharactor(object_position) {
-      let cidx = object_position.charactor_idx;
+    selectCharacter(object_position) {
+      let cidx = object_position.character_idx;
       if (this.$store.state.selectedRequest == null) {
-        // not selected, if contains switch charactor, select
+        // not selected, if contains switch character, select
         let requests = this.$store.state.requests;
         for (let rid = 0; rid < requests.length; rid++) {
           let request = requests[rid];
-          if (request.name != 'SwitchCharactorRequest') continue;
-          if (!(request.target_charactor_idx == cidx && request.player_idx == this.playerTable.player_idx))
+          if (request.name != 'SwitchCharacterRequest') continue;
+          if (!(request.target_character_idx == cidx && request.player_idx == this.playerTable.player_idx))
             continue;
           this.$store.commit('selectRequest', rid);
           return
@@ -394,11 +394,11 @@ export default {
       if (dice_rule.mode == 'any') {
         // reroll-dice will be any. select dice that color not right
         let c_colors = ['OMNI'];
-        for (let i = 0; i < this.playerTable.charactors.length; i ++ ) {
-          let charactor = this.playerTable.charactors[i];
-          if (!charactor.is_alive) continue;
-          c_colors.push(charactor.element);
-          if (charactor.name == 'Maguu Kenki')
+        for (let i = 0; i < this.playerTable.characters.length; i ++ ) {
+          let character = this.playerTable.characters[i];
+          if (!character.is_alive) continue;
+          c_colors.push(character.element);
+          if (character.name == 'Maguu Kenki')
             c_colors.push('CRYO')
         }
         // click all wrong color dice
@@ -423,9 +423,9 @@ export default {
         let is_main = true;
         let done = new Set();
         let main_color = new Set();
-        for (let i = 0; i < this.playerTable.charactors.length; i ++ ) {
-          let charactor = this.playerTable.charactors[i];
-          main_color.add(charactor.element);
+        for (let i = 0; i < this.playerTable.characters.length; i ++ ) {
+          let character = this.playerTable.characters[i];
+          main_color.add(character.element);
         }
         for (let cid = sorted.length - 1; cid >= 0; cid--) {
           let color = sorted[cid].color;
@@ -550,15 +550,15 @@ export default {
       // omni always first
       let order = ['OMNI'];
       // active first, then alive standby
-      let active = this.playerTable.active_charactor_idx;
-      let cnum = this.playerTable.charactors.length;
+      let active = this.playerTable.active_character_idx;
+      let cnum = this.playerTable.characters.length;
       if (active == -1) active = 0;
       for (let cid = -1; cid < cnum; cid++) {
-        let charactor = this.playerTable.charactors[cid];
-        if (cid == -1) charactor = this.playerTable.charactors[active];
-        if (!charactor.is_alive) continue;
-        order.push(charactor.element);
-        if (charactor.name == 'Maguu Kenki')
+        let character = this.playerTable.characters[cid];
+        if (cid == -1) character = this.playerTable.characters[active];
+        if (!character.is_alive) continue;
+        order.push(character.element);
+        if (character.name == 'Maguu Kenki')
           order.push('CRYO')
       }
       let result = [];
@@ -604,8 +604,8 @@ export default {
           for (let ppid = 0; ppid < position.positions.length; ppid++) {
             let pposition = position.positions[ppid];
             oneret.push({
-              charactor_idx: pposition.charactor_idx,
-              charactor_name: this.playerTable.charactors[pposition.charactor_idx].name,
+              character_idx: pposition.character_idx,
+              character_name: this.playerTable.characters[pposition.character_idx].name,
             });
           }
           ret.push(oneret);
@@ -759,7 +759,7 @@ export default {
   height: 100%;
 }
 
-.supports-charactors-summons {
+.supports-characters-summons {
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -792,7 +792,7 @@ export default {
   font-weight: bold;
 }
 
-.charactors {
+.characters {
   display: flex;
   flex-direction: row;
   justify-content:space-around;
@@ -800,7 +800,7 @@ export default {
   height: 100%;
 }
 
-.charactors > * {
+.characters > * {
   width: 13.5%;
   display: flex;
   flex-direction: column;
@@ -808,15 +808,15 @@ export default {
   position: relative;
 }
 
-.charactors > * > .team-status {
+.characters > * > .team-status {
   height: 8.64%;
 }
 
-.charactors > * > .active-div {
+.characters > * > .active-div {
   height: 8.64%;
 }
 
-.charactors > * > .charactor-inner {
+.characters > * > .character-inner {
   height: 82.72%;
 }
 

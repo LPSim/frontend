@@ -1,66 +1,66 @@
 <template>
   <div @click="log_data">
     <div class="elements">
-      <div class="element" v-for="(element, eid) in charactor.element_application" :key="eid">
+      <div class="element" v-for="(element, eid) in character.element_application" :key="eid">
         <img :src="image_path('ELEMENT', element)" width="100%" height="100%" @error="imgSrcError($event)">
         <div :class="'element-text element-text-' + element.toLowerCase()">
           <span>●</span>
         </div>
       </div>
     </div>
-    <div :class="(charactor.is_alive ? 'charactor ' : 'charactor-died ') + selectClass">
+    <div :class="(character.is_alive ? 'character ' : 'character-died ') + selectClass">
       <img
-        class="charactor-image"
-        :src="image_path('CHARACTOR', charactor.name, charactor.desc)"
-        :alt="$t('CHARACTOR/' + charactor.name + (charactor.desc.length > 0 ? '_' : '') + charactor.desc)"
+        class="character-image"
+        :src="image_path('CHARACTER', character.name, character.desc)"
+        :alt="$t('CHARACTER/' + character.name + (character.desc.length > 0 ? '_' : '') + character.desc)"
         @error="imgSrcError($event)"
       />
-      <div class="charactor-text">
-        <span>{{ $t('CHARACTOR/' + charactor.name + (charactor.desc.length > 0 ? '_' : '') + charactor.desc) }}</span>
+      <div class="character-text">
+        <span>{{ $t('CHARACTER/' + character.name + (character.desc.length > 0 ? '_' : '') + character.desc) }}</span>
       </div>
-      <div class="charactor-hp">
+      <div class="character-hp">
         <div>
           <img :src="image_path('ICON', 'HP')" width="100%" heright="100%" @error="$event.target.style.display='none'"/>
           <div class="hp-span-div">
-            <span :style="charactor.hp > 9 ? 'padding-right: 0.2vw;' : ''">{{ charactor.hp }}</span>
+            <span :style="character.hp > 9 ? 'padding-right: 0.2vw;' : ''">{{ character.hp }}</span>
           </div>
         </div>
       </div>
-      <div class="charactor-charge-back">
-        <div v-for="i in charactor.max_charge" :key="i">
+      <div class="character-charge-back">
+        <div v-for="i in character.max_charge" :key="i">
           <img :src="image_path('ICON', 'CHARGE_BACK')" width="100%" height="100%" @error="imgSrcError($event)" />
           <div class="charge-text-back">
             <span>●</span>
           </div>
         </div>
       </div>
-      <div class="charactor-charge-front">
-        <div v-for="i in charactor.charge" :key="i">
+      <div class="character-charge-front">
+        <div v-for="i in character.charge" :key="i">
           <img :src="image_path('ICON', 'CHARGE_FRONT')" width="100%" height="100%" @error="imgSrcError($event)" />
           <div class="charge-text-front">
             <span>●</span>
           </div>
         </div>
       </div>
-      <div v-if="charactor.weapon" @click="log_object(charactor.weapon)" @mouseover="showDetails(charactor.weapon)" @mouseout="hideDetails()" class="charactor-weapon">
+      <div v-if="character.weapon" @click="log_object(character.weapon)" @mouseover="showDetails(character.weapon)" @mouseout="hideDetails()" class="character-weapon">
         <img :src="image_path('ICON', 'EQUIP_WEAPON')" width="100%" height="100%" @error="imgSrcError($event)"/>
         <div class="equip-text">
           <span>{{ $t('Equip Weapon Text') }}</span>
         </div>
       </div>
-      <div v-if="charactor.artifact" @click="log_object(charactor.artifact)" @mouseover="showDetails(charactor.artifact)" @mouseout="hideDetails()" class="charactor-artifact">
+      <div v-if="character.artifact" @click="log_object(character.artifact)" @mouseover="showDetails(character.artifact)" @mouseout="hideDetails()" class="character-artifact">
         <img :src="image_path('ICON', 'EQUIP_ARTIFACT')" width="100%" height="100%" @error="imgSrcError($event)"/>
         <div class="equip-text">
           <span>{{ $t('Equip Artifact Text') }}</span>
         </div>
       </div>
-      <div v-if="charactor.talent" @click="log_object(charactor.talent)" @mouseover="showDetails(charactor.talent)" @mouseout="hideDetails()" class="charactor-talent">
+      <div v-if="character.talent" @click="log_object(character.talent)" @mouseover="showDetails(character.talent)" @mouseout="hideDetails()" class="character-talent">
         <img :src="image_path('ICON', 'EQUIP_TALENT')" width="100%" height="100%" @error="imgSrcError($event)"/>
         <div class="equip-text">
           <span>{{ $t('Equip Talent Text') }}</span>
         </div>
       </div>
-      <div v-if="showDetailsFlag" class="charactor-details" :style="detailDivStyle(detailData)">
+      <div v-if="showDetailsFlag" class="character-details" :style="detailDivStyle(detailData)">
         <div class="p-div" :style="'width: ' + detailTextWidth + '%'">
           <h4>{{ $t(detailData.type + '/' + $store.getters.getNameWithDesc(detailData)) }}</h4>
           <p style="color: #555; font-size: 0.65vw;">{{ $t('Version: ') }}{{ detailData.version }}</p>
@@ -74,8 +74,8 @@
       <div class="damage-notify-div" v-if="damage_notify.length > 0">
         <p v-for="(notify, nid) in damage_notify" :key="nid" :style="{ color: notify.color, 'font-size': notify.font_size }">{{ notify.damage }}</p>
       </div>
-      <div class="charactor-status-div">
-        <div v-for="(status, sid) in charactor.status" :key="sid" @click="log_object(status)" @mouseover="showDetails(status, false)" @mouseout="hideDetails()" >
+      <div class="character-status-div">
+        <div v-for="(status, sid) in character.status" :key="sid" @click="log_object(status)" @mouseover="showDetails(status, false)" @mouseout="hideDetails()" >
           <img :src="status_path(status)" width="100%" height="100%" @error="imgSrcError($event)" />
           <div :class="'status-text status-text-' + status.icon_type.toLowerCase()">
             <span>{{ status.icon_type == 'OTHERS' ? '?' : '●' }}</span>
@@ -91,9 +91,9 @@
 
 <script>
 export default {
-  name: 'Charactor',
+  name: 'Character',
   props: {
-    charactor: {
+    character: {
       type: Object,
       required: true
     },
@@ -142,8 +142,8 @@ export default {
       event.target.parentNode.replaceChild(newDivElement, event.target);
     },
     log_data() {
-      console.log('CHARACTOR', JSON.parse(JSON.stringify(this.charactor)));
-      this.$store.commit('setSelectedObject', this.charactor)
+      console.log('CHARACTER', JSON.parse(JSON.stringify(this.character)));
+      this.$store.commit('setSelectedObject', this.character)
     },
     log_object(obj) {
       console.log(obj.type, JSON.parse(JSON.stringify(obj)));
@@ -153,7 +153,7 @@ export default {
       this.showDetailsFlag = true;
       if (img) data.img_name = data.name;
       if (data.type == 'TALENT') {
-        data.type = data.type + '_' + data.charactor_name;
+        data.type = data.type + '_' + data.character_name;
       }
       this.detailData = data;
     },
@@ -198,11 +198,11 @@ export default {
   computed: {
     damage_notify() {
       let notify = this.$store.state.damageNotify;
-      if (notify && notify[this.charactor.position.player_idx]
-          && notify[this.charactor.position.player_idx][this.charactor.position.charactor_idx]) {
+      if (notify && notify[this.character.position.player_idx]
+          && notify[this.character.position.player_idx][this.character.position.character_idx]) {
         let res = [];
-        for (let i = 0; i < notify[this.charactor.position.player_idx][this.charactor.position.charactor_idx].length; i++) {
-          let item = notify[this.charactor.position.player_idx][this.charactor.position.charactor_idx][i];
+        for (let i = 0; i < notify[this.character.position.player_idx][this.character.position.character_idx].length; i++) {
+          let item = notify[this.character.position.player_idx][this.character.position.character_idx][i];
           item = JSON.parse(JSON.stringify(item));
           if (item.type == 'HEAL') item.damage = '+' + item.damage;
           else item.damage = '-' + item.damage;
@@ -250,7 +250,7 @@ export default {
   width: 20%;
 }
 
-.charactor, .charactor-died {
+.character, .character-died {
   position: relative;
   width: 100%;
   height: 89.56%;
@@ -260,22 +260,22 @@ export default {
   font-size: 2vw;
 }
 
-.charactor-died {
+.character-died {
   border: 1px solid red;
   background-color: red;
 }
 
-.charactor-died > * {
+.character-died > * {
   opacity: 0.8;
 }
 
-.charactor > div, .charactor-died > div {
-  /* Add styles for all the div elements inside the charactor container */
+.character > div, .character-died > div {
+  /* Add styles for all the div elements inside the character container */
   position: absolute;
 }
 
-.charactor-image {
-  /* Add styles for the charactor image */
+.character-image {
+  /* Add styles for the character image */
   width: 100%;
   height: 100%;
   position: absolute;
@@ -285,8 +285,8 @@ export default {
   -webkit-text-stroke-width: 0;
 }
 
-.charactor-name {
-  /* Add styles for the charactor name div */
+.character-name {
+  /* Add styles for the character name div */
   width: 100%;
   height: 100%;
   display: flex;
@@ -294,8 +294,8 @@ export default {
   align-items: center;
 }
 
-.charactor-hp {
-  /* Add styles for the charactor hp div */
+.character-hp {
+  /* Add styles for the character hp div */
   position: absolute;
   top: -5%;
   left: -17%;
@@ -306,7 +306,7 @@ export default {
   -webkit-text-stroke-width: 0.05vw;
 }
 
-.charactor-hp > div {
+.character-hp > div {
   position: absolute;
   font-size: 1.7vw;
   font-weight: bolder;
@@ -333,8 +333,8 @@ export default {
   height: 100%;
 }
 
-.charactor-charge {
-  /* Add styles for the charactor charge div */
+.character-charge {
+  /* Add styles for the character charge div */
   display: flex;
   flex-direction: column;
   width: 20%;
@@ -343,7 +343,7 @@ export default {
   align-items: end;
 }
 
-.charactor-charge-back {
+.character-charge-back {
   display: flex;
   flex-direction: column;
   width: 26.01%;
@@ -352,13 +352,13 @@ export default {
   opacity: 1;
 }
 
-.charactor-charge-back > div {
+.character-charge-back > div {
   height: 15.174%;
   width: 100%;
   margin-top: 0.25vw;
 }
 
-.charactor-charge-front > div > img {
+.character-charge-front > div > img {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -366,7 +366,7 @@ export default {
   left: 0;
 }
 
-.charactor-charge-front {
+.character-charge-front {
   display: flex;
   flex-direction: column;
   width: 40.81%;
@@ -375,7 +375,7 @@ export default {
   opacity: 1;
 }
 
-.charactor-charge-front > div {
+.character-charge-front > div {
   /* height: 19.62%; */
   position: relative;
   height: 15.174%;
@@ -384,38 +384,38 @@ export default {
   margin-top: 0.25vw;
 }
 
-.charactor-charge-front > div > img {
+.character-charge-front > div > img {
   position: absolute;
   height: 129.31%;
   /* top: -14.655%; */
 }
 
-.charactor-weapon {
-  /* Add styles for the charactor weapon div */
+.character-weapon {
+  /* Add styles for the character weapon div */
   top: 25%;
   left: -15%;
   height: 20%;
   width: 36.2%;
 }
 
-.charactor-artifact {
-  /* Add styles for the charactor artifact div */
+.character-artifact {
+  /* Add styles for the character artifact div */
   top: 45%;
   left: -15%;
   height: 20%;
   width: 36.2%;
 }
 
-.charactor-talent {
-  /* Add styles for the charactor talent div */
+.character-talent {
+  /* Add styles for the character talent div */
   top: 65%;
   left: -15%;
   height: 20%;
   width: 36.2%;
 }
 
-.charactor-status-div {
-  /* Add styles for the charactor status div */
+.character-status-div {
+  /* Add styles for the character status div */
   display: flex;
   flex-direction: row;
   top: 88.34%;
@@ -423,7 +423,7 @@ export default {
   width: 100%;
 }
 
-.charactor-status-div > div {
+.character-status-div > div {
   position: relative;
   /* width: 10%;
   height: 10%; */
@@ -431,11 +431,11 @@ export default {
   height: 100%;
 }
 
-.charactor-status-div img {
+.character-status-div img {
   position: absolute;
 }
 
-.charactor-details {
+.character-details {
   position: absolute;
   top: 0;
   height: 100%;
@@ -456,11 +456,11 @@ export default {
   -webkit-text-stroke-color: black;
 }
 
-.charactor-details > .detail-img-div {
+.character-details > .detail-img-div {
   width: 50%;
 }
 
-.charactor-details > .p-div {
+.character-details > .p-div {
   color: black;
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -544,7 +544,7 @@ export default {
   transform: translateX(0.3vw);
 }
 
-.charactor-text {
+.character-text {
   display: none;
   align-items: center;
   justify-content: center;
@@ -559,7 +559,7 @@ export default {
   background-color: white;
 }
 
-.charactor-text > span {
+.character-text > span {
   word-break: break-all;
 }
 

@@ -160,18 +160,18 @@
       </div>
       <div v-if="switchNotify" :class="{ 'switch-notify-container': true, 'notify-right-part': switchNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': switchNotify.player_id != playerTableOrder }">
-          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })" @load="updateImageWidth($event)" @error="$event.target.style.display='none'"/>
+          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: switchNotify.character_name, desc: switchNotify.character_desc })" @load="updateImageWidth($event)" @error="$event.target.style.display='none'"/>
           <div>
-            <p>{{ $t('Switch to') }} {{ $t('CHARACTOR/' + $store.getters.getNameWithDesc({ name: switchNotify.charactor_name, desc: switchNotify.charactor_desc })) }}</p>
+            <p>{{ $t('Switch to') }} {{ $t('CHARACTER/' + $store.getters.getNameWithDesc({ name: switchNotify.character_name, desc: switchNotify.character_desc })) }}</p>
           </div>
         </div>
       </div>
       <div v-if="skillNotify" :class="{ 'skill-notify-container': true, 'notify-right-part': skillNotify.player_id != playerTableOrder }">
         <div :class="{ 'opponent-shadow-color': skillNotify.player_id != playerTableOrder }">
-          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })" @load="updateImageWidth($event)" @error="$event.target.style.display='none'"/>
+          <img :src="$store.getters.getImagePath({ type: 'AVATAR', name: skillNotify.character_name, desc: skillNotify.character_desc })" @load="updateImageWidth($event)" @error="$event.target.style.display='none'"/>
           <div>
-            <p>{{ $t('CHARACTOR/' + $store.getters.getNameWithDesc({ name: skillNotify.charactor_name, desc: skillNotify.charactor_desc })) }} {{ $t('used') }} {{ $t('SKILL_TYPE/' + skillNotify.skill_type) }}</p>
-            <p>{{ $t('SKILL_' + skillNotify.charactor_name + '_' + skillNotify.skill_type + '/' + skillNotify.skill_name) }}</p>
+            <p>{{ $t('CHARACTER/' + $store.getters.getNameWithDesc({ name: skillNotify.character_name, desc: skillNotify.character_desc })) }} {{ $t('used') }} {{ $t('SKILL_TYPE/' + skillNotify.skill_type) }}</p>
+            <p>{{ $t('SKILL_' + skillNotify.character_name + '_' + skillNotify.skill_type + '/' + skillNotify.skill_name) }}</p>
           </div>
         </div>
       </div>
@@ -205,10 +205,10 @@
           </div>
         </div>
         <div class="last-buttons">
-          <div v-if="buttonRequests.SwitchCharactor" @click="selectRequest(buttonRequests.SwitchCharactor)">
-            <RequestButton :title="buttonRequests.SwitchCharactor.title" :cost="buttonRequests.SwitchCharactor.cost" :select_class="selectClass('Switch Charactor', buttonRequests.SwitchCharactor.idx)" />
+          <div v-if="buttonRequests.SwitchCharacter" @click="selectRequest(buttonRequests.SwitchCharacter)">
+            <RequestButton :title="buttonRequests.SwitchCharacter.title" :cost="buttonRequests.SwitchCharacter.cost" :select_class="selectClass('Switch Character', buttonRequests.SwitchCharacter.idx)" />
           </div>
-          <div v-if="!buttonRequests.SwitchCharactor && buttonRequests.DeclareRoundEnd" @click="selectRequest(buttonRequests.DeclareRoundEnd)">
+          <div v-if="!buttonRequests.SwitchCharacter && buttonRequests.DeclareRoundEnd" @click="selectRequest(buttonRequests.DeclareRoundEnd)">
             <RequestButton :title="$t('Declare Round End')" :select_class="selectClass('Declare Round End', buttonRequests.DeclareRoundEnd.idx)" />
           </div>
           <div @click="confirmSelection">
@@ -749,7 +749,7 @@ export default {
         else if (request.name == 'UseSkillRequest') {
           // console.log(request.name, request.cost)
         }
-        else if (request.name == 'SwitchCharactorRequest') {
+        else if (request.name == 'SwitchCharacterRequest') {
           // console.log(request.name, request.cost)
         }
         else if (request.name == 'RerollDiceRequest') {
@@ -1121,12 +1121,12 @@ export default {
       let req = this.$store.state.requests[request_idx];
       if (req && req.name == 'UseSkillRequest') {
         let table = this.match.player_tables[req.player_idx];
-        let char = table.charactors[table.active_charactor_idx];
+        let char = table.characters[table.active_character_idx];
         let skill = char.skills[req.skill_idx];
         this.$store.commit('setSelectedObject', {
           type: 'SKILL',
           skill_type: skill.skill_type,
-          charactor_name: char.name,
+          character_name: char.name,
           name: skill.name,
           desc: skill.desc,
           version: char.version,
@@ -1277,7 +1277,7 @@ export default {
     imageAlt(card) {
       let type = card.type;
       if (type == 'TALENT') {
-        type = type + '_' + card.charactor_name;
+        type = type + '_' + card.character_name;
       }
       if (card.name == 'Unknown') type = 'CARD'
       return this.$t(type + '/' + this.$store.getters.getNameWithDesc(card));
@@ -1300,12 +1300,12 @@ export default {
       let fullMatch = this.fullMatch;
       if (fullMatch && fullMatch.player_tables) {
         for (let pt of fullMatch.player_tables) {
-          if (pt.charactors) {
-            for (let c of pt.charactors) {
-              // check if use attachs in charactors
-              if (c.attachs) {
+          if (pt.characters) {
+            for (let c of pt.characters) {
+              // check if use attaches in characters
+              if (c.attaches) {
                 c.status = []
-                for (let obj of c.attachs)
+                for (let obj of c.attaches)
                   if (obj.type == 'WEAPON') c.weapon = obj;
                   else if (obj.type == 'ARTIFACT') c.artifact = obj;
                   else if (obj.type == 'TALENT') c.talent = obj;
@@ -1393,7 +1393,7 @@ export default {
         let pred = this.match.skill_predictions[i];
         if (pred.player_idx == this.currentRequestPlayerId) {
           let name = 'UseSkill' + pred.skill_idx;
-          let char = this.match.player_tables[pred.player_idx].charactors[pred.charactor_idx];
+          let char = this.match.player_tables[pred.player_idx].characters[pred.character_idx];
           let key = 'SKILL_' + char.name + '_' + char.skills[pred.skill_idx].skill_type + '/' + char.skills[pred.skill_idx].name;
           let diff = pred.diff;
           let fake_datas = [
@@ -1452,16 +1452,16 @@ export default {
         if (request.name == 'UseSkillRequest') {
           let skill_idx = request.skill_idx;
           finalres[name + skill_idx] = {...finalres[name + skill_idx], ...request};
-          let char = this.match.player_tables[request.player_idx].charactors[request.charactor_idx];
+          let char = this.match.player_tables[request.player_idx].characters[request.character_idx];
           let key = 'SKILL_' + char.name + '_' + char.skills[skill_idx].skill_type + '/' + char.skills[skill_idx].name;
           finalres[name + skill_idx].title = this.$t(key);
         }
-        else if (request.name == 'SwitchCharactorRequest') {
-          let charactor_idx = request.target_charactor_idx;
-          let charactors = this.match.player_tables[request.player_idx].charactors;
-          let target = charactors[charactor_idx];
-          let name = 'SwitchCharactor';
-          request.title = this.$t('Switch To ') + this.$t('CHARACTOR/' + target.name);
+        else if (request.name == 'SwitchCharacterRequest') {
+          let character_idx = request.target_character_idx;
+          let characters = this.match.player_tables[request.player_idx].characters;
+          let target = characters[character_idx];
+          let name = 'SwitchCharacter';
+          request.title = this.$t('Switch To ') + this.$t('CHARACTER/' + target.name);
           if (this.$store.state.selectedRequest !== null) {
             let selectedRequest = this.$store.state.requests[this.$store.state.selectedRequest];
             if (selectedRequest.idx == request.idx) {
@@ -1474,7 +1474,7 @@ export default {
           request.title = this.$t({
             SwitchCard: 'Switch Card',
             RerollDice: 'Reroll Dice',
-            ChooseCharactor: 'Choose Charactor',
+            ChooseCharacter: 'Choose Character',
             ElementalTuning: 'Elemental Tuning',
             DeclareRoundEnd: 'Declare Round End',
           }[name]);
@@ -1483,11 +1483,11 @@ export default {
       return finalres;
     },
     prevButtonRequests() {
-      // filter out DeclareRoundEnd and SwitchCharactor
+      // filter out DeclareRoundEnd and SwitchCharacter
       let br = this.buttonRequests;
       let res = {}
       for (let key in br) {
-        if (key != 'DeclareRoundEnd' && key != 'SwitchCharactor') {
+        if (key != 'DeclareRoundEnd' && key != 'SwitchCharacter') {
           res[key] = br[key];
         }
       }
@@ -1498,11 +1498,11 @@ export default {
       if (data === null)
         return []
       if (data.name == 'Unknown') return []
-      if (data.type == 'CHARACTOR') {
-        // show skills of charactors
+      if (data.type == 'CHARACTER') {
+        // show skills of characters
         let res = [
           {
-            type: 'CHARACTOR',
+            type: 'CHARACTER',
             name: data.name,
             desc: data.desc,
             version: data.version,
@@ -1520,10 +1520,10 @@ export default {
         return res;
       }
       if (data.type == 'TALENT') {
-        // add charactor name into type
+        // add character name into type
         let res = [
           {
-            type: 'TALENT_' + data.charactor_name,
+            type: 'TALENT_' + data.character_name,
             name: data.name,
             desc: data.desc,
             version: data.version,
@@ -1532,10 +1532,10 @@ export default {
         return res;
       }
       if (data.type == 'SKILL') {
-        // add charactor name and skill type
+        // add character name and skill type
         let res = [
           {
-            type: 'SKILL_' + data.charactor_name + '_' + data.skill_type,
+            type: 'SKILL_' + data.character_name + '_' + data.skill_type,
             skill_type: data.skill_type,
             name: data.name,
             desc: data.desc,
@@ -1553,18 +1553,18 @@ export default {
       if (!this.match) return null;
       if (this.match.last_action.type != 'USE_SKILL') return null;
       let position = this.match.last_action.skill_position;
-      let skills = this.match.player_tables[position.player_idx].charactors[position.charactor_idx].skills;
+      let skills = this.match.player_tables[position.player_idx].characters[position.character_idx].skills;
       for (let i = 0; i < skills.length; i ++ ) {
         if (skills[i].id == position.id) {
-          let char = this.match.player_tables[position.player_idx].charactors[position.charactor_idx];
+          let char = this.match.player_tables[position.player_idx].characters[position.character_idx];
           let ret = {
             player_id: position.player_idx,
-            charactor_name: char.name,
-            charactor_desc: char.desc,
+            character_name: char.name,
+            character_desc: char.desc,
             skill_type: skills[i].skill_type,
             skill_name: skills[i].name,
           };
-          this.$store.commit('setSelectedObject', { version: char.version, charactor_name: char.name, ...skills[i] });
+          this.$store.commit('setSelectedObject', { version: char.version, character_name: char.name, ...skills[i] });
           return ret;
         }
       }
@@ -1597,13 +1597,13 @@ export default {
     },
     switchNotify() {
       if (!this.match) return null;
-      if (this.match.last_action.type != 'SWITCH_CHARACTOR') return null;
-      let char = this.match.player_tables[this.match.last_action.player_idx].charactors[this.match.last_action.charactor_idx];
+      if (this.match.last_action.type != 'SWITCH_CHARACTER') return null;
+      let char = this.match.player_tables[this.match.last_action.player_idx].characters[this.match.last_action.character_idx];
       this.$store.commit('setSelectedObject', char);
       return {
         player_id: this.match.last_action.player_idx,
-        charactor_name: char.name,
-        charactor_desc: char.desc,
+        character_name: char.name,
+        character_desc: char.desc,
       };
     },
     roundEndNotify() {
@@ -1617,7 +1617,7 @@ export default {
         r => (
           r.name == 'RerollDiceRequest'
           || r.name == 'SwitchCardRequest'
-          || r.name == 'ChooseCharactorRequest'
+          || r.name == 'ChooseCharacterRequest'
         )
       );
       let self = this.currentRequestPlayerId;

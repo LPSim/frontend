@@ -63,16 +63,16 @@ To interact with GUI, first open FastAPI server on LPSim, then click refresh
 to receive current state. When requests is needed, available requests and 
 objects will be marked with gold border. To perform elemental tuning, skill,
 or decleare round end, click corresponding buttons on right. To switch 
-charactor, click charactor that want switch to. To use card, click card first,
+character, click character that want switch to. To use card, click card first,
 then if this card need a target, click target. When an action need cost, the
 code will automatically select the cost. You can manually select cost by 
 clicking dice. When action, target and cost is selected, click confirm to send
 command. If mistakenly selected, click cancel to cancel the selection. You can
 also use space/enter to confirm and esc to cancel. 
 
-When clicking on card, skill, charactor, summon, support, the detail 
+When clicking on card, skill, character, summon, support, the detail 
 information will be shown on the left, and also print in the console for its
-structure. Hover on team status or charactor status will show its information
+structure. Hover on team status or character status will show its information
 beside the icon.
 
 

@@ -151,21 +151,21 @@ export default new Vuex.Store({
           state.positions.push(hands[i].position)
         }
       }
-      else if (request.name == 'ChooseCharactorRequest') {
-        // all charactors listed in available_charactor_idxs are valid positions
-        let charactors = table.charactors
-        for (let i = 0; i < request.available_charactor_idxs.length; i++) {
-          state.positions.push(charactors[request.available_charactor_idxs[i]].position)
+      else if (request.name == 'ChooseCharacterRequest') {
+        // all characters listed in available_character_idxs are valid positions
+        let characters = table.characters
+        for (let i = 0; i < request.available_character_idxs.length; i++) {
+          state.positions.push(characters[request.available_character_idxs[i]].position)
         }
       }
       else if (request.name == 'RerollDiceRequest') {
         // all dice are available, no other positions
         this.commit('updateCost', { mode: 'any', player: player_idx })
       }
-      else if (request.name == 'SwitchCharactorRequest') {
-        // charactors listed in candidate_charactor_idxs are valid positions
-        let charactors = table.charactors
-        state.positions.push(charactors[request.target_charactor_idx].position)
+      else if (request.name == 'SwitchCharacterRequest') {
+        // characters listed in candidate_character_idxs are valid positions
+        let characters = table.characters
+        state.positions.push(characters[request.target_character_idx].position)
         state.selectedPositions.push(0);
       }
       else if (request.name == 'ElementalTuningRequest') {
@@ -182,11 +182,11 @@ export default new Vuex.Store({
       else if (request.name == 'UseSkillRequest') {
         // no other positions
 
-        // opponent active charactor as position
+        // opponent active character as position
         // let o_table = state.match.player_tables[1 - player_idx]
-        // let o_charactors = o_table.charactors
-        // let active = o_table.active_charactor_idx
-        // state.positions.push(o_charactors[active].position)
+        // let o_characters = o_table.characters
+        // let active = o_table.active_character_idx
+        // state.positions.push(o_characters[active].position)
         // state.selectedPositions = [0]
       }
       else if (request.name == 'UseCardRequest') {
@@ -223,9 +223,9 @@ export default new Vuex.Store({
       else if (state.diceSelectionRule.mode == 'tune') {
         let valid = state.requests[state.selectedRequest].dice_idxs;
         if (valid.indexOf(data.idx) == -1) return;
-        // can only select one die with different element as active charactor
-        // let active = table.active_charactor_idx
-        // let element = table.charactors[active].element
+        // can only select one die with different element as active character
+        // let active = table.active_character_idx
+        // let element = table.characters[active].element
         // let dice_color = table.dice.colors[data.idx]
         // // console.log(element, dice_color)
         // if (dice_color == element || dice_color == 'OMNI') {
@@ -321,9 +321,9 @@ export default new Vuex.Store({
       let request = state.requests[state.selectedRequest];
       let res = {
         'SwitchCardRequest': 'sw_card',
-        'ChooseCharactorRequest': 'choose',
+        'ChooseCharacterRequest': 'choose',
         'RerollDiceRequest': 'reroll',
-        'SwitchCharactorRequest': 'sw_char',
+        'SwitchCharacterRequest': 'sw_char',
         'ElementalTuningRequest': 'tune',
         'DeclareRoundEndRequest': 'end',
         'UseSkillRequest': 'skill',
@@ -344,9 +344,9 @@ export default new Vuex.Store({
       else if (res == 'choose ') {
         if (state.selectedPositions.length != 1) return;
         let position = state.positions[state.selectedPositions[0]];
-        let charactors = state.match.player_tables[request.player_idx].charactors;
-        for (let j = 0; j < charactors.length; j++) {
-          if (charactors[j].position.id == position.id) {
+        let characters = state.match.player_tables[request.player_idx].characters;
+        for (let j = 0; j < characters.length; j++) {
+          if (characters[j].position.id == position.id) {
             res += j + ' ';
             break;
           }
@@ -358,9 +358,9 @@ export default new Vuex.Store({
       else if (res == 'sw_char ') {
         if (state.selectedPositions.length != 1) return;
         let position = state.positions[state.selectedPositions[0]];
-        let charactors = state.match.player_tables[request.player_idx].charactors;
-        for (let j = 0; j < charactors.length; j++) {
-          if (charactors[j].position.id == position.id) {
+        let characters = state.match.player_tables[request.player_idx].characters;
+        for (let j = 0; j < characters.length; j++) {
+          if (characters[j].position.id == position.id) {
             res += j + ' ';
             break;
           }
@@ -424,10 +424,10 @@ export default new Vuex.Store({
       state.deck[player_id][type].splice(id, 1);
     },
     removeDeckCards(state, data) {
-      // ALL to clear all; CHARACTOR to charactor; CARD to card
+      // ALL to clear all; CHARACTER to character; CARD to card
       let player_id = data.player_id;
       let area = data.area;
-      if (area == 'ALL' || area == 'CHARACTOR') state.deck[player_id].charactors = [];
+      if (area == 'ALL' || area == 'CHARACTER') state.deck[player_id].characters = [];
       if (area == 'ALL' || area == 'CARD') state.deck[player_id].cards = [];
     },
     addDeckCard(state, data) {
@@ -504,7 +504,7 @@ export default new Vuex.Store({
       let suffix = '';
       if (payload.scale) suffix = '?imageMogr2/thumbnail/' + payload.scale;
       if (type == 'TALENT') {
-        type = type + '_' + payload.charactor_name;
+        type = type + '_' + payload.character_name;
       }
       if (name == 'Unknown') {
         type = 'CARD';
@@ -518,8 +518,8 @@ export default new Vuex.Store({
       if (res && res.slice(0, 4) == 'http') return res;
 
       if (type == 'AVATAR') {
-        // if is avatar, first get CHARACTOR/name, then convert to avatar path
-        let res = state.imagePath['CHARACTOR/' + name];
+        // if is avatar, first get CHARACTER/name, then convert to avatar path
+        let res = state.imagePath['CHARACTER/' + name];
         if (res) {
           // for normal cards
           res = res.replace(/cardface\/Char_(Avatar|Enemy|Monster)_/, 'avatar/')
@@ -529,7 +529,7 @@ export default new Vuex.Store({
         return prefix + res + suffix;
       }
 
-      if ((type == 'CHARACTOR_STATUS' || type == 'TEAM_STATUS') && res == undefined) {
+      if ((type == 'CHARACTER_STATUS' || type == 'TEAM_STATUS') && res == undefined) {
         let name_arr = name.toLowerCase().split('_');
         let res_name = [];
         for (let i = 0; i < name_arr.length; i++) {
@@ -571,7 +571,7 @@ export default new Vuex.Store({
         let type = key_arr[0];
         let kname = key_arr[1];
         if (
-          type == 'CHARACTOR'
+          type == 'CHARACTER'
           || type.includes('TALENT')
           || type == 'CARD'
           || type == 'WEAPON'
@@ -610,7 +610,7 @@ export default new Vuex.Store({
     },
     deckStrToDeckDict: (state, getters) => (deck_str, descs) => {
       let deck = {
-        charactors: [],
+        characters: [],
         cards: [],
       };
       let default_version = '9.9';
@@ -622,12 +622,12 @@ export default new Vuex.Store({
           default_version = line.slice(16);
           continue;
         }
-        if (line.startsWith('charactor:')) {
-          deck.charactors.push({
-            type: 'CHARACTOR',
+        if (line.startsWith('character:')) {
+          deck.characters.push({
+            type: 'CHARACTER',
             name: line.slice(10),
             desc: '',
-            version: getters.findNearestVersion('CHARACTOR/' + line.slice(10), default_version, descs)
+            version: getters.findNearestVersion('CHARACTER/' + line.slice(10), default_version, descs)
           });
         }
         else {
