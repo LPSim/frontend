@@ -79,6 +79,7 @@ export default {
   /* height: 160%; */
   height: 100%;
   top: -30%;
+  border-radius: 0.5vw;
 }
 
 .support-usage-div {
