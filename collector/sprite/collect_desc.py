@@ -5,7 +5,7 @@ import json
 import sys
 
 
-VERSION = '4.4'
+VERSION = '4.5'
 
 
 js_code = '''
@@ -28,7 +28,8 @@ if (id < 100000) {
         first_c = first_c.children[1]
         name = first_c.children[0].innerText
         type = (first_c.children[1] && first_c.children[1].innerText) || 'Unknown'
-        desc = second_c.children[0].children[0].innerText
+        if (!second_c) continue
+        desc = second_c ? second_c.children[0].children[0].innerText : ''
         // console.log(name, type, desc)
         let key = 'SKILL_' + cname + '_' + type.toUpperCase() + '/' + name
         res.push([key, {
@@ -41,7 +42,7 @@ if (id < 100000) {
                 }
             }
         }])
-        let other_descs = second_c.children[0].children[1]
+        let other_descs = second_c ? second_c.children[0].children[1] : undefined
         if (other_descs != undefined) {
             // contains other descs
             for (j = 0; j < other_descs.children.length; j++) {
