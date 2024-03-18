@@ -73,6 +73,7 @@
   "To connect LAN server, visit http://lpsim.zyr17.cn. Currently you are visiting https page.": "连接局域网服务器，请访问 http://lpsim.zyr17.cn。当前你正在访问 https 页面。",
   "To connect https server, visit https://lpsim.zyr17.cn. Currently you are visiting http page.": "连接 https 服务器，请访问 https://lpsim.zyr17.cn。当前你正在访问 http 页面。",
   "Server version is ": "服务器版本为 ",
+  ", supported frontend version is ": "，支持的前端版本为 ",
   ", but client version is ": "，但客户端版本为 ",
   ". Client may not work properly.": "。客户端可能无法正常工作。",
   "Waiting for opponent action. Current state is initial state, state will update until both players have done actions.": "等待对手行动。当前显示状态为初始状态，状态将在双方都完成行动后更新。",

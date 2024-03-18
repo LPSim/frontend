@@ -581,15 +581,21 @@ export default {
     },
     checkVersion(serverURL, callback = undefined) {
       function versionSuccess(obj) {
+        let support_version = obj.support_version;
         let version = obj.version;
         console.log('SERVER VERSION', version);
+        console.log('SUPPORT VERSION', support_version);
         let self_version = packageJSON.version;
-        if (!(version == undefined || version == 'unknown')) {
+        if (!(support_version == undefined || support_version == 'unknown')) {
           // undefined, old server, no error message.
           // or unknown, debug server, no error message.
-          version = version.replace(/\.post\d+$/, '');  // ignore post versions
-          if (version != self_version) {
-            let msg = this.$t('Server version is ') + version + this.$t(', but client version is ') + self_version + this.$t('. Client may not work properly.');
+          if (support_version != self_version) {
+            let msg = (
+              this.$t('Server version is ') + version +
+              this.$t(', supported frontend version is ') + support_version +
+              this.$t(', but client version is ') + self_version +
+              this.$t('. Client may not work properly.')
+            );
             this.sendNotify({
               text: msg,
               type: 'warn'
