@@ -586,7 +586,10 @@ export default {
         console.log('SERVER VERSION', version);
         console.log('SUPPORT VERSION', support_version);
         let self_version = packageJSON.version;
-        if (!(support_version == undefined || support_version == 'unknown')) {
+        let check_version = support_version;
+        // when support version is undefined, fallback to server version.
+        if (check_version == undefined) check_version = version;
+        if (!(check_version == undefined || check_version == 'unknown')) {
           // undefined, old server, no error message.
           // or unknown, debug server, no error message.
           if (support_version != self_version) {
