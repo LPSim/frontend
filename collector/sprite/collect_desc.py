@@ -5,7 +5,7 @@ import json
 import sys
 
 
-VERSION = '4.5'
+VERSION = '4.6'
 
 
 js_code = '''
@@ -23,6 +23,7 @@ if (id < 100000) {
     // is character
     for (i = 0; i < divs.length; i++) {
         div = divs[i]
+        console.log('skill div', div)
         first_c = div.children[0]
         second_c = div.children[1]
         first_c = first_c.children[1]
@@ -45,8 +46,9 @@ if (id < 100000) {
         let other_descs = second_c ? second_c.children[0].children[1] : undefined
         if (other_descs != undefined) {
             // contains other descs
+            console.log('other descs', other_descs)
             for (j = 0; j < other_descs.children.length; j++) {
-                let other_desc = other_descs.children[j].children[0]
+                let other_desc = other_descs.children[j]
                 let oname = other_desc.children[0].innerText
                 let odesc = other_desc.innerText.replace(oname, '').trim()
                 oname = oname.replace('•', '').trim()
