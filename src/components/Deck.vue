@@ -623,8 +623,8 @@ export default {
 }
 
 .one-image-div img {
-  width: auto;
-  height: 100%;
+  height: auto;
+  width: 100%;
 }
 
 .one-image-div span {
